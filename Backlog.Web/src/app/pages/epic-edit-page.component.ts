@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, Input } from "@angular/core";
-
 import { EpicActions } from "../actions";
+import { Router } from "@angular/router";
 
 @Component({
     template: require("./epic-edit-page.component.html"),
@@ -9,7 +9,7 @@ import { EpicActions } from "../actions";
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EpicEditPageComponent { 
-    constructor(private _epicActions: EpicActions) { }
+    constructor(private _epicActions: EpicActions, private _router: Router) { }
 
     public onSubmit($event: any) {
         this._epicActions.add({
@@ -17,5 +17,6 @@ export class EpicEditPageComponent {
             name: $event.value.name,
             description: $event.value.description
         });
+        this._router.navigate(["/epics"]);
     }
 }
