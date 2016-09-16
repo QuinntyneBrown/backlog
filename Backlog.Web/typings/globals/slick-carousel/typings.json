@@ -1,0 +1,8 @@
+{
+  "resolution": "main",
+  "tree": {
+    "src": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/97f8728185d7e128ed7030655fb7b30cdf3f7566/slick-carousel/slick-carousel.d.ts",
+    "raw": "registry:dt/slick-carousel#1.6.0+20160725142345",
+    "typings": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/97f8728185d7e128ed7030655fb7b30cdf3f7566/slick-carousel/slick-carousel.d.ts"
+  }
+}
