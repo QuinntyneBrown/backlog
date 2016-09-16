@@ -19,4 +19,16 @@ export class AppComponent implements OnInit {
     public get appShell$() {
         return this._store.contentByType$("AppShell");
     }
+
+    public get title$() {
+        return this.appShell$.map((appShell: any) => {
+            return appShell.title;
+        });
+    }
+
+    public get menuItems$() {
+        return this.appShell$.map((appShell: any) => {
+            return appShell.menuItems;
+        });
+    }
 }

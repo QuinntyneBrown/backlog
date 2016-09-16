@@ -58,7 +58,7 @@ export class ContentActions {
 
     public getByType(options: { type: string }) {
         return this._contentService.getByType({ type: options.type })
-            .subscribe(content => {
+            .subscribe(content => {                
                 this._store.dispatch({
                     type: CONTENT_GET_SUCCESS,
                     payload: [content]

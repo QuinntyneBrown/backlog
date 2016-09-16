@@ -1,12 +1,11 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input } from "@angular/core";
 
 @Component({
     template: require("./page-header.component.html"),
     styles: [require("./page-header.component.scss")],
-    selector: "page-header"
+    selector: "page-header",    
 })
-export class PageHeaderComponent implements OnInit { 
-    ngOnInit() {
-
-    }
+export class PageHeaderComponent { 
+    @Input() title: string;
+    @Input() menuItems: Array<any> = [];
 }

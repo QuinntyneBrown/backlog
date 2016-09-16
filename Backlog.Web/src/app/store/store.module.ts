@@ -7,6 +7,7 @@ import { AppStore } from "./app-store";
 import { initialState } from "./initial-state";
 
 import { epicsReducer } from "./epic.reducer";
+import { contentsReducer } from "./content.reducer";
 import { storiesReducer } from "./story.reducer";
 
 const providers = [
@@ -17,6 +18,7 @@ const providers = [
     imports: [
         ngrxStore.StoreModule.provideStore(
             {
+                contents: contentsReducer,
                 epics: epicsReducer,
                 stories: storiesReducer
             },

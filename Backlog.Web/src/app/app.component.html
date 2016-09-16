@@ -1,5 +1,7 @@
 <div class="app">
-    <page-header></page-header>
+    <page-header [title]="title$ | async"
+                 [menuItems]="menuItems$ | async">
+    </page-header>
     <div>
         <router-outlet></router-outlet>
     </div>

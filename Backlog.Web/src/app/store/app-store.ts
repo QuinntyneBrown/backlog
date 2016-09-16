@@ -42,10 +42,10 @@ export class AppStore {
         return state;
     }
 
-    public contentByType$(type: string): Observable<Content> {
+    public contentByType$(type: string): Observable<Content> {        
         return this._store.select("contents")
-            .map((data: { contents: Array<Content> }) => {
-                return pluck({ value: type, items: data.contents, key:"type" }) as Content;
+            .map((data: { contents: Array<Content> }) => {                
+                return pluck({ value: type, items: data.contents, key: "contentModelType" }) as Content;
             })
     }
 

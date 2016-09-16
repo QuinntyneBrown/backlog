@@ -29,7 +29,17 @@ namespace Backlog.Controllers
 
         [Route("getbytype")]
         [HttpGet]
-        public IHttpActionResult GetByType(string type) => Ok();
+        public IHttpActionResult GetByType(string type) {
+            switch (type) {
+                case "AppShell":
+                    return AppShell();
+
+                case "LandingPage":
+                    return LandingPage();
+            }
+
+            return NotFound();        
+        }
 
         protected readonly IAppShellContentModel _appShellContentModel;
         protected readonly ILandingPageContentModel _landingPageConentModel;
