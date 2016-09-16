@@ -58,7 +58,7 @@ export class AppStore {
 
     public epics$(): Observable<Array<Epic>> {
         return this._store.select("epics")
-            .map((data: { epics: Array<Epic> }) => {
+            .map((data: { epics: Array<Epic> }) => {                
                 return data.epics;
             });
     }

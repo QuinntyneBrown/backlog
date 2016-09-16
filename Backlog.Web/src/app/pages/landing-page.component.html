@@ -1,3 +1,5 @@
 <div class="landing-page">
-    
+    <one-column-layout>
+        <epic-list [entities]="_store.epics$() | async"></epic-list>
+    </one-column-layout>    
 </div>

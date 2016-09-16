@@ -1,9 +1,16 @@
 <div class="app">
-    <page-header [title]="title$ | async"
-                 [menuItems]="menuItems$ | async">
-    </page-header>
+    <one-column-layout>
+        <page-header [title]="title$ | async"
+                     [menuItems]="menuItems$ | async">
+        </page-header>
+    </one-column-layout>
+
     <div>
         <router-outlet></router-outlet>
     </div>
-    <page-footer></page-footer>
+
+    <one-column-layout>
+        <page-footer></page-footer>
+    </one-column-layout>
+    
 </div>

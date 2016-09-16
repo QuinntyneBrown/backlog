@@ -7,10 +7,18 @@ import { PageHeaderComponent } from "./page-header.component";
 import { PageFooterComponent } from "./page-footer.component";
 import { OneColumnLayoutComponent } from "./one-column-layout.component";
 
+import { EpicEditFormComponent } from "./epic-edit-form.component";
+import { EpicListComponent } from "./epic-list.component";
+
+
+
 const declarables = [
     PageHeaderComponent,
     PageFooterComponent,
-    OneColumnLayoutComponent
+    OneColumnLayoutComponent,
+
+    EpicEditFormComponent,
+    EpicListComponent
 ];
 
 const providers = [];

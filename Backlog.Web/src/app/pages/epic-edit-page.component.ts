@@ -1,4 +1,6 @@
-import { Component, ChangeDetectionStrategy, Input, OnInit } from "@angular/core";
+import { Component, ChangeDetectionStrategy, Input } from "@angular/core";
+
+import { EpicActions } from "../actions";
 
 @Component({
     template: require("./epic-edit-page.component.html"),
@@ -6,8 +8,14 @@ import { Component, ChangeDetectionStrategy, Input, OnInit } from "@angular/core
     selector: "epic-edit-page",
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class EpicEditPageComponent implements OnInit { 
-    ngOnInit() {
+export class EpicEditPageComponent { 
+    constructor(private _epicActions: EpicActions) { }
 
+    public onSubmit($event: any) {
+        this._epicActions.add({
+            id: $event.value.id,
+            name: $event.value.name,
+            description: $event.value.description
+        });
     }
 }

@@ -1,3 +1,11 @@
 .router-link-active {
-    font-weight:800;
+    font-weight:600;
+}
+
+a,
+a:link,
+a:visited,
+a:hover {
+    text-decoration:none;
+    padding-right:15px;
 }
