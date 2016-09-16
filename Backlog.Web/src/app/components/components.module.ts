@@ -3,7 +3,16 @@ import { CommonModule } from "@angular/common";
 import { ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from '@angular/router';
 
-const declarables = [];
+import { PageHeaderComponent } from "./page-header.component";
+import { PageFooterComponent } from "./page-footer.component";
+import { OneColumnLayoutComponent } from "./one-column-layout.component";
+
+const declarables = [
+    PageHeaderComponent,
+    PageFooterComponent,
+    OneColumnLayoutComponent
+];
+
 const providers = [];
 
 @NgModule({
