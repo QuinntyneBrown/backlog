@@ -9,7 +9,8 @@ import { OneColumnLayoutComponent } from "./one-column-layout.component";
 
 import { EpicEditFormComponent } from "./epic-edit-form.component";
 import { EpicListComponent } from "./epic-list.component";
-
+import { StoryEditComponent } from "./story-edit.component";
+import { StoryListComponent } from "./story-list.component";
 
 
 const declarables = [
@@ -18,7 +19,10 @@ const declarables = [
     OneColumnLayoutComponent,
 
     EpicEditFormComponent,
-    EpicListComponent
+    EpicListComponent,
+
+    StoryEditComponent,
+    StoryListComponent
 ];
 
 const providers = [];

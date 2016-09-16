@@ -6,7 +6,8 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion></ProductVersion>
+    <ProductVersion>
+    </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{658DA84D-AD6C-414A-9333-B89232911187}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -21,7 +22,8 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
-    <NuGetPackageImportStamp></NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
     <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
     <TypeScriptEmitDecoratorMetadata>true</TypeScriptEmitDecoratorMetadata>
     <TypeScriptModuleKind>commonjs</TypeScriptModuleKind>
@@ -226,6 +228,18 @@
     <Content Include="src\app\components\page-header.component.scss">
       <DependentUpon>page-header.component.ts</DependentUpon>
     </Content>
+    <Content Include="src\app\components\story-edit.component.html">
+      <DependentUpon>story-edit.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\components\story-edit.component.scss">
+      <DependentUpon>story-edit.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\components\story-list.component.html">
+      <DependentUpon>story-list.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\components\story-list.component.scss">
+      <DependentUpon>story-list.component.ts</DependentUpon>
+    </Content>
     <Content Include="src\app\pages\epic-edit-page.component.html">
       <DependentUpon>epic-edit-page.component.ts</DependentUpon>
     </Content>
@@ -237,6 +251,12 @@
     </Content>
     <Content Include="src\app\pages\story-edit-page.component.scss">
       <DependentUpon>story-edit-page.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\pages\story-list-page.component.html">
+      <DependentUpon>story-list-page.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\pages\story-list-page.component.scss">
+      <DependentUpon>story-list-page.component.ts</DependentUpon>
     </Content>
     <Content Include="src\styles\index.scss" />
     <Content Include="src\styles\_breakpoints.scss" />
@@ -300,7 +320,8 @@
           <IISUrl>http://localhost:56622/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl></CustomServerUrl>
+          <CustomServerUrl>
+          </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
@@ -392,6 +413,9 @@
     <TypeScriptCompile Include="src\app\store\content.reducer.ts" />
     <TypeScriptCompile Include="src\app\components\epic-edit-form.component.ts" />
     <TypeScriptCompile Include="src\app\components\epic-list.component.ts" />
+    <TypeScriptCompile Include="src\app\pages\story-list-page.component.ts" />
+    <TypeScriptCompile Include="src\app\components\story-edit.component.ts" />
+    <TypeScriptCompile Include="src\app\components\story-list.component.ts" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
 </Project>

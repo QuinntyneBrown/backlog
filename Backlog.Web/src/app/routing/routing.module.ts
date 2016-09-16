@@ -3,7 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import {
     LandingPageComponent,
     EpicEditPageComponent,
-    StoryEditPageComponent
+    StoryEditPageComponent,
+    StoryListPageComponent
     
 } from "../pages";
 
@@ -27,12 +28,16 @@ export const routes: Routes = [
         component: EpicEditPageComponent
     },
     {
-        path: 'story/:id',
+        path: 'epic/:epicId/story/:storyId',
         component: StoryEditPageComponent
     },
     {
-        path: 'story',
+        path: 'epic/:epicId/story',
         component: StoryEditPageComponent
+    },
+    {
+        path: 'epic/:epicId/stories',
+        component: StoryListPageComponent
     }
 ];
 
@@ -43,6 +48,7 @@ export const RoutingModule = RouterModule.forRoot([
 export const routedComponents = [
     LandingPageComponent,
     EpicEditPageComponent,
-    StoryEditPageComponent
+    StoryEditPageComponent,
+    StoryListPageComponent
 ];
 
