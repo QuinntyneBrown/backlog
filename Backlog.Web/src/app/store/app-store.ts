@@ -42,6 +42,20 @@ export class AppStore {
         return state;
     }
 
+    public get token$(): Observable<string> {
+        return this._store.select("token")
+            .map((data: { token: string }) => {
+                return data.token;
+            });
+    }
+
+    public get currentUser$(): Observable<string> {
+        return this._store.select("currentUser")
+            .map((data: { currentUser: any }) => {
+                return data.currentUser;
+            });
+    }
+
     public contentByType$(type: string): Observable<Content> {        
         return this._store.select("contents")
             .map((data: { contents: Array<Content> }) => {                

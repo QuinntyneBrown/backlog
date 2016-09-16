@@ -14,7 +14,7 @@ export class EpicActions {
     public add(epic: Epic) {
         const newGuid = guid();
         this._epicService.add(epic)
-            .subscribe(book => {
+            .subscribe(epic => {
                 this._store.dispatch({
                     type: EPIC_ADD_SUCCESS,
                     payload: epic

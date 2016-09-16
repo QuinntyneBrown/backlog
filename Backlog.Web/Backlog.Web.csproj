@@ -6,8 +6,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>
-    </ProductVersion>
+    <ProductVersion></ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{658DA84D-AD6C-414A-9333-B89232911187}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -22,8 +21,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
+    <NuGetPackageImportStamp></NuGetPackageImportStamp>
     <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
     <TypeScriptEmitDecoratorMetadata>true</TypeScriptEmitDecoratorMetadata>
     <TypeScriptModuleKind>commonjs</TypeScriptModuleKind>
@@ -198,6 +196,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <Content Include="src\app\components\drop-down.component.html">
+      <DependentUpon>drop-down.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\components\drop-down.component.scss">
+      <DependentUpon>drop-down.component.ts</DependentUpon>
+    </Content>
     <Content Include="src\app\components\epic-edit-form.component.html">
       <DependentUpon>epic-edit-form.component.ts</DependentUpon>
     </Content>
@@ -209,6 +213,12 @@
     </Content>
     <Content Include="src\app\components\epic-list.component.scss">
       <DependentUpon>epic-list.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\components\login.component.html">
+      <DependentUpon>login.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\components\login.component.scss">
+      <DependentUpon>login.component.ts</DependentUpon>
     </Content>
     <Content Include="src\app\components\one-column-layout.component.html">
       <DependentUpon>one-column-layout.component.ts</DependentUpon>
@@ -228,6 +238,12 @@
     <Content Include="src\app\components\page-header.component.scss">
       <DependentUpon>page-header.component.ts</DependentUpon>
     </Content>
+    <Content Include="src\app\components\search-input.component.html">
+      <DependentUpon>search-input.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\components\search-input.component.scss">
+      <DependentUpon>search-input.component.ts</DependentUpon>
+    </Content>
     <Content Include="src\app\components\story-edit.component.html">
       <DependentUpon>story-edit.component.ts</DependentUpon>
     </Content>
@@ -245,6 +261,12 @@
     </Content>
     <Content Include="src\app\pages\epic-edit-page.component.scss">
       <DependentUpon>epic-edit-page.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\pages\login-page.component.html">
+      <DependentUpon>login-page.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\pages\login-page.component.scss">
+      <DependentUpon>login-page.component.ts</DependentUpon>
     </Content>
     <Content Include="src\app\pages\story-edit-page.component.html">
       <DependentUpon>story-edit-page.component.ts</DependentUpon>
@@ -320,8 +342,7 @@
           <IISUrl>http://localhost:56622/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
+          <CustomServerUrl></CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
@@ -342,6 +363,10 @@
   </Target>
   -->
   <ItemGroup>
+    <TypeScriptCompile Include="src\app\constants\get-current-user-success.ts" />
+    <TypeScriptCompile Include="src\app\constants\user-logged-in.ts" />
+    <TypeScriptCompile Include="src\app\constants\user-logged-out.ts" />
+    <TypeScriptCompile Include="src\app\helpers\oauth-helper.ts" />
     <TypeScriptCompile Include="src\app\models\content.model.ts" />
     <TypeScriptCompile Include="src\vendor.ts" />
     <TypeScriptCompile Include="src\polyfills.ts" />
@@ -416,6 +441,15 @@
     <TypeScriptCompile Include="src\app\pages\story-list-page.component.ts" />
     <TypeScriptCompile Include="src\app\components\story-edit.component.ts" />
     <TypeScriptCompile Include="src\app\components\story-list.component.ts" />
+    <TypeScriptCompile Include="src\app\components\drop-down.component.ts" />
+    <TypeScriptCompile Include="src\app\components\login.component.ts" />
+    <TypeScriptCompile Include="src\app\pages\login-page.component.ts" />
+    <TypeScriptCompile Include="src\app\routing\authentication-guard.ts" />
+    <TypeScriptCompile Include="src\app\routing\login-redirect.service.ts" />
+    <TypeScriptCompile Include="src\app\components\search-input.component.ts" />
+    <TypeScriptCompile Include="src\app\models\drop-down-element.model.ts" />
+    <TypeScriptCompile Include="src\app\actions\authentication.actions.ts" />
+    <TypeScriptCompile Include="src\app\services\authentication.service.ts" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
 </Project>

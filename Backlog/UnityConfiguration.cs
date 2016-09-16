@@ -23,8 +23,11 @@ namespace Backlog
             container.RegisterType<ILogger, Logger>();
             container.RegisterType<IEpicService, EpicService>();
             container.RegisterType<IStoryService, StoryService>();
+            container.RegisterType<IUserService, UserService>();
+
             container.RegisterType<ILandingPageContentModel, LandingPageContentModel>();
             container.RegisterType<IAppShellContentModel, AppShellContentModel>();
+
             container.RegisterInstance(AuthConfiguration.LazyConfig);            
             return container;
         }

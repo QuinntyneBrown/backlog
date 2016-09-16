@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { HttpModule } from "@angular/http";
 
-const providers = [];
+import { OAuthHelper } from "./oauth-helper";
+
+const providers = [OAuthHelper];
 
 @NgModule({
     imports: [HttpModule],

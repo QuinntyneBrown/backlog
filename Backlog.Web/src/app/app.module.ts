@@ -18,7 +18,9 @@ import { StoreModule } from "./store";
 
 import {
     RoutingModule,
-    routedComponents
+    routedComponents,
+    LoginRedirectService,
+    AuthenticationGuard
 } from "./routing";
 
 const declarables = [
@@ -27,7 +29,8 @@ const declarables = [
 ];
 
 const providers = [
-
+    AuthenticationGuard,
+    LoginRedirectService
 ];
 
 @NgModule({

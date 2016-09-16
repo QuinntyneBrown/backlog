@@ -243,6 +243,9 @@
     <Compile Include="ContentModels\IAppShellContentModel.cs" />
     <Compile Include="ContentModels\LandingPageContentModel.cs" />
     <Compile Include="ContentModels\ILandingPageContentModel.cs" />
+    <Compile Include="Services\UserService.cs" />
+    <Compile Include="Services\IUserService.cs" />
+    <Compile Include="Controllers\UserController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

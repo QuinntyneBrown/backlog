@@ -1,0 +1,1 @@
+﻿export const GET_CURRENT_USER_SUCCESS = "[Authentication] Get Current User Success";
