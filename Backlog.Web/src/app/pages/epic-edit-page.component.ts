@@ -17,6 +17,8 @@ export class EpicEditPageComponent {
             name: $event.value.name,
             description: $event.value.description
         });
-        this._router.navigate(["/epics"]);
+
+        setTimeout(() => { this._router.navigate(["/epics"]); }, 0);
+        
     }
 }

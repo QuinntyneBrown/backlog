@@ -1,10 +1,11 @@
-﻿using System;
+using System;
 using System.Configuration;
 
 namespace Backlog.Configuration
-{
+{    
     public class AppConfiguration: ConfigurationSection, IAppConfiguration
     {
+
         [ConfigurationProperty("baseUri")]
         public string BaseUri
         {
@@ -12,10 +13,9 @@ namespace Backlog.Configuration
             set { this["baseUri"] = value; }
         }
 
-        public static IAppConfiguration Config
+		public static IAppConfiguration Config
         {
             get { return ConfigurationManager.GetSection("appConfiguration") as IAppConfiguration; }
         }
-       
     }
 }

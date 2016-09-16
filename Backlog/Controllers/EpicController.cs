@@ -18,7 +18,8 @@ namespace Backlog.Controllers
         [Route("add")]
         [HttpPost]
         [ResponseType(typeof(EpicAddOrUpdateResponseDto))]
-        public IHttpActionResult Add(EpicAddOrUpdateRequestDto dto) { return Ok(_epicService.AddOrUpdate(dto)); }
+        public IHttpActionResult Add(EpicAddOrUpdateRequestDto dto)
+        { return Ok(_epicService.AddOrUpdate(dto)); }
 
         [Route("update")]
         [HttpPut]

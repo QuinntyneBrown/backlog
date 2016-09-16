@@ -17,10 +17,12 @@ export const routes: Routes = [
     },
     {
         path: 'epics',
+        pathMatch: 'full',
         component: LandingPageComponent
     },
     {
-        path:'epic/:id',
+        path: 'epic/:id',
+        pathMatch: 'full',
         component: EpicEditPageComponent
     },
     {
@@ -30,14 +32,17 @@ export const routes: Routes = [
     },
     {
         path: 'epic/:epicId/story/:storyId',
+        pathMatch: 'full',
         component: StoryEditPageComponent
     },
     {
         path: 'epic/:epicId/story',
+        pathMatch: 'full',
         component: StoryEditPageComponent
     },
     {
         path: 'epic/:epicId/stories',
+        pathMatch: 'full',
         component: StoryListPageComponent
     }
 ];

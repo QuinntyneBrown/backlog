@@ -1,7 +1,7 @@
-﻿namespace Backlog.Configuration
-{
+namespace Backlog.Configuration
+{    
     public interface IAppConfiguration
     {
-        string BaseUri { get; set; }
+		string BaseUri { get; set; }
     }
 }
