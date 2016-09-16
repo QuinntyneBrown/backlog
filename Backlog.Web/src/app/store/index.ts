@@ -8,3 +8,4 @@ export * from "./sprint.reducer";
 export * from "./store.module";
 export * from "./story.reducer";
 export * from "./tag.reducer";
+export * from "./theme.reducer";

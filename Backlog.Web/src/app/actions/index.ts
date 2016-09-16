@@ -6,3 +6,4 @@ export * from "./epic.actions";
 export * from "./sprint.actions";
 export * from "./story.actions";
 export * from "./tag.actions";
+export * from "./theme.actions";

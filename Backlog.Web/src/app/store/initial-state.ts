@@ -7,6 +7,7 @@ export const initialState: any = {
     tags: [],
     sprints: [],
     agileTeams: [],
+    themes: [],
     currentUser: null,
     isLoggedIn: false,
     token: null

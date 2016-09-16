@@ -173,6 +173,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiConfiguration.cs" />
+    <Compile Include="Configuration\AppConfiguration.cs" />
+    <Compile Include="Configuration\IAppConfiguration.cs" />
     <Compile Include="ContentModels\ContentModelType.cs" />
     <Compile Include="Controllers\EpicController.cs" />
     <Compile Include="App_Start\WebApiUnityActionFilterProvider.cs" />
@@ -205,6 +207,7 @@
     <Compile Include="Infrastructure\Constants.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Epic.cs" />
+    <Compile Include="Models\EpicTheme.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\EpicService.cs" />
     <Compile Include="Services\Cache.cs" />
@@ -267,6 +270,15 @@
     <Compile Include="Services\AgileTeamService.cs" />
     <Compile Include="Services\IAgileTeamService.cs" />
     <Compile Include="Controllers\AgileTeamController.cs" />
+    <Compile Include="Models\Theme.cs" />
+    <Compile Include="Dtos\ThemeDto.cs" />
+    <Compile Include="Dtos\ThemeAddOrUpdateRequestDto.cs" />
+    <Compile Include="Dtos\ThemeAddOrUpdateResponseDto.cs" />
+    <Compile Include="Services\ThemeService.cs" />
+    <Compile Include="Services\IThemeService.cs" />
+    <Compile Include="Controllers\ThemeController.cs" />
+    <Compile Include="Migrations\ThemeConfiguration.cs" />
+    <Compile Include="Models\StoryTheme.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

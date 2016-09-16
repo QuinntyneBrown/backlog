@@ -471,6 +471,13 @@
     <TypeScriptCompile Include="src\app\store\sprint.reducer.ts" />
     <TypeScriptCompile Include="src\app\store\tag.reducer.ts" />
     <TypeScriptCompile Include="src\app\store\agile-team.reducer.ts" />
+    <TypeScriptCompile Include="src\app\constants\theme-add-success.action.ts" />
+    <TypeScriptCompile Include="src\app\constants\theme-get-success.action.ts" />
+    <TypeScriptCompile Include="src\app\constants\theme-remove-success.action.ts" />
+    <TypeScriptCompile Include="src\app\models\theme.model.ts" />
+    <TypeScriptCompile Include="src\app\actions\theme.actions.ts" />
+    <TypeScriptCompile Include="src\app\store\theme.reducer.ts" />
+    <TypeScriptCompile Include="src\app\services\theme.service.ts" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
 </Project>

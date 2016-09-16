@@ -6,3 +6,4 @@ export * from "./services.module";
 export * from "./sprint.service";
 export * from "./story.service";
 export * from "./tag.service";
+export * from "./theme.service";

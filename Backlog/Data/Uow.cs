@@ -33,6 +33,7 @@ namespace Backlog.Data
         public IRepository<Sprint> Sprints { get { return GetStandardRepo<Sprint>(); } }
         public IRepository<Tag> Tags { get { return GetStandardRepo<Tag>(); } }
         public IRepository<AgileTeam> AgileTeams { get { return GetStandardRepo<AgileTeam>(); } }
+        public IRepository<Theme> Themes { get { return GetStandardRepo<Theme>(); } }
 
         protected void ConfigureDbContext(IDbContext dbContext)
         {

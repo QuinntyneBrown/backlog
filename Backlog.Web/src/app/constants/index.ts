@@ -17,5 +17,8 @@ export * from "./story-remove-success.action";
 export * from "./tag-add-success.action";
 export * from "./tag-get-success.action";
 export * from "./tag-remove-success.action";
+export * from "./theme-add-success.action";
+export * from "./theme-get-success.action";
+export * from "./theme-remove-success.action";
 export * from "./user-logged-in";
 export * from "./user-logged-out";

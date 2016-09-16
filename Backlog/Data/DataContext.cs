@@ -20,6 +20,7 @@ namespace Backlog.Data
         public DbSet<Sprint> Sprints { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<AgileTeam> AgileTeams { get; set; }
+        public DbSet<Theme> Themes { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

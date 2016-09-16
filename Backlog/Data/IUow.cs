@@ -11,6 +11,7 @@ namespace Backlog.Data
         IRepository<Tag> Tags { get; }
         IRepository<Sprint> Sprints { get; }
         IRepository<AgileTeam> AgileTeams { get; }
+        IRepository<Theme> Themes { get; }
 
         void SaveChanges();
     }
