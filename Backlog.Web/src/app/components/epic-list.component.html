@@ -1,5 +1,14 @@
 <div class="epic-list">
-    <div *ngFor="let entity of entities">
-        <h1>{{ entity.name }}</h1>
+    <h1>Epics</h1>
+    <div *ngFor="let entity of entities; let i = index">
+        <a class="epic-list-item-count">{{ i + 1 }}</a>
+        <a (click)="onSelect.emit({ value: entity })" class="epic-list-item-name">{{ entity.name}}</a>
+        <a class="epic-list-item-stories-count">{{ entity.stories.length }} STORIES</a>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <a (click)="onCreateStory.emit({ value: entity })" class="epic-list-item-action">CREATE STORY</a>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <a (click)="onDelete.emit({ value: entity })" class="epic-list-item-action">DELETE</a>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <a (click)="onEdit.emit({ value: entity })" class="epic-list-item-action">EDIT</a>
     </div>
 </div>

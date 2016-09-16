@@ -1,3 +1,10 @@
 <div class="story-list">
-
+    <h1>Stories</h1>
+    <div *ngFor="let entity of entities; let i = index">
+        <a class="story-list-item-count">{{ i + 1 }}</a>
+        <a (click)="onSelect.emit({ value: entity })" class="story-list-item-name">{{ entity.name}}</a>
+        <a (click)="onDelete.emit({ value: entity })" class="story-list-item-action">DELETE</a>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <a (click)="onEdit.emit({ value: entity })" class="story-list-item-action">EDIT</a>
+    </div>
 </div>

@@ -1,5 +1,8 @@
 <div class="landing-page">
     <one-column-layout>
-        <epic-list [entities]="_store.epics$() | async"></epic-list>
+        <epic-list [entities]="_store.epics$() | async"
+                   (onDelete)="_epicActions.remove({ id: $event.value.id })"
+                   (onEdit)="_router.navigate(['epic', $event.value.id])"
+                   (onCreateStory)="_router.navigate(['epic', $event.value.id,'story'])"></epic-list>
     </one-column-layout>    
 </div>

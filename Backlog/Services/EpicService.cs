@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Backlog.Dtos;
 using Backlog.Data;
 using System.Linq;
+using System.Data.Entity;
 
 namespace Backlog.Services
 {
@@ -28,7 +29,9 @@ namespace Backlog.Services
         public ICollection<EpicDto> Get()
         {
             ICollection<EpicDto> response = new HashSet<EpicDto>();
-            var entities = _repository.GetAll().Where(x => x.IsDeleted == false).ToList();
+            var entities = _repository.GetAll()
+                .Include(x=>x.Stories)
+                .Where(x => x.IsDeleted == false).ToList();
             foreach (var entity in entities) { response.Add(new EpicDto(entity)); }
             return response;
         }

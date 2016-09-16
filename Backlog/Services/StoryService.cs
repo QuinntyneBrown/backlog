@@ -20,8 +20,15 @@ namespace Backlog.Services
         public StoryAddOrUpdateResponseDto AddOrUpdate(StoryAddOrUpdateRequestDto request)
         {
             var entity = _repository.GetAll()
+                .Include(x=>x.Epic)
                 .FirstOrDefault(x => x.Id == request.Id && x.IsDeleted == false);
             if (entity == null) _repository.Add(entity = new Story());
+
+            if(request.EpicId != null)
+            {
+                entity.EpicId = request.EpicId.Value;
+                entity.Epic = _uow.Epics.GetById(request.EpicId.Value);
+            } 
             entity.Name = request.Name;
             _uow.SaveChanges();
             return new StoryAddOrUpdateResponseDto(entity);

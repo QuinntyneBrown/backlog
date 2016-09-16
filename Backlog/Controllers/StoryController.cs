@@ -6,7 +6,7 @@ using System.Web.Http.Description;
 
 namespace Backlog.Controllers
 {
-    [Authorize]
+    [AllowAnonymous]
     [RoutePrefix("api/story")]
     public class StoryController : ApiController
     {

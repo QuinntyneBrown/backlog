@@ -244,6 +244,12 @@
     <Content Include="src\app\components\search-input.component.scss">
       <DependentUpon>search-input.component.ts</DependentUpon>
     </Content>
+    <Content Include="src\app\components\story-edit-form.component.html">
+      <DependentUpon>story-edit-form.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\components\story-edit-form.component.scss">
+      <DependentUpon>story-edit-form.component.ts</DependentUpon>
+    </Content>
     <Content Include="src\app\components\story-list.component.html">
       <DependentUpon>story-list.component.ts</DependentUpon>
     </Content>
@@ -327,8 +333,6 @@
     <Content Include="tsconfig.json" />
     <Content Include="typedoc.json" />
     <Content Include="typings.json" />
-    <Content Include="src\app\components\story-edit-form.component.scss" />
-    <Content Include="src\app\components\story-edit-form.component.html" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="index.html" />

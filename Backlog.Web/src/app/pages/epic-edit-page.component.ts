@@ -15,6 +15,7 @@ export class EpicEditPageComponent {
         this._epicActions.add({
             id: $event.value.id,
             name: $event.value.name,
+            stories:[],
             description: $event.value.description
         });
 

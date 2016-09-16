@@ -44,6 +44,21 @@ export const routes: Routes = [
         path: 'epic/:epicId/stories',
         pathMatch: 'full',
         component: StoryListPageComponent
+    },
+    {
+        path: 'stories',
+        pathMatch: 'full',
+        component: StoryListPageComponent
+    },
+    {
+        path: 'story',
+        pathMatch: 'full',
+        component: StoryEditPageComponent
+    },
+    {
+        path: 'story/:id',
+        pathMatch: 'full',
+        component: StoryEditPageComponent
     }
 ];
 

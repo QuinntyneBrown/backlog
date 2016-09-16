@@ -7,5 +7,7 @@ export const addOrUpdate = (options: { items: Array<any>, item: any, key?: strin
             exists = true;
         }
     }
-    if (!exists) { options.items.push(options.item); }
+    if (!exists)
+        options.items.push(options.item);
+    
 }

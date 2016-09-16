@@ -14,7 +14,7 @@ export class StoryActions {
     public add(story: Story) {
         const newGuid = guid();
         this._storyService.add(story)
-            .subscribe(book => {
+            .subscribe(story => {
                 this._store.dispatch({
                     type: STORY_ADD_SUCCESS,
                     payload: story
@@ -25,10 +25,10 @@ export class StoryActions {
 
     public get() {                          
         return this._storyService.get()
-            .subscribe(storys => {
+            .subscribe(stories => {
                 this._store.dispatch({
                     type: STORY_GET_SUCCESS,
-                    payload: storys
+                    payload: stories
                 });
                 return true;
             });

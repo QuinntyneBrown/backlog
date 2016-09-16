@@ -1,0 +1,28 @@
+h1 {
+    font-size:1.5em;
+}
+
+a {
+    line-height:1.5em;
+    display:inline-block;    
+}
+
+.epic-list-item-count,
+.epic-list-item-stories-count {
+    min-width:25px;
+}
+
+.epic-list-item-stories-count {
+    font-size:0.75em;
+    font-weight:100;
+}
+
+.epic-list-item-name {
+    min-width:200px;
+}
+
+.epic-list-item-action {
+    font-size:0.75em;
+    cursor:pointer;
+    font-weight:100;
+}
