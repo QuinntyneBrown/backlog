@@ -7,5 +7,5 @@ export * from "./one-column-layout.component";
 export * from "./page-footer.component";
 export * from "./page-header.component";
 export * from "./search-input.component";
-export * from "./story-edit.component";
+export * from "./story-edit-form.component";
 export * from "./story-list.component";

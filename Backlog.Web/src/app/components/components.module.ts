@@ -9,7 +9,7 @@ import { OneColumnLayoutComponent } from "./one-column-layout.component";
 
 import { EpicEditFormComponent } from "./epic-edit-form.component";
 import { EpicListComponent } from "./epic-list.component";
-import { StoryEditComponent } from "./story-edit.component";
+import { StoryEditFormComponent } from "./story-edit-form.component";
 import { StoryListComponent } from "./story-list.component";
 
 
@@ -21,7 +21,7 @@ const declarables = [
     EpicEditFormComponent,
     EpicListComponent,
 
-    StoryEditComponent,
+    StoryEditFormComponent,
     StoryListComponent
 ];
 

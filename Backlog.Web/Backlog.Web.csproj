@@ -244,17 +244,17 @@
     <Content Include="src\app\components\search-input.component.scss">
       <DependentUpon>search-input.component.ts</DependentUpon>
     </Content>
-    <Content Include="src\app\components\story-edit.component.html">
-      <DependentUpon>story-edit.component.ts</DependentUpon>
-    </Content>
-    <Content Include="src\app\components\story-edit.component.scss">
-      <DependentUpon>story-edit.component.ts</DependentUpon>
-    </Content>
     <Content Include="src\app\components\story-list.component.html">
       <DependentUpon>story-list.component.ts</DependentUpon>
     </Content>
     <Content Include="src\app\components\story-list.component.scss">
       <DependentUpon>story-list.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\pages\agile-team-edit-page.component.html">
+      <DependentUpon>agile-team-edit-page.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\pages\agile-team-edit-page.component.scss">
+      <DependentUpon>agile-team-edit-page.component.ts</DependentUpon>
     </Content>
     <Content Include="src\app\pages\epic-edit-page.component.html">
       <DependentUpon>epic-edit-page.component.ts</DependentUpon>
@@ -268,6 +268,12 @@
     <Content Include="src\app\pages\login-page.component.scss">
       <DependentUpon>login-page.component.ts</DependentUpon>
     </Content>
+    <Content Include="src\app\pages\sprint-edit-page.component.html">
+      <DependentUpon>sprint-edit-page.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\pages\sprint-edit-page.component.scss">
+      <DependentUpon>sprint-edit-page.component.ts</DependentUpon>
+    </Content>
     <Content Include="src\app\pages\story-edit-page.component.html">
       <DependentUpon>story-edit-page.component.ts</DependentUpon>
     </Content>
@@ -279,6 +285,18 @@
     </Content>
     <Content Include="src\app\pages\story-list-page.component.scss">
       <DependentUpon>story-list-page.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\pages\tag-edit-page.component.html">
+      <DependentUpon>tag-edit-page.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\pages\tag-edit-page.component.scss">
+      <DependentUpon>tag-edit-page.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\pages\theme-edit-page.component.html">
+      <DependentUpon>theme-edit-page.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\pages\theme-edit-page.component.scss">
+      <DependentUpon>theme-edit-page.component.ts</DependentUpon>
     </Content>
     <Content Include="src\styles\index.scss" />
     <Content Include="src\styles\_breakpoints.scss" />
@@ -309,6 +327,8 @@
     <Content Include="tsconfig.json" />
     <Content Include="typedoc.json" />
     <Content Include="typings.json" />
+    <Content Include="src\app\components\story-edit-form.component.scss" />
+    <Content Include="src\app\components\story-edit-form.component.html" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="index.html" />
@@ -439,7 +459,6 @@
     <TypeScriptCompile Include="src\app\components\epic-edit-form.component.ts" />
     <TypeScriptCompile Include="src\app\components\epic-list.component.ts" />
     <TypeScriptCompile Include="src\app\pages\story-list-page.component.ts" />
-    <TypeScriptCompile Include="src\app\components\story-edit.component.ts" />
     <TypeScriptCompile Include="src\app\components\story-list.component.ts" />
     <TypeScriptCompile Include="src\app\components\drop-down.component.ts" />
     <TypeScriptCompile Include="src\app\components\login.component.ts" />
@@ -478,6 +497,11 @@
     <TypeScriptCompile Include="src\app\actions\theme.actions.ts" />
     <TypeScriptCompile Include="src\app\store\theme.reducer.ts" />
     <TypeScriptCompile Include="src\app\services\theme.service.ts" />
+    <TypeScriptCompile Include="src\app\pages\theme-edit-page.component.ts" />
+    <TypeScriptCompile Include="src\app\pages\sprint-edit-page.component.ts" />
+    <TypeScriptCompile Include="src\app\pages\agile-team-edit-page.component.ts" />
+    <TypeScriptCompile Include="src\app\pages\tag-edit-page.component.ts" />
+    <TypeScriptCompile Include="src\app\components\story-edit-form.component.ts" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
 </Project>

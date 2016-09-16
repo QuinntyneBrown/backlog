@@ -6,13 +6,15 @@ import {
     Validators
 } from "@angular/forms";
 
+import { Story } from "../models";
+
 @Component({
-    template: require("./epic-edit-form.component.html"),
-    styles: [require("./epic-edit-form.component.scss")],
-    selector: "epic-edit-form",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    template: require("./story-edit-form.component.html"),
+    styles: [require("./story-edit-form.component.scss")],
+    selector: "story-edit-form",
 })
-export class EpicEditFormComponent implements AfterViewInit {    
+export class StoryEditFormComponent implements AfterViewInit  { 
+
     constructor(private _renderer: Renderer, private _elementRef: ElementRef) { } 
 
     public get name(): HTMLElement {
@@ -22,14 +24,11 @@ export class EpicEditFormComponent implements AfterViewInit {
     ngAfterViewInit() {
         this._renderer.invokeElementMethod(this.name, 'focus', []);
     }
-
-    @Input() public epic: any;
+	    
+    @Input() public story: Story;
     @Output() public onSubmit = new EventEmitter();
     public form = new FormGroup({
         name: new FormControl("", [
-            Validators.required
-        ]),
-        description: new FormControl("", [
             Validators.required
         ])
     });
