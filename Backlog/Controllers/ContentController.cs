@@ -4,7 +4,7 @@ using System.Web.Http.Description;
 
 namespace Backlog.Controllers
 {
-    [Authorize]
+    [AllowAnonymous]
     [RoutePrefix("api/content")]
     public class ContentController : ApiController
     {
@@ -26,6 +26,10 @@ namespace Backlog.Controllers
         [HttpGet]
         [ResponseType(typeof(ILandingPageContentModel))]
         public IHttpActionResult LandingPage() => Ok(_landingPageConentModel.Get());
+
+        [Route("getbytype")]
+        [HttpGet]
+        public IHttpActionResult GetByType(string type) => Ok();
 
         protected readonly IAppShellContentModel _appShellContentModel;
         protected readonly ILandingPageContentModel _landingPageConentModel;

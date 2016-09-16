@@ -4,7 +4,7 @@ import { AppState } from "./app-state";
 import { guid, pluck } from "../utilities";
 import { select, SelectSignature } from '@ngrx/core/operator/select';
 import { Observable, BehaviorSubject } from "rxjs";
-import { Epic } from "../models";
+import { Epic, Story, Content } from "../models";
 
 
 @Injectable()
@@ -42,6 +42,13 @@ export class AppStore {
         return state;
     }
 
+    public contentByType$(type: string): Observable<Content> {
+        return this._store.select("contents")
+            .map((data: { contents: Array<Content> }) => {
+                return pluck({ value: type, items: data.contents, key:"type" }) as Content;
+            })
+    }
+
     public epicById$(id: string): Observable<Epic> {
         return this._store.select("epics")
             .map((data: { epics: Array<Epic> }) => {
@@ -53,6 +60,20 @@ export class AppStore {
         return this._store.select("epics")
             .map((data: { epics: Array<Epic> }) => {
                 return data.epics;
+            });
+    }
+
+    public storyById$(id: string): Observable<Story> {
+        return this._store.select("stories")
+            .map((data: { stories: Array<Story> }) => {
+                return pluck({ value: id, items: data.stories }) as Story;
+            })
+    }
+
+    public stories$(): Observable<Array<Story>> {
+        return this._store.select("stories")
+            .map((data: { stories: Array<Story> }) => {
+                return data.stories;
             });
     }
 }
