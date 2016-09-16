@@ -17,6 +17,9 @@ namespace Backlog.Data
         public DbSet<Story> Stories { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
+        public DbSet<Sprint> Sprints { get; set; }
+        public DbSet<Tag> Tags { get; set; }
+        public DbSet<AgileTeam> AgileTeams { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

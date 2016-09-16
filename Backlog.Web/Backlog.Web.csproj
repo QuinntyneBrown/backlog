@@ -450,6 +450,27 @@
     <TypeScriptCompile Include="src\app\models\drop-down-element.model.ts" />
     <TypeScriptCompile Include="src\app\actions\authentication.actions.ts" />
     <TypeScriptCompile Include="src\app\services\authentication.service.ts" />
+    <TypeScriptCompile Include="src\app\models\tag.model.ts" />
+    <TypeScriptCompile Include="src\app\models\sprint.model.ts" />
+    <TypeScriptCompile Include="src\app\models\agile-team.model.ts" />
+    <TypeScriptCompile Include="src\app\constants\agile-team-add-success.action.ts" />
+    <TypeScriptCompile Include="src\app\constants\agile-team-get-success.action.ts" />
+    <TypeScriptCompile Include="src\app\constants\agile-team-remove-success.action.ts" />
+    <TypeScriptCompile Include="src\app\constants\tag-add-success.action.ts" />
+    <TypeScriptCompile Include="src\app\constants\tag-get-success.action.ts" />
+    <TypeScriptCompile Include="src\app\constants\tag-remove-success.action.ts" />
+    <TypeScriptCompile Include="src\app\constants\sprint-add-success.action.ts" />
+    <TypeScriptCompile Include="src\app\constants\sprint-get-success.action.ts" />
+    <TypeScriptCompile Include="src\app\constants\sprint-remove-success.action.ts" />
+    <TypeScriptCompile Include="src\app\actions\sprint.actions.ts" />
+    <TypeScriptCompile Include="src\app\actions\tag.actions.ts" />
+    <TypeScriptCompile Include="src\app\actions\agile-team.actions.ts" />
+    <TypeScriptCompile Include="src\app\services\agile-team.service.ts" />
+    <TypeScriptCompile Include="src\app\services\tag.service.ts" />
+    <TypeScriptCompile Include="src\app\services\sprint.service.ts" />
+    <TypeScriptCompile Include="src\app\store\sprint.reducer.ts" />
+    <TypeScriptCompile Include="src\app\store\tag.reducer.ts" />
+    <TypeScriptCompile Include="src\app\store\agile-team.reducer.ts" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
 </Project>

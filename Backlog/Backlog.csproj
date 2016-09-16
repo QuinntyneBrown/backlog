@@ -246,6 +246,27 @@
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Services\IUserService.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Models\Sprint.cs" />
+    <Compile Include="Dtos\SprintDto.cs" />
+    <Compile Include="Dtos\SprintAddOrUpdateRequestDto.cs" />
+    <Compile Include="Dtos\SprintAddOrUpdateResponseDto.cs" />
+    <Compile Include="Dtos\TagDto.cs" />
+    <Compile Include="Dtos\TagAddOrUpdateRequestDto.cs" />
+    <Compile Include="Dtos\TagAddOrUpdateResponseDto.cs" />
+    <Compile Include="Models\Tag.cs" />
+    <Compile Include="Controllers\SprintController.cs" />
+    <Compile Include="Controllers\TagController.cs" />
+    <Compile Include="Services\SprintService.cs" />
+    <Compile Include="Services\ISprintService.cs" />
+    <Compile Include="Services\TagService.cs" />
+    <Compile Include="Services\ITagService.cs" />
+    <Compile Include="Models\AgileTeam.cs" />
+    <Compile Include="Dtos\AgileTeamDto.cs" />
+    <Compile Include="Dtos\AgileTeamAddOrUpdateRequestDto.cs" />
+    <Compile Include="Dtos\AgileTeamAddOrUpdateResponseDto.cs" />
+    <Compile Include="Services\AgileTeamService.cs" />
+    <Compile Include="Services\IAgileTeamService.cs" />
+    <Compile Include="Controllers\AgileTeamController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

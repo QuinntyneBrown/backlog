@@ -30,6 +30,9 @@ namespace Backlog.Data
         public IRepository<Story> Stories { get { return GetStandardRepo<Story>(); } }
         public IRepository<User> Users { get { return GetStandardRepo<User>(); } }
         public IRepository<Role> Roles { get { return GetStandardRepo<Role>(); } }
+        public IRepository<Sprint> Sprints { get { return GetStandardRepo<Sprint>(); } }
+        public IRepository<Tag> Tags { get { return GetStandardRepo<Tag>(); } }
+        public IRepository<AgileTeam> AgileTeams { get { return GetStandardRepo<AgileTeam>(); } }
 
         protected void ConfigureDbContext(IDbContext dbContext)
         {

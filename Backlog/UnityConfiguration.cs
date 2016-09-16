@@ -12,7 +12,8 @@ namespace Backlog
     {
         public static IUnityContainer GetContainer()
         {
-            var container = new UnityContainer().AddNewExtension<Interception>();
+            var container = new UnityContainer();
+
             container.RegisterType<IDbContext, DataContext>();
             container.RegisterType<IUow, Uow>();
             container.RegisterType<IRepositoryProvider, RepositoryProvider>();
@@ -24,6 +25,9 @@ namespace Backlog
             container.RegisterType<IEpicService, EpicService>();
             container.RegisterType<IStoryService, StoryService>();
             container.RegisterType<IUserService, UserService>();
+            container.RegisterType<ISprintService, SprintService>();
+            container.RegisterType<ITagService, TagService>();
+            container.RegisterType<IAgileTeamService, AgileTeamService>();
 
             container.RegisterType<ILandingPageContentModel, LandingPageContentModel>();
             container.RegisterType<IAppShellContentModel, AppShellContentModel>();

@@ -8,6 +8,9 @@ namespace Backlog.Data
         IRepository<Story> Stories { get; }
         IRepository<User> Users { get; }
         IRepository<Role> Roles { get; }
+        IRepository<Tag> Tags { get; }
+        IRepository<Sprint> Sprints { get; }
+        IRepository<AgileTeam> AgileTeams { get; }
 
         void SaveChanges();
     }
