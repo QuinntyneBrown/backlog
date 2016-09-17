@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from "@angular/common";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { RouterModule } from '@angular/router';
+import { PipesModule } from "../pipes";
 
 import { PageHeaderComponent } from "./page-header.component";
 import { PageFooterComponent } from "./page-footer.component";
@@ -30,7 +31,7 @@ const declarables = [
 const providers = [];
 
 @NgModule({
-    imports: [CommonModule, ReactiveFormsModule, RouterModule, FormsModule],
+    imports: [CommonModule, ReactiveFormsModule, RouterModule, FormsModule, PipesModule],
     exports: [declarables],
     declarations: [declarables],
 	providers: providers

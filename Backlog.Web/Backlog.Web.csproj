@@ -404,6 +404,7 @@
     <TypeScriptCompile Include="src\app\constants\user-logged-out.ts" />
     <TypeScriptCompile Include="src\app\helpers\oauth-helper.ts" />
     <TypeScriptCompile Include="src\app\models\content.model.ts" />
+    <TypeScriptCompile Include="src\app\pipes\sort-by-priority.pipe.ts" />
     <TypeScriptCompile Include="src\vendor.ts" />
     <TypeScriptCompile Include="src\polyfills.ts" />
     <TypeScriptCompile Include="src\main.ts" />

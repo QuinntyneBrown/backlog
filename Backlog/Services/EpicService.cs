@@ -19,6 +19,7 @@ namespace Backlog.Services
         public EpicAddOrUpdateResponseDto AddOrUpdate(EpicAddOrUpdateRequestDto request)
         {
             var entity = _repository.GetAll()
+                .Include(x=>x.Stories)
                 .FirstOrDefault(x => x.Id == request.Id && x.IsDeleted == false);
             if (entity == null) _repository.Add(entity = new Models.Epic());
             entity.Name = request.Name;

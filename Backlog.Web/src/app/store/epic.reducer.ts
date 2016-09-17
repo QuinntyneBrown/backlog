@@ -10,7 +10,7 @@ export const epicsReducer = (state: AppState = initialState, action: Action) => 
         case EPIC_ADD_SUCCESS:
             var entities: Array<Epic> = state.epics;
             var entity: Epic = action.payload;
-            addOrUpdate({ items: entities, item: entity});            
+            addOrUpdate({ items: entities, item: entity });            
             return Object.assign({}, state, { epics: entities });
 
         case EPIC_GET_SUCCESS:            
@@ -18,7 +18,7 @@ export const epicsReducer = (state: AppState = initialState, action: Action) => 
             var newOrExistingEpics: Array<Epic> = action.payload;
             for (let i = 0; i < newOrExistingEpics.length; i++) {
                 addOrUpdate({ items: entities, item: newOrExistingEpics[i] });
-            }                                                
+            }
             return Object.assign({}, state, { epics: entities });
 
         case EPIC_REMOVE_SUCCESS:

@@ -72,7 +72,11 @@ export class AppStore {
 
     public epics$(): Observable<Array<Epic>> {
         return this._store.select("epics")
-            .map((data: { epics: Array<Epic> }) => {                
+            .map((data: { epics: Array<Epic> }) => { 
+                data.epics.sort((a: any, b: any) => {
+                    if (a.priority < b.priority) { return 1; }
+                    return 0;
+                });               
                 return data.epics;
             });
     }

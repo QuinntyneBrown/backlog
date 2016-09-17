@@ -12,4 +12,6 @@ export class EpicListComponent {
     @Output() onSelect: EventEmitter<{ value: Epic }> = new EventEmitter<{ value: Epic }>();
     @Output() onEdit: EventEmitter<{ value: Epic }> = new EventEmitter<{ value: Epic }>();
     @Output() onCreateStory: EventEmitter<any> = new EventEmitter<any>();
+    @Output() onIncrementPriority: EventEmitter<any> = new EventEmitter<any>();
+    @Output() onDecrementPriority: EventEmitter<any> = new EventEmitter<any>();
 }

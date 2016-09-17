@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from "@angular/common";
 
-const declarables = [];
+import { SortByPriorityPipe } from './sort-by-priority.pipe';
+
+const declarables = [SortByPriorityPipe];
 
 @NgModule({
-    imports: [CommonModule],
     exports: [declarables],
     declarations: [declarables]
 })

@@ -1,9 +1,13 @@
 <div class="landing-page">
     <one-column-layout>
+        <a (click)="_router.navigate(['epic'])" class="landing-page-create-epic">CREATE EPIC</a>
         <epic-list [entities]="_store.epics$() | async"
                    (onDelete)="_epicActions.remove({ id: $event.value.id })"
                    (onEdit)="_router.navigate(['epic', $event.value.id])"
                    (onSelect)="_router.navigate(['epic','detail',$event.value.id])"
-                   (onCreateStory)="_router.navigate(['epic', $event.value.id,'story'])"></epic-list>
+                   (onCreateStory)="_router.navigate(['epic', $event.value.id,'story'])"
+                   (onIncrementPriority)="_epicActions.incrementPriority({ epic: $event.entity })"
+                   (onDecrementPriority)="_epicActions.decrementPriority({ epic: $event.entity })"
+                   ></epic-list>
     </one-column-layout>    
 </div>

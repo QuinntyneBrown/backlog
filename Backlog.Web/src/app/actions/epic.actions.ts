@@ -14,7 +14,7 @@ export class EpicActions {
     public add(epic: Epic) {
         const newGuid = guid();
         this._epicService.add(epic)
-            .subscribe(epic => {
+            .subscribe((epic:any) => {
                 this._store.dispatch({
                     type: EPIC_ADD_SUCCESS,
                     payload: epic
@@ -54,5 +54,45 @@ export class EpicActions {
                 });
                 return true;
             });
+    }
+
+    public incrementPriority(options: { epic: Epic }) {
+        for (let i = 0; i < this._epicsAscending.length; i++) {
+            if (this._epicsAscending[i].priority >= options.epic.priority) {
+                options.epic.priority = this._epicsAscending[i].priority + 1;                
+                break;
+            }
+        }
+        
+        return this.add(options.epic);
+    }
+
+    public decrementPriority(options: { epic: Epic }) {
+        for (let i = 0; i < this._epicsDescending.length; i++) {
+            if (this._epicsAscending[i].priority >= options.epic.priority) {
+                options.epic.priority = this._epicsAscending[i].priority - 1;
+                break;
+            }
+        }
+
+        return this.add(options.epic);
+    }
+
+    private get _epicsAscending(): Array<Epic> {
+        var epics: Array<Epic> = [];
+        this._store.epics$().take(1).subscribe(x => epics = x);
+        epics.sort((a, b) => {
+            return a.priority - b.priority;
+        });
+        return epics;
+    }
+
+    private get _epicsDescending(): Array<Epic> {
+        var epics: Array<Epic> = [];
+        this._store.epics$().take(1).subscribe(x => epics = x);
+        epics.sort((a, b) => {
+            return a.priority - b.priority;
+        });
+        return epics;
     }
 }
