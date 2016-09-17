@@ -1,6 +1,6 @@
 <div class="story-list-page">
     <one-column-layout>
-        <story-list [entities]="_store.stories$() | async"
+        <story-list [entities]="_store.stories$() | async"                    
                    (onDelete)="_storyActions.remove({ id: $event.value.id })"
                    (onEdit)="_router.navigate(['story', $event.value.id])"></story-list>
     </one-column-layout>    

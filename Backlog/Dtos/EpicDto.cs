@@ -10,7 +10,9 @@ namespace Backlog.Dtos
             Id = entity.Id;
             Name = entity.Name;
             Description = entity.Description;
-            Stories = entity.Stories.Where(s=>!s.IsDeleted).Select(x => new StoryDto(x)).ToList();
+            Stories = entity.Stories.Where(s=>!s.IsDeleted)
+                .OrderByDescending(x=>x.Priority)
+                .Select(x => new StoryDto(x)).ToList();
             Priority = entity.Priority;
         }
 

@@ -31,20 +31,28 @@ export class StoryEditFormComponent implements AfterViewInit, OnInit  {
         if (this.story && this.story.id) {
             this.form.patchValue({ id: this.story.id })
             this.form.patchValue({ name: this.story.name });
+            this.form.patchValue({ priority: this.story.priority });
         }
     }
 	    
     @Input() public story: Story;
     @Output() public onSubmit = new EventEmitter();
+    @Output() public onCancel = new EventEmitter();
+
     public description: string = "<p><strong>As a</strong> &lt;user/product owner&gt;</p> <p><strong>I want/can</strong> &lt;action&gt;</p> <p><strong>So that </strong>&lt;reason&gt;</p>"
     public form = new FormGroup({
         id: new FormControl("", []),
-        name: new FormControl("", [])
+        name: new FormControl("", []),
+        priority: new FormControl("", [])
     });
 
     public tryToSubmit() {
         this.onSubmit.emit({
             value: Object.assign({}, this.form.value, { description: this.description })
         });
+    }
+
+    public tryToCancel() {
+        this.onCancel.emit();
     }
 }

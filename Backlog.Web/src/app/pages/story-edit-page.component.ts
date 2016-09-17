@@ -28,6 +28,7 @@ export class StoryEditPageComponent implements OnInit {
             id: $event.value.id,
             epicId: this._activatedRoute.snapshot.params["epicId"],
             name: $event.value.name,
+            priority: $event.value.priority,
             description: $event.value.description
         });
 
@@ -39,5 +40,15 @@ export class StoryEditPageComponent implements OnInit {
             }
         }, 0);
         
+    }
+
+    public tryToCancel() {
+        setTimeout(() => {
+            if (this._activatedRoute.snapshot.params["epicId"]) {
+                this._router.navigate(["/epic", "detail", this._activatedRoute.snapshot.params["epicId"]]);
+            } else {
+                this._router.navigate(["/stories"]);
+            }
+        }, 0);
     }
 }

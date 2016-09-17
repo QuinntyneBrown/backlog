@@ -2,9 +2,14 @@ h1 {
     font-size:1.5em;
 }
 
-input, textarea, button {
+input, textarea {
     display:block;
     margin:15px 0px;
+}
+
+button {
+    margin:15px 0px;
+    display:inline-block;
 }
 
 textarea {

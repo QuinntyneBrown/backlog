@@ -32,6 +32,11 @@ export const epicsReducer = (state: AppState = initialState, action: Action) => 
             for (let i = 0; i < entities.length; i++) {
                 if (entities[i].id === action.payload.epicId) {
                     addOrUpdate({ items: entities[i].stories, item: action.payload });
+
+                    entities[i].stories.sort((a: any, b: any) => {
+                        if (a.priority < b.priority) { return 1; }
+                        return 0;
+                    }); 
                 }
             }             
             return Object.assign({}, state, { epics: entities });

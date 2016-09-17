@@ -55,4 +55,44 @@ export class StoryActions {
                 return true;
             });
     }
+
+    public incrementPriority(options: { story: Story }) {        
+        for (let i = 0; i < this._storiesAscending.length; i++) {
+            if (this._storiesAscending[i].priority >= options.story.priority) {
+                options.story.priority = this._storiesAscending[i].priority + 1;
+                break;
+            }
+        }
+
+        return this.add(options.story);
+    }
+
+    public decrementPriority(options: { story: Story }) {
+        for (let i = 0; i < this._storiesDescending.length; i++) {
+            if (this._storiesAscending[i].priority >= options.story.priority) {
+                options.story.priority = this._storiesAscending[i].priority - 1;
+                break;
+            }
+        }
+
+        return this.add(options.story);
+    }
+
+    private get _storiesAscending(): Array<Story> {
+        var stories: Array<Story> = [];
+        this._store.stories$().take(1).subscribe(x => stories = x);
+        stories.sort((a, b) => {
+            return a.priority - b.priority;
+        });
+        return stories;
+    }
+
+    private get _storiesDescending(): Array<Story> {
+        var stories: Array<Story> = [];
+        this._store.stories$().take(1).subscribe(x => stories = x);
+        stories.sort((a, b) => {
+            return a.priority - b.priority;
+        });
+        return stories;
+    }
 }

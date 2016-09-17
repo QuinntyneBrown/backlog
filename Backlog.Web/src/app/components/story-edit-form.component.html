@@ -5,6 +5,7 @@
         <span *ngIf="form.get('name').touched && form.hasError('required', 'name')">
             required
         </span>       
+        <input placeholder="Priority" formControlName="priority" />
     </form>
 
     <html-textarea [(ngModel)]="description"></html-textarea>
@@ -13,6 +14,10 @@
             (click)="tryToSubmit()"
             [disabled]="form.invalid">
         Submit
+    </button>
+
+    <button (click)="tryToCancel()">
+        Cancel
     </button>
 
 </section>

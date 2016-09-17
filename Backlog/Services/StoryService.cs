@@ -28,7 +28,11 @@ namespace Backlog.Services
             {
                 entity.EpicId = request.EpicId.Value;
                 entity.Epic = _uow.Epics.GetById(request.EpicId.Value);
-            } 
+            }
+
+            if (request.Priority.HasValue)
+                entity.Priority = request.Priority.Value;
+
             entity.Name = request.Name;
             entity.Description = request.Description;
             _uow.SaveChanges();
