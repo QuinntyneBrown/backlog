@@ -55,6 +55,5 @@ namespace Backlog.Controllers
 
         protected readonly IThemeService _themeService;
 
-
     }
 }

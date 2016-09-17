@@ -11,6 +11,7 @@ namespace Backlog.Dtos
             Name = entity.Name;
             Description = entity.Description;
             Stories = entity.Stories.Where(s=>!s.IsDeleted)
+                .OrderBy(x=>x.Name)
                 .OrderByDescending(x=>x.Priority)
                 .Select(x => new StoryDto(x)).ToList();
             Priority = entity.Priority;

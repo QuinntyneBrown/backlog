@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { EpicService } from "../services";
 import { AppState, AppStore } from "../store";
-import { EPIC_ADD_SUCCESS, EPIC_GET_SUCCESS, EPIC_REMOVE_SUCCESS } from "../constants";
+import { EPIC_ADD_SUCCESS, EPIC_GET_SUCCESS, EPIC_REMOVE_SUCCESS, EPIC_INCREMENT_PRIORITY_SUCCESS, EPIC_DECREMENT_PRIORITY_SUCCESS } from "../constants";
 import { Epic } from "../models";
 import { Observable } from "rxjs";
 import { guid } from "../utilities";
@@ -56,43 +56,25 @@ export class EpicActions {
             });
     }
 
-    public incrementPriority(options: { epic: Epic }) {
-        for (let i = 0; i < this._epicsAscending.length; i++) {
-            if (this._epicsAscending[i].priority >= options.epic.priority) {
-                options.epic.priority = this._epicsAscending[i].priority + 1;                
-                break;
-            }
-        }
-        
-        return this.add(options.epic);
+    public incrementPriority(options: { id: number }) {
+        return this._epicService.incrementPriority({ id: options.id })
+            .subscribe(epics => {
+                this._store.dispatch({
+                    type: EPIC_INCREMENT_PRIORITY_SUCCESS,
+                    payload: epics
+                });
+                return true;
+            });
     }
 
-    public decrementPriority(options: { epic: Epic }) {
-        for (let i = 0; i < this._epicsDescending.length; i++) {
-            if (this._epicsAscending[i].priority >= options.epic.priority) {
-                options.epic.priority = this._epicsAscending[i].priority - 1;
-                break;
-            }
-        }
-
-        return this.add(options.epic);
-    }
-
-    private get _epicsAscending(): Array<Epic> {
-        var epics: Array<Epic> = [];
-        this._store.epics$().take(1).subscribe(x => epics = x);
-        epics.sort((a, b) => {
-            return a.priority - b.priority;
-        });
-        return epics;
-    }
-
-    private get _epicsDescending(): Array<Epic> {
-        var epics: Array<Epic> = [];
-        this._store.epics$().take(1).subscribe(x => epics = x);
-        epics.sort((a, b) => {
-            return a.priority - b.priority;
-        });
-        return epics;
+    public decrementPriority(options: { id: number }) {
+        return this._epicService.decrementPriority({ id: options.id })
+            .subscribe((epics:any) => {
+                this._store.dispatch({
+                    type: EPIC_DECREMENT_PRIORITY_SUCCESS,
+                    payload: epics
+                });
+                return true;
+            });
     }
 }

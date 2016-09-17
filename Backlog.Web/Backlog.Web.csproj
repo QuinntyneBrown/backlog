@@ -196,6 +196,24 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <Content Include="src\app\components\digital-asset-edit-form.component.html">
+      <DependentUpon>digital-asset-edit-form.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\components\digital-asset-edit-form.component.scss">
+      <DependentUpon>digital-asset-edit-form.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\components\digital-asset-list.component.html">
+      <DependentUpon>digital-asset-list.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\components\digital-asset-list.component.scss">
+      <DependentUpon>digital-asset-list.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\components\digital-asset-upload.component.html">
+      <DependentUpon>digital-asset-upload.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\components\digital-asset-upload.component.scss">
+      <DependentUpon>digital-asset-upload.component.ts</DependentUpon>
+    </Content>
     <Content Include="src\app\components\drop-down.component.html">
       <DependentUpon>drop-down.component.ts</DependentUpon>
     </Content>
@@ -213,6 +231,18 @@
     </Content>
     <Content Include="src\app\components\epic-list.component.scss">
       <DependentUpon>epic-list.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\components\html-content-edit-form.component.html">
+      <DependentUpon>html-content-edit-form.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\components\html-content-edit-form.component.scss">
+      <DependentUpon>html-content-edit-form.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\components\html-content-list.component.html">
+      <DependentUpon>html-content-list.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\components\html-content-list.component.scss">
+      <DependentUpon>html-content-list.component.ts</DependentUpon>
     </Content>
     <Content Include="src\app\components\html-textarea.component.html">
       <DependentUpon>html-textarea.component.ts</DependentUpon>
@@ -268,6 +298,18 @@
     <Content Include="src\app\pages\agile-team-edit-page.component.scss">
       <DependentUpon>agile-team-edit-page.component.ts</DependentUpon>
     </Content>
+    <Content Include="src\app\pages\digital-asset-edit-page.component.html">
+      <DependentUpon>digital-asset-edit-page.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\pages\digital-asset-edit-page.component.scss">
+      <DependentUpon>digital-asset-edit-page.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\pages\digital-asset-list-page.component.html">
+      <DependentUpon>digital-asset-list-page.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\pages\digital-asset-list-page.component.scss">
+      <DependentUpon>digital-asset-list-page.component.ts</DependentUpon>
+    </Content>
     <Content Include="src\app\pages\epic-detail-page.component.html">
       <DependentUpon>epic-detail-page.component.ts</DependentUpon>
     </Content>
@@ -279,6 +321,18 @@
     </Content>
     <Content Include="src\app\pages\epic-edit-page.component.scss">
       <DependentUpon>epic-edit-page.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\pages\html-content-edit-page.component.html">
+      <DependentUpon>html-content-edit-page.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\pages\html-content-edit-page.component.scss">
+      <DependentUpon>html-content-edit-page.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\pages\html-content-list-page.component.html">
+      <DependentUpon>html-content-list-page.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\pages\html-content-list-page.component.scss">
+      <DependentUpon>html-content-list-page.component.ts</DependentUpon>
     </Content>
     <Content Include="src\app\pages\login-page.component.html">
       <DependentUpon>login-page.component.ts</DependentUpon>
@@ -345,24 +399,6 @@
     <Content Include="tsconfig.json" />
     <Content Include="typedoc.json" />
     <Content Include="typings.json" />
-    <Content Include="src\app\pages\html-content-edit-page.component.scss" />
-    <Content Include="src\app\pages\html-content-edit-page.component.html" />
-    <Content Include="src\app\pages\html-content-list-page.component.scss" />
-    <Content Include="src\app\pages\html-content-list-page.component.html" />
-    <Content Include="src\app\pages\digital-asset-list-page.component.scss" />
-    <Content Include="src\app\pages\digital-asset-list-page.component.html" />
-    <Content Include="src\app\pages\digital-asset-edit-page.component.scss" />
-    <Content Include="src\app\pages\digital-asset-edit-page.component.html" />
-    <Content Include="src\app\components\digital-asset-edit-form.component.scss" />
-    <Content Include="src\app\components\digital-asset-edit-form.component.html" />
-    <Content Include="src\app\components\digital-asset-list.component.scss" />
-    <Content Include="src\app\components\digital-asset-list.component.html" />
-    <Content Include="src\app\components\html-content-list.component.scss" />
-    <Content Include="src\app\components\html-content-list.component.html" />
-    <Content Include="src\app\components\html-content-edit-form.component.scss" />
-    <Content Include="src\app\components\html-content-edit-form.component.html" />
-    <Content Include="src\app\components\digital-asset-upload.component.scss" />
-    <Content Include="src\app\components\digital-asset-upload.component.html" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="index.html" />
@@ -417,6 +453,8 @@
   </Target>
   -->
   <ItemGroup>
+    <TypeScriptCompile Include="src\app\constants\epic-decrement-priority-success.ts" />
+    <TypeScriptCompile Include="src\app\constants\epic-increment-priority-success.ts" />
     <TypeScriptCompile Include="src\app\constants\get-current-user-success.ts" />
     <TypeScriptCompile Include="src\app\constants\user-logged-in.ts" />
     <TypeScriptCompile Include="src\app\constants\user-logged-out.ts" />

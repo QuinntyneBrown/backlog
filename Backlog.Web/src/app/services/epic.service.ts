@@ -47,6 +47,23 @@ export class EpicService {
             });
     }
 
+    public incrementPriority(options: { id: number }) {
+        return this._http
+            .get(`${apiCofiguration.baseUrl}/api/epic/incrementPriority?id=${options.id}`)
+            .map(data => data.json())
+            .catch(err => {
+                return Observable.of(false);
+            });
+    }
+
+    public decrementPriority(options: { id: number }) {
+        return this._http
+            .get(`${apiCofiguration.baseUrl}/api/epic/decrementPriority?id=${options.id}`)
+            .map(data => data.json())
+            .catch(err => {
+                return Observable.of(false);
+            });
+    }
     public get baseUrl() { return apiCofiguration.baseUrl; }
 
 }

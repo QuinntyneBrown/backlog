@@ -41,6 +41,16 @@ namespace Backlog.Controllers
         [ResponseType(typeof(int))]
         public IHttpActionResult Remove(int id) { return Ok(_storyService.Remove(id)); }
 
+        [Route("incrementPriority")]
+        [HttpGet]
+        [ResponseType(typeof(ICollection<EpicDto>))]
+        public IHttpActionResult IncrementPriority(int id) { return Ok(_storyService.IncrementPriority(id)); }
+
+        [Route("decrementPriority")]
+        [HttpGet]
+        [ResponseType(typeof(ICollection<EpicDto>))]
+        public IHttpActionResult DecrementPriority(int id) { return Ok(_storyService.DecrementPriority(id)); }
+
         protected readonly IStoryService _storyService;
 
 

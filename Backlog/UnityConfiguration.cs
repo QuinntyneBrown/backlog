@@ -32,6 +32,7 @@ namespace Backlog
             container.RegisterType<IAppConfiguration, AppConfiguration>();
             container.RegisterType<IHtmlContentService, HtmlContentService>();
             container.RegisterType<IDigitalAssetService, DigitalAssetService>();
+            container.RegisterType<IPrioritizationService, PrioritizationService>();
 
             container.RegisterType<ILandingPageContentModel, LandingPageContentModel>();
             container.RegisterType<IAppShellContentModel, AppShellContentModel>();

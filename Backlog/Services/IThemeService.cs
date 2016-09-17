@@ -9,5 +9,6 @@ namespace Backlog.Services
         ICollection<ThemeDto> Get();
         ThemeDto GetById(int id);
         dynamic Remove(int id);
+
     }
 }

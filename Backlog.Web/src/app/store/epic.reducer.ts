@@ -1,5 +1,5 @@
 import { Action } from "@ngrx/store";
-import { EPIC_ADD_SUCCESS, EPIC_GET_SUCCESS, EPIC_REMOVE_SUCCESS, STORY_ADD_SUCCESS, STORY_REMOVE_SUCCESS } from "../constants";
+import { EPIC_ADD_SUCCESS, EPIC_GET_SUCCESS, EPIC_REMOVE_SUCCESS, STORY_ADD_SUCCESS, STORY_REMOVE_SUCCESS, EPIC_INCREMENT_PRIORITY_SUCCESS, EPIC_DECREMENT_PRIORITY_SUCCESS } from "../constants";
 import { initialState } from "./initial-state";
 import { AppState } from "./app-state";
 import { Epic } from "../models";
@@ -20,6 +20,12 @@ export const epicsReducer = (state: AppState = initialState, action: Action) => 
                 addOrUpdate({ items: entities, item: newOrExistingEpics[i] });
             }
             return Object.assign({}, state, { epics: entities });
+
+        case EPIC_INCREMENT_PRIORITY_SUCCESS:
+            return Object.assign({}, state, { epics: action.payload });
+
+        case EPIC_DECREMENT_PRIORITY_SUCCESS:
+            return Object.assign({}, state, { epics: action.payload });
 
         case EPIC_REMOVE_SUCCESS:
             var entities: Array<Epic> = state.epics;

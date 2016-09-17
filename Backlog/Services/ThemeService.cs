@@ -10,11 +10,12 @@ namespace Backlog.Services
 {
     public class ThemeService : IThemeService
     {
-        public ThemeService(IUow uow, ICacheProvider cacheProvider)
+        public ThemeService(IUow uow, ICacheProvider cacheProvider, IPrioritizationService prioritizationService)
         {
             _uow = uow;
             _repository = uow.Themes;
             _cache = cacheProvider.GetCache();
+            _prioritizationService = prioritizationService;
         }
 
         public ThemeAddOrUpdateResponseDto AddOrUpdate(ThemeAddOrUpdateRequestDto request)
@@ -49,8 +50,11 @@ namespace Backlog.Services
             return new ThemeDto(_repository.GetAll().Where(x => x.Id == id && x.IsDeleted == false).FirstOrDefault());
         }
 
+
+
         protected readonly IUow _uow;
         protected readonly IRepository<Theme> _repository;
+        protected readonly IPrioritizationService _prioritizationService;
         protected readonly ICache _cache;
     }
 }

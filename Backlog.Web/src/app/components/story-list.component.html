@@ -5,6 +5,9 @@
             <a (click)="onSelect.emit({ value: entity })" class="story-list-item-name">{{ entity.name}}</a>
             <a (click)="_storyActions.incrementPriority({ story : entity })" class="story-list-item-vote-action">&uarr;</a>
             <a (click)="_storyActions.decrementPriority({ story : entity })" class="story-list-item-vote-action">&darr;</a>
+            &nbsp;&nbsp;|&nbsp;&nbsp;
+            <a (click)="_router.navigate(['upload','story',entity.id])" class="story-list-item-action">UPLOAD</a>
+            &nbsp;&nbsp;|&nbsp;&nbsp;
             <a (click)="onDelete.emit({ value: entity })" class="story-list-item-action">DELETE</a>
             &nbsp;&nbsp;|&nbsp;&nbsp;
             <a (click)="onEdit.emit({ value: entity })" class="story-list-item-action">EDIT</a>

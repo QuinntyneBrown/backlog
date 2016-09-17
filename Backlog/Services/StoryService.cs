@@ -51,7 +51,9 @@ namespace Backlog.Services
         {
             ICollection<StoryDto> response = new HashSet<StoryDto>();
             var entities = _repository.GetAll().Where(x => x.IsDeleted == false).ToList();
-            foreach(var entity in entities) { response.Add(new StoryDto(entity)); }    
+            foreach (var entity in entities
+                .OrderBy(x => x.Name)
+                .OrderByDescending(x => x.Priority)) { response.Add(new StoryDto(entity)); }
             return response;
         }
 
@@ -60,6 +62,69 @@ namespace Backlog.Services
         {
             return new StoryDto(_repository.GetAll().Where(x => x.Id == id && x.IsDeleted == false).FirstOrDefault());
         }
+
+        public ICollection<StoryDto> IncrementPriority(int id)
+        {
+            var entities = _repository.GetAll()
+                .OrderBy(x => x.Priority)
+                .Where(x => !x.IsDeleted)
+                .ToList();
+
+            var epic = entities.First(x => x.Id == id);
+
+            foreach (var entity in entities)
+            {
+                if (!entity.Priority.HasValue)
+                    entity.Priority = 0;
+
+                if (!epic.Priority.HasValue)
+                    epic.Priority = 0;
+
+                if ((entity.Id != id) && entity.Priority >= epic.Priority)
+                {
+                    epic.Priority = entity.Priority + 1;
+                    break;
+                }
+            }
+
+            _uow.SaveChanges();
+
+            return entities.Select(x => new StoryDto(x))
+                .OrderBy(x => x.Name)
+                .OrderByDescending(x => x.Priority).ToList();
+        }
+
+        public ICollection<StoryDto> DecrementPriority(int id)
+        {
+            var entities = _repository.GetAll()
+                .Where(x => !x.IsDeleted)
+                .OrderByDescending(x => x.Priority)
+                .ToList();
+
+            var epic = entities.First(x => x.Id == id);
+
+            foreach (var entity in entities)
+            {
+                if (!entity.Priority.HasValue)
+                    entity.Priority = 0;
+
+                if (!epic.Priority.HasValue)
+                    epic.Priority = 0;
+
+                if ((entity.Id != id) && entity.Priority <= epic.Priority)
+                {
+                    epic.Priority = entity.Priority - 1;
+                    break;
+                }
+            }
+
+            _uow.SaveChanges();
+
+            return entities.Select(x => new StoryDto(x))
+                .OrderBy(x => x.Name)
+                .OrderByDescending(x => x.Priority).ToList();
+        }
+
 
         protected readonly IUow _uow;
         protected readonly IRepository<Story> _repository;

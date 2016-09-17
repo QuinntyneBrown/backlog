@@ -9,5 +9,7 @@ namespace Backlog.Services
         ICollection<StoryDto> Get();
         StoryDto GetById(int id);
         dynamic Remove(int id);
+        ICollection<StoryDto> IncrementPriority(int id);
+        ICollection<StoryDto> DecrementPriority(int id);
     }
 }
