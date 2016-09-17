@@ -1,0 +1,14 @@
+<section class="html-content-edit-form">
+    <h1>Edit HtmlContent</h1>
+    <form novalidate [formGroup]="form">
+        <input placeholder="Name" formControlName="name" id="name" />
+        <span *ngIf="form.get('name').touched && form.hasError('required', 'name')">
+            required
+        </span>
+        <button type="submit"
+                (click)="onSubmit.emit({ value: this.form.value })"
+                [disabled]="form.invalid">
+            Submit
+        </button>
+    </form>
+</section>

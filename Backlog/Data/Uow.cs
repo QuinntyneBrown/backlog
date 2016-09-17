@@ -34,6 +34,8 @@ namespace Backlog.Data
         public IRepository<Tag> Tags { get { return GetStandardRepo<Tag>(); } }
         public IRepository<AgileTeam> AgileTeams { get { return GetStandardRepo<AgileTeam>(); } }
         public IRepository<Theme> Themes { get { return GetStandardRepo<Theme>(); } }
+        public IRepository<HtmlContent> HtmlContents { get { return GetStandardRepo<HtmlContent>(); } }
+        public IRepository<DigitalAsset> DigitalAssets { get { return GetStandardRepo<DigitalAsset>(); } }
 
         protected void ConfigureDbContext(IDbContext dbContext)
         {

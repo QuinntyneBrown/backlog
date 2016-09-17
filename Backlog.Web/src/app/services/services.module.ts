@@ -6,12 +6,16 @@ import { AuthenticationService } from "./authentication.service";
 import { ContentService } from "./content.service";
 import { EpicService } from "./epic.service";
 import { StoryService } from "./story.service";
+import { DigitalAssetService } from "./digital-asset.service";
+import { HtmlContentService } from "./html-content.service";
 
 const providers = [
     AuthenticationService,
     ContentService,
     EpicService,
-    StoryService
+    StoryService,
+    DigitalAssetService,
+    HtmlContentService
 ];
 
 @NgModule({

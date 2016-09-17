@@ -197,6 +197,7 @@
     <Compile Include="Data\RepositoryFactories.cs" />
     <Compile Include="Data\RepositoryProvider.cs" />
     <Compile Include="Data\Uow.cs" />
+    <Compile Include="Dtos\DigitalAssetUploadResponseDto.cs" />
     <Compile Include="Dtos\EpicAddOrUpdateRequestDto.cs" />
     <Compile Include="Dtos\EpicAddOrUpdateResponseDto.cs" />
     <Compile Include="Dtos\EpicDto.cs" />
@@ -279,6 +280,23 @@
     <Compile Include="Controllers\ThemeController.cs" />
     <Compile Include="Migrations\ThemeConfiguration.cs" />
     <Compile Include="Models\StoryTheme.cs" />
+    <Compile Include="Models\HtmlContent.cs" />
+    <Compile Include="Models\DigitalAsset.cs" />
+    <Compile Include="Dtos\DigitalAssetDto.cs" />
+    <Compile Include="Dtos\DigitalAssetAddOrUpdateRequestDto.cs" />
+    <Compile Include="Dtos\DigitalAssetAddOrUpdateResponseDto.cs" />
+    <Compile Include="Dtos\HtmlContentDto.cs" />
+    <Compile Include="Dtos\HtmlContentAddOrUpdateRequestDto.cs" />
+    <Compile Include="Dtos\HtmlContentAddOrUpdateResponseDto.cs" />
+    <Compile Include="Services\HtmlContentService.cs" />
+    <Compile Include="Services\IHtmlContentService.cs" />
+    <Compile Include="Controllers\HtmlContentController.cs" />
+    <Compile Include="UploadHandlers\StreamHelper.cs" />
+    <Compile Include="UploadHandlers\FileMultipartFormDataStreamProvider.cs" />
+    <Compile Include="UploadHandlers\InMemoryMultipartFormDataStreamProvider.cs" />
+    <Compile Include="Controllers\DigitalAssetController.cs" />
+    <Compile Include="Services\DigitalAssetService.cs" />
+    <Compile Include="Services\IDigitalAssetService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -8,6 +8,8 @@ export const initialState: any = {
     sprints: [],
     agileTeams: [],
     themes: [],
+    digitalAssets: [],
+    htmlContents: [],
     currentUser: null,
     isLoggedIn: false,
     token: null

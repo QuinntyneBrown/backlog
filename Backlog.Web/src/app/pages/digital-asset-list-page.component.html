@@ -1,0 +1,7 @@
+<div class="digital-asset-list-page">
+    <one-column-layout>
+        <digital-asset-list [entities]="_store.digitalAssets$() | async"
+                   (onDelete)="_digitalAssetActions.remove({ id: $event.value.id })"
+                   (onEdit)="_router.navigate(['digitalasset', $event.value.id])"></digital-asset-list>
+    </one-column-layout>    
+</div>

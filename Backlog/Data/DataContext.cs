@@ -21,6 +21,8 @@ namespace Backlog.Data
         public DbSet<Tag> Tags { get; set; }
         public DbSet<AgileTeam> AgileTeams { get; set; }
         public DbSet<Theme> Themes { get; set; }
+        public DbSet<DigitalAsset> DigitalAssets { get; set; }
+        public DbSet<HtmlContent> HtmlContents { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

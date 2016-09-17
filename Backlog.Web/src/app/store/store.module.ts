@@ -12,6 +12,8 @@ import { storiesReducer } from "./story.reducer";
 import { sprintsReducer } from "./sprint.reducer";
 import { tagsReducer } from "./tag.reducer";
 import { agileTeamsReducer } from "./agile-team.reducer";
+import { digitalAssetsReducer } from "./digital-asset.reducer";
+import { htmlContentsReducer } from "./html-content.reducer";
 
 const providers = [
     AppStore
@@ -26,7 +28,9 @@ const providers = [
                 stories: storiesReducer,
                 sprints: sprintsReducer,
                 tag: tagsReducer,
-                agileTeams: agileTeamsReducer
+                agileTeams: agileTeamsReducer,
+                htmlContents: htmlContentsReducer,
+                digitalAssets: digitalAssetsReducer
             },
             [initialState]
         )],

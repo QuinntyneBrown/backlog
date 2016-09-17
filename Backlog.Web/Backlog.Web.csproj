@@ -345,6 +345,24 @@
     <Content Include="tsconfig.json" />
     <Content Include="typedoc.json" />
     <Content Include="typings.json" />
+    <Content Include="src\app\pages\html-content-edit-page.component.scss" />
+    <Content Include="src\app\pages\html-content-edit-page.component.html" />
+    <Content Include="src\app\pages\html-content-list-page.component.scss" />
+    <Content Include="src\app\pages\html-content-list-page.component.html" />
+    <Content Include="src\app\pages\digital-asset-list-page.component.scss" />
+    <Content Include="src\app\pages\digital-asset-list-page.component.html" />
+    <Content Include="src\app\pages\digital-asset-edit-page.component.scss" />
+    <Content Include="src\app\pages\digital-asset-edit-page.component.html" />
+    <Content Include="src\app\components\digital-asset-edit-form.component.scss" />
+    <Content Include="src\app\components\digital-asset-edit-form.component.html" />
+    <Content Include="src\app\components\digital-asset-list.component.scss" />
+    <Content Include="src\app\components\digital-asset-list.component.html" />
+    <Content Include="src\app\components\html-content-list.component.scss" />
+    <Content Include="src\app\components\html-content-list.component.html" />
+    <Content Include="src\app\components\html-content-edit-form.component.scss" />
+    <Content Include="src\app\components\html-content-edit-form.component.html" />
+    <Content Include="src\app\components\digital-asset-upload.component.scss" />
+    <Content Include="src\app\components\digital-asset-upload.component.html" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="index.html" />
@@ -521,6 +539,29 @@
     <TypeScriptCompile Include="src\app\components\story-edit-form.component.ts" />
     <TypeScriptCompile Include="src\app\components\html-textarea.component.ts" />
     <TypeScriptCompile Include="src\app\pages\epic-detail-page.component.ts" />
+    <TypeScriptCompile Include="src\app\models\html-content.model.ts" />
+    <TypeScriptCompile Include="src\app\constants\html-content-add-success.action.ts" />
+    <TypeScriptCompile Include="src\app\constants\html-content-get-success.action.ts" />
+    <TypeScriptCompile Include="src\app\constants\html-content-remove-success.action.ts" />
+    <TypeScriptCompile Include="src\app\actions\html-content.actions.ts" />
+    <TypeScriptCompile Include="src\app\store\html-content.reducer.ts" />
+    <TypeScriptCompile Include="src\app\pages\html-content-edit-page.component.ts" />
+    <TypeScriptCompile Include="src\app\pages\html-content-list-page.component.ts" />
+    <TypeScriptCompile Include="src\app\pages\digital-asset-list-page.component.ts" />
+    <TypeScriptCompile Include="src\app\pages\digital-asset-edit-page.component.ts" />
+    <TypeScriptCompile Include="src\app\components\digital-asset-edit-form.component.ts" />
+    <TypeScriptCompile Include="src\app\components\digital-asset-list.component.ts" />
+    <TypeScriptCompile Include="src\app\components\html-content-list.component.ts" />
+    <TypeScriptCompile Include="src\app\components\html-content-edit-form.component.ts" />
+    <TypeScriptCompile Include="src\app\components\digital-asset-upload.component.ts" />
+    <TypeScriptCompile Include="src\app\models\digital-asset.model.ts" />
+    <TypeScriptCompile Include="src\app\store\digital-asset.reducer.ts" />
+    <TypeScriptCompile Include="src\app\services\digital-asset.service.ts" />
+    <TypeScriptCompile Include="src\app\services\html-content.service.ts" />
+    <TypeScriptCompile Include="src\app\actions\digital-asset.actions.ts" />
+    <TypeScriptCompile Include="src\app\constants\digital-asset-add-success.action.ts" />
+    <TypeScriptCompile Include="src\app\constants\digital-asset-get-success.action.ts" />
+    <TypeScriptCompile Include="src\app\constants\digital-asset-remove-success.action.ts" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
 </Project>
