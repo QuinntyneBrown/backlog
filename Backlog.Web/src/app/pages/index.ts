@@ -1,4 +1,5 @@
 export * from "./agile-team-edit-page.component";
+export * from "./epic-detail-page.component";
 export * from "./epic-edit-page.component";
 export * from "./landing-page.component";
 export * from "./login-page.component";

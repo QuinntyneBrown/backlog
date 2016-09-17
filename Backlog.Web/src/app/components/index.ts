@@ -2,6 +2,7 @@ export * from "./components.module";
 export * from "./drop-down.component";
 export * from "./epic-edit-form.component";
 export * from "./epic-list.component";
+export * from "./html-textarea.component";
 export * from "./login.component";
 export * from "./one-column-layout.component";
 export * from "./page-footer.component";

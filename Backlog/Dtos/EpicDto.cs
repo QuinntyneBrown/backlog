@@ -9,13 +9,17 @@ namespace Backlog.Dtos
         {
             Id = entity.Id;
             Name = entity.Name;
-            Stories = entity.Stories.Select(x => new StoryDto(x)).ToList();
+            Description = entity.Description;
+            Stories = entity.Stories.Where(s=>!s.IsDeleted).Select(x => new StoryDto(x)).ToList();
+            Priority = entity.Priority;
         }
 
         public EpicDto() { }
 
         public int Id { get; set; }        
         public string Name { get; set; }
+        public string Description { get; set; }
+        public int? Priority { get; set; }
         public ICollection<StoryDto> Stories { get; set; } = new HashSet<StoryDto>();
     }
 }

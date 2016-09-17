@@ -30,6 +30,7 @@ namespace Backlog.Services
                 entity.Epic = _uow.Epics.GetById(request.EpicId.Value);
             } 
             entity.Name = request.Name;
+            entity.Description = request.Description;
             _uow.SaveChanges();
             return new StoryAddOrUpdateResponseDto(entity);
         }

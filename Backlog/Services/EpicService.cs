@@ -22,6 +22,11 @@ namespace Backlog.Services
                 .FirstOrDefault(x => x.Id == request.Id && x.IsDeleted == false);
             if (entity == null) _repository.Add(entity = new Models.Epic());
             entity.Name = request.Name;
+            entity.Description = request.Description;
+
+            if (request.Priority.HasValue)
+                entity.Priority = request.Priority.Value;
+
             _uow.SaveChanges();
             return new EpicAddOrUpdateResponseDto(entity);
         }
@@ -38,7 +43,10 @@ namespace Backlog.Services
 
         public EpicDto GetById(int id)
         {
-            return new EpicDto(_repository.GetAll().Where(x => x.Id == id && x.IsDeleted == false).FirstOrDefault());
+            return new EpicDto(_repository
+                .GetAll()
+                .Include(x=>x.Stories)
+                .Where(x => x.Id == id && x.IsDeleted == false).FirstOrDefault());
         }
 
         public dynamic Remove(int id)

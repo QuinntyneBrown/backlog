@@ -6,6 +6,7 @@
 
 .one-column-layout-content {
     display:block;
-    width:$screen-lg-min;
+    max-width:$screen-lg-min;
     margin: 0 auto;
+    padding: 0px 15px;
 }

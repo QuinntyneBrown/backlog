@@ -4,7 +4,8 @@ import {
     LandingPageComponent,
     EpicEditPageComponent,
     StoryEditPageComponent,
-    StoryListPageComponent
+    StoryListPageComponent,
+    EpicDetailPageComponent
     
 } from "../pages";
 
@@ -31,7 +32,12 @@ export const routes: Routes = [
         component: EpicEditPageComponent
     },
     {
-        path: 'epic/:epicId/story/:storyId',
+        path: 'epic/detail/:id',
+        pathMatch: 'full',
+        component: EpicDetailPageComponent
+    },
+    {
+        path: 'epic/:epicId/story/:id',
         pathMatch: 'full',
         component: StoryEditPageComponent
     },
@@ -69,6 +75,7 @@ export const RoutingModule = RouterModule.forRoot([
 export const routedComponents = [
     LandingPageComponent,
     EpicEditPageComponent,
+    EpicDetailPageComponent,
     StoryEditPageComponent,
     StoryListPageComponent
 ];

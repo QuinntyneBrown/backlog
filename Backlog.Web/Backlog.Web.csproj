@@ -214,6 +214,12 @@
     <Content Include="src\app\components\epic-list.component.scss">
       <DependentUpon>epic-list.component.ts</DependentUpon>
     </Content>
+    <Content Include="src\app\components\html-textarea.component.html">
+      <DependentUpon>html-textarea.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\components\html-textarea.component.scss">
+      <DependentUpon>html-textarea.component.ts</DependentUpon>
+    </Content>
     <Content Include="src\app\components\login.component.html">
       <DependentUpon>login.component.ts</DependentUpon>
     </Content>
@@ -261,6 +267,12 @@
     </Content>
     <Content Include="src\app\pages\agile-team-edit-page.component.scss">
       <DependentUpon>agile-team-edit-page.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\pages\epic-detail-page.component.html">
+      <DependentUpon>epic-detail-page.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\pages\epic-detail-page.component.scss">
+      <DependentUpon>epic-detail-page.component.ts</DependentUpon>
     </Content>
     <Content Include="src\app\pages\epic-edit-page.component.html">
       <DependentUpon>epic-edit-page.component.ts</DependentUpon>
@@ -506,6 +518,8 @@
     <TypeScriptCompile Include="src\app\pages\agile-team-edit-page.component.ts" />
     <TypeScriptCompile Include="src\app\pages\tag-edit-page.component.ts" />
     <TypeScriptCompile Include="src\app\components\story-edit-form.component.ts" />
+    <TypeScriptCompile Include="src\app\components\html-textarea.component.ts" />
+    <TypeScriptCompile Include="src\app\pages\epic-detail-page.component.ts" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
 </Project>

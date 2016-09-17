@@ -7,9 +7,12 @@ a {
     display:inline-block;    
 }
 
-.epic-list-item-count,
-.epic-list-item-stories-count {
+.epic-list-item-count {
     min-width:25px;
+}
+
+.epic-list-item-stories-count {
+    min-width:75px;
 }
 
 .epic-list-item-stories-count {
@@ -18,7 +21,8 @@ a {
 }
 
 .epic-list-item-name {
-    min-width:200px;
+    min-width:300px;
+    cursor:pointer;
 }
 
 .epic-list-item-action {
