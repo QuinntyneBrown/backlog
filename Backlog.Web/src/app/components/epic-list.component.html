@@ -3,6 +3,8 @@
     <div *ngFor="let entity of entities; let i = index">
         <a class="epic-list-item-count">{{ i + 1 }}</a>
         <a (click)="onSelect.emit({ value: entity })" class="epic-list-item-name">{{ entity.name}}</a>
+        <a class="epic-list-item-vote-action">&uarr;</a>
+        <a class="epic-list-item-vote-action">&darr;</a>
         <a class="epic-list-item-stories-count">{{ entity.stories.length }} STORIES</a>
         &nbsp;&nbsp;|&nbsp;&nbsp;
         <a (click)="onCreateStory.emit({ value: entity })" class="epic-list-item-action">CREATE STORY</a>

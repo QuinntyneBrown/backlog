@@ -28,9 +28,14 @@ a {
 .story-item-description {
     display:block;
     margin:10px 0px 20px;
-    padding: 10px 7.5px;
+    padding: 10px 20px;
     background-color:#eee;
     
+}
+
+.story-item-description:hover {
+    background-color:#555;
+    color:#eee;
 }
 
 .story-list {

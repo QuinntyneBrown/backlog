@@ -1,6 +1,7 @@
 import { Component, ChangeDetectionStrategy, Input, OnInit, ViewEncapsulation } from "@angular/core";
 import { AppStore } from "./store";
 import { ContentActions } from "./actions";
+import { Router } from "@angular/router";
 
 @Component({
     template: require("./app.component.html"),
@@ -10,10 +11,18 @@ import { ContentActions } from "./actions";
     encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {
-    constructor(private _store: AppStore, private _contentActions: ContentActions) { }
+    constructor(
+        private _store: AppStore,
+        private _contentActions: ContentActions,
+        private _router: Router
+    ) { }
 
     ngOnInit() {
         this._contentActions.getByType({ type: "AppShell" });
+
+        this._router.events.subscribe((x:any) => {
+
+        });
     }
 
     public get appShell$() {
