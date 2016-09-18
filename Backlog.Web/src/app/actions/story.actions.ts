@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { StoryService } from "../services";
 import { AppState, AppStore } from "../store";
-import { STORY_ADD_SUCCESS, STORY_GET_SUCCESS, STORY_REMOVE_SUCCESS } from "../constants";
+import { STORY_ADD_SUCCESS, STORY_GET_SUCCESS, STORY_REMOVE_SUCCESS, STORY_INCREMENT_PRIORITY_SUCCESS, STORY_DECREMENT_PRIORITY_SUCCESS } from "../constants";
 import { Story } from "../models";
 import { Observable } from "rxjs";
 import { guid } from "../utilities";
@@ -56,43 +56,25 @@ export class StoryActions {
             });
     }
 
-    public incrementPriority(options: { story: Story }) {        
-        for (let i = 0; i < this._storiesAscending.length; i++) {
-            if (this._storiesAscending[i].priority >= options.story.priority) {
-                options.story.priority = this._storiesAscending[i].priority + 1;
-                break;
-            }
-        }
-
-        return this.add(options.story);
+    public incrementPriority(options: { id: number }) {
+        return this._storyService.incrementPriority({ id: options.id })
+            .subscribe(stories => {
+                this._store.dispatch({
+                    type: STORY_INCREMENT_PRIORITY_SUCCESS,
+                    payload: stories
+                });
+                return true;
+            });
     }
 
-    public decrementPriority(options: { story: Story }) {
-        for (let i = 0; i < this._storiesDescending.length; i++) {
-            if (this._storiesAscending[i].priority >= options.story.priority) {
-                options.story.priority = this._storiesAscending[i].priority - 1;
-                break;
-            }
-        }
-
-        return this.add(options.story);
-    }
-
-    private get _storiesAscending(): Array<Story> {
-        var stories: Array<Story> = [];
-        this._store.stories$().take(1).subscribe(x => stories = x);
-        stories.sort((a, b) => {
-            return a.priority - b.priority;
-        });
-        return stories;
-    }
-
-    private get _storiesDescending(): Array<Story> {
-        var stories: Array<Story> = [];
-        this._store.stories$().take(1).subscribe(x => stories = x);
-        stories.sort((a, b) => {
-            return a.priority - b.priority;
-        });
-        return stories;
+    public decrementPriority(options: { id: number }) {
+        return this._storyService.decrementPriority({ id: options.id })
+            .subscribe((stories: any) => {
+                this._store.dispatch({
+                    type: STORY_DECREMENT_PRIORITY_SUCCESS,
+                    payload: stories
+                });
+                return true;
+            });
     }
 }

@@ -1,5 +1,16 @@
 import { Action } from "@ngrx/store";
-import { EPIC_ADD_SUCCESS, EPIC_GET_SUCCESS, EPIC_REMOVE_SUCCESS, STORY_ADD_SUCCESS, STORY_REMOVE_SUCCESS, EPIC_INCREMENT_PRIORITY_SUCCESS, EPIC_DECREMENT_PRIORITY_SUCCESS } from "../constants";
+import {
+    EPIC_ADD_SUCCESS,
+    EPIC_GET_SUCCESS,
+    EPIC_REMOVE_SUCCESS,
+    STORY_ADD_SUCCESS,
+    STORY_REMOVE_SUCCESS,
+    EPIC_INCREMENT_PRIORITY_SUCCESS,
+    EPIC_DECREMENT_PRIORITY_SUCCESS,
+    STORY_INCREMENT_PRIORITY_SUCCESS,
+    STORY_DECREMENT_PRIORITY_SUCCESS
+} from "../constants";
+
 import { initialState } from "./initial-state";
 import { AppState } from "./app-state";
 import { Epic } from "../models";
@@ -27,24 +38,25 @@ export const epicsReducer = (state: AppState = initialState, action: Action) => 
         case EPIC_DECREMENT_PRIORITY_SUCCESS:
             return Object.assign({}, state, { epics: action.payload });
 
+        case STORY_INCREMENT_PRIORITY_SUCCESS:
+        case STORY_DECREMENT_PRIORITY_SUCCESS:
+            var entities: Array<Epic> = state.epics;
+
+            for (let i = 0; i < entities.length; i++) {
+                var stories = [];
+                for (let j = 0; j < action.payload.length; j++) {
+                    if (entities[i].id === action.payload[j].epicId) {
+                        stories.push(action.payload[j]);
+                    }
+                }
+                entities[i].stories = stories;
+            }            
+            return Object.assign({}, state, { epics: entities });
+            
         case EPIC_REMOVE_SUCCESS:
             var entities: Array<Epic> = state.epics;
             var id = action.payload;
             pluckOut({ value: id, items: entities });
-            return Object.assign({}, state, { epics: entities });
-
-        case STORY_ADD_SUCCESS:
-            var entities: Array<Epic> = state.epics;
-            for (let i = 0; i < entities.length; i++) {
-                if (entities[i].id === action.payload.epicId) {
-                    addOrUpdate({ items: entities[i].stories, item: action.payload });
-
-                    entities[i].stories.sort((a: any, b: any) => {
-                        if (a.priority < b.priority) { return 1; }
-                        return 0;
-                    }); 
-                }
-            }             
             return Object.assign({}, state, { epics: entities });
 
         case STORY_REMOVE_SUCCESS:

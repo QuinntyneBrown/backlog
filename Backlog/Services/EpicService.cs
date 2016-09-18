@@ -21,6 +21,8 @@ namespace Backlog.Services
         {
             var entity = _repository.GetAll()
                 .Include(x=>x.Stories)
+                .Include("Stories.StoryDigitalAssets")
+                .Include("Stories.StoryDigitalAssets.DigitalAsset")
                 .FirstOrDefault(x => x.Id == request.Id && x.IsDeleted == false);
             if (entity == null) _repository.Add(entity = new Models.Epic());
             entity.Name = request.Name;
@@ -38,6 +40,8 @@ namespace Backlog.Services
             ICollection<EpicDto> response = new HashSet<EpicDto>();
             var entities = _repository.GetAll()
                 .Include(x=>x.Stories)
+                .Include("Stories.StoryDigitalAssets")
+                .Include("Stories.StoryDigitalAssets.DigitalAsset")
                 .Where(x => x.IsDeleted == false).ToList();
             foreach (var entity in entities
                 .OrderBy(x => x.Name)
@@ -51,6 +55,8 @@ namespace Backlog.Services
             return new EpicDto(_repository
                 .GetAll()
                 .Include(x=>x.Stories)
+                .Include("Stories.StoryDigitalAssets")
+                .Include("Stories.StoryDigitalAssets.DigitalAsset")
                 .Where(x => x.Id == id && x.IsDeleted == false).FirstOrDefault());
         }
 
@@ -66,6 +72,8 @@ namespace Backlog.Services
         {
             var entities = _repository.GetAll()
                 .Include(x => x.Stories)
+                .Include("Stories.StoryDigitalAssets")
+                .Include("Stories.StoryDigitalAssets.DigitalAsset")
                 .OrderBy(x => x.Priority)
                 .Where(x=>!x.IsDeleted)
                 .ToList();

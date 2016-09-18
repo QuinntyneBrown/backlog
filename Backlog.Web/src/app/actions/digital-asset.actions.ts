@@ -2,7 +2,13 @@ import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { DigitalAssetService } from "../services";
 import { AppState, AppStore } from "../store";
-import { DIGITAL_ASSET_ADD_SUCCESS, DIGITAL_ASSET_GET_SUCCESS, DIGITAL_ASSET_REMOVE_SUCCESS } from "../constants";
+import {
+    DIGITAL_ASSET_ADD_SUCCESS,
+    DIGITAL_ASSET_GET_SUCCESS,
+    DIGITAL_ASSET_REMOVE_SUCCESS,
+    DIGITAL_ASSET_UPLOAD_SUCCESS
+} from "../constants";
+
 import { DigitalAsset } from "../models";
 import { Observable } from "rxjs";
 import { guid } from "../utilities";
@@ -51,6 +57,17 @@ export class DigitalAssetActions {
                 this._store.dispatch({
                     type: DIGITAL_ASSET_GET_SUCCESS,
                     payload: [digitalAsset]
+                });
+                return true;
+            });
+    }
+
+    public upload(options: { formData: FormData, id: number }) {
+        return this._digitalAssetService.upload({ formData: options.formData, id: options.id })
+            .subscribe(result => {
+                this._store.dispatch({
+                    type: DIGITAL_ASSET_UPLOAD_SUCCESS,
+                    payload: { id: options.id, result: result }
                 });
                 return true;
             });

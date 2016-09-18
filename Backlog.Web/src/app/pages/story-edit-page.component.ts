@@ -28,6 +28,7 @@ export class StoryEditPageComponent implements OnInit {
             id: $event.value.id,
             epicId: this._activatedRoute.snapshot.params["epicId"],
             name: $event.value.name,
+            digitalAssets: [],
             priority: $event.value.priority,
             description: $event.value.description
         });

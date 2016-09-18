@@ -210,6 +210,7 @@
     <Compile Include="Models\Epic.cs" />
     <Compile Include="Models\EpicTheme.cs" />
     <Compile Include="Models\IPrioritized.cs" />
+    <Compile Include="Models\StoryDigitalAsset.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\EpicService.cs" />
     <Compile Include="Services\Cache.cs" />

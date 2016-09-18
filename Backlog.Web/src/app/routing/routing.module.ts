@@ -5,7 +5,8 @@ import {
     EpicEditPageComponent,
     StoryEditPageComponent,
     StoryListPageComponent,
-    EpicDetailPageComponent
+    EpicDetailPageComponent,
+    DigitalAssetUploadPageComponent
     
 } from "../pages";
 
@@ -65,6 +66,11 @@ export const routes: Routes = [
         path: 'story/:id',
         pathMatch: 'full',
         component: StoryEditPageComponent
+    },
+    {
+        path: 'digitalasset/upload/:id',
+        pathMatch: 'full',
+        component: DigitalAssetUploadPageComponent
     }
 ];
 
@@ -77,6 +83,8 @@ export const routedComponents = [
     EpicEditPageComponent,
     EpicDetailPageComponent,
     StoryEditPageComponent,
-    StoryListPageComponent
+    StoryListPageComponent,
+
+    DigitalAssetUploadPageComponent
 ];
 

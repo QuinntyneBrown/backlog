@@ -8,6 +8,7 @@ import { PageHeaderComponent } from "./page-header.component";
 import { PageFooterComponent } from "./page-footer.component";
 import { OneColumnLayoutComponent } from "./one-column-layout.component";
 import { HtmlTextareaComponent } from "./html-textarea.component";
+import { DigitalAssetUploadComponent } from "./digital-asset-upload.component";
 
 import { EpicEditFormComponent } from "./epic-edit-form.component";
 import { EpicListComponent } from "./epic-list.component";
@@ -20,6 +21,7 @@ const declarables = [
     PageFooterComponent,
     OneColumnLayoutComponent,
     HtmlTextareaComponent,
+    DigitalAssetUploadComponent,
 
     EpicEditFormComponent,
     EpicListComponent,

@@ -1,5 +1,13 @@
 import { Action } from "@ngrx/store";
-import { STORY_ADD_SUCCESS, STORY_GET_SUCCESS, STORY_REMOVE_SUCCESS } from "../constants";
+import {
+    STORY_ADD_SUCCESS,
+    STORY_GET_SUCCESS,
+    STORY_REMOVE_SUCCESS,
+    STORY_INCREMENT_PRIORITY_SUCCESS,
+    STORY_DECREMENT_PRIORITY_SUCCESS,
+    DIGITAL_ASSET_UPLOAD_SUCCESS
+} from "../constants";
+
 import { initialState } from "./initial-state";
 import { AppState } from "./app-state";
 import { Story, Epic } from "../models";
@@ -31,6 +39,23 @@ export const storiesReducer = (state: AppState = initialState, action: Action) =
             pluckOut({ value: id, items: entities });
             return Object.assign({}, state, { stories: entities });
 
+        case STORY_INCREMENT_PRIORITY_SUCCESS:
+            return Object.assign({}, state, { stories: action.payload });
+
+        case STORY_DECREMENT_PRIORITY_SUCCESS:
+            return Object.assign({}, state, { stories: action.payload });
+
+        case DIGITAL_ASSET_UPLOAD_SUCCESS:
+            var entities = state.stories;
+
+            for (let i = 0; i < entities.length; i++) {
+                if (entities[i].id == action.payload.id) {
+                    for (let j = 0; j < action.payload.files.length; j++) {
+                        entities[i].digitalAssets.push(action.payload.files[j]);
+                    }
+                }
+            }
+            return Object.assign({}, state, { stories: entities });
         default:
             return state;
     }

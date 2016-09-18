@@ -310,6 +310,12 @@
     <Content Include="src\app\pages\digital-asset-list-page.component.scss">
       <DependentUpon>digital-asset-list-page.component.ts</DependentUpon>
     </Content>
+    <Content Include="src\app\pages\digital-asset-upload-page.component.html">
+      <DependentUpon>digital-asset-upload-page.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\pages\digital-asset-upload-page.component.scss">
+      <DependentUpon>digital-asset-upload-page.component.ts</DependentUpon>
+    </Content>
     <Content Include="src\app\pages\epic-detail-page.component.html">
       <DependentUpon>epic-detail-page.component.ts</DependentUpon>
     </Content>
@@ -453,14 +459,17 @@
   </Target>
   -->
   <ItemGroup>
+    <TypeScriptCompile Include="src\app\constants\digital-asset-upload-success.ts" />
     <TypeScriptCompile Include="src\app\constants\epic-decrement-priority-success.ts" />
     <TypeScriptCompile Include="src\app\constants\epic-increment-priority-success.ts" />
     <TypeScriptCompile Include="src\app\constants\get-current-user-success.ts" />
+    <TypeScriptCompile Include="src\app\constants\story-decrement-priority-success.ts" />
     <TypeScriptCompile Include="src\app\constants\user-logged-in.ts" />
     <TypeScriptCompile Include="src\app\constants\user-logged-out.ts" />
     <TypeScriptCompile Include="src\app\helpers\oauth-helper.ts" />
     <TypeScriptCompile Include="src\app\models\content.model.ts" />
     <TypeScriptCompile Include="src\app\pipes\sort-by-priority.pipe.ts" />
+    <TypeScriptCompile Include="src\app\constants\story-increment-priority-success.ts" />
     <TypeScriptCompile Include="src\vendor.ts" />
     <TypeScriptCompile Include="src\polyfills.ts" />
     <TypeScriptCompile Include="src\main.ts" />
@@ -600,6 +609,7 @@
     <TypeScriptCompile Include="src\app\constants\digital-asset-add-success.action.ts" />
     <TypeScriptCompile Include="src\app\constants\digital-asset-get-success.action.ts" />
     <TypeScriptCompile Include="src\app\constants\digital-asset-remove-success.action.ts" />
+    <TypeScriptCompile Include="src\app\pages\digital-asset-upload-page.component.ts" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
 </Project>

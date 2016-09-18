@@ -1,3 +1,7 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+
 namespace Backlog.Dtos
 {
     public class StoryDto
@@ -9,6 +13,7 @@ namespace Backlog.Dtos
             Description = entity.Description;
             EpicId = entity.EpicId;
             Priority = entity.Priority;
+            DigitalAssets = entity.StoryDigitalAssets.Select(x => new DigitalAssetDto(x.DigitalAsset)).ToList();
         }
 
         public StoryDto()
@@ -22,5 +27,6 @@ namespace Backlog.Dtos
         public string Description { get; set; }
         public int? Priority { get; set; }
         public EpicDto Epic { get; set; }
+        public ICollection<DigitalAssetDto> DigitalAssets = new HashSet<DigitalAssetDto>();
     }
 }

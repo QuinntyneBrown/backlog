@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Http } from "@angular/http";
+import { Http, Headers } from "@angular/http";
 import { DigitalAsset } from "../models";
 import { Observable } from "rxjs";
 import { extractData } from "../utilities";
@@ -14,6 +14,15 @@ export class DigitalAssetService {
     public add(entity: DigitalAsset) {
         return this._http
             .post(`${apiCofiguration.baseUrl}/api/digitalasset/add`, entity)
+            .map(data => data.json())
+            .catch(err => {
+                return Observable.of(false);
+            });
+    }
+
+    public upload(options: { formData: FormData, id: number }) {
+        return this._http
+            .post(`${apiCofiguration.baseUrl}/api/digitalasset/upload?id=${options.id}`, options.formData)
             .map(data => data.json())
             .catch(err => {
                 return Observable.of(false);

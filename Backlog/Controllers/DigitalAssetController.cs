@@ -14,6 +14,8 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
+using System.Linq;
+using System.Data.Entity;
 using WebApi.OutputCache.V2;
 
 namespace Backlog.Controllers
@@ -77,8 +79,13 @@ namespace Backlog.Controllers
         [AllowAnonymous]
         [Route("upload")]
         [HttpPost]
-        public async Task<HttpResponseMessage> Upload(HttpRequestMessage request)
+        public async Task<HttpResponseMessage> Upload(HttpRequestMessage request, int id)
         {
+            var story = _uow.Stories.GetAll()
+                .Include(x => x.StoryDigitalAssets)
+                .Include("StoryDigitalAssets.DigitalAsset")
+                .First(x => x.Id == id);
+                
             var digitalAssets = new List<DigitalAsset>();
             try
             {
@@ -101,6 +108,9 @@ namespace Backlog.Controllers
                     digitalAsset.Bytes = bytes;
                     digitalAsset.ContentType = System.Convert.ToString(file.Headers.ContentType);
                     _repository.Add(digitalAsset);
+                    story.StoryDigitalAssets.Add(new StoryDigitalAsset() {
+                        DigitalAsset = digitalAsset
+                    });
                     digitalAssets.Add(digitalAsset);
                 }
 
