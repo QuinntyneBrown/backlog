@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Backlog", "Backlog\Backlog.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Backlog.Web", "Backlog.Web\Backlog.Web.csproj", "{658DA84D-AD6C-414A-9333-B89232911187}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Backlog.Client", "Backlog.Client\Backlog.Client.csproj", "{D10681CE-E5CB-49C2-B462-C4F74BF37A40}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +22,10 @@ Global
 		{658DA84D-AD6C-414A-9333-B89232911187}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{658DA84D-AD6C-414A-9333-B89232911187}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{658DA84D-AD6C-414A-9333-B89232911187}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D10681CE-E5CB-49C2-B462-C4F74BF37A40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D10681CE-E5CB-49C2-B462-C4F74BF37A40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D10681CE-E5CB-49C2-B462-C4F74BF37A40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D10681CE-E5CB-49C2-B462-C4F74BF37A40}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
