@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {
     LandingPageComponent,
     EpicEditPageComponent,
+    StoryDetailPageComponent,
     StoryEditPageComponent,
     StoryListPageComponent,
     EpicDetailPageComponent,
@@ -68,6 +69,11 @@ export const routes: Routes = [
         component: StoryEditPageComponent
     },
     {
+        path: 'story/detail/:id',
+        pathMatch: 'full',
+        component: StoryDetailPageComponent
+    },
+    {
         path: 'digitalasset/upload/:id',
         pathMatch: 'full',
         component: DigitalAssetUploadPageComponent
@@ -84,6 +90,7 @@ export const routedComponents = [
     EpicDetailPageComponent,
     StoryEditPageComponent,
     StoryListPageComponent,
+    StoryDetailPageComponent,
 
     DigitalAssetUploadPageComponent
 ];

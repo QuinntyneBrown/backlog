@@ -14,7 +14,7 @@ import { EpicEditFormComponent } from "./epic-edit-form.component";
 import { EpicListComponent } from "./epic-list.component";
 import { StoryEditFormComponent } from "./story-edit-form.component";
 import { StoryListComponent } from "./story-list.component";
-
+import { StoryDetailComponent } from "./story-detail.component";
 
 const declarables = [
     PageHeaderComponent,
@@ -27,7 +27,8 @@ const declarables = [
     EpicListComponent,
 
     StoryEditFormComponent,
-    StoryListComponent
+    StoryListComponent,
+    StoryDetailComponent
 ];
 
 const providers = [];
