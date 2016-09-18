@@ -16,17 +16,19 @@ namespace Backlog.Client
         {
             var uow = Get().Resolve<IUow>();
 
-            foreach(var story in uow.Stories.GetAll()
+            foreach(var epics in uow.Epics.GetAll()
                 .Where(x=>!x.IsDeleted)
-                .Where(x=>!x.Epic.IsDeleted)
-                .Include(x=>x.Epic)){
+                .OrderByDescending(x=>x.Priority)
+                .ThenBy(x=>x.Name)
+                .Include(x=>x.Stories)){
 
-                Console.WriteLine();
-                Console.WriteLine($"{story.Epic.Name}-{story.Name}");
+                foreach (var story in epics.Stories.Where(s => !s.IsDeleted)) {
+                    Console.WriteLine();
+                    Console.WriteLine($"{story.Epic.Name}-{story.Name}");
 
-                if(!string.IsNullOrEmpty(story.Description))
-                    Console.WriteLine($"{StripHTML(story.Description)}");
-
+                    if (!string.IsNullOrEmpty(story.Description))
+                        Console.WriteLine($"{StripHTML(story.Description)}");
+                }                
             }
 
             Console.WriteLine("Done!");
