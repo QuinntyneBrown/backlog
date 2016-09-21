@@ -18,9 +18,12 @@ export class StoryEditFormComponent implements AfterViewInit, OnInit  {
     constructor(private _renderer: Renderer, private _elementRef: ElementRef) { } 
 
     ngOnInit() {
-        if (this.story && this.story.id)
+        if (this.story && this.story.id) {
             this.description = this.story.description;
+            this.isTemplate = this.story.isTemplate;
+        }
     }
+
     public get name(): HTMLElement {
         return this._elementRef.nativeElement.querySelector("#name");
     }
@@ -39,7 +42,7 @@ export class StoryEditFormComponent implements AfterViewInit, OnInit  {
     @Output() public onSubmit = new EventEmitter();
     @Output() public onCancel = new EventEmitter();
 
-    public description: string = "<p><strong>As a</strong> &lt;user/product owner&gt;</p> <p><strong>I want/can</strong> &lt;action&gt;</p> <p><strong>So that </strong>&lt;reason&gt;</p>"
+    public description: string = "<p><strong>As a </strong>technical user</p> <p><strong>I want/can</strong> &lt;action&gt;</p> <p><strong>so that</strong> &lt;reason&gt;</p>"
     public form = new FormGroup({
         id: new FormControl("", []),
         name: new FormControl("", []),
@@ -48,9 +51,15 @@ export class StoryEditFormComponent implements AfterViewInit, OnInit  {
 
     public tryToSubmit() {
         this.onSubmit.emit({
-            value: Object.assign({}, this.form.value, { description: this.description })
+            value: Object.assign({}, this.form.value, {
+                description: this.description,
+                isTemplate: this.isTemplate
+            })
         });
     }
+    
+    public isTemplate: boolean;
+
 
     public tryToCancel() {
         this.onCancel.emit();

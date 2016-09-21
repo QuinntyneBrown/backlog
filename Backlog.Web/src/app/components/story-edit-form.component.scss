@@ -5,6 +5,9 @@ h1 {
 input, textarea {
     display:block;
     margin:15px 0px;
+    width:100%;
+    max-width:600px;
+    padding: 10px 15px;
 }
 
 button {
@@ -21,4 +24,8 @@ textarea {
 
 img {
     max-width:300px;
+}
+
+.story-edit-form-is-template {
+
 }

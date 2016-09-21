@@ -5,6 +5,4 @@ import { Component, OnInit } from "@angular/core";
     styles: [require("./one-column-layout.component.scss")],
     selector: "one-column-layout"
 })
-export class OneColumnLayoutComponent { 
-
-}
+export class OneColumnLayoutComponent { }

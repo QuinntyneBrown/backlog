@@ -1,4 +1,4 @@
-using System.Collections;
+using Backlog.Models;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -6,23 +6,22 @@ namespace Backlog.Dtos
 {
     public class StoryDto
     {
-        public StoryDto(Backlog.Models.Story entity)
+        public StoryDto(Story entity)
         {
             Id = entity.Id;
-            Name = entity.Name;
+            Name = entity.Name;            
             Description = entity.Description;
             EpicId = entity.EpicId;
+            IsTemplate = entity.IsTemplate;
             Priority = entity.Priority;
             DigitalAssets = entity.StoryDigitalAssets.Select(x => new DigitalAssetDto(x.DigitalAsset)).ToList();
         }
 
-        public StoryDto()
-        {
-            
-        }
+        public StoryDto() { }
 
         public int Id { get; set; }
         public int? EpicId { get; set; }
+        public bool IsTemplate { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public int? Priority { get; set; }

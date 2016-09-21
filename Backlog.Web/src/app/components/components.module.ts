@@ -15,12 +15,14 @@ import { EpicListComponent } from "./epic-list.component";
 import { StoryEditFormComponent } from "./story-edit-form.component";
 import { StoryListComponent } from "./story-list.component";
 import { StoryDetailComponent } from "./story-detail.component";
+import { EditorComponent } from "./editor.component";
 
 const declarables = [
     PageHeaderComponent,
     PageFooterComponent,
     OneColumnLayoutComponent,
     HtmlTextareaComponent,
+    EditorComponent,
     DigitalAssetUploadComponent,
 
     EpicEditFormComponent,

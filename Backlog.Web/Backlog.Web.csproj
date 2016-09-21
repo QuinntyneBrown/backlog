@@ -197,6 +197,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="lib\quill.core.css" />
+    <Content Include="lib\quill.min.js" />
+    <Content Include="lib\quill.snow.css" />
     <Content Include="packages.config" />
     <Content Include="src\app\components\digital-asset-edit-form.component.html">
       <DependentUpon>digital-asset-edit-form.component.ts</DependentUpon>
@@ -221,6 +224,9 @@
     </Content>
     <Content Include="src\app\components\drop-down.component.scss">
       <DependentUpon>drop-down.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\components\editor.component.html">
+      <DependentUpon>editor.component.ts</DependentUpon>
     </Content>
     <Content Include="src\app\components\epic-edit-form.component.html">
       <DependentUpon>epic-edit-form.component.ts</DependentUpon>
@@ -627,6 +633,7 @@
     <TypeScriptCompile Include="src\app\pages\digital-asset-upload-page.component.ts" />
     <TypeScriptCompile Include="src\app\pages\story-detail-page.component.ts" />
     <TypeScriptCompile Include="src\app\components\story-detail.component.ts" />
+    <TypeScriptCompile Include="src\app\components\editor.component.ts" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
 </Project>

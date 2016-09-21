@@ -8,7 +8,14 @@
         <input placeholder="Priority" formControlName="priority" />
     </form>
 
-    <html-textarea [(ngModel)]="description"></html-textarea>
+    <div>
+        <label>
+            <input class="story-edit-form-is-template" #isTemplateCb type="checkbox" (change)="isTemplate = isTemplateCb.checked" />
+            Is Template
+        </label>
+    </div>
+
+    <editor [(ngModel)]="description" [style]="{ 'height':'320px'}"></editor>
 
     <button type="submit"
             (click)="tryToSubmit()"

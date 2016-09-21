@@ -22,6 +22,7 @@ namespace Backlog.Dtos
         public int Id { get; set; }        
         public string Name { get; set; }
         public string Description { get; set; }
+        public bool IsTemplate { get; set; }
         public int? Priority { get; set; }
         public ICollection<StoryDto> Stories { get; set; } = new HashSet<StoryDto>();
     }

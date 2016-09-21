@@ -10,6 +10,7 @@ namespace Backlog.Models
         public int? Priority { get; set; } = 0;
         public ICollection<Story> Stories { get; set; } = new HashSet<Story>();
         public ICollection<EpicTheme> EpicThemes { get; set; } = new HashSet<EpicTheme>();
+        public bool IsTemplate { get; set; }
         public bool IsDeleted { get; set; }
     }
 }

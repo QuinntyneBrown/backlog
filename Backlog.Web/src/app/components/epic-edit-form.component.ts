@@ -21,8 +21,7 @@ export class EpicEditFormComponent implements AfterViewInit {
         return this._elementRef.nativeElement.querySelector("#name");
     }
 
-    ngAfterViewInit() {
-        
+    ngAfterViewInit() {        
         this._renderer.invokeElementMethod(this.name, 'focus', []);
         this.form.patchValue({ id: this.epic.id })
         this.form.patchValue({ priority: this.epic.priority });
@@ -42,6 +41,15 @@ export class EpicEditFormComponent implements AfterViewInit {
         ]),
         description: new FormControl("", [
             Validators.required
-        ])
+        ])        
     });
+
+
+    public tryToSubmit() {
+        this.onSubmit.emit({
+            value: Object.assign({}, this.form.value, { isTemplate: this.isTemplate })
+        });
+    }
+
+    public isTemplate: boolean;
 }

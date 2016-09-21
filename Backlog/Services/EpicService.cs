@@ -27,6 +27,7 @@ namespace Backlog.Services
             if (entity == null) _repository.Add(entity = new Models.Epic());
             entity.Name = request.Name;
             entity.Description = request.Description;
+            entity.IsTemplate = request.IsTemplate;
 
             if (request.Priority.HasValue)
                 entity.Priority = request.Priority.Value;

@@ -5,6 +5,8 @@ h1 {
 input, textarea {
     display:block;
     margin:15px 0px;
+    width:100%;
+    max-width:600px;
 }
 
 button {
@@ -16,5 +18,14 @@ textarea {
     width: 600px;
 	height: 120px;	
 	padding: 5px;
+}
+
+#is-template-field {
+    float:left;
+    width:25px;
+}
+
+label {
+    width:75px;
 }
 

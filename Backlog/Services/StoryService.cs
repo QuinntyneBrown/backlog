@@ -37,6 +37,8 @@ namespace Backlog.Services
 
             entity.Name = request.Name;
             entity.Description = request.Description;
+            entity.IsTemplate = request.IsTemplate;
+
             _uow.SaveChanges();
             return new StoryAddOrUpdateResponseDto(entity);
         }
