@@ -12,7 +12,7 @@ namespace Backlog.Dtos
             Name = entity.Name;            
             Description = entity.Description;
             EpicId = entity.EpicId;
-            IsTemplate = entity.IsTemplate;
+            IsReusable = entity.IsReusable;
             Priority = entity.Priority;
             DigitalAssets = entity.StoryDigitalAssets.Select(x => new DigitalAssetDto(x.DigitalAsset)).ToList();
         }
@@ -21,7 +21,7 @@ namespace Backlog.Dtos
 
         public int Id { get; set; }
         public int? EpicId { get; set; }
-        public bool IsTemplate { get; set; }
+        public bool IsReusable { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public int? Priority { get; set; }

@@ -20,7 +20,6 @@ export class StoryEditFormComponent implements AfterViewInit, OnInit  {
     ngOnInit() {
         if (this.story && this.story.id) {
             this.description = this.story.description;
-            this.isTemplate = this.story.isTemplate;
         }
     }
 
@@ -28,13 +27,19 @@ export class StoryEditFormComponent implements AfterViewInit, OnInit  {
         return this._elementRef.nativeElement.querySelector("#name");
     }
 
+    public get isReusableElement(): HTMLElement {
+        return this._elementRef.nativeElement.querySelector(".story-edit-form-is-reusable-field input");
+    }
+
     ngAfterViewInit() {
         this._renderer.invokeElementMethod(this.name, 'focus', []);
+        //this._renderer.invokeElementMethod(this.isReusableElement, 'check', []);
 
         if (this.story && this.story.id) {
             this.form.patchValue({ id: this.story.id })
             this.form.patchValue({ name: this.story.name });
             this.form.patchValue({ priority: this.story.priority });
+            this.form.patchValue({ isReusable: this.story.isReusable });
         }
     }
 	    
@@ -46,20 +51,19 @@ export class StoryEditFormComponent implements AfterViewInit, OnInit  {
     public form = new FormGroup({
         id: new FormControl("", []),
         name: new FormControl("", []),
-        priority: new FormControl("", [])
+        priority: new FormControl("", []),
+        isReusable: new FormControl("",[])
     });
 
     public tryToSubmit() {
         this.onSubmit.emit({
             value: Object.assign({}, this.form.value, {
-                description: this.description,
-                isTemplate: this.isTemplate
+                description: this.description
             })
         });
     }
     
-    public isTemplate: boolean;
-
+    
 
     public tryToCancel() {
         this.onCancel.emit();

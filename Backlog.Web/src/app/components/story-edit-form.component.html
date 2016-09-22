@@ -6,14 +6,17 @@
             required
         </span>       
         <input placeholder="Priority" formControlName="priority" />
+
+        <div class="story-edit-form-is-reusable-field">
+            <input name="is-reusable" class="story-edit-form-is-reusable" type="checkbox"  formControlName="isReusable" />
+            <label for="is-reusable">
+                Is Reusable
+            </label>
+        </div>
+
     </form>
 
-    <div>
-        <label>
-            <input class="story-edit-form-is-template" #isTemplateCb type="checkbox" (change)="isTemplate = isTemplateCb.checked" />
-            Is Template
-        </label>
-    </div>
+
 
     <editor [(ngModel)]="description" [style]="{ 'height':'320px'}"></editor>
 

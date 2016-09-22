@@ -3,14 +3,13 @@ import { Routes, RouterModule } from '@angular/router';
 import {
     LandingPageComponent,
     EpicEditPageComponent,
+    EpicAddExistingStoriesPageComponent,
     StoryDetailPageComponent,
     StoryEditPageComponent,
     StoryListPageComponent,
     EpicDetailPageComponent,
-    DigitalAssetUploadPageComponent
-    
+    DigitalAssetUploadPageComponent    
 } from "../pages";
-
 
 export const routes: Routes = [
     {
@@ -27,6 +26,11 @@ export const routes: Routes = [
         path: 'epic/:id',
         pathMatch: 'full',
         component: EpicEditPageComponent
+    },
+    {
+        path: 'epic/:id/addexistingstories',
+        pathMatch: 'full',
+        component: EpicAddExistingStoriesPageComponent
     },
     {
         path: 'epic',
@@ -88,6 +92,7 @@ export const routedComponents = [
     LandingPageComponent,
     EpicEditPageComponent,
     EpicDetailPageComponent,
+    EpicAddExistingStoriesPageComponent,
     StoryEditPageComponent,
     StoryListPageComponent,
     StoryDetailPageComponent,

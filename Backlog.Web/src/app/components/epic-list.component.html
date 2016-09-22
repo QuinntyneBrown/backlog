@@ -9,6 +9,8 @@
         &nbsp;&nbsp;|&nbsp;&nbsp;
         <a (click)="onCreateStory.emit({ value: entity })" class="epic-list-item-action">CREATE STORY</a>
         &nbsp;&nbsp;|&nbsp;&nbsp;
+        <a (click)="onAddExistingStories.emit({ value: entity })" class="epic-list-item-action">ADD EXISTING STORIES</a>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
         <a (click)="onDelete.emit({ value: entity })" class="epic-list-item-action">DELETE</a>
         &nbsp;&nbsp;|&nbsp;&nbsp;
         <a (click)="onEdit.emit({ value: entity })" class="epic-list-item-action">EDIT</a>

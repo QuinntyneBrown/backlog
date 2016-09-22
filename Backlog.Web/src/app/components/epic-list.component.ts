@@ -14,4 +14,5 @@ export class EpicListComponent {
     @Output() onCreateStory: EventEmitter<any> = new EventEmitter<any>();
     @Output() onIncrementPriority: EventEmitter<any> = new EventEmitter<any>();
     @Output() onDecrementPriority: EventEmitter<any> = new EventEmitter<any>();
+    @Output() onAddExistingStories: EventEmitter<any> = new EventEmitter<any>();
 }

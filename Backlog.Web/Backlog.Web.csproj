@@ -330,6 +330,12 @@
     <Content Include="src\app\pages\digital-asset-upload-page.component.scss">
       <DependentUpon>digital-asset-upload-page.component.ts</DependentUpon>
     </Content>
+    <Content Include="src\app\pages\epic-add-existing-stories-page.component.html">
+      <DependentUpon>epic-add-existing-stories-page.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\pages\epic-add-existing-stories-page.component.scss">
+      <DependentUpon>epic-add-existing-stories-page.component.ts</DependentUpon>
+    </Content>
     <Content Include="src\app\pages\epic-detail-page.component.html">
       <DependentUpon>epic-detail-page.component.ts</DependentUpon>
     </Content>
@@ -634,6 +640,7 @@
     <TypeScriptCompile Include="src\app\pages\story-detail-page.component.ts" />
     <TypeScriptCompile Include="src\app\components\story-detail.component.ts" />
     <TypeScriptCompile Include="src\app\components\editor.component.ts" />
+    <TypeScriptCompile Include="src\app\pages\epic-add-existing-stories-page.component.ts" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
 </Project>

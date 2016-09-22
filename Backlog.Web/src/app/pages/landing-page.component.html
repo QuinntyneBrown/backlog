@@ -6,6 +6,7 @@
                    (onEdit)="_router.navigate(['epic', $event.value.id])"
                    (onSelect)="_router.navigate(['epic','detail',$event.value.id])"
                    (onCreateStory)="_router.navigate(['epic', $event.value.id,'story'])"
+                   (onAddExistingStories)="_router.navigate(['epic', $event.value.id,'addexistingstories'])"
                    (onIncrementPriority)="_epicActions.incrementPriority({ id: $event.entity.id })"
                    (onDecrementPriority)="_epicActions.decrementPriority({ id: $event.entity.id })"
                    ></epic-list>

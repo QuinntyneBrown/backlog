@@ -26,6 +26,35 @@ img {
     max-width:300px;
 }
 
-.story-edit-form-is-template {
+.story-edit-form-is-reusable-field {
 
+    height:20px;
+    display:block;
+    margin-bottom:10px;
+
+    input, label {
+        float:left;
+        vertical-align:middle;
+        display:inline-block;
+    }
+
+    label {
+        height:3em;
+    }
+
+    input {
+        width:25px;
+        display:inline-block;
+        padding:0px 0px 0px 0px;
+        margin:0px 0px 0px 0px;
+    }
+}
+
+.story-edit-form-is-reusable-field:after {
+    visibility: hidden;
+     display: block;
+     font-size: 0;
+     content: " ";
+     clear: both;
+     height: 0;
 }
