@@ -65,6 +65,16 @@ namespace Backlog.Services
             return response;
         }
 
+        public ICollection<StoryDto> GetReusableStories()
+        {
+            ICollection<StoryDto> response = new HashSet<StoryDto>();
+            var entities = _repository.GetAll()
+                .Where(x => x.IsDeleted == false && x.IsReusable).ToList();
+            foreach (var entity in entities
+                .OrderBy(x => x.Name)
+                .OrderByDescending(x => x.Priority)) { response.Add(new StoryDto(entity)); }
+            return response;
+        }
 
         public StoryDto GetById(int id)
         {

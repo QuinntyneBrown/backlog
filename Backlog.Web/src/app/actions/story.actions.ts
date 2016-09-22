@@ -2,7 +2,15 @@ import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { StoryService } from "../services";
 import { AppState, AppStore } from "../store";
-import { STORY_ADD_SUCCESS, STORY_GET_SUCCESS, STORY_REMOVE_SUCCESS, STORY_INCREMENT_PRIORITY_SUCCESS, STORY_DECREMENT_PRIORITY_SUCCESS } from "../constants";
+import {
+    STORY_ADD_SUCCESS,
+    STORY_GET_SUCCESS,
+    STORY_GET_REUSABLE_SUCCESS,
+    STORY_REMOVE_SUCCESS,
+    STORY_INCREMENT_PRIORITY_SUCCESS,
+    STORY_DECREMENT_PRIORITY_SUCCESS
+} from "../constants";
+
 import { Story } from "../models";
 import { Observable } from "rxjs";
 import { guid } from "../utilities";
@@ -28,6 +36,17 @@ export class StoryActions {
             .subscribe(stories => {
                 this._store.dispatch({
                     type: STORY_GET_SUCCESS,
+                    payload: stories
+                });
+                return true;
+            });
+    }
+
+    public getReusableStories() {
+        return this._storyService.getReusableStories()
+            .subscribe(stories => {
+                this._store.dispatch({
+                    type: STORY_GET_REUSABLE_SUCCESS,
                     payload: stories
                 });
                 return true;

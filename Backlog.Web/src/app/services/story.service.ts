@@ -29,6 +29,15 @@ export class StoryService {
             });
     }
 
+    public getReusableStories() {
+        return this._http
+            .get(`${apiCofiguration.baseUrl}/api/story/getReusableStories`)
+            .map(data => data.json())
+            .catch(err => {
+                return Observable.of(false);
+            });
+    }
+
     public getById(options: { id: number }) {
         return this._http
             .get(`${apiCofiguration.baseUrl}/api/story/getById?id=${options.id}`)

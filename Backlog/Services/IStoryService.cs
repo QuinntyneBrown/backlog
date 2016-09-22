@@ -7,6 +7,7 @@ namespace Backlog.Services
     {
         StoryAddOrUpdateResponseDto AddOrUpdate(StoryAddOrUpdateRequestDto request);
         ICollection<StoryDto> Get();
+        ICollection<StoryDto> GetReusableStories();
         StoryDto GetById(int id);
         dynamic Remove(int id);
         ICollection<StoryDto> IncrementPriority(int id);

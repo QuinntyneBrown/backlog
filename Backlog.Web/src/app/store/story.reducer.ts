@@ -2,6 +2,7 @@ import { Action } from "@ngrx/store";
 import {
     STORY_ADD_SUCCESS,
     STORY_GET_SUCCESS,
+    STORY_GET_REUSABLE_SUCCESS,
     STORY_REMOVE_SUCCESS,
     STORY_INCREMENT_PRIORITY_SUCCESS,
     STORY_DECREMENT_PRIORITY_SUCCESS,
@@ -23,6 +24,7 @@ export const storiesReducer = (state: AppState = initialState, action: Action) =
             addOrUpdate({ items: entities, item: entity });               
             return Object.assign({}, state, { stories: entities, epics: [] });
 
+        case STORY_GET_REUSABLE_SUCCESS:
         case STORY_GET_SUCCESS:
             var entities: Array<Story> = state.stories;
             var epics: Array<Epic> = state.epics;

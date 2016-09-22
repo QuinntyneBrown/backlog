@@ -31,6 +31,12 @@ namespace Backlog.Controllers
         [ResponseType(typeof(ICollection<StoryDto>))]
         public IHttpActionResult Get() { return Ok(_storyService.Get()); }
 
+        [Route("getReusableStories")]
+        [AllowAnonymous]
+        [HttpGet]
+        [ResponseType(typeof(ICollection<StoryDto>))]
+        public IHttpActionResult GetReusableStories() { return Ok(_storyService.GetReusableStories()); }
+
         [Route("getById")]
         [HttpGet]
         [ResponseType(typeof(StoryDto))]

@@ -23,14 +23,14 @@ export const routes: Routes = [
         component: LandingPageComponent
     },
     {
-        path: 'epic/:id',
-        pathMatch: 'full',
-        component: EpicEditPageComponent
-    },
-    {
         path: 'epic/:id/addexistingstories',
         pathMatch: 'full',
         component: EpicAddExistingStoriesPageComponent
+    },
+    {
+        path: 'epic/:id',
+        pathMatch: 'full',
+        component: EpicEditPageComponent
     },
     {
         path: 'epic',

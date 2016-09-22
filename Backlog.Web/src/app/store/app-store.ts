@@ -86,11 +86,15 @@ export class AppStore {
 
     public stories$(): Observable<Array<Story>> {
         return this._store.select("stories")
+            .map((data: { stories: Array<Story> }) => {                
+                return data.stories;
+            });
+    }
+
+    public reusableStories$(): Observable<Array<Story>> {
+        return this._store.select("stories")
             .map((data: { stories: Array<Story> }) => {
-                data.stories.sort((a: any, b: any) => {
-                    if (a.priority < b.priority) { return 1; }
-                    return 0;
-                }); 
+                data.stories.filter((story: Story) => story.isReusable);
                 return data.stories;
             });
     }
