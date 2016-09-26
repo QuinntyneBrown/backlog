@@ -20,6 +20,8 @@ export class StoryEditFormComponent implements AfterViewInit, OnInit  {
     ngOnInit() {
         if (this.story && this.story.id) {
             this.description = this.story.description;
+            this.acceptanceCriteria = this.story.acceptanceCriteria;
+            this.notes = this.story.notes;
         }
     }
 
@@ -33,8 +35,7 @@ export class StoryEditFormComponent implements AfterViewInit, OnInit  {
 
     ngAfterViewInit() {
         this._renderer.invokeElementMethod(this.name, 'focus', []);
-        //this._renderer.invokeElementMethod(this.isReusableElement, 'check', []);
-
+        
         if (this.story && this.story.id) {
             this.form.patchValue({ id: this.story.id })
             this.form.patchValue({ name: this.story.name });
@@ -48,6 +49,9 @@ export class StoryEditFormComponent implements AfterViewInit, OnInit  {
     @Output() public onCancel = new EventEmitter();
 
     public description: string = "<p><strong>As a </strong>technical user</p> <p><strong>I want/can</strong> &lt;action&gt;</p> <p><strong>so that</strong> &lt;reason&gt;</p>"
+    public acceptanceCriteria: string;
+    public notes: string;
+
     public form = new FormGroup({
         id: new FormControl("", []),
         name: new FormControl("", []),
@@ -58,13 +62,13 @@ export class StoryEditFormComponent implements AfterViewInit, OnInit  {
     public tryToSubmit() {
         this.onSubmit.emit({
             value: Object.assign({}, this.form.value, {
-                description: this.description
+                description: this.description,
+                acceptanceCriteria: this.acceptanceCriteria,
+                notes: this.notes
             })
         });
     }
     
-    
-
     public tryToCancel() {
         this.onCancel.emit();
     }

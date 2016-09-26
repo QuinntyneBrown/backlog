@@ -37,6 +37,8 @@ namespace Backlog.Services
 
             entity.Name = request.Name;
             entity.Description = request.Description;
+            entity.Notes = request.Notes;
+            entity.AcceptanceCriteria = entity.AcceptanceCriteria;
             entity.IsReusable = request.IsReusable;
 
             _uow.SaveChanges();

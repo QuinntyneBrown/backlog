@@ -6,8 +6,12 @@ import { DigitalAssetActions } from "./digital-asset.actions";
 import { HtmlContentActions } from "./html-content.actions";
 import { ReusableStoryGroupActions } from "./reusable-story-group.actions";
 import { ProjectActions } from "./project.actions";
+import { AgileTeamActions } from "./agile-team.actions";
+import { AgileTeamMemberActions } from "./agile-team-member.actions";
 
 const providers = [
+    AgileTeamActions,
+    AgileTeamMemberActions,
     ContentActions,
     EpicActions,
     StoryActions,

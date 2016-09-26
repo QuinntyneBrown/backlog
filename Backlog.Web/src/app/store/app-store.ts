@@ -4,7 +4,7 @@ import { AppState } from "./app-state";
 import { guid, pluck } from "../utilities";
 import { select, SelectSignature } from '@ngrx/core/operator/select';
 import { Observable, BehaviorSubject } from "rxjs";
-import { Epic, Story, Content, ReusableStoryGroup, Project } from "../models";
+import { Epic, Story, Content, ReusableStoryGroup, Project, AgileTeam, AgileTeamMember } from "../models";
 
 
 @Injectable()
@@ -102,6 +102,34 @@ export class AppStore {
         return this._store.select("projects")
             .map((data: { projects: Array<Project> }) => {
                 return data.projects;
+            });
+    }
+
+    public agileTeamMemberById$(id: string): Observable<AgileTeamMember> {
+        return this._store.select("agileTeamMembers")
+            .map((data: { agileTeamMembers: Array<AgileTeamMember> }) => {
+                return pluck({ value: id, items: data.agileTeamMembers }) as AgileTeamMember;
+            })
+    }
+
+    public agileTeamMembers$(): Observable<Array<AgileTeamMember>> {
+        return this._store.select("agileTeamMembers")
+            .map((data: { agileTeamMembers: Array<AgileTeamMember> }) => {
+                return data.agileTeamMembers;
+            });
+    }
+
+    public agileTeamById$(id: string): Observable<AgileTeam> {
+        return this._store.select("agileTeams")
+            .map((data: { agileTeams: Array<AgileTeam> }) => {
+                return pluck({ value: id, items: data.agileTeams }) as AgileTeam;
+            })
+    }
+
+    public agileTeams$(): Observable<Array<AgileTeam>> {
+        return this._store.select("agileTeams")
+            .map((data: { agileTeams: Array<AgileTeam> }) => {
+                return data.agileTeams;
             });
     }
 

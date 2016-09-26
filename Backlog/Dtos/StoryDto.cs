@@ -14,6 +14,8 @@ namespace Backlog.Dtos
             EpicId = entity.EpicId;
             IsReusable = entity.IsReusable;
             Priority = entity.Priority;
+            AcceptanceCriteria = entity.AcceptanceCriteria;
+            Notes = entity.Notes;
             DigitalAssets = entity.StoryDigitalAssets.Select(x => new DigitalAssetDto(x.DigitalAsset)).ToList();
         }
 
@@ -24,6 +26,8 @@ namespace Backlog.Dtos
         public bool IsReusable { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public string AcceptanceCriteria { get; set; }
+        public string Notes { get; set; }
         public int? Priority { get; set; }
         public EpicDto Epic { get; set; }
         public ICollection<DigitalAssetDto> DigitalAssets = new HashSet<DigitalAssetDto>();

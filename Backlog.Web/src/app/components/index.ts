@@ -1,3 +1,7 @@
+export * from "./agile-team-edit-form.component";
+export * from "./agile-team-list.component";
+export * from "./agile-team-member-edit-form.component";
+export * from "./agile-team-member-list.component";
 export * from "./components.module";
 export * from "./digital-asset-edit-form.component";
 export * from "./digital-asset-list.component";

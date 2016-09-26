@@ -1,3 +1,4 @@
+export * from "./agile-team-member.service";
 export * from "./agile-team.service";
 export * from "./authentication.service";
 export * from "./content.service";

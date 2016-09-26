@@ -199,6 +199,30 @@
     <Content Include="lib\quill.min.js" />
     <Content Include="lib\quill.snow.css" />
     <Content Include="packages.config" />
+    <Content Include="src\app\components\agile-team-edit-form.component.html">
+      <DependentUpon>agile-team-edit-form.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\components\agile-team-edit-form.component.scss">
+      <DependentUpon>agile-team-edit-form.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\components\agile-team-list.component.html">
+      <DependentUpon>agile-team-list.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\components\agile-team-list.component.scss">
+      <DependentUpon>agile-team-list.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\components\agile-team-member-edit-form.component.html">
+      <DependentUpon>agile-team-member-edit-form.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\components\agile-team-member-edit-form.component.scss">
+      <DependentUpon>agile-team-member-edit-form.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\components\agile-team-member-list.component.html">
+      <DependentUpon>agile-team-member-list.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\components\agile-team-member-list.component.scss">
+      <DependentUpon>agile-team-member-list.component.ts</DependentUpon>
+    </Content>
     <Content Include="src\app\components\digital-asset-edit-form.component.html">
       <DependentUpon>digital-asset-edit-form.component.ts</DependentUpon>
     </Content>
@@ -339,6 +363,24 @@
     </Content>
     <Content Include="src\app\pages\agile-team-edit-page.component.scss">
       <DependentUpon>agile-team-edit-page.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\pages\agile-team-list-page.component.html">
+      <DependentUpon>agile-team-list-page.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\pages\agile-team-list-page.component.scss">
+      <DependentUpon>agile-team-list-page.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\pages\agile-team-member-edit-page.component.html">
+      <DependentUpon>agile-team-member-edit-page.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\pages\agile-team-member-edit-page.component.scss">
+      <DependentUpon>agile-team-member-edit-page.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\pages\agile-team-member-list-page.component.html">
+      <DependentUpon>agile-team-member-list-page.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\pages\agile-team-member-list-page.component.scss">
+      <DependentUpon>agile-team-member-list-page.component.ts</DependentUpon>
     </Content>
     <Content Include="src\app\pages\digital-asset-edit-page.component.html">
       <DependentUpon>digital-asset-edit-page.component.ts</DependentUpon>
@@ -716,6 +758,20 @@
     <TypeScriptCompile Include="src\app\actions\project.actions.ts" />
     <TypeScriptCompile Include="src\app\services\project.service.ts" />
     <TypeScriptCompile Include="src\app\store\project.reducer.ts" />
+    <TypeScriptCompile Include="src\app\models\agile-team-member.model.ts" />
+    <TypeScriptCompile Include="src\app\constants\agile-team-member-add-success.action.ts" />
+    <TypeScriptCompile Include="src\app\constants\agile-team-member-get-success.action.ts" />
+    <TypeScriptCompile Include="src\app\constants\agile-team-member-remove-success.action.ts" />
+    <TypeScriptCompile Include="src\app\services\agile-team-member.service.ts" />
+    <TypeScriptCompile Include="src\app\components\agile-team-member-list.component.ts" />
+    <TypeScriptCompile Include="src\app\components\agile-team-member-edit-form.component.ts" />
+    <TypeScriptCompile Include="src\app\pages\agile-team-member-list-page.component.ts" />
+    <TypeScriptCompile Include="src\app\pages\agile-team-member-edit-page.component.ts" />
+    <TypeScriptCompile Include="src\app\components\agile-team-edit-form.component.ts" />
+    <TypeScriptCompile Include="src\app\components\agile-team-list.component.ts" />
+    <TypeScriptCompile Include="src\app\pages\agile-team-list-page.component.ts" />
+    <TypeScriptCompile Include="src\app\actions\agile-team-member.actions.ts" />
+    <TypeScriptCompile Include="src\app\store\agile-team-member.reducer.ts" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
 </Project>

@@ -1,24 +1,35 @@
 <section class="story-edit-form">
     <h1>Edit Story</h1>
-    <form novalidate [formGroup]="form">
-        <input placeholder="Name" formControlName="name" id="name" />
-        <span *ngIf="form.get('name').touched && form.hasError('required', 'name')">
-            required
-        </span>       
-        <input placeholder="Priority" formControlName="priority" />
+    <div>
+        <form novalidate [formGroup]="form">
+            <input placeholder="Name" formControlName="name" id="name" />
+            <span *ngIf="form.get('name').touched && form.hasError('required', 'name')">
+                required
+            </span>
+            <input placeholder="Priority" formControlName="priority" />
 
-        <div class="story-edit-form-is-reusable-field">
-            <input name="is-reusable" class="story-edit-form-is-reusable" type="checkbox"  formControlName="isReusable" />
-            <label for="is-reusable">
-                Is Reusable
-            </label>
-        </div>
+            <div class="story-edit-form-is-reusable-field">
+                <input name="is-reusable" class="story-edit-form-is-reusable" type="checkbox" formControlName="isReusable" />
+                <label for="is-reusable">
+                    Is Reusable
+                </label>
+            </div>
 
-    </form>
+        </form>
+        <div style="clear:both;"></div>
+    </div>
 
+    <h2>Description</h2>
 
+    <editor [(ngModel)]="description" [style]="{ 'height':'120px'}"></editor>
 
-    <editor [(ngModel)]="description" [style]="{ 'height':'320px'}"></editor>
+    <h2>Notes</h2>
+
+    <editor [(ngModel)]="notes" [style]="{ 'height':'120px'}"></editor>
+
+    <h2>Acceptance Criteria</h2>
+
+    <editor [(ngModel)]="acceptanceCriteria" [style]="{ 'height':'120px'}"></editor>
 
     <button type="submit"
             (click)="tryToSubmit()"

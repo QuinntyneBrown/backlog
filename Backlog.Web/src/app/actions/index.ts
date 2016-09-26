@@ -1,4 +1,5 @@
 export * from "./actions.module";
+export * from "./agile-team-member.actions";
 export * from "./agile-team.actions";
 export * from "./authentication.actions";
 export * from "./content.actions";

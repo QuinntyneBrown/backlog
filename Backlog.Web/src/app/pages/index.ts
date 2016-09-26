@@ -1,4 +1,7 @@
 export * from "./agile-team-edit-page.component";
+export * from "./agile-team-list-page.component";
+export * from "./agile-team-member-edit-page.component";
+export * from "./agile-team-member-list-page.component";
 export * from "./digital-asset-edit-page.component";
 export * from "./digital-asset-list-page.component";
 export * from "./digital-asset-upload-page.component";

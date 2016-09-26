@@ -1,0 +1,31 @@
+<div class="agile-team-list">
+    <h1>Agile Teams</h1>
+
+    <table>
+        <tr class="agile-team-list-header">
+            <td>
+
+            </td>
+            <td>
+                Name
+            </td>
+            <td>
+                Actions
+            </td>
+        </tr>
+        <tr *ngFor="let entity of entities; let i = index">
+            <td>
+                <a class="agile-team-list-item-count">{{ i + 1 }}</a>
+            </td>
+            <td class="agile-team-list-item-name-column">
+                <a (click)="onSelect.emit({ value: entity })">{{ entity.name }}</a>
+            </td>
+            <td>
+                <a (click)="onDelete.emit({ value: entity })" class="agile-team-list-item-action">DELETE</a>
+                &nbsp;&nbsp;|&nbsp;&nbsp;
+                <a (click)="onEdit.emit({ value: entity })" class="agile-team-list-item-action">EDIT</a>
+            </td>
+        </tr>
+    </table>
+
+</div>

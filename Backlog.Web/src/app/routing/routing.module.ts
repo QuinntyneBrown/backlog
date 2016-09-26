@@ -10,8 +10,15 @@ import {
     EpicDetailPageComponent,
     DigitalAssetUploadPageComponent,
 
+    AgileTeamEditPageComponent,
+    AgileTeamListPageComponent,
+
+    AgileTeamMemberEditPageComponent,
+    AgileTeamMemberListPageComponent,
+
     ReusableStoryGroupEditPageComponent,
     ReusableStoryGroupListPageComponent,
+
     ProjectEditPageComponent,
     ProjectListPageComponent
 } from "../pages";
@@ -77,6 +84,23 @@ export const routes: Routes = [
         pathMatch: 'full',
         component: StoryEditPageComponent
     },
+
+    {
+        path: 'agileteams',
+        pathMatch: 'full',
+        component: AgileTeamListPageComponent
+    },
+    {
+        path: 'agileteam',
+        pathMatch: 'full',
+        component: AgileTeamMemberEditPageComponent
+    },
+    {
+        path: 'agileteam/:id',
+        pathMatch: 'full',
+        component: AgileTeamEditPageComponent
+    },
+
     {
         path: 'projects',
         pathMatch: 'full',
@@ -122,6 +146,11 @@ export const routedComponents = [
     ReusableStoryGroupEditPageComponent,
     ReusableStoryGroupListPageComponent,
     ProjectEditPageComponent,
-    ProjectListPageComponent
+    ProjectListPageComponent,
+
+    AgileTeamEditPageComponent,
+    AgileTeamListPageComponent,
+    AgileTeamMemberEditPageComponent,
+    AgileTeamMemberListPageComponent
 ];
 

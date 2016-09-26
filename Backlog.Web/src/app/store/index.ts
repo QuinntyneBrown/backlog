@@ -1,3 +1,4 @@
+export * from "./agile-team-member.reducer";
 export * from "./agile-team.reducer";
 export * from "./app-state";
 export * from "./app-store";

@@ -22,6 +22,11 @@ import { ReusableStoryGroupListComponent } from "./reusable-story-group-list.com
 import { ProjectEditFormComponent } from "./project-edit-form.component";
 import { ProjectListComponent } from "./project-list.component";
 
+import { AgileTeamEditFormComponent } from "./agile-team-edit-form.component";
+import { AgileTeamListComponent } from "./agile-team-list.component";
+import { AgileTeamMemberEditFormComponent } from "./agile-team-member-edit-form.component";
+import { AgileTeamMemberListComponent } from "./agile-team-member-list.component";
+
 
 const declarables = [
     PageHeaderComponent,
@@ -31,6 +36,12 @@ const declarables = [
     EditorComponent,
     DigitalAssetUploadComponent,
     SideNavMenuComponent,
+    
+    AgileTeamEditFormComponent,
+    AgileTeamListComponent,
+
+    AgileTeamMemberEditFormComponent,
+    AgileTeamMemberListComponent,
 
     EpicEditFormComponent,
     EpicListComponent,

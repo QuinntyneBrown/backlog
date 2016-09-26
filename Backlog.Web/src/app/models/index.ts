@@ -1,3 +1,4 @@
+export * from "./agile-team-member.model";
 export * from "./agile-team.model";
 export * from "./content.model";
 export * from "./digital-asset.model";

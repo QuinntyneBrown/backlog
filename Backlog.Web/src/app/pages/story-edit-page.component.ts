@@ -31,7 +31,9 @@ export class StoryEditPageComponent implements OnInit {
             digitalAssets: [],
             isReusable: $event.value.isReusable,
             priority: $event.value.priority,
-            description: $event.value.description
+            description: $event.value.description,
+            acceptanceCriteria: $event.value.acceptanceCriteria,
+            notes: $event.value.notes
         });
 
         setTimeout(() => {

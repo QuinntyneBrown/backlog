@@ -315,6 +315,13 @@
     <Compile Include="Services\ProjectService.cs" />
     <Compile Include="Services\IProjectService.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
+    <Compile Include="Models\AgileTeamMember.cs" />
+    <Compile Include="Dtos\AgileTeamMemberDto.cs" />
+    <Compile Include="Dtos\AgileTeamMemberAddOrUpdateRequestDto.cs" />
+    <Compile Include="Dtos\AgileTeamMemberAddOrUpdateResponseDto.cs" />
+    <Compile Include="Services\AgileTeamMemberService.cs" />
+    <Compile Include="Services\IAgileTeamMemberService.cs" />
+    <Compile Include="Controllers\AgileTeamMemberController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

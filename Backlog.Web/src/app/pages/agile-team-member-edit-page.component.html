@@ -1,0 +1,10 @@
+<div class="agile-team-member-edit-page">
+    <one-column-layout>
+        <agile-team-member-edit-form 
+							(onSubmit)="onSubmit($event)"
+							(onCancel)="onCancel()"
+                         *ngIf="(!_activatedRoute.snapshot.params['id']) || (_activatedRoute.snapshot.params['id'] && (entity$ | async)?.id)"
+                         [agileTeamMember]="entity$ | async">
+		</agile-team-member-edit-form>
+    </one-column-layout>    
+</div>

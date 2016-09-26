@@ -7,6 +7,7 @@ export const initialState: any = {
     tags: [],
     sprints: [],
     agileTeams: [],
+    agileTeamMembers:[],
     themes: [],
     digitalAssets: [],
     htmlContents: [],

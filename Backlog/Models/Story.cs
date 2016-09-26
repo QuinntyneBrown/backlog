@@ -11,6 +11,8 @@ namespace Backlog.Models
         public int? ReusableStoryGroupId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public string AcceptanceCriteria { get; set; }
+        public string Notes { get; set; }
         public bool IsReusable { get; set; }
         public bool IsDeleted { get; set; }
         public int? Priority { get; set; } = 0;
