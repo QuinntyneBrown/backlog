@@ -6,6 +6,8 @@ export * from "./digital-asset.reducer";
 export * from "./epic.reducer";
 export * from "./html-content.reducer";
 export * from "./initial-state";
+export * from "./project.reducer";
+export * from "./reusable-story-group.reducer";
 export * from "./sprint.reducer";
 export * from "./store.module";
 export * from "./story.reducer";

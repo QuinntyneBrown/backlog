@@ -4,6 +4,8 @@ export * from "./content.service";
 export * from "./digital-asset.service";
 export * from "./epic.service";
 export * from "./html-content.service";
+export * from "./project.service";
+export * from "./reusable-story-group.service";
 export * from "./services.module";
 export * from "./sprint.service";
 export * from "./story.service";

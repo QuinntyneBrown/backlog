@@ -1,4 +1,4 @@
-import { Epic, Story, Content, Tag, Sprint, AgileTeam, Theme, DigitalAsset, HtmlContent } from "../models";
+import { Epic, Story, Content, Tag, Sprint, AgileTeam, Theme, DigitalAsset, HtmlContent, ReusableStoryGroup, Project } from "../models";
 
 export interface AppState {
     epics: Array<Epic>;
@@ -10,6 +10,8 @@ export interface AppState {
     themes: Array<Theme>,
     digitalAssets: Array<DigitalAsset>,
     htmlContents: Array<HtmlContent>, 
+    reusableStoryGroups: Array<ReusableStoryGroup>,
+    projects: Array<Project>,
 	currentUser: any;
     isLoggedIn: boolean;
     token: string;

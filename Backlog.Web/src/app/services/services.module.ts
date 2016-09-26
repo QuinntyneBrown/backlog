@@ -8,6 +8,8 @@ import { EpicService } from "./epic.service";
 import { StoryService } from "./story.service";
 import { DigitalAssetService } from "./digital-asset.service";
 import { HtmlContentService } from "./html-content.service";
+import { ReusableStoryGroupService } from "./reusable-story-group.service";
+import { ProjectService } from "./project.service";
 
 const providers = [
     AuthenticationService,
@@ -15,7 +17,9 @@ const providers = [
     EpicService,
     StoryService,
     DigitalAssetService,
-    HtmlContentService
+    HtmlContentService,
+    ReusableStoryGroupService,
+    ProjectService
 ];
 
 @NgModule({

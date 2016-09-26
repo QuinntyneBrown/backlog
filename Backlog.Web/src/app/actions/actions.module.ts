@@ -4,13 +4,17 @@ import { EpicActions } from "./epic.actions";
 import { StoryActions } from "./story.actions";
 import { DigitalAssetActions } from "./digital-asset.actions";
 import { HtmlContentActions } from "./html-content.actions";
+import { ReusableStoryGroupActions } from "./reusable-story-group.actions";
+import { ProjectActions } from "./project.actions";
 
 const providers = [
     ContentActions,
     EpicActions,
     StoryActions,
     DigitalAssetActions,
-    HtmlContentActions
+    HtmlContentActions,
+    ReusableStoryGroupActions,
+    ProjectActions
 ];
 
 @NgModule({

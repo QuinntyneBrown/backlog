@@ -280,11 +280,41 @@
     <Content Include="src\app\components\page-header.component.scss">
       <DependentUpon>page-header.component.ts</DependentUpon>
     </Content>
+    <Content Include="src\app\components\project-edit-form.component.html">
+      <DependentUpon>project-edit-form.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\components\project-edit-form.component.scss">
+      <DependentUpon>project-edit-form.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\components\project-list.component.html">
+      <DependentUpon>project-list.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\components\project-list.component.scss">
+      <DependentUpon>project-list.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\components\reusable-story-group-edit-form.component.html">
+      <DependentUpon>reusable-story-group-edit-form.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\components\reusable-story-group-edit-form.component.scss">
+      <DependentUpon>reusable-story-group-edit-form.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\components\reusable-story-group-list.component.html">
+      <DependentUpon>reusable-story-group-list.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\components\reusable-story-group-list.component.scss">
+      <DependentUpon>reusable-story-group-list.component.ts</DependentUpon>
+    </Content>
     <Content Include="src\app\components\search-input.component.html">
       <DependentUpon>search-input.component.ts</DependentUpon>
     </Content>
     <Content Include="src\app\components\search-input.component.scss">
       <DependentUpon>search-input.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\components\side-nav-menu.component.html">
+      <DependentUpon>side-nav-menu.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\components\side-nav-menu.component.scss">
+      <DependentUpon>side-nav-menu.component.ts</DependentUpon>
     </Content>
     <Content Include="src\app\components\story-detail.component.html">
       <DependentUpon>story-detail.component.ts</DependentUpon>
@@ -363,6 +393,30 @@
     </Content>
     <Content Include="src\app\pages\login-page.component.scss">
       <DependentUpon>login-page.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\pages\project-edit-page.component.html">
+      <DependentUpon>project-edit-page.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\pages\project-edit-page.component.scss">
+      <DependentUpon>project-edit-page.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\pages\project-list-page.component.html">
+      <DependentUpon>project-list-page.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\pages\project-list-page.component.scss">
+      <DependentUpon>project-list-page.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\pages\reusable-story-group-edit-page.component.html">
+      <DependentUpon>reusable-story-group-edit-page.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\pages\reusable-story-group-edit-page.component.scss">
+      <DependentUpon>reusable-story-group-edit-page.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\pages\reusable-story-group-list-page.component.html">
+      <DependentUpon>reusable-story-group-list-page.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\pages\reusable-story-group-list-page.component.scss">
+      <DependentUpon>reusable-story-group-list-page.component.ts</DependentUpon>
     </Content>
     <Content Include="src\app\pages\sprint-edit-page.component.html">
       <DependentUpon>sprint-edit-page.component.ts</DependentUpon>
@@ -639,6 +693,29 @@
     <TypeScriptCompile Include="src\app\components\story-detail.component.ts" />
     <TypeScriptCompile Include="src\app\components\editor.component.ts" />
     <TypeScriptCompile Include="src\app\pages\epic-add-existing-stories-page.component.ts" />
+    <TypeScriptCompile Include="src\app\constants\reusable-story-group-add-success.action.ts" />
+    <TypeScriptCompile Include="src\app\constants\reusable-story-group-get-success.action.ts" />
+    <TypeScriptCompile Include="src\app\constants\reusable-story-group-remove-success.action.ts" />
+    <TypeScriptCompile Include="src\app\models\reusable-story-group.model.ts" />
+    <TypeScriptCompile Include="src\app\actions\reusable-story-group.actions.ts" />
+    <TypeScriptCompile Include="src\app\services\reusable-story-group.service.ts" />
+    <TypeScriptCompile Include="src\app\components\reusable-story-group-list.component.ts" />
+    <TypeScriptCompile Include="src\app\components\reusable-story-group-edit-form.component.ts" />
+    <TypeScriptCompile Include="src\app\pages\reusable-story-group-edit-page.component.ts" />
+    <TypeScriptCompile Include="src\app\pages\reusable-story-group-list-page.component.ts" />
+    <TypeScriptCompile Include="src\app\store\reusable-story-group.reducer.ts" />
+    <TypeScriptCompile Include="src\app\components\side-nav-menu.component.ts" />
+    <TypeScriptCompile Include="src\app\constants\project-add-success.action.ts" />
+    <TypeScriptCompile Include="src\app\constants\project-get-success.action.ts" />
+    <TypeScriptCompile Include="src\app\constants\project-remove-success.action.ts" />
+    <TypeScriptCompile Include="src\app\models\project.model.ts" />
+    <TypeScriptCompile Include="src\app\pages\project-edit-page.component.ts" />
+    <TypeScriptCompile Include="src\app\pages\project-list-page.component.ts" />
+    <TypeScriptCompile Include="src\app\components\project-edit-form.component.ts" />
+    <TypeScriptCompile Include="src\app\components\project-list.component.ts" />
+    <TypeScriptCompile Include="src\app\actions\project.actions.ts" />
+    <TypeScriptCompile Include="src\app\services\project.service.ts" />
+    <TypeScriptCompile Include="src\app\store\project.reducer.ts" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
 </Project>

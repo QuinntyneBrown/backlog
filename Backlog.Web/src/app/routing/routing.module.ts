@@ -8,7 +8,12 @@ import {
     StoryEditPageComponent,
     StoryListPageComponent,
     EpicDetailPageComponent,
-    DigitalAssetUploadPageComponent    
+    DigitalAssetUploadPageComponent,
+
+    ReusableStoryGroupEditPageComponent,
+    ReusableStoryGroupListPageComponent,
+    ProjectEditPageComponent,
+    ProjectListPageComponent
 } from "../pages";
 
 export const routes: Routes = [
@@ -73,6 +78,21 @@ export const routes: Routes = [
         component: StoryEditPageComponent
     },
     {
+        path: 'projects',
+        pathMatch: 'full',
+        component: ProjectListPageComponent
+    },
+    {
+        path: 'project',
+        pathMatch: 'full',
+        component: ProjectEditPageComponent
+    },
+    {
+        path: 'story/:id',
+        pathMatch: 'full',
+        component: ProjectEditPageComponent
+    },
+    {
         path: 'story/detail/:id',
         pathMatch: 'full',
         component: StoryDetailPageComponent
@@ -97,6 +117,11 @@ export const routedComponents = [
     StoryListPageComponent,
     StoryDetailPageComponent,
 
-    DigitalAssetUploadPageComponent
+    DigitalAssetUploadPageComponent,
+
+    ReusableStoryGroupEditPageComponent,
+    ReusableStoryGroupListPageComponent,
+    ProjectEditPageComponent,
+    ProjectListPageComponent
 ];
 

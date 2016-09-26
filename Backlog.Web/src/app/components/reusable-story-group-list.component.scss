@@ -1,0 +1,30 @@
+h1 {
+    font-size:1.5em;
+}
+
+a {
+    line-height:1.5em;
+    display:inline-block;    
+}
+
+.reusable-story-group-list-item-count {
+    min-width:25px;
+}
+
+.reusable-story-group-list-item-name {
+    min-width:200px;
+}
+
+.reusable-story-group-list-item-action {
+    font-size:0.75em;
+    cursor:pointer;
+    font-weight:100;
+}
+
+.reusable-story-group-list-item-name-column {
+    min-width:300px;
+}
+
+.reusable-story-group-list-header {
+    font-weight:600;
+}

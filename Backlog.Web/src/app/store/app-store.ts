@@ -4,7 +4,7 @@ import { AppState } from "./app-state";
 import { guid, pluck } from "../utilities";
 import { select, SelectSignature } from '@ngrx/core/operator/select';
 import { Observable, BehaviorSubject } from "rxjs";
-import { Epic, Story, Content } from "../models";
+import { Epic, Story, Content, ReusableStoryGroup, Project } from "../models";
 
 
 @Injectable()
@@ -91,11 +91,39 @@ export class AppStore {
             });
     }
 
+    public projectById$(id: string): Observable<Project> {
+        return this._store.select("projects")
+            .map((data: { projects: Array<Project> }) => {
+                return pluck({ value: id, items: data.projects }) as Project;
+            })
+    }
+
+    public projects$(): Observable<Array<Project>> {
+        return this._store.select("projects")
+            .map((data: { projects: Array<Project> }) => {
+                return data.projects;
+            });
+    }
+
     public reusableStories$(): Observable<Array<Story>> {
         return this._store.select("stories")
             .map((data: { stories: Array<Story> }) => {
                 data.stories.filter((story: Story) => story.isReusable);
                 return data.stories;
+            });
+    }
+
+    public reusableStoryGroupById$(id: string): Observable<ReusableStoryGroup> {
+        return this._store.select("reusableStoryGroups")
+            .map((data: { reusableStoryGroups: Array<ReusableStoryGroup> }) => {
+                return pluck({ value: id, items: data.reusableStoryGroups }) as ReusableStoryGroup;
+            })
+    }
+
+    public reusableStoryGroups$(): Observable<Array<ReusableStoryGroup>> {
+        return this._store.select("reusableStoryGroups")
+            .map((data: { reusableStoryGroups: Array<ReusableStoryGroup> }) => {
+                return data.reusableStoryGroups;
             });
     }
 }

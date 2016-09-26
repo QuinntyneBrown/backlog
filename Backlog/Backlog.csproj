@@ -301,6 +301,20 @@
     <Compile Include="Controllers\DigitalAssetController.cs" />
     <Compile Include="Services\DigitalAssetService.cs" />
     <Compile Include="Services\IDigitalAssetService.cs" />
+    <Compile Include="Models\ReusableStoryGroup.cs" />
+    <Compile Include="Dtos\ReusableStoryGroupDto.cs" />
+    <Compile Include="Dtos\ReusableStoryGroupAddOrUpdateRequestDto.cs" />
+    <Compile Include="Dtos\ReusableStoryGroupAddOrUpdateResponseDto.cs" />
+    <Compile Include="Services\ReusableStoryGroupService.cs" />
+    <Compile Include="Services\IReusableStoryGroupService.cs" />
+    <Compile Include="Controllers\ReusableStoryGroupController.cs" />
+    <Compile Include="Models\Project.cs" />
+    <Compile Include="Dtos\ProjectDto.cs" />
+    <Compile Include="Dtos\ProjectAddOrUpdateRequestDto.cs" />
+    <Compile Include="Dtos\ProjectAddOrUpdateResponseDto.cs" />
+    <Compile Include="Services\ProjectService.cs" />
+    <Compile Include="Services\IProjectService.cs" />
+    <Compile Include="Controllers\ProjectController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

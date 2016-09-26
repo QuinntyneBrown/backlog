@@ -14,6 +14,7 @@ import { tagsReducer } from "./tag.reducer";
 import { agileTeamsReducer } from "./agile-team.reducer";
 import { digitalAssetsReducer } from "./digital-asset.reducer";
 import { htmlContentsReducer } from "./html-content.reducer";
+import { projectsReducer } from "./project.reducer";
 
 const providers = [
     AppStore
@@ -30,7 +31,8 @@ const providers = [
                 tag: tagsReducer,
                 agileTeams: agileTeamsReducer,
                 htmlContents: htmlContentsReducer,
-                digitalAssets: digitalAssetsReducer
+                digitalAssets: digitalAssetsReducer,
+                projects: projectsReducer
             },
             [initialState]
         )],

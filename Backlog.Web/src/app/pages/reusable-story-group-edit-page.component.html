@@ -1,0 +1,8 @@
+<div class="reusable-story-group-edit-page">
+    <one-column-layout>
+        <reusable-story-group-edit-form (onSubmit)="onSubmit($event)"
+                         *ngIf="(!_activatedRoute.snapshot.params['id']) || (_activatedRoute.snapshot.params['id'] && (entity$ | async)?.id)"
+                         [reusableStoryGroup]="entity$ | async">
+		</reusable-story-group-edit-form>
+    </one-column-layout>    
+</div>

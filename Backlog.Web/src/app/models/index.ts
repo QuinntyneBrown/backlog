@@ -4,6 +4,8 @@ export * from "./digital-asset.model";
 export * from "./drop-down-element.model";
 export * from "./epic.model";
 export * from "./html-content.model";
+export * from "./project.model";
+export * from "./reusable-story-group.model";
 export * from "./sprint.model";
 export * from "./story.model";
 export * from "./tag.model";

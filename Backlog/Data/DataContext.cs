@@ -23,6 +23,8 @@ namespace Backlog.Data
         public DbSet<Theme> Themes { get; set; }
         public DbSet<DigitalAsset> DigitalAssets { get; set; }
         public DbSet<HtmlContent> HtmlContents { get; set; }
+        public DbSet<ReusableStoryGroup> ReusableStoryGroups { get; set; }
+        public DbSet<Project> Projects { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

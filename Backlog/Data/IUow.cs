@@ -14,6 +14,8 @@ namespace Backlog.Data
         IRepository<Theme> Themes { get; }
         IRepository<DigitalAsset> DigitalAssets { get; }
         IRepository<HtmlContent> HtmlContents { get; }
+        IRepository<ReusableStoryGroup> ReusableStoryGroups { get; }
+        IRepository<Project> Projects { get; }
 
         void SaveChanges();
     }

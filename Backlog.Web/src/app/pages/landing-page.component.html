@@ -1,14 +1,12 @@
-<div class="landing-page">
-    <one-column-layout>
-        <a (click)="_router.navigate(['epic'])" class="landing-page-create-epic">CREATE EPIC</a>
-        <epic-list [entities]="_store.epics$() | async"
-                   (onDelete)="_epicActions.remove({ id: $event.value.id })"
-                   (onEdit)="_router.navigate(['epic', $event.value.id])"
-                   (onSelect)="_router.navigate(['epic','detail',$event.value.id])"
-                   (onCreateStory)="_router.navigate(['epic', $event.value.id,'story'])"
-                   (onAddExistingStories)="_router.navigate(['epic', $event.value.id,'addexistingstories'])"
-                   (onIncrementPriority)="_epicActions.incrementPriority({ id: $event.entity.id })"
-                   (onDecrementPriority)="_epicActions.decrementPriority({ id: $event.entity.id })"
-                   ></epic-list>
-    </one-column-layout>    
+<div class="landing-page">    
+    <a (click)="_router.navigate(['epic'])" class="landing-page-create-epic">CREATE EPIC</a>
+    <epic-list [entities]="_store.epics$() | async"
+                (onDelete)="_epicActions.remove({ id: $event.value.id })"
+                (onEdit)="_router.navigate(['epic', $event.value.id])"
+                (onSelect)="_router.navigate(['epic','detail',$event.value.id])"
+                (onCreateStory)="_router.navigate(['epic', $event.value.id,'story'])"
+                (onAddExistingStories)="_router.navigate(['epic', $event.value.id,'addexistingstories'])"
+                (onIncrementPriority)="_epicActions.incrementPriority({ id: $event.entity.id })"
+                (onDecrementPriority)="_epicActions.decrementPriority({ id: $event.entity.id })">
+    </epic-list>       
 </div>

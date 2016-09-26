@@ -10,6 +10,8 @@ export const initialState: any = {
     themes: [],
     digitalAssets: [],
     htmlContents: [],
+    reusableStoryGroups: [],
+    projects:[],
     currentUser: null,
     isLoggedIn: false,
     token: null
