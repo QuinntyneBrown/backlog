@@ -29,7 +29,7 @@ export class ReusableStoryGroupEditPageComponent {
             name: $event.value.name
         });
 
-        setTimeout(() => { this._router.navigate(["/reusableStoryGroups"]); }, 0);
+        setTimeout(() => { this._router.navigate(["/reusablestoryGroups"]); }, 0);
         
     }
 }

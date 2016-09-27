@@ -84,7 +84,21 @@ export const routes: Routes = [
         pathMatch: 'full',
         component: StoryEditPageComponent
     },
-
+    {
+        path: 'reusablestorygroups',
+        pathMatch: 'full',
+        component: ReusableStoryGroupListPageComponent
+    },
+    {
+        path: 'reusablestorygroup',
+        pathMatch: 'full',
+        component: ReusableStoryGroupEditPageComponent
+    },
+    {
+        path: 'reusablestorygroup/:id',
+        pathMatch: 'full',
+        component: ReusableStoryGroupEditPageComponent
+    },
     {
         path: 'agileteams',
         pathMatch: 'full',
