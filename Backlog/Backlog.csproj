@@ -322,6 +322,8 @@
     <Compile Include="Services\AgileTeamMemberService.cs" />
     <Compile Include="Services\IAgileTeamMemberService.cs" />
     <Compile Include="Controllers\AgileTeamMemberController.cs" />
+    <Compile Include="Migrations\UserConfiguration.cs" />
+    <Compile Include="Migrations\RoleConfiguration.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
