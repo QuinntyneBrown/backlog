@@ -10,7 +10,9 @@ export class EpicEditRouteListener extends AuthorizedRouteListener {
     }
 
     public onViewTransition(options: RouteChangeOptions): HTMLElement {
+
         if (options.nextRouteName == "epic-edit") {
+
             return createElement(`<ce-epic-edit epic-id='${options.routeParams.id}'></ce-epic-edit>`);
         }
         return null;

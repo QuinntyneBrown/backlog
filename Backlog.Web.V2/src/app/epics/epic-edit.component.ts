@@ -2,12 +2,15 @@ import { Epic } from "./epic.model";
 import { EpicService } from "./epic.service";
 import { EditorComponent } from "../shared";
 import { EpicAddSuccess, EpicDeleteSuccess } from "./actions";
+import { Router } from "../router";
 
 const template = require("./epic-edit.component.html");
 const styles = require("./epic-edit.component.scss");
 
 export class EpicEditComponent extends HTMLElement {
-    constructor(private _epicService: EpicService = EpicService.Instance) {
+    constructor(private _epicService: EpicService = EpicService.Instance,
+        private _router: Router = Router.Instance
+    ) {
         super();
 
     }
@@ -44,7 +47,7 @@ export class EpicEditComponent extends HTMLElement {
         } as Epic;
         
         this._epicService.add(epic).then((results) => {
-            this.dispatchEvent(new EpicAddSuccess(epic));
+            this._router.navigate(["epic", "list"]);
         });
     }
 

@@ -1,7 +1,8 @@
 import { Router, RouterOutlet } from "./router";
 import { LandingRouteListener } from "./landing";
 import { LoginRouteListener } from "./users";
-import { EpicListRouteListener, EpicViewRouteListener } from "./epics";
+import { EpicListRouteListener, EpicViewRouteListener, EpicEditRouteListener, EpicCreateRouteListener } from "./epics";
+import { StoryEditRouteListener, StoryCreateRouteListener } from "./stories";
 
 export class AppRouterOuletComponent extends RouterOutlet {
     constructor() {
@@ -18,12 +19,19 @@ export class AppRouterOuletComponent extends RouterOutlet {
             { path: "/login", name: "login" },
 
             { path: "/epic/list", name: "epic-list" },
-            { path: "/epic/view/:id", name: "epic-view" }
+            { path: "/epic/view/:id", name: "epic-view" },
+            { path: "/epic/edit/:id", name: "epic-edit" },
+            { path: "/epic/create", name: "epic-create" },
+                
         ] as any);
            
         this.use(new LoginRouteListener());
         this.use(new EpicListRouteListener());
         this.use(new EpicViewRouteListener());
+        this.use(new EpicCreateRouteListener());
+        this.use(new EpicEditRouteListener());
+        this.use(new StoryCreateRouteListener());
+        this.use(new StoryEditRouteListener());
 
         super.connectedCallback();
     }
