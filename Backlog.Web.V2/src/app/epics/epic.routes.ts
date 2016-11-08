@@ -17,6 +17,19 @@ export class EpicEditRouteListener extends AuthorizedRouteListener {
     }
 }
 
+export class EpicViewRouteListener extends AuthorizedRouteListener {
+    constructor() {
+        super("epic-view");
+    }
+
+    public onViewTransition(options: RouteChangeOptions): HTMLElement {
+        if (options.nextRouteName == "epic-view") {            
+            return createElement(`<ce-epic-view epic-id='${options.routeParams.id}'></ce-epic-view>`);
+        }
+        return null;
+    }
+}
+
 export class EpicCreateRouteListener extends AuthorizedRouteListener {
     constructor() {
         super("epic-create");

@@ -39,8 +39,8 @@ export class EpicItemComponent extends HTMLElement {
         this._viewLinkElement.addEventListener("click", this._onViewClick.bind(this));
     }
 
-    private _onDeleteClick() {
-        this._epicService.remove({ id: e.detail.epicId }).then(() => {
+    private _onDeleteClick(e:Event) {
+        this._epicService.remove({ id: this.entity.id }).then(() => {
             this.parentNode.removeChild(this);
         });
     }

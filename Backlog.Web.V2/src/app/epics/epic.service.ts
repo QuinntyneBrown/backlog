@@ -27,6 +27,8 @@ export class EpicService {
         return fetch({ url: `${this._baseUrl}/api/epic/remove?id=${options.id}`, method: "DELETE", authRequired: true  });
     }
 
-    private get _baseUrl() { return environment.baseUrl; }
+    // private get _baseUrl() { return environment.baseUrl; }
+
+    private get _baseUrl() { return ""; }
     
 }

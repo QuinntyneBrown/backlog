@@ -6,8 +6,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>
-    </ProductVersion>
+    <ProductVersion></ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{94EAFF2E-6328-4353-B0EA-1FE5E09583C9}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -22,8 +21,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
+    <NuGetPackageImportStamp></NuGetPackageImportStamp>
     <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
     <TypeScriptEmitDecoratorMetadata>true</TypeScriptEmitDecoratorMetadata>
     <TypeScriptModuleKind>commonjs</TypeScriptModuleKind>
@@ -235,6 +233,12 @@
     <Content Include="src\app\epics\epic-list.component.scss">
       <DependentUpon>epic-list.component.ts</DependentUpon>
     </Content>
+    <Content Include="src\app\epics\epic-view.component.html">
+      <DependentUpon>epic-view.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\epics\epic-view.component.scss">
+      <DependentUpon>epic-view.component.ts</DependentUpon>
+    </Content>
     <Content Include="src\app\landing\landing.component.scss" />
     <Content Include="src\app\shared\header.component.scss" />
     <Content Include="src\app\shared\side-nav.component.scss" />
@@ -272,7 +276,9 @@
       <Name>Backlog</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="src\app\stories\" />
+  </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="src\app\app-router-oulet.component.ts" />
     <TypeScriptCompile Include="src\app\app.component.ts" />
@@ -335,6 +341,9 @@
     <TypeScriptCompile Include="src\app\epics\epic-item.component.ts" />
     <TypeScriptCompile Include="src\app\epics\epic.routes.ts" />
     <TypeScriptCompile Include="src\app\epics\actions.ts" />
+    <TypeScriptCompile Include="src\app\epics\epic-view.component.ts" />
+    <TypeScriptCompile Include="src\app\stories\index.ts" />
+    <TypeScriptCompile Include="src\app\stories\story.model.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -354,8 +363,7 @@
           <IISUrl>http://localhost:56620/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
+          <CustomServerUrl></CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>

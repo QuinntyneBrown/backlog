@@ -1,0 +1,19 @@
+ce-epic-view {
+	display:block;
+
+    .epic-story {
+        margin-bottom:40px;
+        padding:10px;
+        cursor:pointer;
+        width:1280px;
+    }
+
+    .epic-story:hover {
+        background-color:#CCC;
+
+    }
+
+    a{
+        cursor:pointer;
+    }
+}

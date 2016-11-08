@@ -11,7 +11,7 @@ namespace Backlog.Dtos
         {
             Id = entity.Id;
             Name = entity.Name;            
-            Description = HtmlEncode(entity.Description);
+            Description = entity.Description;
             EpicId = entity.EpicId;
             IsReusable = entity.IsReusable;
             Priority = entity.Priority;

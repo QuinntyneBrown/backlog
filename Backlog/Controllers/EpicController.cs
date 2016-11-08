@@ -6,8 +6,9 @@ using System.Web.Http.Description;
 
 namespace Backlog.Controllers
 {
-    [Authorize]
+
     [RoutePrefix("api/epic")]
+    [Authorize]
     public class EpicController : ApiController
     {
         public EpicController(IEpicService epicService)
