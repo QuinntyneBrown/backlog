@@ -32,7 +32,8 @@ export class EpicEditComponent extends HTMLElement {
         if (this.epicId) {
             this._epicService.getById(this.epicId).then((results: string) => { 
                 var resultsJSON: Epic = JSON.parse(results) as Epic;                
-                this.nameInputElement.value = resultsJSON.name;              
+                this.nameInputElement.value = resultsJSON.name; 
+                this.priorityElement.value = resultsJSON.priority;             
             });
             this.titleElement.textContent = "Edit Epic";
         } else {
@@ -43,7 +44,8 @@ export class EpicEditComponent extends HTMLElement {
     public onSave() {
         var epic = {
             id: this.epicId,
-            name: this.nameInputElement.value
+            name: this.nameInputElement.value,
+            priority: this.priorityElement.value
         } as Epic;
         
         this._epicService.add(epic).then((results) => {
@@ -67,6 +69,7 @@ export class EpicEditComponent extends HTMLElement {
     }
 
     public epicId: number;
+    public get priorityElement(): HTMLInputElement { return this.querySelector(".epic-priority") as HTMLInputElement; }
     public titleElement: HTMLElement;
     public saveButtonElement: HTMLButtonElement;
     public deleteButtonElement: HTMLButtonElement;

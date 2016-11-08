@@ -1,8 +1,10 @@
+import { Router } from "../router";
+
 let template = require("./header.component.html");
 let styles = require("./header.component.scss");
 
 export class HeaderComponent extends HTMLElement {
-    constructor() {
+    constructor(private _router: Router = Router.Instance) {
         super();
     }
 
@@ -21,12 +23,15 @@ export class HeaderComponent extends HTMLElement {
     }
 
     private _addEventListeners() {
+        this._titleElement.addEventListener("click", this._onTitleClick.bind(this));
+    }
+    
 
+    private _onTitleClick() {
+        this._router.navigate([""]);
     }
 
-    disconnectedCallback() {
-
-    }
+    private get _titleElement() { return this.querySelector("h1") as HTMLElement; }
 
     attributeChangedCallback (name, oldValue, newValue) {
         switch (name) {

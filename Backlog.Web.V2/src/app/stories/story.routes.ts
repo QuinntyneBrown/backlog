@@ -11,7 +11,7 @@ export class StoryEditRouteListener extends AuthorizedRouteListener {
 
     public onViewTransition(options: RouteChangeOptions): HTMLElement {
         if (options.nextRouteName == "story-edit") {
-            return createElement(`<ce-story-edit story-id='${options.routeParams.id}'></ce-story-edit>`);
+            return createElement(`<ce-story-edit epic-id='${options.routeParams.epicId}' story-id='${options.routeParams.id}'></ce-story-edit>`);
         }
         return null;
     }
@@ -24,7 +24,7 @@ export class StoryCreateRouteListener extends AuthorizedRouteListener {
 
     public onViewTransition(options: RouteChangeOptions): HTMLElement {
         if (options.nextRouteName == "story-create") {
-            return createElement("<ce-story-edit></ce-story-edit>");
+            return createElement(`<ce-story-edit  epic-id='${options.routeParams.epicId}'></ce-story-edit>`);
         }
         return null;
     }

@@ -6,7 +6,8 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion></ProductVersion>
+    <ProductVersion>
+    </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{94EAFF2E-6328-4353-B0EA-1FE5E09583C9}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -21,7 +22,8 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
-    <NuGetPackageImportStamp></NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
     <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
     <TypeScriptEmitDecoratorMetadata>true</TypeScriptEmitDecoratorMetadata>
     <TypeScriptModuleKind>commonjs</TypeScriptModuleKind>
@@ -240,7 +242,12 @@
       <DependentUpon>epic-view.component.ts</DependentUpon>
     </Content>
     <Content Include="src\app\landing\landing.component.scss" />
-    <Content Include="src\app\shared\header.component.scss" />
+    <Content Include="src\app\shared\header.component.html">
+      <DependentUpon>header.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\shared\header.component.scss">
+      <DependentUpon>header.component.ts</DependentUpon>
+    </Content>
     <Content Include="src\app\shared\side-nav.component.html">
       <DependentUpon>side-nav.component.ts</DependentUpon>
     </Content>
@@ -264,7 +271,6 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <Content Include="src\app\landing\landing.component.html" />
-    <Content Include="src\app\shared\header.component.html" />
     <Content Include="src\app\users\login.component.html" />
     <Content Include="src\app\users\users.component.html" />
     <Content Include="webpack.config.js" />
@@ -375,7 +381,8 @@
           <IISUrl>http://localhost:56620/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl></CustomServerUrl>
+          <CustomServerUrl>
+          </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
