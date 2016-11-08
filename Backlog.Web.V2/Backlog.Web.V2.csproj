@@ -241,7 +241,18 @@
     </Content>
     <Content Include="src\app\landing\landing.component.scss" />
     <Content Include="src\app\shared\header.component.scss" />
-    <Content Include="src\app\shared\side-nav.component.scss" />
+    <Content Include="src\app\shared\side-nav.component.html">
+      <DependentUpon>side-nav.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\shared\side-nav.component.scss">
+      <DependentUpon>side-nav.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\stories\story-edit.component.html">
+      <DependentUpon>story-edit.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\stories\story-edit.component.scss">
+      <DependentUpon>story-edit.component.ts</DependentUpon>
+    </Content>
     <Content Include="src\app\users\login.component.scss" />
     <Content Include="src\app\users\users.component.scss" />
     <None Include="Properties\PublishProfiles\backlog - FTP.pubxml" />
@@ -254,7 +265,6 @@
     </None>
     <Content Include="src\app\landing\landing.component.html" />
     <Content Include="src\app\shared\header.component.html" />
-    <Content Include="src\app\shared\side-nav.component.html" />
     <Content Include="src\app\users\login.component.html" />
     <Content Include="src\app\users\users.component.html" />
     <Content Include="webpack.config.js" />
@@ -276,9 +286,7 @@
       <Name>Backlog</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="src\app\stories\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <TypeScriptCompile Include="src\app\app-router-oulet.component.ts" />
     <TypeScriptCompile Include="src\app\app.component.ts" />
@@ -344,6 +352,10 @@
     <TypeScriptCompile Include="src\app\epics\epic-view.component.ts" />
     <TypeScriptCompile Include="src\app\stories\index.ts" />
     <TypeScriptCompile Include="src\app\stories\story.model.ts" />
+    <TypeScriptCompile Include="src\app\stories\story-edit.component.ts" />
+    <TypeScriptCompile Include="src\app\stories\story.routes.ts" />
+    <TypeScriptCompile Include="src\app\stories\actions.ts" />
+    <TypeScriptCompile Include="src\app\stories\story.service.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

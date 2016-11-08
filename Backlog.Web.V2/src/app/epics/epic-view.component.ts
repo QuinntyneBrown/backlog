@@ -24,7 +24,7 @@ export class EpicViewComponent extends HTMLElement {
     private _bind() {
         this._epicService.getById(this.epicId).then((results:string) => {
             this.entity = JSON.parse(results);
-            this.titleElement.textContent = this.entity.name;
+            this.titleElement.textContent = `Epic: ${this.entity.name}`;
             var documentFragment = document.createDocumentFragment();
             for (let i = 0; i < this.entity.stories.length; i++) {
 
