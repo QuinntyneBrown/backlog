@@ -45,17 +45,17 @@ export class EpicViewComponent extends HTMLElement {
 
 
     private _addEventListeners() {
-        this.backLinkElement.addEventListener("click", this.onBackLinkClick.bind(this));
+        this.createStoryLinkElement.addEventListener("click", this.onBackLinkClick.bind(this));
     }
 
     private onBackLinkClick() {
-        this._router.navigate([""]);
+        this._router.navigate(["epic",this.epicId, "story","create"]);
     }
 
     private entity: Epic;
     private epicId: number;
     private get titleElement(): HTMLElement { return this.querySelector("h2") as HTMLElement; }
-    private get backLinkElement(): HTMLElement { return this.querySelector("a") as HTMLElement; }
+    private get createStoryLinkElement(): HTMLElement { return this.querySelector("a") as HTMLElement; }
     attributeChangedCallback (name, oldValue, newValue) {
         switch (name) {
             case "epic-id":

@@ -22,6 +22,8 @@ export class AppRouterOuletComponent extends RouterOutlet {
             { path: "/epic/view/:id", name: "epic-view" },
             { path: "/epic/edit/:id", name: "epic-edit" },
             { path: "/epic/create", name: "epic-create" },
+            { path: "/epic/:epicId/story/edit/:id", name: "story-edit" },
+            { path: "/epic/:epicId/story/create", name: "story-create" }
                 
         ] as any);
            

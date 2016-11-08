@@ -54,6 +54,8 @@ export class Router {
                             routeParams[segments[x].substring(1)] = _currentSegments[x];
                         } else {
                             match = false;
+                            //exit for
+                            x = segments.length;
                         }
                     }
 
