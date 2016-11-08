@@ -1,6 +1,7 @@
 using Backlog.Models;
 using System.Collections.Generic;
 using System.Linq;
+using static System.Web.HttpUtility;
 
 namespace Backlog.Dtos
 {
@@ -10,7 +11,7 @@ namespace Backlog.Dtos
         {
             Id = entity.Id;
             Name = entity.Name;            
-            Description = entity.Description;
+            Description = HtmlEncode(entity.Description);
             EpicId = entity.EpicId;
             IsReusable = entity.IsReusable;
             Priority = entity.Priority;

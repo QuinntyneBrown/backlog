@@ -27,7 +27,6 @@ namespace Backlog.Controllers
         public IHttpActionResult Update(EpicAddOrUpdateRequestDto dto) { return Ok(_epicService.AddOrUpdate(dto)); }
 
         [Route("get")]
-        [AllowAnonymous]
         [HttpGet]
         [ResponseType(typeof(ICollection<EpicDto>))]
         public IHttpActionResult Get() { return Ok(_epicService.Get()); }
