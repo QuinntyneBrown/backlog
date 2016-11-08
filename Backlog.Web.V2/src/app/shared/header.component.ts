@@ -8,37 +8,26 @@ export class HeaderComponent extends HTMLElement {
         super();
     }
 
-    static get observedAttributes () {
-        return [];
-    }
-
     connectedCallback() {
-        this.innerHTML = `<style>${styles}</style> ${template}`;
-        this._bind();
+        this.innerHTML = `<style>${styles}</style> ${template}`;        
         this._addEventListeners();
-    }
-
-    private _bind() {
-
     }
 
     private _addEventListeners() {
         this._titleElement.addEventListener("click", this._onTitleClick.bind(this));
+        this._router.addEventListener(this._onRouteChange.bind(this));
     }
-    
+
+    private _onRouteChange(options: any) {
+        Array.from(this.querySelectorAll("ce-link"))
+            .map((e: HTMLElement) => e.style.display = options.routeName == "login" ? "none" : "inline-block");
+    }
 
     private _onTitleClick() {
         this._router.navigate([""]);
     }
 
     private get _titleElement() { return this.querySelector("h1") as HTMLElement; }
-
-    attributeChangedCallback (name, oldValue, newValue) {
-        switch (name) {
-            default:
-                break;
-        }
-    }
 }
 
 document.addEventListener("DOMContentLoaded",() => window.customElements.define(`ce-header`,HeaderComponent));

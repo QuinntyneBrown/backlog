@@ -27,6 +27,7 @@ namespace Backlog.Data
         public DbSet<Project> Projects { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<AgileTeamMember> AgileTeamMembers { get; set; }
+        public DbSet<Feedback> Feedbacks { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

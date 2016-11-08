@@ -331,6 +331,13 @@
     <Compile Include="Services\ProductService.cs" />
     <Compile Include="Services\IProductService.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Models\Feedback.cs" />
+    <Compile Include="Dtos\FeedbackDto.cs" />
+    <Compile Include="Dtos\FeedbackAddOrUpdateRequestDto.cs" />
+    <Compile Include="Dtos\FeedbackAddOrUpdateResponseDto.cs" />
+    <Compile Include="Controllers\FeedbackController.cs" />
+    <Compile Include="Services\FeedbackService.cs" />
+    <Compile Include="Services\IFeedbackService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

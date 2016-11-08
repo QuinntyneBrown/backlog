@@ -18,6 +18,7 @@ namespace Backlog.Data
         IRepository<Project> Projects { get; }
         IRepository<Product> Products { get; }
         IRepository<AgileTeamMember> AgileTeamMembers { get; }
+        IRepository<Feedback> Feedbacks { get; }
 
         void SaveChanges();
     }

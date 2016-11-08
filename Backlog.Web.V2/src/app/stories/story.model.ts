@@ -4,4 +4,5 @@ export class Story {
     public name: string;
     priority: string;
     public description: string; 
+    public notes: string;
 }

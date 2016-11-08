@@ -40,6 +40,7 @@ namespace Backlog.Data
         public IRepository<Project> Projects { get { return GetStandardRepo<Project>(); } }
         public IRepository<Product> Products { get { return GetStandardRepo<Product>(); } }
         public IRepository<AgileTeamMember> AgileTeamMembers {  get { return GetStandardRepo<AgileTeamMember>(); } }
+        public IRepository<Feedback> Feedbacks { get { return GetStandardRepo<Feedback>(); } }
 
         protected void ConfigureDbContext(IDbContext dbContext)
         {

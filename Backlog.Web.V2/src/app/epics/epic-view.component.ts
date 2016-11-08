@@ -24,19 +24,13 @@ export class EpicViewComponent extends HTMLElement {
     private _bind() {
         this._epicService.getById(this.epicId).then((results:string) => {
             this.entity = JSON.parse(results);
+            
             this.titleElement.textContent = `Epic: ${this.entity.name}`;
             var documentFragment = document.createDocumentFragment();
             for (let i = 0; i < this.entity.stories.length; i++) {
-
-                let el = document.createElement("div");
-                el.classList.add("epic-story");
-                let title = document.createElement("h4");
-                let body = document.createElement("p");
-                title.textContent = this.entity.stories[i].name;
-                body.innerHTML = this.entity.stories[i].description;
-                el.appendChild(title);
-                el.appendChild(body);
-                documentFragment.appendChild(el);
+                var storyElement = document.createElement("ce-story");
+                storyElement.setAttribute("entity", JSON.stringify(this.entity.stories[i]));                
+                documentFragment.appendChild(storyElement);
             }
             this.appendChild(documentFragment);
         });

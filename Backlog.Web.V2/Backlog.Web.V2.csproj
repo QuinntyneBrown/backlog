@@ -6,7 +6,8 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion></ProductVersion>
+    <ProductVersion>
+    </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{94EAFF2E-6328-4353-B0EA-1FE5E09583C9}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -21,7 +22,8 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
-    <NuGetPackageImportStamp></NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
     <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
     <TypeScriptEmitDecoratorMetadata>true</TypeScriptEmitDecoratorMetadata>
     <TypeScriptModuleKind>commonjs</TypeScriptModuleKind>
@@ -239,7 +241,36 @@
     <Content Include="src\app\epics\epic-view.component.scss">
       <DependentUpon>epic-view.component.ts</DependentUpon>
     </Content>
-    <Content Include="src\app\landing\landing.component.scss" />
+    <Content Include="src\app\feedback\feedback-edit.component.html">
+      <DependentUpon>feedback-edit.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\feedback\feedback-edit.component.scss">
+      <DependentUpon>feedback-edit.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\feedback\feedback-received.component.html">
+      <DependentUpon>feedback-received.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\feedback\feedback-received.component.scss">
+      <DependentUpon>feedback-received.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\landing\landing.component.html">
+      <DependentUpon>landing.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\landing\landing.component.scss">
+      <DependentUpon>landing.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\products\product-edit.component.html">
+      <DependentUpon>product-edit.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\products\product-edit.component.scss">
+      <DependentUpon>product-edit.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\products\product-list.component.html">
+      <DependentUpon>product-list.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\products\product-list.component.scss">
+      <DependentUpon>product-list.component.ts</DependentUpon>
+    </Content>
     <Content Include="src\app\shared\header.component.html">
       <DependentUpon>header.component.ts</DependentUpon>
     </Content>
@@ -264,8 +295,15 @@
     <Content Include="src\app\stories\story.component.scss">
       <DependentUpon>story.component.ts</DependentUpon>
     </Content>
-    <Content Include="src\app\users\login.component.scss" />
-    <Content Include="src\app\users\users.component.scss" />
+    <Content Include="src\app\users\login.component.html">
+      <DependentUpon>login.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\users\login.component.scss">
+      <DependentUpon>login.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\users\users.component.html">
+      <DependentUpon>users.component.ts</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\backlog - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\backlog - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
@@ -274,9 +312,9 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-    <Content Include="src\app\landing\landing.component.html" />
-    <Content Include="src\app\users\login.component.html" />
-    <Content Include="src\app\users\users.component.html" />
+    <Content Include="src\app\users\users.component.scss">
+      <DependentUpon>users.component.ts</DependentUpon>
+    </Content>
     <Content Include="webpack.config.js" />
     <Content Include="tsconfig.json" />
     <Content Include="typedoc.json" />
@@ -367,6 +405,23 @@
     <TypeScriptCompile Include="src\app\stories\actions.ts" />
     <TypeScriptCompile Include="src\app\stories\story.service.ts" />
     <TypeScriptCompile Include="src\app\stories\story.component.ts" />
+    <TypeScriptCompile Include="src\app\products\index.ts" />
+    <TypeScriptCompile Include="src\app\products\product.model.ts" />
+    <TypeScriptCompile Include="src\app\projects\index.ts" />
+    <TypeScriptCompile Include="src\app\projects\project.model.ts" />
+    <TypeScriptCompile Include="src\app\projects\project.service.ts" />
+    <TypeScriptCompile Include="src\app\projects\project.routes.ts" />
+    <TypeScriptCompile Include="src\app\projects\actions.ts" />
+    <TypeScriptCompile Include="src\app\feedback\index.ts" />
+    <TypeScriptCompile Include="src\app\feedback\feedback.model.ts" />
+    <TypeScriptCompile Include="src\app\feedback\feedback-edit.component.ts" />
+    <TypeScriptCompile Include="src\app\feedback\feedback.service.ts" />
+    <TypeScriptCompile Include="src\app\feedback\feedback.routes.ts" />
+    <TypeScriptCompile Include="src\app\products\product-list.component.ts" />
+    <TypeScriptCompile Include="src\app\products\product.service.ts" />
+    <TypeScriptCompile Include="src\app\feedback\feedback-received.component.ts" />
+    <TypeScriptCompile Include="src\app\products\product.routes.ts" />
+    <TypeScriptCompile Include="src\app\products\product-edit.component.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -386,7 +441,8 @@
           <IISUrl>http://localhost:56620/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl></CustomServerUrl>
+          <CustomServerUrl>
+          </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
