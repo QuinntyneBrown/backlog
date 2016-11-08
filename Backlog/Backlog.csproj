@@ -324,6 +324,13 @@
     <Compile Include="Controllers\AgileTeamMemberController.cs" />
     <Compile Include="Migrations\UserConfiguration.cs" />
     <Compile Include="Migrations\RoleConfiguration.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Dtos\ProductDto.cs" />
+    <Compile Include="Dtos\ProductAddOrUpdateRequestDto.cs" />
+    <Compile Include="Dtos\ProductAddOrUpdateResponseDto.cs" />
+    <Compile Include="Services\ProductService.cs" />
+    <Compile Include="Services\IProductService.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

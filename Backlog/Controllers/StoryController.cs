@@ -26,13 +26,11 @@ namespace Backlog.Controllers
         public IHttpActionResult Update(StoryAddOrUpdateRequestDto dto) { return Ok(_storyService.AddOrUpdate(dto)); }
 
         [Route("get")]
-        [AllowAnonymous]
         [HttpGet]
         [ResponseType(typeof(ICollection<StoryDto>))]
         public IHttpActionResult Get() { return Ok(_storyService.Get()); }
 
         [Route("getReusableStories")]
-        [AllowAnonymous]
         [HttpGet]
         [ResponseType(typeof(ICollection<StoryDto>))]
         public IHttpActionResult GetReusableStories() { return Ok(_storyService.GetReusableStories()); }

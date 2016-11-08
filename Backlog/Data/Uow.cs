@@ -38,6 +38,7 @@ namespace Backlog.Data
         public IRepository<DigitalAsset> DigitalAssets { get { return GetStandardRepo<DigitalAsset>(); } }
         public IRepository<ReusableStoryGroup> ReusableStoryGroups { get { return GetStandardRepo<ReusableStoryGroup>(); } }
         public IRepository<Project> Projects { get { return GetStandardRepo<Project>(); } }
+        public IRepository<Product> Products { get { return GetStandardRepo<Product>(); } }
         public IRepository<AgileTeamMember> AgileTeamMembers {  get { return GetStandardRepo<AgileTeamMember>(); } }
 
         protected void ConfigureDbContext(IDbContext dbContext)

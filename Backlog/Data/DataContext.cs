@@ -25,6 +25,7 @@ namespace Backlog.Data
         public DbSet<HtmlContent> HtmlContents { get; set; }
         public DbSet<ReusableStoryGroup> ReusableStoryGroups { get; set; }
         public DbSet<Project> Projects { get; set; }
+        public DbSet<Product> Products { get; set; }
         public DbSet<AgileTeamMember> AgileTeamMembers { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

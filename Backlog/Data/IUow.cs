@@ -16,6 +16,7 @@ namespace Backlog.Data
         IRepository<HtmlContent> HtmlContents { get; }
         IRepository<ReusableStoryGroup> ReusableStoryGroups { get; }
         IRepository<Project> Projects { get; }
+        IRepository<Product> Products { get; }
         IRepository<AgileTeamMember> AgileTeamMembers { get; }
 
         void SaveChanges();

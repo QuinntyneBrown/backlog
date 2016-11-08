@@ -36,6 +36,7 @@ namespace Backlog
             container.RegisterType<IReusableStoryGroupService, ReusableStoryGroupService>();
             container.RegisterType<IProjectService, ProjectService>();
             container.RegisterType<IAgileTeamMemberService, AgileTeamMemberService>();
+            container.RegisterType<IProductService, ProductService>();
 
             container.RegisterType<ILandingPageContentModel, LandingPageContentModel>();
             container.RegisterType<IAppShellContentModel, AppShellContentModel>();

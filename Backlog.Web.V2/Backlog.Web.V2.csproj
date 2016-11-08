@@ -6,8 +6,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>
-    </ProductVersion>
+    <ProductVersion></ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{94EAFF2E-6328-4353-B0EA-1FE5E09583C9}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -22,8 +21,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
+    <NuGetPackageImportStamp></NuGetPackageImportStamp>
     <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
     <TypeScriptEmitDecoratorMetadata>true</TypeScriptEmitDecoratorMetadata>
     <TypeScriptModuleKind>commonjs</TypeScriptModuleKind>
@@ -260,6 +258,12 @@
     <Content Include="src\app\stories\story-edit.component.scss">
       <DependentUpon>story-edit.component.ts</DependentUpon>
     </Content>
+    <Content Include="src\app\stories\story.component.html">
+      <DependentUpon>story.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\stories\story.component.scss">
+      <DependentUpon>story.component.ts</DependentUpon>
+    </Content>
     <Content Include="src\app\users\login.component.scss" />
     <Content Include="src\app\users\users.component.scss" />
     <None Include="Properties\PublishProfiles\backlog - FTP.pubxml" />
@@ -362,6 +366,7 @@
     <TypeScriptCompile Include="src\app\stories\story.routes.ts" />
     <TypeScriptCompile Include="src\app\stories\actions.ts" />
     <TypeScriptCompile Include="src\app\stories\story.service.ts" />
+    <TypeScriptCompile Include="src\app\stories\story.component.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -381,8 +386,7 @@
           <IISUrl>http://localhost:56620/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
+          <CustomServerUrl></CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
