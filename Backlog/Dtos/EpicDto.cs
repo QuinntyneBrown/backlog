@@ -15,6 +15,7 @@ namespace Backlog.Dtos
                 .OrderByDescending(x=>x.Priority)
                 .Select(x => new StoryDto(x)).ToList();
             Priority = entity.Priority;
+            Product = new ProductDto(entity.Product);
         }
 
         public EpicDto() { }
@@ -24,6 +25,7 @@ namespace Backlog.Dtos
         public string Description { get; set; }
         public bool IsTemplate { get; set; }
         public int? Priority { get; set; }
+        public ProductDto Product { get; set; }
         public ICollection<StoryDto> Stories { get; set; } = new HashSet<StoryDto>();
     }
 }

@@ -338,6 +338,7 @@
     <Compile Include="Controllers\FeedbackController.cs" />
     <Compile Include="Services\FeedbackService.cs" />
     <Compile Include="Services\IFeedbackService.cs" />
+    <Compile Include="Migrations\ProductConfiguration.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

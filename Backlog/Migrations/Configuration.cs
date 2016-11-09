@@ -16,6 +16,7 @@ namespace Backlog.Migrations
         {
             RoleConfiguration.Seed(context);
             UserConfiguration.Seed(context);
+            ProductConfiguration.Seed(context);
         }
     }
 }
