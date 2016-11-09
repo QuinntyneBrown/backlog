@@ -22,14 +22,6 @@ namespace Backlog.Migrations
             });
 
             context.SaveChanges();
-            var product = context.Products.Where(x => x.Name == "Diginet Template").Single();
-
-            foreach (var epic in context.Epics.Where(x => !x.IsDeleted))
-            {
-                epic.ProductId = product.Id;
-            }
-
-            context.SaveChanges();
         }
     }
 }

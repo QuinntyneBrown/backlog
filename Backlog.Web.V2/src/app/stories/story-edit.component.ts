@@ -40,6 +40,8 @@ export class StoryEditComponent extends HTMLElement {
                 this.descriptionEditor.setHTML(resultsJSON.description);       
                 this.priorityElement.value = resultsJSON.priority;    
                 this.notesEditor.setHTML(resultsJSON.notes);
+                this.pointsInputElement.value = resultsJSON.points;
+                this.architecturePointsInputElement.value = resultsJSON.architecturePoints;
             });
             this.titleElement.textContent = "Edit Story";
         } else {
@@ -56,7 +58,9 @@ export class StoryEditComponent extends HTMLElement {
             name: this.nameInputElement.value,
             priority: this.priorityElement.id,
             description: this.descriptionEditor.text,
-            notes: this.notesEditor.text
+            notes: this.notesEditor.text,
+            points: this.pointsInputElement.value,
+            architecturePoints: this.architecturePointsInputElement.value
         } as Story;
 
 
@@ -91,6 +95,8 @@ export class StoryEditComponent extends HTMLElement {
     public get notesElement(): HTMLElement { return this.querySelector(".story-notes") as HTMLElement; }
     public notesEditor: EditorComponent;
     public get priorityElement(): HTMLInputElement { return this.querySelector(".priority") as HTMLInputElement; }
+    public get pointsInputElement(): HTMLInputElement { return this.querySelector(".points") as HTMLInputElement; }
+    public get architecturePointsInputElement(): HTMLInputElement { return this.querySelector(".architecture-points") as HTMLInputElement; }
     public titleElement: HTMLElement;
     public saveButtonElement: HTMLButtonElement;
     public deleteButtonElement: HTMLButtonElement;

@@ -2,7 +2,9 @@ export class Story {
     public id: number;
     public epicId: number;
     public name: string;
-    priority: string;
+    public priority: string;
+    public points: string;
+    public architecturePoints: string;
     public description: string; 
     public notes: string;
 }

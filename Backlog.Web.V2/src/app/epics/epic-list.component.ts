@@ -22,19 +22,21 @@ export class EpicListComponent extends HTMLElement {
             this._productService.get(),
             this._epicService.get()
         ]).then((results: Array<any>) => {
-
+            
             var products = JSON.parse(results[0]) as Array<any>;
             for (let i = 0; i < products.length; i++) {
                 let option = document.createElement("option");
-                option.textContent = products[i].name;
+                
+                option.textContent = `${products[i].name}` ;
                 option.value = products[i].id;
                 this.selectElement.appendChild(option);
             }
 
-            this.productId = this._router.routeParams
-                ? this._router.routeParams.productId
-                : products[0].id;
+            this.productId = products[0].id;
 
+            if (this._router.routeParams && this._router.routeParams.productId)
+                this.productId = this._router.routeParams.productId;
+            
             this.selectElement.value = this.productId;
             
             var resultsJSON: Array<Epic> = JSON.parse(results[1]) as Array<Epic>;

@@ -19,7 +19,10 @@ namespace Backlog.Services
 
         public ProductAddOrUpdateResponseDto AddOrUpdate(ProductAddOrUpdateRequestDto request)
         {
-            var entity = _repository.GetAll()
+            var entity = _repository
+                .GetAll()
+                .Include(x => x.Epics)
+                .Include("Epics.Stories")
                 .FirstOrDefault(x => x.Id == request.Id && x.IsDeleted == false);
             if (entity == null) _repository.Add(entity = new Product());
             entity.Name = request.Name;
@@ -38,7 +41,10 @@ namespace Backlog.Services
         public ICollection<ProductDto> Get()
         {
             ICollection<ProductDto> response = new HashSet<ProductDto>();
-            var entities = _repository.GetAll().Where(x => x.IsDeleted == false).ToList();
+            var entities = _repository.GetAll()
+                .Include(x=>x.Epics)
+                .Include("Epics.Stories")
+                .Where(x => x.IsDeleted == false).ToList();
             foreach(var entity in entities) { response.Add(new ProductDto(entity)); }    
             return response;
         }
@@ -46,7 +52,11 @@ namespace Backlog.Services
 
         public ProductDto GetById(int id)
         {
-            return new ProductDto(_repository.GetAll().Where(x => x.Id == id && x.IsDeleted == false).FirstOrDefault());
+            return new ProductDto(_repository
+                .GetAll()
+                .Include(x => x.Epics)
+                .Include("Epics.Stories")
+                .Where(x => x.Id == id && x.IsDeleted == false).FirstOrDefault());
         }
 
         protected readonly IUow _uow;

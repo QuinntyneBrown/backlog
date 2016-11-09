@@ -1,7 +1,6 @@
 using Backlog.Models;
 using System.Collections.Generic;
 using System.Linq;
-using static System.Web.HttpUtility;
 
 namespace Backlog.Dtos
 {
@@ -17,6 +16,8 @@ namespace Backlog.Dtos
             Priority = entity.Priority;
             AcceptanceCriteria = entity.AcceptanceCriteria;
             Notes = entity.Notes;
+            Points = entity.Points;
+            ArchitecturePoints = entity.ArchitecturePoints;            
             DigitalAssets = entity.StoryDigitalAssets.Select(x => new DigitalAssetDto(x.DigitalAsset)).ToList();
         }
 
@@ -28,6 +29,8 @@ namespace Backlog.Dtos
         public string Name { get; set; }
         public string Description { get; set; }
         public string AcceptanceCriteria { get; set; }
+        public int? Points { get; set; }
+        public int? ArchitecturePoints { get; set; }
         public string Notes { get; set; }
         public int? Priority { get; set; }
         public EpicDto Epic { get; set; }

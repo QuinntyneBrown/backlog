@@ -11,8 +11,10 @@ ce-header {
         margin: 0 10px;
     }
 
-    .feedback {
-        opacity:50%;
+    ce-link.active {
+        font-weight:600;
+        color:#165e07;
+
     }
 
     height:100px;

@@ -40,6 +40,8 @@ namespace Backlog.Services
             entity.Notes = request.Notes;
             entity.AcceptanceCriteria = entity.AcceptanceCriteria;
             entity.IsReusable = request.IsReusable;
+            entity.Points = request.Points;
+            entity.ArchitecturePoints = request.ArchitecturePoints;
 
             _uow.SaveChanges();
             return new StoryAddOrUpdateResponseDto(entity);

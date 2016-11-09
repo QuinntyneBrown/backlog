@@ -3,13 +3,23 @@ ce-story-edit {
     width:calc(100% - 400px);
 
 
-    input.priority,
+    
     input.story-name {
         display:block;
         margin-bottom:20px;
         font-size:1.25em;
         line-height:1.5em;
         width:250px;
+    }
+
+    input.priority,
+    input.points,
+    input.architecture-points {
+        display:block;
+        margin-bottom:20px;
+        font-size:1.25em;
+        line-height:1.5em;
+        width:75px;
     }
 
     button.save-button, 
