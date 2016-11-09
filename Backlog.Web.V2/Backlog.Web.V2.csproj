@@ -269,11 +269,23 @@
     <Content Include="src\app\products\product-list.component.scss">
       <DependentUpon>product-list.component.ts</DependentUpon>
     </Content>
+    <Content Include="src\app\shared\drop-down.component.html">
+      <DependentUpon>drop-down.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\shared\drop-down.component.scss">
+      <DependentUpon>drop-down.component.ts</DependentUpon>
+    </Content>
     <Content Include="src\app\shared\header.component.html">
       <DependentUpon>header.component.ts</DependentUpon>
     </Content>
     <Content Include="src\app\shared\header.component.scss">
       <DependentUpon>header.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\shared\option.component.html">
+      <DependentUpon>option.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\shared\option.component.scss">
+      <DependentUpon>option.component.ts</DependentUpon>
     </Content>
     <Content Include="src\app\shared\select.component.html">
       <DependentUpon>select.component.ts</DependentUpon>
@@ -429,6 +441,8 @@
     <TypeScriptCompile Include="src\app\products\product.routes.ts" />
     <TypeScriptCompile Include="src\app\products\product-edit.component.ts" />
     <TypeScriptCompile Include="src\app\shared\select.component.ts" />
+    <TypeScriptCompile Include="src\app\shared\option.component.ts" />
+    <TypeScriptCompile Include="src\app\shared\drop-down.component.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
