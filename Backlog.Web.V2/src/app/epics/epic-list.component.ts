@@ -2,19 +2,22 @@ import { Epic } from "./epic.model";
 import { EpicService } from "./epic.service";
 import { epicActions, EpicDeleteSelect } from "./actions";
 import { ProductService } from "../products";
+import { Router } from "../router";
 
 let template = require("./epic-list.component.html");
 let styles = require("./epic-list.component.scss");
 
 export class EpicListComponent extends HTMLElement {
     constructor(private _epicService: EpicService = EpicService.Instance,
-        private _productService: ProductService = ProductService.Instance) {
+        private _productService: ProductService = ProductService.Instance,
+        private _router: Router = Router.Instance
+    ) {
         super();
     }
 
     connectedCallback() {
         this.innerHTML = `<style>${styles}</style> ${template}`;
-
+        
         Promise.all([
             this._productService.get(),
             this._epicService.get()
@@ -27,25 +30,36 @@ export class EpicListComponent extends HTMLElement {
                 option.value = products[i].id;
                 this.selectElement.appendChild(option);
             }
-            this.productId = products[0].id;
 
+            this.productId = this._router.routeParams
+                ? this._router.routeParams.productId
+                : products[0].id;
+
+            this.selectElement.value = this.productId;
+            
             var resultsJSON: Array<Epic> = JSON.parse(results[1]) as Array<Epic>;
             for (let i = 0; i < resultsJSON.length; i++) {
-                let el = document.createElement("ce-epic-item");
-                el.setAttribute("entity", JSON.stringify(resultsJSON[i]));
-                this.appendChild(el);
+                if (resultsJSON[i].productId == this.productId) {
+                    let el = document.createElement("ce-epic-item");
+                    el.setAttribute("entity", JSON.stringify(resultsJSON[i]));
+                    this.appendChild(el);
+                }
             }
             
             this._addEventListeners();
         });        
     } 
 
+    public disconnectedCallback() {
+        this.selectElement.removeEventListener("change", this.onSelectChange.bind(this));
+    }
+
     private _addEventListeners() {
         this.selectElement.addEventListener("change", this.onSelectChange.bind(this));
     }
 
     public onSelectChange() {
-        this.productId = this.selectElement.value;
+        this._router.navigate(["product", this.selectElement.value, "epic", "list"]);
     }
 
     public productId: any;

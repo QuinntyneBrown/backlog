@@ -8,6 +8,7 @@ namespace Backlog.Dtos
         public EpicDto(Epic entity)
         {
             Id = entity.Id;
+            ProductId = entity.ProductId;
             Name = entity.Name;
             Description = entity.Description;
             Stories = entity.Stories.Where(s=>!s.IsDeleted)
@@ -20,7 +21,8 @@ namespace Backlog.Dtos
 
         public EpicDto() { }
 
-        public int Id { get; set; }        
+        public int Id { get; set; }
+        public int? ProductId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public bool IsTemplate { get; set; }

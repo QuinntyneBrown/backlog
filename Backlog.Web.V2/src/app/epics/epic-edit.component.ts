@@ -3,12 +3,14 @@ import { EpicService } from "./epic.service";
 import { EditorComponent } from "../shared";
 import { EpicAddSuccess, EpicDeleteSuccess } from "./actions";
 import { Router } from "../router";
+import { ProductService } from "../products";
 
 const template = require("./epic-edit.component.html");
 const styles = require("./epic-edit.component.scss");
 
 export class EpicEditComponent extends HTMLElement {
     constructor(private _epicService: EpicService = EpicService.Instance,
+        private _productService: ProductService = ProductService.Instance,
         private _router: Router = Router.Instance
     ) {
         super();
@@ -28,15 +30,39 @@ export class EpicEditComponent extends HTMLElement {
         this.titleElement.textContent = "Create epic";
         this.saveButtonElement.addEventListener("click", this.onSave.bind(this));
         this.deleteButtonElement.addEventListener("click", this.onDelete.bind(this));
-        
+
+        let promises = [this._productService.get()];
+
         if (this.epicId) {
-            this._epicService.getById(this.epicId).then((results: string) => { 
-                var resultsJSON: Epic = JSON.parse(results) as Epic;                
+            promises.push(this._epicService.getById(this.epicId));
+            Promise.all(promises).then((results: Array<any>) => { 
+
+                var products = JSON.parse(results[0]) as Array<any>;
+                for (let i = 0; i < products.length; i++) {
+                    let option = document.createElement("option");
+                    option.textContent = products[i].name;
+                    option.value = products[i].id;
+                    this.selectElement.appendChild(option);
+                }
+
+                var resultsJSON: Epic = JSON.parse(results[1]) as Epic;                
                 this.nameInputElement.value = resultsJSON.name; 
-                this.priorityElement.value = resultsJSON.priority;             
+                this.priorityElement.value = resultsJSON.priority;  
+                this.selectElement.value = resultsJSON.productId;           
             });
             this.titleElement.textContent = "Edit Epic";
         } else {
+
+            Promise.all(promises).then((results: Array<any>) => {
+                var products = JSON.parse(results[0]) as Array<any>;
+                for (let i = 0; i < products.length; i++) {
+                    let option = document.createElement("option");
+                    option.textContent = products[i].name;
+                    option.value = products[i].id;
+                    this.selectElement.appendChild(option);
+                }
+            });
+
             this.deleteButtonElement.style.display = "none";
         } 
     }
@@ -44,9 +70,10 @@ export class EpicEditComponent extends HTMLElement {
     public onSave() {
         var epic = {
             id: this.epicId,
+            productId: this.selectElement.value,
             name: this.nameInputElement.value,
             priority: this.priorityElement.value
-        } as Epic;
+        } as any;
         
         this._epicService.add(epic).then((results) => {
             this._router.navigate(["epic", "list"]);
@@ -70,6 +97,7 @@ export class EpicEditComponent extends HTMLElement {
 
     public epicId: number;
     public get priorityElement(): HTMLInputElement { return this.querySelector(".epic-priority") as HTMLInputElement; }
+    public get selectElement(): HTMLSelectElement { return this.querySelector("select") as HTMLSelectElement; }
     public titleElement: HTMLElement;
     public saveButtonElement: HTMLButtonElement;
     public deleteButtonElement: HTMLButtonElement;

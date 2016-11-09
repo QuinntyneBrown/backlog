@@ -29,6 +29,8 @@ namespace Backlog.Services
             entity.Name = request.Name;
             entity.Description = request.Description;
             entity.IsTemplate = request.IsTemplate;
+            entity.ProductId = request.ProductId;
+            entity.Product = this._uow.Products.GetById(request.ProductId.Value);
 
             if (request.Priority.HasValue)
                 entity.Priority = request.Priority.Value;
