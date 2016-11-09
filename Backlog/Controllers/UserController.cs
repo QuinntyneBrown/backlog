@@ -20,7 +20,7 @@ namespace Backlog.Controllers
         [HttpGet]
         [ResponseType(typeof(UserDto))]
         public IHttpActionResult Current()
-        {
+        {            
             if (!User.Identity.IsAuthenticated)
                 return Ok();
             return Ok(_userService.Current(User.Identity.Name));

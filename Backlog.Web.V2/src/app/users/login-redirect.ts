@@ -4,8 +4,11 @@ export class LoginRedirect {
 
     constructor(private _router: Router = Router.Instance) { }
 
-    public static Instance() {
+    private static _instance;
 
+    public static get Instance() {
+        this._instance = this._instance || new LoginRedirect();
+        return this._instance;
     }
 
     public loginUrl: string = "login";

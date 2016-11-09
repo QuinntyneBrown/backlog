@@ -20,6 +20,7 @@ export class LoginRouteListener extends RouteListener {
     public onViewTransition(options: RouteChangeOptions): HTMLElement {
         
         if (options.nextRouteName == "login") {
+            this._store.put({ name: TOKEN_KEY, value: null });
             return createElement("<ce-login></ce-login>");
         }
 
