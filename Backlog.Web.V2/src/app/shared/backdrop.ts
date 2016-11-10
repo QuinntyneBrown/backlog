@@ -66,7 +66,7 @@ export class Backdrop {
     }
 
     public hideAsync = () => {
-        return this._setOpacityAsync({ nativeHtmlElement: this._element, opacity: 0 });
+        return this._setOpacityAsync({ nativeHTMLElement: this._element, opacity: 0 });
     }
 
     public dispose = () => {
