@@ -35,7 +35,6 @@ export abstract class RouterOutlet extends HTMLElement {
 
         });
 
-        // View Transition
         if (this.children.length > 0)
             this.removeChild(this.firstChild);
 
@@ -44,6 +43,8 @@ export abstract class RouterOutlet extends HTMLElement {
         listenerOptions.currentView = this._currentView;
 
         this._listeners.forEach(listener => listener.afterViewTransition(listenerOptions));    
+
+        window.scrollTo(0,0);
     }
 
     private _currentView: HTMLElement;

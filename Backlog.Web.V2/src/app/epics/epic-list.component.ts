@@ -26,7 +26,6 @@ export class EpicListComponent extends HTMLElement {
             var products = JSON.parse(results[0]) as Array<any>;
             for (let i = 0; i < products.length; i++) {
                 let option = document.createElement("option");
-                
                 option.textContent = `${products[i].name}` ;
                 option.value = products[i].id;
                 this.selectElement.appendChild(option);

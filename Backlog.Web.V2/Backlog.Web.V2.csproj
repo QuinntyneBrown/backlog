@@ -375,6 +375,7 @@
     <TypeScriptCompile Include="src\app\router\router-event-hub.ts" />
     <TypeScriptCompile Include="src\app\router\router-outlet.ts" />
     <TypeScriptCompile Include="src\app\router\router.ts" />
+    <TypeScriptCompile Include="src\app\shared\backdrop.ts" />
     <TypeScriptCompile Include="src\app\shared\editor.component.ts" />
     <TypeScriptCompile Include="src\app\shared\header.component.ts" />
     <TypeScriptCompile Include="src\app\shared\index.ts" />

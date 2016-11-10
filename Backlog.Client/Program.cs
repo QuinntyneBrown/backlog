@@ -11,16 +11,28 @@ namespace Backlog.Client
     {
         public static void Main(string[] args)
         {
-
-            //var originalDataContext = new Backlog.Data.DataContext("OriginalBacklogDataContext");
-            //var dataContext = new Backlog.Data.DataContext("BacklogDataContext");
-
-            //foreach (var epic in dataContext.Epics.Include(x=>x.Stories)) {
-            //    Console.WriteLine(epic.Name);
-            //    Console.WriteLine(epic.Stories.Count());
-            //}
             
-            //Console.ReadLine();
+            var context = new Backlog.Data.DataContext();
+
+            var digi = context.Products.Include(x => x.Epics).Single(x => x.Id == 1);
+            var kf = context.Products.Include(x => x.Epics).Single(x => x.Id == 2);
+
+            foreach (var epic in context.Epics.Include(x => x.Product))
+            {
+
+                if (epic.Name != "Games" && epic.Name != "Viz RT" && epic.Name != "Contests")
+                {
+                    digi.Epics.Add(epic);
+                    epic.Product = digi;
+                }
+                else
+                {
+                    kf.Epics.Add(epic);
+                    epic.Product = kf;
+                }
+            }
+
+            Console.ReadLine();
         }
             
     }

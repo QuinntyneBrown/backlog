@@ -1,3 +1,4 @@
+export * from "./backdrop";
 export * from "./drop-down.component";
 export * from "./editor.component";
 export * from "./header.component";
