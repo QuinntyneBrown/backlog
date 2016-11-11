@@ -343,6 +343,8 @@
     <Compile Include="Models\ArticleSnapShot.cs" />
     <Compile Include="Models\BrandOwner.cs" />
     <Compile Include="Models\Brand.cs" />
+    <Compile Include="Models\EpicArticle.cs" />
+    <Compile Include="Models\SubjectMatterExpert.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

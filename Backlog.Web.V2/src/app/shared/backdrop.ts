@@ -15,10 +15,10 @@ export class Backdrop {
         return this._instance;
     }
 
-    public openAsync = (options: { target: HTMLElement }) => {
+    public openAsync = (options: { target: HTMLElement } = { target: document.body }) => {
         return new Promise(resolve => {
             this.initializeAsync()
-                .then(() => this._appendToTargetAsync({ target: options.target, element: this._element }))
+                .then(() => this._appendToTargetAsync({ target: options.target, nativeHTMLElement: this._element }))
                 .then(this.showAsync.bind(this))
                 .then(() => {
                     this.isOpen = true;
@@ -52,7 +52,7 @@ export class Backdrop {
                     "left": "0",
                     "height": "100%",
                     "width": "100%",
-                    "background-color": "rgba(0, 0, 0, 0.25)",
+                    "background-color": "rgba(0, 0, 0, 0.55)",
                     "display": "block"
                 }
             }).then(() => {
@@ -61,7 +61,7 @@ export class Backdrop {
         });
     }
 
-    public showAsync = () => {        
+    public showAsync = () => {                
         return this._setOpacityAsync({ nativeHTMLElement: this._element, opacity: 1 });
     }
 
