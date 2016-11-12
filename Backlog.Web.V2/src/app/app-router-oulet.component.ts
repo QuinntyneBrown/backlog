@@ -4,7 +4,7 @@ import { LoginRouteListener } from "./users";
 import { EpicListRouteListener, EpicViewRouteListener, EpicEditRouteListener, EpicCreateRouteListener } from "./epics";
 import { FeedbackCreateRouteListener } from "./feedback";
 import { StoryEditRouteListener, StoryCreateRouteListener } from "./stories";
-import { ProductListRouteListener, ProductCreateRouteListener } from "./products";
+import { ProductListRouteListener, ProductCreateRouteListener, ProductEditRouteListener } from "./products";
 
 export class AppRouterOuletComponent extends RouterOutlet {
     constructor() {
@@ -28,6 +28,7 @@ export class AppRouterOuletComponent extends RouterOutlet {
 
             { path: "/product/list", name: "product-list" },
             { path: "/product/create", name: "product-create" },
+            { path: "/product/edit/:id", name: "product-edit" },
 
             { path: "/feedback/create", name: "feedback-create" }            
         ] as any);
@@ -42,6 +43,7 @@ export class AppRouterOuletComponent extends RouterOutlet {
         this.use(new FeedbackCreateRouteListener());
         this.use(new ProductListRouteListener());
         this.use(new ProductCreateRouteListener());
+        this.use(new ProductEditRouteListener());
 
         super.connectedCallback();
     }

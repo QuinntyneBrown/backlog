@@ -26,6 +26,13 @@ export class ProductEditRouteListener extends AuthorizedRouteListener {
     }
 
     public onViewTransition(options: RouteChangeOptions): HTMLElement {
-        return options.nextRouteName == "product-edit" ? document.createElement("ce-product-edit") : null;
+
+        if (options.nextRouteName != "product-edit")
+            return null;
+
+        let view = document.createElement("ce-product-edit");
+        view.setAttribute("product-id",options.routeParams.id)
+        return view;
+
     }
 }

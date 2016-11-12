@@ -17,7 +17,27 @@ ce-header {
 
     }
 
+    div.header-right {
+        position:relative;
+        float:right;
+        
+        ce-link {
+            line-height:90px;
+        }
+    }
+
+    div.header-left {
+        position:relative;
+        float:left;
+    }
+
     height:100px;
     color:#111;
     margin:0 10px;
+}
+
+center-header:after {
+    display:block;
+    clear:both;
+    content: " ";
 }

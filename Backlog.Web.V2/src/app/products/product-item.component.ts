@@ -1,10 +1,11 @@
 import { Product } from "./product.model";
+import { Router } from "../router";
 
 const template = require("./product-item.component.html");
 const styles = require("./product-item.component.scss");
 
 export class ProductItemComponent extends HTMLElement {
-    constructor() {
+    constructor(private _router: Router = Router.Instance) {
         super();        
     }
 
@@ -13,9 +14,21 @@ export class ProductItemComponent extends HTMLElement {
     }
     
     connectedCallback() {        
-        this.innerHTML = `<style>${styles}</style> ${template}`; 
-        this.nameElement.textContent = this.entity.name;
+        this.innerHTML = `<style>${styles}</style> ${template}`;         
+        this._bind();
+        this._addEventListeners();
+    }
 
+    private _bind() {
+        this._nameElement.textContent = this.entity.name;
+    }
+
+    private _addEventListeners() {
+        this._editLinkElement.addEventListener("click", this._onEditClick.bind(this));
+    }
+
+    private _onEditClick() {
+        this._router.navigate(["product", "edit", this.entity.id]);
     }
     
     attributeChangedCallback(name, oldValue, newValue) {
@@ -27,9 +40,8 @@ export class ProductItemComponent extends HTMLElement {
     }
 
     public entity: Product;
-    public get nameElement(): HTMLElement {
-        return this.querySelector("p") as HTMLElement;
-    }
+    public get _nameElement(): HTMLElement { return this.querySelector("p") as HTMLElement; }
+    public get _editLinkElement() { return this.querySelector(".entity-item-edit") as HTMLElement; }
 }
 
 document.addEventListener("DOMContentLoaded",() => window.customElements.define(`ce-product-item`,ProductItemComponent));
