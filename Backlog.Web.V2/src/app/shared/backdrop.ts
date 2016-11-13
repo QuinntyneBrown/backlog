@@ -53,7 +53,8 @@ export class Backdrop {
                     "height": "100%",
                     "width": "100%",
                     "background-color": "rgba(0, 0, 0, 0.55)",
-                    "display": "block"
+                    "display": "block",
+                    "pointer-events":"none"
                 }
             }).then(() => {
                 resolve();

@@ -6,12 +6,13 @@ import { FeedbackCreateRouteListener, FeedbackReceivedRouteListener } from "./fe
 import { StoryEditRouteListener, StoryCreateRouteListener } from "./stories";
 import { ProductListRouteListener, ProductCreateRouteListener, ProductEditRouteListener } from "./products";
 
-export class AppRouterOuletComponent extends RouterOutlet {
-    constructor() {
-        super();
+export class AppRouterOutletComponent extends RouterOutlet {
+    constructor(nativeHTMLElement: HTMLElement) {
+        super(nativeHTMLElement);
     }
 
     connectedCallback() { 
+
         this._router.setRoutes([
             { path: "/", name: "epic-list" },
             { path: "/login", name: "login" },
@@ -52,4 +53,4 @@ export class AppRouterOuletComponent extends RouterOutlet {
 
 }
 
-document.addEventListener("DOMContentLoaded",() => window.customElements.define(`ce-app-router-oulet`,AppRouterOuletComponent));
+document.addEventListener("DOMContentLoaded",() => window.customElements.define(`ce-app-router-oulet`,AppRouterOutletComponent));

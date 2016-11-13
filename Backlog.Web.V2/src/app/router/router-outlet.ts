@@ -2,15 +2,13 @@
 import { Router } from "./router";
 import { isArray } from "../utilities";
 
-export abstract class RouterOutlet extends HTMLElement {
-    constructor(public _router: Router = Router.Instance) {
-        super();
+export abstract class RouterOutlet {
+    constructor(private _nativeHTMLElement: HTMLElement, public _router: Router = Router.Instance) {
+        this.connectedCallback();
     }
 
     public connectedCallback() {
         this._router.addEventListener(this._onRouteChanged.bind(this));       
-        this.style.display = "inline-block";
-        this.style.position = "relative";
     }
 
     public use(listener: RouteListener) {
@@ -19,7 +17,7 @@ export abstract class RouterOutlet extends HTMLElement {
 
     private _listeners: Array<RouteListener> = [];
 
-    public _onRouteChanged(options: any) {      
+    public _onRouteChanged(options: any) {              
         let nextView: HTMLElement = null;
 
         const listenerOptions = { currentView: this._currentView, nextRouteName: options.routeName, previousRouteName: this._routeName, routeParams: options.routeParams, cancelled: false };
@@ -35,10 +33,10 @@ export abstract class RouterOutlet extends HTMLElement {
 
         });
 
-        if (this.children.length > 0)
-            this.removeChild(this.firstChild);
+        if (this._nativeHTMLElement.children.length > 0)
+            this._nativeHTMLElement.removeChild(this._nativeHTMLElement.firstChild);
 
-        this.appendChild(this._currentView);
+        this._nativeHTMLElement.appendChild(this._currentView);
 
         listenerOptions.currentView = this._currentView;
 

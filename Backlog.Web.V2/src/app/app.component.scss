@@ -10,7 +10,10 @@ ce-app {
     margin: 0 auto 30px;
     max-width:1280px;
 
-    ce-app-router-oulet {
+
+    .router-outlet {        
+        display:inline-block;
+        position:relative;
         width:100%;
         max-width:1280px;
         margin:0 10px;

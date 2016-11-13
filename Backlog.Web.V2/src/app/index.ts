@@ -8,6 +8,6 @@ export * from "./shared";
 export * from "./stories";
 export * from "./users";
 export * from "./utilities";
-export * from "./app-router-oulet.component";
+export * from "./app-router-outlet.component";
 export * from "./app.component";
 export * from "./environment";

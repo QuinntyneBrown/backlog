@@ -64,7 +64,8 @@ export class Modal {
                         "padding": "30px",
                         "transition": "all 0.5s",
                         "-webkit-transition": "all 0.5s",
-                        "-o-transition": "all 0.5s"
+                        "-o-transition": "all 0.5s",
+                        "pointer-events": "none"
                     }                    
                 }).then(function () {
                     resolve();

@@ -203,12 +203,6 @@
     <Content Include="lib\rome.min.js" />
     <Content Include="packages.config" />
     <Content Include="package.json" />
-    <Content Include="src\app\app-router-oulet.component.html">
-      <DependentUpon>app-router-oulet.component.ts</DependentUpon>
-    </Content>
-    <Content Include="src\app\app-router-oulet.component.scss">
-      <DependentUpon>app-router-oulet.component.ts</DependentUpon>
-    </Content>
     <Content Include="src\app\app.component.html">
       <DependentUpon>app.component.ts</DependentUpon>
     </Content>
@@ -370,7 +364,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <TypeScriptCompile Include="src\app\app-router-oulet.component.ts" />
+    <TypeScriptCompile Include="src\app\app-router-outlet.component.ts" />
     <TypeScriptCompile Include="src\app\app.component.ts" />
     <TypeScriptCompile Include="src\app\environment.ts" />
     <TypeScriptCompile Include="src\app\index.ts" />

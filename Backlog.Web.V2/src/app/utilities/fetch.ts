@@ -1,9 +1,10 @@
 ﻿import { Store  } from "./store";
 import { STORE_KEY, TOKEN_KEY } from "./constants.ts";
+import { Http } from "./http";
 
 export var fetch = (options: { url: string, method?: string, data?: any, headers?: any, authRequired?: boolean }) => {
     return new Promise(resolve => {
-        var xhr = new XMLHttpRequest();
+        var xhr = new Http();
         xhr.open(options.method || "GET", options.url, true);
 
         options.headers = options.headers || { "Content-Type": "application/json;charset=UTF-8" };
