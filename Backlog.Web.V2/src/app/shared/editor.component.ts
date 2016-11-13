@@ -4,8 +4,7 @@ export class EditorComponent {
             modules: {
                 toolbar: [
                     [{ header: [1, 2, false] }],
-                    ['bold', 'italic', 'underline'],
-                    ['image', 'code-block']
+                    ['bold', 'italic', 'underline']
                 ]
             },
             theme: 'snow'

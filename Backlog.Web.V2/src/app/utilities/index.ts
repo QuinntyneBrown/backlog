@@ -7,6 +7,7 @@ export * from "./extend-css-async";
 export * from "./fetch";
 export * from "./form-encode";
 export * from "./guid";
+export * from "./insert-after";
 export * from "./is-array";
 export * from "./is-numeric";
 export * from "./log";

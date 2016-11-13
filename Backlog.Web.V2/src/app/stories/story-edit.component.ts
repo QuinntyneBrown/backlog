@@ -12,7 +12,6 @@ export class StoryEditComponent extends HTMLElement {
         private _router: Router = Router.Instance
     ) {
         super();
-
     }
 
     static get observedAttributes() {

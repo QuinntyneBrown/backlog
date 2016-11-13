@@ -1,8 +1,12 @@
+import { insertAfter, createElement } from "../utilities";
+
 let template = require("./button.component.html");
 let styles = require("./button.component.scss");
 
 export class ButtonComponent extends HTMLElement {
-    constructor() {
+    constructor(
+        private _createElement: Function = createElement,
+        private _insertAfter: Function = insertAfter) {
         super();
     }
 
@@ -11,7 +15,10 @@ export class ButtonComponent extends HTMLElement {
     }
 
     connectedCallback() {
-        this.innerHTML = `<style>${styles}</style> ${template}`;
+        var textContent = this.textContent;
+        this.innerHTML = `<style>${styles}</style> ${template}`; 
+        this._insertAfter(this._createElement(textContent), this.querySelector("style"));
+
         this._bind();
         this._addEventListeners();
     }
@@ -26,13 +33,6 @@ export class ButtonComponent extends HTMLElement {
 
     disconnectedCallback() {
 
-    }
-
-    attributeChangedCallback (name, oldValue, newValue) {
-        switch (name) {
-            default:
-                break;
-        }
     }
 }
 
