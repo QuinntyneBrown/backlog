@@ -1,5 +1,5 @@
-﻿import { Store  } from "./store";
-import { STORE_KEY, TOKEN_KEY } from "./constants.ts";
+﻿import { Storage  } from "./storage";
+import { STORAGE_KEY, TOKEN_KEY } from "./constants.ts";
 import { Http } from "./http";
 
 export var fetch = (options: { url: string, method?: string, data?: any, headers?: any, authRequired?: boolean }) => {
@@ -10,7 +10,7 @@ export var fetch = (options: { url: string, method?: string, data?: any, headers
         options.headers = options.headers || { "Content-Type": "application/json;charset=UTF-8" };
         
         if (options.authRequired)
-            options.headers["Authorization"] = `Bearer ${Store.Instance.get({ name: TOKEN_KEY })}`;       
+            options.headers["Authorization"] = `Bearer ${Storage.Instance.get({ name: TOKEN_KEY })}`;       
         
 
         for (var prop in options.headers) {

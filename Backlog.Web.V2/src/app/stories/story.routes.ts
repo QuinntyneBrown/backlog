@@ -1,5 +1,5 @@
 import { RouteListener, RouterEventHub, routerEventHubEvents, RouterNavigate } from "../router";
-import { createElement, Store } from "../utilities";
+import { createElement, Storage } from "../utilities";
 import { environment } from "../environment";
 import { AuthorizedRouteListener } from "../users";
 import { storyActions, StoryDeleteSelect, StoryEditSelect} from "./actions";

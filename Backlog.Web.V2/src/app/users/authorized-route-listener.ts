@@ -1,5 +1,5 @@
 ﻿import { RouteListener, Router } from "../router";
-import { createElement, Store, TOKEN_KEY } from "../utilities";
+import { createElement, Storage, TOKEN_KEY } from "../utilities";
 import { UserLoginSuccess, userActions } from "./actions";
 import { environment } from "../environment";
 import { LoginRedirect } from "./login-redirect";
@@ -9,7 +9,7 @@ export abstract class AuthorizedRouteListener extends RouteListener {
     constructor(private _routeName,
         private _router: Router = Router.Instance,
         private _loginRedirect: LoginRedirect = LoginRedirect.Instance,
-        private _store: Store = Store.Instance,
+        private _store: Storage = Storage.Instance,
         private _userService: UserService = UserService.Instance
     ) {
         super();

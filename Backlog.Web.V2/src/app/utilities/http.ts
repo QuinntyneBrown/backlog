@@ -1,9 +1,4 @@
-﻿export class Http extends XMLHttpRequest {
-
-    constructor() {
-        super();
-    }
-
+﻿export class Http extends XMLHttpRequest {    
     public static pendingRequests = 0;
 
     public open(method: string, url: string, async: boolean = true, user: string = null, password: string = null) {        

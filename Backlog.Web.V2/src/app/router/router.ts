@@ -1,4 +1,4 @@
-import { Store, isNumeric } from "../utilities";
+import { Storage, isNumeric } from "../utilities";
 import { Route } from "./route";
 import { RouterNavigate, RouteChanged } from "./actions";
 import { RouterEventHub, routerEventHubEvents } from "./router-event-hub";
@@ -6,7 +6,7 @@ import { RouterEventHub, routerEventHubEvents } from "./router-event-hub";
 export class Router {
     constructor(
         private _routes: Array<Route>=[],
-        private _store: Store = Store.Instance,
+        private _storage: Storage = Storage.Instance,
         private initialRoute: string = window.location.pathname,
         private _routerEventHub: RouterEventHub = RouterEventHub.Instance
     ) { }

@@ -1,5 +1,5 @@
 ﻿import { RouteListener } from "../router";
-import { createElement, Store } from "../utilities";
+import { createElement, Storage } from "../utilities";
 import { environment } from "../environment";
 import { AuthorizedRouteListener } from "../users";
 

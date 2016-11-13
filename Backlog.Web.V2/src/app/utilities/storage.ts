@@ -1,6 +1,6 @@
-﻿import { STORE_KEY } from "./constants";
+﻿import { STORAGE_KEY } from "./constants";
 
-export class Store {
+export class Storage {
     constructor(private _key: string, private _localStorage = localStorage, private _window = window) {
         _window.onbeforeunload = () => _localStorage.setItem(_key, JSON.stringify(this._items))
     }
@@ -8,7 +8,7 @@ export class Store {
     private static _instance;
 
     public static get Instance() {
-        this._instance = this._instance || new Store(STORE_KEY);
+        this._instance = this._instance || new Storage(STORAGE_KEY);
         return this._instance;
     }
 

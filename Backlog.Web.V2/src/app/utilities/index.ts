@@ -16,6 +16,6 @@ export * from "./pluck-out";
 export * from "./pluck";
 export * from "./remove-element";
 export * from "./set-opacity-async";
-export * from "./store";
+export * from "./storage";
 export * from "./target-value";
 export * from "./translate-x";

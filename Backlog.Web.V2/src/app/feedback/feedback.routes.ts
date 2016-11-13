@@ -1,4 +1,4 @@
-import { createElement, Store } from "../utilities";
+import { createElement, Storage } from "../utilities";
 import { AuthorizedRouteListener } from "../users";
 
 

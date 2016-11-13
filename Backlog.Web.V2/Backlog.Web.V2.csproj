@@ -417,7 +417,7 @@
     <TypeScriptCompile Include="src\app\utilities\remove-element.ts" />
     <TypeScriptCompile Include="src\app\utilities\http.ts" />
     <TypeScriptCompile Include="src\app\utilities\set-opacity-async.ts" />
-    <TypeScriptCompile Include="src\app\utilities\store.ts" />
+    <TypeScriptCompile Include="src\app\utilities\storage.ts" />
     <TypeScriptCompile Include="src\app\utilities\target-value.ts" />
     <TypeScriptCompile Include="src\app\utilities\translate-x.ts" />
     <TypeScriptCompile Include="src\custom-typings.d.ts" />

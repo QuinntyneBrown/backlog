@@ -1,11 +1,11 @@
 ﻿import { RouteListener, Route } from "../router";
-import { createElement, Store, TOKEN_KEY } from "../utilities";
+import { createElement, Storage, TOKEN_KEY } from "../utilities";
 import { UserLoginSuccess, userActions } from "./actions";
 import { environment } from "../environment";
 import { LoginRedirect } from "./login-redirect";
 
 export class LoginRouteListener extends RouteListener {
-    constructor(private _loginRedirect: LoginRedirect = null, private _store: Store = Store.Instance) {
+    constructor(private _loginRedirect: LoginRedirect = null, private _store: Storage = Storage.Instance) {
         super();
         this.onLoginSucess = this.onLoginSucess.bind(this);
         _loginRedirect = _loginRedirect || new LoginRedirect();
@@ -34,7 +34,7 @@ export class LoginRouteListener extends RouteListener {
     }
 
     public onLoginSucess = (e: UserLoginSuccess) => { 
-        this._store = this._store || new Store.Instance;
+        this._store = this._store || new Storage.Instance;
         this._loginRedirect = this._loginRedirect || new LoginRedirect();               
         this._store.put({ name: TOKEN_KEY, value: e.detail.accessToken });
         this._loginRedirect.redirectPreLogin();
