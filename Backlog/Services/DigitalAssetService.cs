@@ -27,9 +27,9 @@ namespace Backlog.Services
             return new DigitalAssetAddOrUpdateResponseDto(entity);
         }
 
-        public dynamic Remove(int id)
+        public dynamic Remove(int? id, string relativePath)
         {
-            var entity = _repository.GetById(id);
+            var entity = string.IsNullOrEmpty(relativePath) ? _repository.GetById(id.Value) : _repository.GetAll().Where(x => x.RelativePath == relativePath).Single();
             entity.IsDeleted = true;
             _uow.SaveChanges();
             return id;

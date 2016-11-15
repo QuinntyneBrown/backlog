@@ -18,7 +18,7 @@ namespace Backlog.Dtos
             Notes = entity.Notes;
             Points = entity.Points;
             ArchitecturePoints = entity.ArchitecturePoints;            
-            DigitalAssets = entity.StoryDigitalAssets.Select(x => new DigitalAssetDto(x.DigitalAsset)).ToList();
+            DigitalAssets = entity.StoryDigitalAssets.Where(x=>!x.DigitalAsset.IsDeleted).Select(x => new DigitalAssetDto(x.DigitalAsset)).ToList();
         }
 
         public StoryDto() { }

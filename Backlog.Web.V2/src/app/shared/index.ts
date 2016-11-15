@@ -1,6 +1,6 @@
 export * from "./backdrop";
 export * from "./button.component";
-export * from "./drop-down.component";
+export * from "./drop-zone.component";
 export * from "./editor.component";
 export * from "./footer.component";
 export * from "./header.component";
@@ -9,3 +9,4 @@ export * from "./option.component";
 export * from "./popover";
 export * from "./select.component";
 export * from "./side-nav.component";
+export * from "./tabs.component";

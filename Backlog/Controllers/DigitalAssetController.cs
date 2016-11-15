@@ -56,7 +56,7 @@ namespace Backlog.Controllers
         [Route("remove")]
         [HttpDelete]
         [ResponseType(typeof(int))]
-        public IHttpActionResult Remove(int id) { return Ok(_digitalAssetService.Remove(id)); }
+        public IHttpActionResult Remove(int? id) { return Ok(_digitalAssetService.Remove(id, null)); }
 
         [Route("serve")]
         [HttpGet]

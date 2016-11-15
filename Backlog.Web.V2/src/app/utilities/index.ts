@@ -19,3 +19,4 @@ export * from "./set-opacity-async";
 export * from "./storage";
 export * from "./target-value";
 export * from "./translate-x";
+export * from "./wait";

@@ -8,6 +8,6 @@ namespace Backlog.Services
         DigitalAssetAddOrUpdateResponseDto AddOrUpdate(DigitalAssetAddOrUpdateRequestDto request);
         ICollection<DigitalAssetDto> Get();
         DigitalAssetDto GetById(int id);
-        dynamic Remove(int id);
+        dynamic Remove(int? id, string relativeUrl);
     }
 }

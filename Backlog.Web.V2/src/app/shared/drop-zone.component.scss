@@ -1,0 +1,15 @@
+:host {
+    display:block;
+
+    .drop-zone {    
+        
+        padding:15px; 
+
+        display:block;
+        font-family:var(--fontFamily);
+        background-color:var(--backgroundColor);
+        height:calc(var(--height) - 30px);
+        width:calc(var(--width) - 30px);
+        color:var(--color);
+    }
+}

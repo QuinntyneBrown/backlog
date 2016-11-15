@@ -25,5 +25,9 @@ export class StoryService {
     public remove(options: { id : number }) {
         return fetch({ url: `/api/story/remove?id=${options.id}`, method: "DELETE", authRequired: true  });
     }
+
+    public removeDigitalAsset(options: { id: number }) {
+        return fetch({ url: `/api/digitalasset/remove?id=${options.id}`, method: "DELETE", authRequired: true });
+    }
     
 }

@@ -2,7 +2,9 @@ ce-story-edit {
     padding-bottom:40px;
     width:calc(100% - 400px);
 
-
+    ce-drop-zone {
+        margin-bottom:30px;
+    }
     
     input.story-name {
         display:block;
@@ -35,6 +37,14 @@ ce-story-edit {
         width:100%;
         height:345px;
         margin-bottom:20px;
+    }
+
+    img {
+        max-height: 300px;
+    }
+
+    ce-story-digital-asset {
+        margin-bottom:30px;
     }
 }
 

@@ -275,12 +275,7 @@
     <Content Include="src\app\shared\button.component.scss">
       <DependentUpon>button.component.ts</DependentUpon>
     </Content>
-    <Content Include="src\app\shared\drop-down.component.html">
-      <DependentUpon>drop-down.component.ts</DependentUpon>
-    </Content>
-    <Content Include="src\app\shared\drop-down.component.scss">
-      <DependentUpon>drop-down.component.ts</DependentUpon>
-    </Content>
+    <Content Include="src\app\shared\drop-zone.component.html" />
     <Content Include="src\app\shared\footer.component.html">
       <DependentUpon>footer.component.ts</DependentUpon>
     </Content>
@@ -311,6 +306,18 @@
     <Content Include="src\app\shared\side-nav.component.scss">
       <DependentUpon>side-nav.component.ts</DependentUpon>
     </Content>
+    <Content Include="src\app\shared\tabs.component.html">
+      <DependentUpon>tabs.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\shared\tabs.component.scss">
+      <DependentUpon>tabs.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\stories\story-digital-asset.component.html">
+      <DependentUpon>story-digital-asset.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\stories\story-digital-asset.component.scss">
+      <DependentUpon>story-digital-asset.component.ts</DependentUpon>
+    </Content>
     <Content Include="src\app\stories\story-edit.component.html">
       <DependentUpon>story-edit.component.ts</DependentUpon>
     </Content>
@@ -334,6 +341,7 @@
     </Content>
     <None Include="Properties\PublishProfiles\backlog - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\backlog - Web Deploy.pubxml" />
+    <Content Include="src\app\shared\drop-zone.component.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -420,6 +428,7 @@
     <TypeScriptCompile Include="src\app\utilities\storage.ts" />
     <TypeScriptCompile Include="src\app\utilities\target-value.ts" />
     <TypeScriptCompile Include="src\app\utilities\translate-x.ts" />
+    <TypeScriptCompile Include="src\app\utilities\wait.ts" />
     <TypeScriptCompile Include="src\custom-typings.d.ts" />
     <TypeScriptCompile Include="src\main.ts" />
     <TypeScriptCompile Include="src\polyfills.ts" />
@@ -458,10 +467,12 @@
     <TypeScriptCompile Include="src\app\products\product-edit.component.ts" />
     <TypeScriptCompile Include="src\app\shared\select.component.ts" />
     <TypeScriptCompile Include="src\app\shared\option.component.ts" />
-    <TypeScriptCompile Include="src\app\shared\drop-down.component.ts" />
+    <TypeScriptCompile Include="src\app\shared\drop-zone.component.ts" />
     <TypeScriptCompile Include="src\app\products\product-item.component.ts" />
     <TypeScriptCompile Include="src\app\shared\button.component.ts" />
     <TypeScriptCompile Include="src\app\shared\footer.component.ts" />
+    <TypeScriptCompile Include="src\app\shared\tabs.component.ts" />
+    <TypeScriptCompile Include="src\app\stories\story-digital-asset.component.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

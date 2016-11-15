@@ -7,4 +7,5 @@ export class Story {
     public architecturePoints: string;
     public description: string; 
     public notes: string;
+    public digitalAssets: Array<any> = [];
 }

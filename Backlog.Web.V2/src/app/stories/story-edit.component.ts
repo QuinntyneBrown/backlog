@@ -1,6 +1,6 @@
 import { Story } from "./story.model";
 import { StoryService } from "./story.service";
-import { EditorComponent } from "../shared";
+import { EditorComponent, dropZoneEvents, DropZoneComponent } from "../shared";
 import { StoryAddSuccess, StoryDeleteSuccess } from "./actions";
 import { Router } from "../router";
 
@@ -41,15 +41,45 @@ export class StoryEditComponent extends HTMLElement {
                 this.notesEditor.setHTML(resultsJSON.notes);
                 this.pointsInputElement.value = resultsJSON.points;
                 this.architecturePointsInputElement.value = resultsJSON.architecturePoints;
+
+                resultsJSON.digitalAssets.map(d => {
+                    let el = document.createElement("ce-story-digital-asset") as HTMLElement;
+                    el.setAttribute("relative-path", d.relativePath);
+                    el.setAttribute("digital-asset-id", d.id);
+                    this.digitalAssetsContainer.appendChild(el);
+                });
             });
             this.titleElement.textContent = "Edit Story";
         } else {
             this.deleteButtonElement.style.display = "none";
+            this.imageDropZoneElement.style.display = "none";
         } 
+
+        
+        this._addEventListeners();
     }
 
-    
-    
+
+    private _addEventListeners() {
+        this.imageDropZoneElement.addEventListener(dropZoneEvents.DROP, this.onImageDrop.bind(this));
+    }
+
+    public onImageDrop(e) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", `/api/digitalasset/upload?id=${this.storyId}`, true);
+        xhr.onload = (e) => {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    this._router.navigate(["epic", this.epicId, "story", "edit",this.storyId]);
+                }
+                else {
+                    console.error(xhr.statusText);
+                }
+            }
+        };
+        xhr.send(e.detail.files);
+    }
+
     public onSave() {
         var story = {
             id: this.storyId,
@@ -89,6 +119,7 @@ export class StoryEditComponent extends HTMLElement {
 
     public storyId: number;
     public epicId: number;
+    public get imageDropZoneElement(): DropZoneComponent { return this.querySelector("ce-drop-zone") as DropZoneComponent; }
     public get descriptionElement(): HTMLElement { return this.querySelector(".story-description") as HTMLElement; }
     public descriptionEditor: EditorComponent;
     public get notesElement(): HTMLElement { return this.querySelector(".story-notes") as HTMLElement; }
@@ -96,6 +127,7 @@ export class StoryEditComponent extends HTMLElement {
     public get priorityElement(): HTMLInputElement { return this.querySelector(".priority") as HTMLInputElement; }
     public get pointsInputElement(): HTMLInputElement { return this.querySelector(".points") as HTMLInputElement; }
     public get architecturePointsInputElement(): HTMLInputElement { return this.querySelector(".architecture-points") as HTMLInputElement; }
+    public get digitalAssetsContainer(): HTMLElement { return this.querySelector(".story-digital-assets") as HTMLElement; }
     public titleElement: HTMLElement;
     public saveButtonElement: HTMLButtonElement;
     public deleteButtonElement: HTMLButtonElement;
