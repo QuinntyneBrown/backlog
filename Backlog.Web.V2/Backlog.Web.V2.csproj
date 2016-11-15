@@ -6,7 +6,8 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion></ProductVersion>
+    <ProductVersion>
+    </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{94EAFF2E-6328-4353-B0EA-1FE5E09583C9}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -21,7 +22,8 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
-    <NuGetPackageImportStamp></NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
     <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
     <TypeScriptEmitDecoratorMetadata>true</TypeScriptEmitDecoratorMetadata>
     <TypeScriptModuleKind>commonjs</TypeScriptModuleKind>
@@ -275,7 +277,12 @@
     <Content Include="src\app\shared\button.component.scss">
       <DependentUpon>button.component.ts</DependentUpon>
     </Content>
-    <Content Include="src\app\shared\drop-zone.component.html" />
+    <Content Include="src\app\shared\drop-zone.component.html">
+      <DependentUpon>drop-zone.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\shared\drop-zone.component.scss">
+      <DependentUpon>drop-zone.component.ts</DependentUpon>
+    </Content>
     <Content Include="src\app\shared\footer.component.html">
       <DependentUpon>footer.component.ts</DependentUpon>
     </Content>
@@ -341,7 +348,6 @@
     </Content>
     <None Include="Properties\PublishProfiles\backlog - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\backlog - Web Deploy.pubxml" />
-    <Content Include="src\app\shared\drop-zone.component.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -492,7 +498,8 @@
           <IISUrl>http://localhost:56620/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl></CustomServerUrl>
+          <CustomServerUrl>
+          </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>

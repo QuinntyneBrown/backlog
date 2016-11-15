@@ -10,7 +10,13 @@ ce-tabs {
         font-weight:100;        
     }
 
-    .tab-title.selected {
-        border-bottom:solid 1px;
+    .tab-title:hover {
+        border-bottom:solid 3px #888;
     }
+
+    .tab-title.selected {
+        border-bottom:solid 3px #000;
+    }
+
+
 }
