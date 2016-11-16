@@ -9,10 +9,16 @@ ce-header {
     
     ce-link {
         margin: 0 10px;
+        padding-bottom:10px;
+    }
+
+    ce-link:hover {
+        border-bottom: 2px #777 solid;        
     }
 
     ce-link.active {
         font-weight:600;
+        border-bottom: 2px #000 solid;
     }
 
     div.header-right {
