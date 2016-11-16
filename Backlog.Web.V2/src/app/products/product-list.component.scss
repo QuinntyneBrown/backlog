@@ -6,7 +6,15 @@ ce-product-list {
     }
 
     ce-link {
+        display:inline-block;
         margin-bottom:40px;
-        display:block;
+        color:#777;
+        font-size:.85em;
+        line-height:1em;
+    }
+
+    ce-link:hover {
+        text-decoration:underline;
+        color:#000;
     }
 }

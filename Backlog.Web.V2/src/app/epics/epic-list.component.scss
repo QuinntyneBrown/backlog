@@ -6,15 +6,23 @@ ce-epic-list {
     }
 
     .epic-create {
-        display:block;
+        display:inline-block;
         margin-bottom:40px;
+        color:#777;
+        font-size:.85em;
+        line-height:1em;
+    }
+
+    .epic-create:hover {
+        text-decoration:underline;
+        color:#000;
     }
 
     select {
         width:400px;
-        line-height:1.5em;
-        font-size:1.5em;
-        padding: 5px 7px;
+        line-height:2em;
+        font-size:1.25em;
+        padding: 10px 14px;
         display:block;
         margin-bottom:30px;
     }

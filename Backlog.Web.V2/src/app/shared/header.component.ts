@@ -1,10 +1,13 @@
 import { Router } from "../router";
+import { CurrentUser } from "../users";
 
 let template = require("./header.component.html");
 let styles = require("./header.component.scss");
 
 export class HeaderComponent extends HTMLElement {
-    constructor(private _router: Router = Router.Instance) {
+    constructor(
+        private _currentUser: CurrentUser= CurrentUser.Instance,
+        private _router: Router = Router.Instance) {
         super();
     }
 
@@ -19,8 +22,11 @@ export class HeaderComponent extends HTMLElement {
     }
 
     private _onRouteChange(options: any) {
-        Array.from(this.querySelectorAll("ce-link"))
+        Array.from(this.querySelectorAll("ce-link[auth-required]"))
             .map((e: HTMLElement) => e.style.display = options.routeName == "login" ? "none" : "inline-block");
+
+        Array.from(this.querySelectorAll("ce-link[anonymous-required]"))
+            .map((e: HTMLElement) => e.style.display = options.routeName == "login" ? "inline-block" : "none");
     }
 
     private _onTitleClick() {

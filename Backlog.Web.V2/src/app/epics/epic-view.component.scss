@@ -29,4 +29,17 @@ ce-epic-view {
     h2 {
         margin-top:0;
     }
+
+    a {
+        display:inline-block;
+        margin-bottom:40px;
+        color:#777;
+        font-size:.85em;
+        line-height:1em;
+    }
+
+    a:hover {
+        text-decoration:underline;
+        color:#000;
+    }
 }

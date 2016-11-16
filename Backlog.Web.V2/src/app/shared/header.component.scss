@@ -4,6 +4,7 @@ ce-header {
         cursor:pointer;
         display:inline-block;
         margin-right:20px;
+        letter-spacing:1px;
     }
 
     
@@ -19,6 +20,15 @@ ce-header {
     ce-link.active {
         font-weight:600;
         border-bottom: 2px #000 solid;
+    }
+
+    ce-link.logout,
+    ce-link.logout:hover,
+    ce-link.settings,
+    ce-link.settings:hover,
+    ce-link.register,
+    ce-link.register:hover {
+        border-bottom:none;
     }
 
     div.header-right {

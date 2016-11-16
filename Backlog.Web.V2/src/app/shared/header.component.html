@@ -1,9 +1,11 @@
 <div class="header-left">
     <h1>Backlog</h1>
-    <ce-link routesegments='["epic","list"]' route-name="epic-list">epics</ce-link>
-    <ce-link routesegments='["product","list"]' route-name="product-list">products</ce-link>
-    <ce-link routesegments='["feedback","create"]' class="feedback" route-name="feedback-create">feedback</ce-link>
+    <ce-link routesegments='["epic","list"]' route-name="epic-list" auth-required>epics</ce-link>
+    <ce-link routesegments='["product","list"]' route-name="product-list" auth-required>products</ce-link>
+    <ce-link routesegments='["feedback","create"]' class="feedback" route-name="feedback-create" auth-required>feedback</ce-link>
 </div>
 <div class="header-right">
-    <ce-link routesegments='["login"]' class="logout">logout</ce-link>
+    <ce-link routesegments='["login"]' class="logout" auth-required>logout</ce-link>
+    <ce-link routesegments='["settings"]' class="settings" auth-required>settings</ce-link>
+    <ce-link routesegments='["register"]' class="register" anonymous-required>register</ce-link>
 </div>

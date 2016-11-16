@@ -1,5 +1,6 @@
 export * from "./actions";
 export * from "./authorized-route-listener";
+export * from "./current-user";
 export * from "./login-redirect";
 export * from "./login.component";
 export * from "./user.model";
