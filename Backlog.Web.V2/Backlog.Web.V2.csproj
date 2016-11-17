@@ -426,12 +426,17 @@
     <TypeScriptCompile Include="src\app\utilities\log.ts" />
     <TypeScriptCompile Include="src\app\utilities\pluck-out.ts" />
     <TypeScriptCompile Include="src\app\utilities\pluck.ts" />
+    <TypeScriptCompile Include="src\app\utilities\position.ts" />
+    <TypeScriptCompile Include="src\app\utilities\rectangle.ts" />
     <TypeScriptCompile Include="src\app\utilities\remove-element.ts" />
     <TypeScriptCompile Include="src\app\utilities\http.ts" />
+    <TypeScriptCompile Include="src\app\utilities\ruler.ts" />
     <TypeScriptCompile Include="src\app\utilities\set-opacity-async.ts" />
+    <TypeScriptCompile Include="src\app\utilities\space.ts" />
     <TypeScriptCompile Include="src\app\utilities\storage.ts" />
     <TypeScriptCompile Include="src\app\utilities\target-value.ts" />
     <TypeScriptCompile Include="src\app\utilities\translate-x.ts" />
+    <TypeScriptCompile Include="src\app\utilities\translate-xy.ts" />
     <TypeScriptCompile Include="src\app\utilities\wait.ts" />
     <TypeScriptCompile Include="src\custom-typings.d.ts" />
     <TypeScriptCompile Include="src\main.ts" />
