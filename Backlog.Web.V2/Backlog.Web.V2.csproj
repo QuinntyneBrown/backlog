@@ -424,6 +424,7 @@
     <TypeScriptCompile Include="src\app\utilities\is-array.ts" />
     <TypeScriptCompile Include="src\app\utilities\is-numeric.ts" />
     <TypeScriptCompile Include="src\app\utilities\log.ts" />
+    <TypeScriptCompile Include="src\app\utilities\logger.ts" />
     <TypeScriptCompile Include="src\app\utilities\pluck-out.ts" />
     <TypeScriptCompile Include="src\app\utilities\pluck.ts" />
     <TypeScriptCompile Include="src\app\utilities\position.ts" />
@@ -435,6 +436,7 @@
     <TypeScriptCompile Include="src\app\utilities\space.ts" />
     <TypeScriptCompile Include="src\app\utilities\storage.ts" />
     <TypeScriptCompile Include="src\app\utilities\target-value.ts" />
+    <TypeScriptCompile Include="src\app\utilities\template.ts" />
     <TypeScriptCompile Include="src\app\utilities\translate-x.ts" />
     <TypeScriptCompile Include="src\app\utilities\translate-xy.ts" />
     <TypeScriptCompile Include="src\app\utilities\wait.ts" />

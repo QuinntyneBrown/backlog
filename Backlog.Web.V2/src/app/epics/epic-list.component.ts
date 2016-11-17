@@ -4,8 +4,8 @@ import { epicActions, EpicDeleteSelect } from "./actions";
 import { ProductService } from "../products";
 import { Router } from "../router";
 
-let template = require("./epic-list.component.html");
-let styles = require("./epic-list.component.scss");
+const template = require("./epic-list.component.html");
+const styles = require("./epic-list.component.scss");
 
 export class EpicListComponent extends HTMLElement {
     constructor(private _epicService: EpicService = EpicService.Instance,
@@ -21,9 +21,9 @@ export class EpicListComponent extends HTMLElement {
         Promise.all([
             this._productService.get(),
             this._epicService.get()
-        ]).then((results: Array<any>) => {
+        ]).then((resultsArray: Array<any>) => {
             
-            var products = JSON.parse(results[0]) as Array<any>;
+            var products = JSON.parse(resultsArray[0]) as Array<any>;
             for (let i = 0; i < products.length; i++) {
                 let option = document.createElement("option");
                 option.textContent = `${products[i].name}` ;
@@ -38,7 +38,7 @@ export class EpicListComponent extends HTMLElement {
             
             this.selectElement.value = this.productId;
             
-            var resultsJSON: Array<Epic> = JSON.parse(results[1]) as Array<Epic>;
+            var resultsJSON: Array<Epic> = JSON.parse(resultsArray[1]) as Array<Epic>;
             for (let i = 0; i < resultsJSON.length; i++) {
                 if (resultsJSON[i].productId == this.productId) {
                     let el = document.createElement("ce-epic-item");
