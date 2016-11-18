@@ -209,6 +209,30 @@
     <Content Include="src\app\app.component.scss">
       <DependentUpon>app.component.ts</DependentUpon>
     </Content>
+    <Content Include="src\app\articles\article-edit.component.html">
+      <DependentUpon>article-edit.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\articles\article-edit.component.scss">
+      <DependentUpon>article-edit.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\articles\article-item.component.html">
+      <DependentUpon>article-item.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\articles\article-item.component.scss">
+      <DependentUpon>article-item.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\articles\article-list.component.html">
+      <DependentUpon>article-list.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\articles\article-list.component.scss">
+      <DependentUpon>article-list.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\articles\article-view.component.html">
+      <DependentUpon>article-view.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\articles\article-view.component.scss">
+      <DependentUpon>article-view.component.ts</DependentUpon>
+    </Content>
     <Content Include="src\app\epics\epic-edit.component.html">
       <DependentUpon>epic-edit.component.ts</DependentUpon>
     </Content>
@@ -415,6 +439,7 @@
     <TypeScriptCompile Include="src\app\utilities\append-to-target-async.ts" />
     <TypeScriptCompile Include="src\app\utilities\constants.ts" />
     <TypeScriptCompile Include="src\app\utilities\create-element.ts" />
+    <TypeScriptCompile Include="src\app\utilities\debounce.ts" />
     <TypeScriptCompile Include="src\app\utilities\extend-css-async.ts" />
     <TypeScriptCompile Include="src\app\utilities\fetch.ts" />
     <TypeScriptCompile Include="src\app\utilities\form-encode.ts" />
@@ -484,6 +509,15 @@
     <TypeScriptCompile Include="src\app\shared\footer.component.ts" />
     <TypeScriptCompile Include="src\app\shared\tabs.component.ts" />
     <TypeScriptCompile Include="src\app\stories\story-digital-asset.component.ts" />
+    <TypeScriptCompile Include="src\app\articles\article.routes.ts" />
+    <TypeScriptCompile Include="src\app\articles\index.ts" />
+    <TypeScriptCompile Include="src\app\articles\actions.ts" />
+    <TypeScriptCompile Include="src\app\articles\article.model.ts" />
+    <TypeScriptCompile Include="src\app\articles\article-list.component.ts" />
+    <TypeScriptCompile Include="src\app\articles\article-item.component.ts" />
+    <TypeScriptCompile Include="src\app\articles\article-view.component.ts" />
+    <TypeScriptCompile Include="src\app\articles\article.service.ts" />
+    <TypeScriptCompile Include="src\app\articles\article-edit.component.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

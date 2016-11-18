@@ -14,9 +14,9 @@ namespace Backlog.Migrations
 
         protected override void Seed(Backlog.Data.DataContext context)
         {
-            RoleConfiguration.Seed(context);
-            UserConfiguration.Seed(context);
-            ProductConfiguration.Seed(context);
+            //RoleConfiguration.Seed(context);
+            //UserConfiguration.Seed(context);
+            //ProductConfiguration.Seed(context);
         }
     }
 }

@@ -1,22 +1,26 @@
-﻿import { Position, Template } from "../utilities";
+﻿import { Position, Template, createElement } from "../utilities";
 
 export class Popover {
 
     constructor(        
-        private position: Position = Position.Instance,
-        private template:Template = Template.Instance
+        private _createElement: any = createElement,
+        private _position: Position = Position.Instance,
+        private _template:Template = Template.Instance
     ) { }
 
-    public newPopover = (options: any) => {
-        return new Promise((resolve) => {
-            var instance = new Popover();
-            instance.triggerElement = options.triggerElement;
-            Promise.all([this.template.get({ templateUrl: options.templateUrl })]).then((resultsArray: any) => {
-                instance.templateHtml = resultsArray[0];
-                resolve(instance);
-            });
-        });
+    private static _instance: Popover;
 
+    public static get Instance() {
+        this._instance = this._instance || new this();
+        return this._instance;
+    }
+
+
+    public newPopover = (options: { triggerElement: HTMLElement, html: string }): Popover => {
+        var instance = new Popover();
+        instance.triggerElement = options.triggerElement;
+        instance.element = this._createElement(options.html);
+        return instance;        
     }
 
     private setInitialCss = () => {
@@ -31,10 +35,10 @@ export class Popover {
     public show = () => {
         return new Promise((resolve) => {
             this.setInitialCss();
-            this.position.below(this.triggerElement[0], this.element[0], 30).then(() => {
-                document.body.appendChild(this.element[0]);
+            this._position.below(this.triggerElement, this.element, 30).then(() => {
+                document.body.appendChild(this.element);
                 setTimeout(() => {
-                    this.element.style["opacity"] = "0";                    
+                    this.element.style["opacity"] = "100";                    
                 }, 0);                
                 resolve();
             });
@@ -45,7 +49,8 @@ export class Popover {
         return new Promise((resolve) => {
             this.element.style["opacity"] = "0";
             this.element.addEventListener('transitionend', () => {
-                this.element[0].parentNode.removeChild(this.element[0]);
+                if (this.element.parentNode)
+                    this.element.parentNode.removeChild(this.element);
                 resolve();
             }, false);
         });        

@@ -345,6 +345,12 @@
     <Compile Include="Models\Brand.cs" />
     <Compile Include="Models\EpicArticle.cs" />
     <Compile Include="Models\SubjectMatterExpert.cs" />
+    <Compile Include="Dtos\ArticleDto.cs" />
+    <Compile Include="Dtos\ArticleAddOrUpdateRequestDto.cs" />
+    <Compile Include="Dtos\ArticleAddOrUpdateResponseDto.cs" />
+    <Compile Include="Services\ArticleService.cs" />
+    <Compile Include="Services\IArticleService.cs" />
+    <Compile Include="Controllers\ArticleController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

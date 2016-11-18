@@ -17,7 +17,7 @@ export class EpicListComponent extends HTMLElement {
 
     connectedCallback() {
         this.innerHTML = `<style>${styles}</style> ${template}`;
-        
+
         Promise.all([
             this._productService.get(),
             this._epicService.get()

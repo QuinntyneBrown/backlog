@@ -14,6 +14,7 @@ namespace Backlog.Data
         }
 
         public DbSet<Epic> Epics { get; set; }
+        public DbSet<Article> Articles { get; set; }
         public DbSet<Story> Stories { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }

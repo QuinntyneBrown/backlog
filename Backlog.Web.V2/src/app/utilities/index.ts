@@ -3,6 +3,7 @@ export * from "./append-to-body-async";
 export * from "./append-to-target-async";
 export * from "./constants";
 export * from "./create-element";
+export * from "./debounce";
 export * from "./extend-css-async";
 export * from "./fetch";
 export * from "./form-encode";

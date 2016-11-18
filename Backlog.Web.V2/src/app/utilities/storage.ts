@@ -2,7 +2,11 @@
 
 export class Storage {
     constructor(private _key: string, private _localStorage = localStorage, private _window = window) {
-        _window.onbeforeunload = () => _localStorage.setItem(_key, JSON.stringify(this._items))
+        _window.addEventListener("pagehide",this.onPageHide.bind(this));
+    }
+
+    private onPageHide() {
+        this._localStorage.setItem(this._key, JSON.stringify(this._items));
     }
 
     private static _instance;

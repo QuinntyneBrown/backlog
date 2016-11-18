@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@types/reflect-metadata": "0.0.5",
+    "@webcomponents/custom-elements": "^1.0.0-alpha.3",
     "aurelia-binding": "^1.0.9",
     "core-js": "^2.4.1",
     "handlebars": "^4.0.5",

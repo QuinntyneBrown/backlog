@@ -1,11 +1,14 @@
 import { Story } from "./story.model";
 import { Router } from "../router";
+import { debounce } from "../utilities";
 
-let template = require("./story.component.html");
-let styles = require("./story.component.scss");
+const template = require("./story.component.html");
+const styles = require("./story.component.scss");
+
 
 export class StoryComponent extends HTMLElement {
-    constructor(private _router: Router = Router.Instance) {
+    constructor(
+        private _router: Router = Router.Instance) {
         super();
     }
 
@@ -27,7 +30,7 @@ export class StoryComponent extends HTMLElement {
     }
 
     private _addEventListeners() {
-        this.addEventListener("click", this.onClick.bind(this));
+        this.addEventListener("click", this.onClick.bind(this));        
     }
 
     disconnectedCallback() {
@@ -37,7 +40,7 @@ export class StoryComponent extends HTMLElement {
     public onClick() {
         this._router.navigate(["epic", this.entity.epicId, "story", "edit", this.entity.id]);
     }
-
+ 
     attributeChangedCallback (name, oldValue, newValue) {
         switch (name) {
             case "entity":
@@ -45,7 +48,7 @@ export class StoryComponent extends HTMLElement {
                 break;
         }
     }
-
+    
     public entity: Story;
     private get bodyElement() { return this.querySelector("div") as HTMLElement; }
     private get headingElement() { return this.querySelector("h4") as HTMLElement; }
