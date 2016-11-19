@@ -12,6 +12,7 @@ export * from "./http";
 export * from "./insert-after";
 export * from "./is-array";
 export * from "./is-numeric";
+export * from "./load";
 export * from "./log";
 export * from "./logger";
 export * from "./pluck-out";

@@ -448,6 +448,7 @@
     <TypeScriptCompile Include="src\app\utilities\insert-after.ts" />
     <TypeScriptCompile Include="src\app\utilities\is-array.ts" />
     <TypeScriptCompile Include="src\app\utilities\is-numeric.ts" />
+    <TypeScriptCompile Include="src\app\utilities\load.ts" />
     <TypeScriptCompile Include="src\app\utilities\log.ts" />
     <TypeScriptCompile Include="src\app\utilities\logger.ts" />
     <TypeScriptCompile Include="src\app\utilities\pluck-out.ts" />
