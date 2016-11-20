@@ -6,8 +6,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>
-    </ProductVersion>
+    <ProductVersion></ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{94EAFF2E-6328-4353-B0EA-1FE5E09583C9}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -22,8 +21,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
+    <NuGetPackageImportStamp></NuGetPackageImportStamp>
     <TypeScriptToolsVersion>2.0</TypeScriptToolsVersion>
     <TypeScriptEmitDecoratorMetadata>true</TypeScriptEmitDecoratorMetadata>
     <TypeScriptModuleKind>commonjs</TypeScriptModuleKind>
@@ -427,6 +425,7 @@
     <TypeScriptCompile Include="src\app\shared\modal.ts" />
     <TypeScriptCompile Include="src\app\shared\popover.ts" />
     <TypeScriptCompile Include="src\app\shared\side-nav.component.ts" />
+    <TypeScriptCompile Include="src\app\store\store.ts" />
     <TypeScriptCompile Include="src\app\users\actions.ts" />
     <TypeScriptCompile Include="src\app\users\authorized-route-listener.ts" />
     <TypeScriptCompile Include="src\app\users\current-user.ts" />
@@ -451,7 +450,6 @@
     <TypeScriptCompile Include="src\app\utilities\insert-after.ts" />
     <TypeScriptCompile Include="src\app\utilities\is-array.ts" />
     <TypeScriptCompile Include="src\app\utilities\is-numeric.ts" />
-    <TypeScriptCompile Include="src\app\utilities\load.ts" />
     <TypeScriptCompile Include="src\app\utilities\log.ts" />
     <TypeScriptCompile Include="src\app\utilities\logger.ts" />
     <TypeScriptCompile Include="src\app\utilities\pluck-out.ts" />
@@ -522,6 +520,7 @@
     <TypeScriptCompile Include="src\app\articles\article-view.component.ts" />
     <TypeScriptCompile Include="src\app\articles\article.service.ts" />
     <TypeScriptCompile Include="src\app\articles\article-edit.component.ts" />
+    <TypeScriptCompile Include="src\app\store\index.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -541,8 +540,7 @@
           <IISUrl>http://localhost:56620/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
+          <CustomServerUrl></CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
