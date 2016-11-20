@@ -6,6 +6,8 @@ let styles = require("./app.component.scss");
 
 export class AppComponent extends HTMLElement {    
     connectedCallback() {
+
+        var p = fetch("");
         this.innerHTML = `<style>${styles}</style>${template}`;
         this.routerOutlet = new AppRouterOutletComponent(this.routerOutletElement);
     }    

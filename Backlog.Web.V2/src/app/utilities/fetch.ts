@@ -1,5 +1,5 @@
 ﻿import { Storage  } from "./storage";
-import { STORAGE_KEY, TOKEN_KEY } from "./constants.ts";
+import { STORAGE_KEY, TOKEN_KEY } from "./constants";
 import { Http } from "./http";
 
 export var fetch = (options: { url: string, method?: string, data?: any, headers?: any, authRequired?: boolean }) => {
