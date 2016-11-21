@@ -1,4 +1,5 @@
 export class Article { 
 	public id:number;
-	public name:string;
+    public title: string;
+    public htmlContent: string;
 }

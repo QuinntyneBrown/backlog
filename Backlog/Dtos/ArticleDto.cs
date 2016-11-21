@@ -6,6 +6,7 @@ namespace Backlog.Dtos
         {
             this.Id = entity.Id;
             this.Title = entity.Title;
+            this.HtmlContent = entity.HtmlContent;
         }
 
         public ArticleDto()
@@ -15,5 +16,6 @@ namespace Backlog.Dtos
 
         public int Id { get; set; }
         public string Title { get; set; }
+        public string HtmlContent { get; set; }
     }
 }

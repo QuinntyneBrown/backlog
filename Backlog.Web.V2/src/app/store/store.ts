@@ -20,6 +20,7 @@ export class Store {
         for (var i = 0; i < this.reducers.length; i++) {
             this._state = this.reducers[i](this._state, action);
         }
+        this.middlewares.forEach(m => m(action));
         this._storage.put({ name: STORE_KEY, value: this._state });
         this.next(this._state);
     }
@@ -31,12 +32,12 @@ export class Store {
         return function () { this.unsubscribe(observer) }.bind(this);
     }
 
-    public unsubscribe(observer) {S
+    public unsubscribe(observer) {        
         this._observers.splice(this._observers.indexOf(observer), 1);
     }
 
     private _observers = [];
-
+    public middlewares = [];
     private _state = Store._initialState;
     public reducers = [];
     private static readonly _initialState = Storage.Instance.get({ name: STORE_KEY }) || {};

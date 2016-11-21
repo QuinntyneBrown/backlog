@@ -15,7 +15,7 @@ export class FeedbackEditComponent extends HTMLElement {
     
     connectedCallback() {        
         this.innerHTML = `<style>${styles}</style> ${template}`;         
-        this.titleElement.textContent = "Create Feedback";
+        this.titleElement.textContent = "Add Your 2 Cents";
         this.saveButtonElement.addEventListener("click", this.onSave.bind(this));
         this.descriptionEditor = new EditorComponent(this.descriptionElement);        
     }

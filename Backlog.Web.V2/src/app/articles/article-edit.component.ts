@@ -18,29 +18,34 @@ export class ArticleEditComponent extends HTMLElement {
     
     connectedCallback() {        
         this.innerHTML = `<style>${styles}</style> ${template}`; 
-        this.saveButtonElement = this.querySelector(".save-button") as HTMLButtonElement;
-        this.deleteButtonElement = this.querySelector(".delete-button") as HTMLButtonElement;
-        this.titleElement = this.querySelector("h2") as HTMLElement;
-        this.nameInputElement = this.querySelector(".article-name") as HTMLInputElement;
+        this._bind();
+        this._addEventListeners();
+    }
+
+    private _bind() {
         this.titleElement.textContent = "Create Spec";
-        this.saveButtonElement.addEventListener("click", this.onSave.bind(this));
-        this.deleteButtonElement.addEventListener("click", this.onDelete.bind(this));
-        
+        this.htmlContentEditor = new EditorComponent(this.htmlContentElement);
         if (this.articleId) {
-            this._articleService.getById(this.articleId).then((results: string) => { 
-                var resultsJSON: Article = JSON.parse(results) as Article;                
-                this.nameInputElement.value = resultsJSON.name;              
+            this._articleService.getById(this.articleId).then((results: string) => {
+                var resultsJSON: Article = JSON.parse(results) as Article;
+                this.articleTitleInputElement.value = resultsJSON.title;
             });
             this.titleElement.textContent = "Edit Spec";
         } else {
             this.deleteButtonElement.style.display = "none";
         } 
     }
-    
+
+    private _addEventListeners() {
+        this.saveButtonElement.addEventListener("click", this.onSave.bind(this));
+        this.deleteButtonElement.addEventListener("click", this.onDelete.bind(this));
+    }
+
     public onSave() {
         var article = {
             id: this.articleId,
-            name: this.nameInputElement.value
+            title: this.articleTitleInputElement.value,
+            htmlContent: this.htmlContentEditor.text
         } as Article;
         
         this._articleService.add(article).then((results) => {
@@ -56,7 +61,6 @@ export class ArticleEditComponent extends HTMLElement {
 
     attributeChangedCallback(name, oldValue, newValue) {
         switch (name) {
-
             case "article-id":
                 this.articleId = newValue;
 				break;
@@ -64,10 +68,12 @@ export class ArticleEditComponent extends HTMLElement {
     }
 
     public articleId: number;
-    public titleElement: HTMLElement;
-    public saveButtonElement: HTMLButtonElement;
-    public deleteButtonElement: HTMLButtonElement;
-    public nameInputElement: HTMLInputElement;
+    public htmlContentEditor: EditorComponent;
+    public get titleElement(): HTMLElement { return this.querySelector("h2") as HTMLInputElement; }
+    public get htmlContentElement(): HTMLElement { return this.querySelector(".article-html-content") as HTMLElement; }
+    public get saveButtonElement(): HTMLButtonElement { return this.querySelector(".save-button") as HTMLButtonElement; };
+    public get deleteButtonElement(): HTMLButtonElement { return this.querySelector(".delete-button") as HTMLButtonElement; };
+    public get articleTitleInputElement(): HTMLInputElement { return this.querySelector(".article-title") as HTMLInputElement; }
 }
 
 document.addEventListener("DOMContentLoaded",() => window.customElements.define(`ce-article-edit`,ArticleEditComponent));
