@@ -3,12 +3,20 @@ ce-article-item {
 
     a {
         cursor:pointer;
+        color:#777;
+        display:inline-block;
+        text-transform:uppercase;
     }
 
     p {
         min-width:300px;
         display:inline-block;
+        font-size:1.5em;
+        color:#000;
     }
+
+    color:#777;
+    font-size:.65em;
 }
 
 

@@ -2,12 +2,14 @@ import { Article } from "./article.model";
 import { ArticleService } from "./article.service";
 import { EditorComponent } from "../shared";
 import { ArticleAddSuccess, ArticleDeleteSuccess } from "./actions";
+import { Router } from "../router";
 
 const template = require("./article-edit.component.html");
 const styles = require("./article-edit.component.scss");
 
 export class ArticleEditComponent extends HTMLElement {
-    constructor(private _articleService: ArticleService = ArticleService.Instance) {
+    constructor(private _articleService: ArticleService = ArticleService.Instance,
+    private _router: Router = Router.Instance) {
         super();
 
     }
@@ -29,6 +31,7 @@ export class ArticleEditComponent extends HTMLElement {
             this._articleService.getById(this.articleId).then((results: string) => {
                 var resultsJSON: Article = JSON.parse(results) as Article;
                 this.articleTitleInputElement.value = resultsJSON.title;
+                this.htmlContentEditor.setHTML(resultsJSON.htmlContent); 
             });
             this.titleElement.textContent = "Edit Spec";
         } else {
@@ -49,7 +52,7 @@ export class ArticleEditComponent extends HTMLElement {
         } as Article;
         
         this._articleService.add(article).then((results) => {
-            this.dispatchEvent(new ArticleAddSuccess(article));
+            this._router.navigate(["article", "list"]);
         });
     }
 

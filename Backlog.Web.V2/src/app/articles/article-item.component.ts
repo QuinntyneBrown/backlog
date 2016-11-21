@@ -31,7 +31,7 @@ export class ArticleItemComponent extends HTMLElement {
     }
 
     private _bind() {
-        this._nameElement.textContent = this.entity.name;
+        this._nameElement.textContent = this.entity.title;
     }
 
     private _addEventListeners() {
