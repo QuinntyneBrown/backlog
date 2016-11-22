@@ -1,6 +1,7 @@
 export * from "./add-or-update";
 export * from "./append-to-body-async";
 export * from "./append-to-target-async";
+export * from "./camel-case-to-snake-case";
 export * from "./constants";
 export * from "./create-element";
 export * from "./debounce";

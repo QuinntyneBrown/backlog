@@ -1,6 +1,6 @@
 ﻿import { RouteListener } from "./route-listener";
 import { Router } from "./router";
-import { isArray } from "../utilities";
+import { isArray, camelCaseToSnakeCase, Log } from "../utilities";
 
 export abstract class RouterOutlet {
     constructor(private _nativeHTMLElement: HTMLElement, public _router: Router = Router.Instance) {
@@ -17,10 +17,20 @@ export abstract class RouterOutlet {
 
     private _listeners: Array<RouteListener> = [];
 
-    public _onRouteChanged(options: any) {              
+    @Log()
+    public _onRouteChanged(options: any) { 
+        
         let nextView: HTMLElement = null;
-
-        const listenerOptions = { currentView: this._currentView, nextRouteName: options.routeName, previousRouteName: this._routeName, routeParams: options.routeParams, cancelled: false };
+        
+        const listenerOptions = {
+            currentView: this._currentView,
+            nextRouteName: options.routeName,
+            previousRouteName: this._routeName,
+            routeParams: options.routeParams,
+            cancelled: false,
+            authRequired: options.authRequired
+        };
+        
         this._listeners.forEach(listener => listener.beforeViewTransition(listenerOptions));
 
         if (listenerOptions.cancelled)
@@ -35,10 +45,16 @@ export abstract class RouterOutlet {
             }
         }
 
+        if (!nextView) {
+            nextView = document.createElement(`ce-${options.routeName}`);
 
-        //TODO:     Implement convention that view name product-view 
-        //          loads ce-product-view custom element and converts all camel case
-        //          route param (productId -> product-id) to snake case element attribute
+            if (nextView) {
+                for (var prop in options.routeParams) {
+                    nextView.setAttribute(camelCaseToSnakeCase(prop), options.routeParams[prop]);
+                }
+                this._currentView = nextView;
+            }
+        }
 
         if (this._nativeHTMLElement.children.length > 0)
             this._nativeHTMLElement.removeChild(this._nativeHTMLElement.firstChild);

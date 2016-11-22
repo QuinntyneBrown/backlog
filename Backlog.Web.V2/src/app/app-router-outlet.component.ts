@@ -1,11 +1,5 @@
-import { Router, RouterOutlet } from "./router";
-import { LandingRouteListener } from "./landing";
-import { LoginRouteListener } from "./users";
-import { ArticleCreateRouteListener, ArticleEditRouteListener, ArticleListRouteListener, ArticleViewRouteListener } from "./articles";
-import { EpicListRouteListener, EpicViewRouteListener, EpicEditRouteListener, EpicCreateRouteListener } from "./epics";
-import { FeedbackCreateRouteListener, FeedbackReceivedRouteListener } from "./feedback";
-import { StoryEditRouteListener, StoryCreateRouteListener } from "./stories";
-import { ProductListRouteListener, ProductCreateRouteListener, ProductEditRouteListener } from "./products";
+import { Router, RouterOutlet, Route } from "./router";
+import { AuthorizedRouteListener } from "./users";
 
 export class AppRouterOutletComponent extends RouterOutlet {
     constructor(nativeHTMLElement: HTMLElement) {
@@ -15,49 +9,33 @@ export class AppRouterOutletComponent extends RouterOutlet {
     connectedCallback() { 
 
         this._router.setRoutes([
-            { path: "/", name: "epic-list" },
+            { path: "/", name: "epic-list", authRequired: true },
             { path: "/login", name: "login" },
 
-            { path: "/article/list", name: "article-list" },
-            { path: "/article/edit/:id", name: "article-edit" },
-            { path: "/article/create", name: "article-create" },
-            { path: "/article/:slug", name: "article-view" },
+            { path: "/article/list", name: "article-list", authRequired: true },
+            { path: "/article/edit/:articleId", name: "article-edit", authRequired: true },
+            { path: "/article/create", name: "article-create", authRequired: true },
+            { path: "/article/:slug", name: "article-view", authRequired: true },
 
-            { path: "/epic/list", name: "epic-list" },
-            { path: "/product/:productId/epic/list", name: "epic-list" },
+            { path: "/epic/list", name: "epic-list", authRequired: true },
+            { path: "/product/:productId/epic/list", name: "epic-list", authRequired: true },
 
-            { path: "/epic/view/:id", name: "epic-view" },
-            { path: "/epic/edit/:id", name: "epic-edit" },
-            { path: "/epic/create", name: "epic-create" },
+            { path: "/epic/view/:epicId", name: "epic-view", authRequired: true },
+            { path: "/epic/edit/:epicId", name: "epic-edit", authRequired: true },
+            { path: "/epic/create", name: "epic-create", authRequired: true },
 
-            { path: "/epic/:epicId/story/edit/:id", name: "story-edit" },
-            { path: "/epic/:epicId/story/create", name: "story-create" },
+            { path: "/epic/:epicId/story/edit/:storyId", name: "story-edit", authRequired: true },
+            { path: "/epic/:epicId/story/create", name: "story-create", authRequired: true },
 
-            { path: "/product/list", name: "product-list" },
-            { path: "/product/create", name: "product-create" },
-            { path: "/product/edit/:id", name: "product-edit" },
+            { path: "/product/list", name: "product-list", authRequired: true },
+            { path: "/product/create", name: "product-create", authRequired: true },
+            { path: "/product/edit/:productId", name: "product-edit", authRequired: true },
 
-            { path: "/feedback/create", name: "feedback-create" },
-            { path: "/feedback/received", name: "feedback-received" }            
+            { path: "/feedback/create", name: "feedback-create", authRequired: true },
+            { path: "/feedback/received", name: "feedback-received", authRequired: true }            
         ] as any);
 
-
-        this.use(new ArticleListRouteListener());
-        this.use(new ArticleCreateRouteListener());
-        this.use(new ArticleEditRouteListener());
-        this.use(new ArticleViewRouteListener());
-        this.use(new LoginRouteListener());
-        this.use(new EpicListRouteListener());
-        this.use(new EpicViewRouteListener());
-        this.use(new EpicCreateRouteListener());
-        this.use(new EpicEditRouteListener());
-        this.use(new StoryCreateRouteListener());
-        this.use(new StoryEditRouteListener());
-        this.use(new FeedbackCreateRouteListener());
-        this.use(new FeedbackReceivedRouteListener());
-        this.use(new ProductListRouteListener());
-        this.use(new ProductCreateRouteListener());
-        this.use(new ProductEditRouteListener());
+        this.use(new AuthorizedRouteListener(null));
 
         super.connectedCallback();
     }

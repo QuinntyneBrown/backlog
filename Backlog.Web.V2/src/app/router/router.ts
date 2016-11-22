@@ -1,4 +1,4 @@
-import { Storage, isNumeric } from "../utilities";
+import { Storage, isNumeric, Log } from "../utilities";
 import { Route } from "./route";
 import { RouterNavigate, RouteChanged } from "./actions";
 import { RouterEventHub, routerEventHubEvents } from "./router-event-hub";
@@ -24,9 +24,9 @@ export class Router {
         this.onChanged({ route: this.initialRoute });
     }
 
+    @Log()
     public onChanged(state: { route?: string, routeSegments?: Array<any> }) { 
-        var routeParams = {};
-        
+        var routeParams = {};        
         var match = false;
         if (state.routeSegments)
             state.route = "/" + state.routeSegments.join("/");
@@ -35,6 +35,7 @@ export class Router {
             if (state.route == this._routes[i].path) {
                 this._routeName = this._routes[i].name;
                 this.routePath = this._routes[i].path;
+                this.authRequired = this._routes[i].authRequired;
                 match = true;
             }
         }                
@@ -64,6 +65,7 @@ export class Router {
                         this.routeParams = routeParams;
                         this._routeName = this._routes[i].name;
                         this.routePath = this._routes[i].path;
+                        this.authRequired = this._routes[i].authRequired;
                     }
 
                 }
@@ -73,10 +75,12 @@ export class Router {
         history.pushState({}, this._routeName, state.route);
         this._routerEventHub.dispatch(routerEventHubEvents.ROUTE_CHANGED, new RouteChanged({ routeName: this._routeName, routeParams: this.routeParams }));
         
-        this._callbacks.forEach(callback => callback({ routeName: this._routeName, routeParams: this.routeParams }));
+        this._callbacks.forEach(callback => callback({ routeName: this._routeName, routeParams: this.routeParams, authRequired: this.authRequired }));
 
         
     }
+
+    authRequired: boolean = false;
 
     public navigate(routeSegments:Array<any>) {
         this.onChanged({ routeSegments: routeSegments });
@@ -97,7 +101,7 @@ export class Router {
     public addEventListener(callback: any) {        
         this._callbacks.push(callback);
         if (this._routeName) {
-            callback({ routeName: this._routeName, routeParams: this.routeParams });
+            callback({ routeName: this._routeName, routeParams: this.routeParams, authRequired: this.authRequired });
         }
     }
 

@@ -10,6 +10,7 @@ interface RouteChangeOptions {
     previousRouteName: string;
     routeParams: any;
     cancelled: any;
+    authRequired?: boolean;
 }
 
 declare var Quill;

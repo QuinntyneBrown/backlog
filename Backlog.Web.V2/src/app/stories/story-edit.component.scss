@@ -11,7 +11,8 @@ ce-story-edit {
         margin-bottom:20px;
         font-size:1.25em;
         line-height:1.5em;
-        width:250px;
+        width:100%;
+        max-width:calc(100% - 9px);
     }
 
     input.priority,
