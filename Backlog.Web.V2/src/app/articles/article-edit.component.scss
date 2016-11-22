@@ -6,7 +6,11 @@ ce-article-edit {
         margin-bottom:20px;
         font-size:1.25em;
         line-height:1.5em;
-        width:250px;
+        width:250px;        
+    }
+
+    input[type="text"] {
+        padding-left:7px;
     }
 
     button {
@@ -18,6 +22,11 @@ ce-article-edit {
     .article-html-content {
         height:345px;
         margin-bottom:20px;        
+    }
+
+    .article-title {
+        width:100%;
+        max-width: calc(100% - 10px);
     }
 }
 

@@ -48,26 +48,10 @@ export class ArticleListRouteListener extends AuthorizedRouteListener {
         super("article-list");
     }
 
-    public beforeViewTransition(options: RouteChangeOptions) {
-        if (options.previousRouteName == "article-list") {
-            (options.currentView as HTMLElement).removeEventListener(articleActions.SELECT, this.onEditSelect.bind(this));
-        }
-    }
-
     public onViewTransition(options: RouteChangeOptions): HTMLElement {
         if (options.nextRouteName == "article-list") {
             return createElement("<ce-article-list></ce-article-list>");
         }
         return null;
-    }
-
-    public afterViewTransition(options: RouteChangeOptions) {
-        if (options.nextRouteName == "article-list") {
-            (options.currentView as HTMLElement).addEventListener(articleActions.SELECT, this.onEditSelect.bind(this));
-        }
-    }
-
-    public onEditSelect(e: ArticleEditSelect) {
-        this._routerEventHub.dispatch(routerEventHubEvents.NAVIGATE, new RouterNavigate(["article", "edit", e.detail.articleId]));
     }
 }
