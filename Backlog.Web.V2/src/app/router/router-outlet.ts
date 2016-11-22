@@ -36,6 +36,10 @@ export abstract class RouterOutlet {
         }
 
 
+        //TODO:     Implement convention that view name product-view 
+        //          loads ce-product-view custom element and converts all camel case
+        //          route param (productId -> product-id) to snake case element attribute
+
         if (this._nativeHTMLElement.children.length > 0)
             this._nativeHTMLElement.removeChild(this._nativeHTMLElement.firstChild);
 

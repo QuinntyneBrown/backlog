@@ -198,6 +198,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="dist\app.js" />
+    <Content Include="lib\moment.min.js" />
     <Content Include="lib\quill.core.css" />
     <Content Include="lib\quill.min.js" />
     <Content Include="lib\quill.snow.css" />
