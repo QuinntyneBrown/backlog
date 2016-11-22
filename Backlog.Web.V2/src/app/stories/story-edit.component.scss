@@ -16,12 +16,17 @@ ce-story-edit {
 
     input.priority,
     input.points,
-    input.architecture-points {
+    input.architecture-points,
+    input.completed-date {
         display:block;
         margin-bottom:20px;
         font-size:1.25em;
         line-height:1.5em;
         width:75px;
+    }
+
+    input.completed-date {
+        width:250px;
     }
 
     button.save-button, 

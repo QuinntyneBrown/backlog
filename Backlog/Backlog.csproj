@@ -204,6 +204,7 @@
     <Compile Include="Dtos\RegistrationRequestDto.cs" />
     <Compile Include="Dtos\RegistrationResponseDto.cs" />
     <Compile Include="Dtos\TokenDto.cs" />
+    <Compile Include="Extenstions\StringExtensions.cs" />
     <Compile Include="Filters\HandleError.cs" />
     <Compile Include="Infrastructure\Constants.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -351,6 +352,7 @@
     <Compile Include="Services\ArticleService.cs" />
     <Compile Include="Services\IArticleService.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
+    <Compile Include="Models\StoryArticle.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

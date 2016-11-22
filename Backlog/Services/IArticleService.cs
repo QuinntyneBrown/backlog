@@ -8,6 +8,7 @@ namespace Backlog.Services
         ArticleAddOrUpdateResponseDto AddOrUpdate(ArticleAddOrUpdateRequestDto request);
         ICollection<ArticleDto> Get();
         ArticleDto GetById(int id);
+        ArticleDto GetBySlug(string slug);
         dynamic Remove(int id);
     }
 }

@@ -1,4 +1,5 @@
 using Backlog.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -17,6 +18,7 @@ namespace Backlog.Dtos
             AcceptanceCriteria = entity.AcceptanceCriteria;
             Notes = entity.Notes;
             Points = entity.Points;
+            CompletedDate = entity.CompletedDate;
             ArchitecturePoints = entity.ArchitecturePoints;            
             DigitalAssets = entity.StoryDigitalAssets.Where(x=>!x.DigitalAsset.IsDeleted).Select(x => new DigitalAssetDto(x.DigitalAsset)).ToList();
         }
@@ -33,6 +35,7 @@ namespace Backlog.Dtos
         public int? ArchitecturePoints { get; set; }
         public string Notes { get; set; }
         public int? Priority { get; set; }
+        public DateTime? CompletedDate { get; set; }
         public EpicDto Epic { get; set; }
         public ICollection<DigitalAssetDto> DigitalAssets = new HashSet<DigitalAssetDto>();
     }

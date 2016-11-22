@@ -30,6 +30,19 @@ export class ArticleCreateRouteListener extends AuthorizedRouteListener {
     }
 }
 
+export class ArticleViewRouteListener extends AuthorizedRouteListener {
+    constructor() {
+        super("article-view");
+    }
+
+    public onViewTransition(options: RouteChangeOptions): HTMLElement {
+        if (options.nextRouteName == "article-view") {            
+            return createElement(`<ce-article-view slug='${options.routeParams.slug}'></ce-article-view>`);
+        }
+        return null;
+    }
+}
+
 export class ArticleListRouteListener extends AuthorizedRouteListener {
     constructor(private _routerEventHub: RouterEventHub = RouterEventHub.Instance) {
         super("article-list");

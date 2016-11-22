@@ -26,7 +26,6 @@ namespace Backlog.Controllers
         public IHttpActionResult Update(ArticleAddOrUpdateRequestDto dto) { return Ok(_articleService.AddOrUpdate(dto)); }
 
         [Route("get")]
-        [AllowAnonymous]
         [HttpGet]
         [ResponseType(typeof(ICollection<ArticleDto>))]
         public IHttpActionResult Get() { return Ok(_articleService.Get()); }
@@ -35,6 +34,11 @@ namespace Backlog.Controllers
         [HttpGet]
         [ResponseType(typeof(ArticleDto))]
         public IHttpActionResult GetById(int id) { return Ok(_articleService.GetById(id)); }
+
+        [Route("getBySlug")]
+        [HttpGet]
+        [ResponseType(typeof(ArticleDto))]
+        public IHttpActionResult GetBySlug(string slug) { return Ok(_articleService.GetBySlug(slug)); }
 
         [Route("remove")]
         [HttpDelete]

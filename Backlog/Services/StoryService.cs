@@ -22,7 +22,9 @@ namespace Backlog.Services
             var entity = _repository.GetAll()
                 .Include(x=>x.Epic)
                 .Include(x=>x.StoryDigitalAssets)
+                .Include(x=>x.StoryArticles)
                 .Include("StoryDigitalAssets.DigitalAsset")
+                .Include("StoryArticles.Article")
                 .FirstOrDefault(x => x.Id == request.Id && x.IsDeleted == false);
             if (entity == null) _repository.Add(entity = new Story());
 
@@ -42,7 +44,7 @@ namespace Backlog.Services
             entity.IsReusable = request.IsReusable;
             entity.Points = request.Points;
             entity.ArchitecturePoints = request.ArchitecturePoints;
-
+            entity.CompletedDate = request.CompletedDate;
             _uow.SaveChanges();
             return new StoryAddOrUpdateResponseDto(entity);
         }

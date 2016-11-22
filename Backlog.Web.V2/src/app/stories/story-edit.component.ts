@@ -30,6 +30,7 @@ export class StoryEditComponent extends HTMLElement {
         this.deleteButtonElement.addEventListener("click", this.onDelete.bind(this));
         this.descriptionEditor = new EditorComponent(this.descriptionElement);
         this.notesEditor = new EditorComponent(this.notesElement);
+        this.completedDatePicker = rome(this.completedDateElement);
         this.descriptionEditor.setHTML("<p><strong>As a </strong>product owner</p> <p><strong>I want/can</strong> &lt;action&gt;</p> <p><strong>so that</strong> &lt;reason&gt;</p>");
 
         if (this.storyId) {
@@ -41,6 +42,7 @@ export class StoryEditComponent extends HTMLElement {
                 this.notesEditor.setHTML(resultsJSON.notes);
                 this.pointsInputElement.value = resultsJSON.points;
                 this.architecturePointsInputElement.value = resultsJSON.architecturePoints;
+                this.completedDateElement.value = resultsJSON.completedDate;
 
                 resultsJSON.digitalAssets.map(d => {
                     let el = document.createElement("ce-story-digital-asset") as HTMLElement;
@@ -89,6 +91,7 @@ export class StoryEditComponent extends HTMLElement {
             description: this.descriptionEditor.text,
             notes: this.notesEditor.text,
             points: this.pointsInputElement.value,
+            completedDate: this.completedDateElement.value,
             architecturePoints: this.architecturePointsInputElement.value
         } as Story;
 
@@ -128,10 +131,12 @@ export class StoryEditComponent extends HTMLElement {
     public get pointsInputElement(): HTMLInputElement { return this.querySelector(".points") as HTMLInputElement; }
     public get architecturePointsInputElement(): HTMLInputElement { return this.querySelector(".architecture-points") as HTMLInputElement; }
     public get digitalAssetsContainer(): HTMLElement { return this.querySelector(".story-digital-assets") as HTMLElement; }
+    public get completedDateElement(): HTMLInputElement { return this.querySelector(".completed-date") as HTMLInputElement; }
     public titleElement: HTMLElement;
     public saveButtonElement: HTMLButtonElement;
     public deleteButtonElement: HTMLButtonElement;
     public nameInputElement: HTMLInputElement;
+    public completedDatePicker: any;
 }
 
 document.addEventListener("DOMContentLoaded",() => window.customElements.define(`ce-story-edit`,StoryEditComponent));

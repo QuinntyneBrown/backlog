@@ -11,11 +11,15 @@ export class ArticleService {
     }
 
     public get() {
-        return fetch({ url: "/api/article/get" });
+        return fetch({ url: "/api/article/get", authRequired: true });
     }
 
     public getById(id) {
         return fetch({ url: `/api/article/getbyid?id=${id}`, authRequired: true });
+    }
+
+    public getBySlug(slug) {
+        return fetch({ url: `/api/article/getbyslug?slug=${slug}`, authRequired: true });
     }
 
     public add(entity) {

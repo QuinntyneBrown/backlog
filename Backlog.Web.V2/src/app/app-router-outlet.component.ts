@@ -1,7 +1,7 @@
 import { Router, RouterOutlet } from "./router";
 import { LandingRouteListener } from "./landing";
 import { LoginRouteListener } from "./users";
-import { ArticleCreateRouteListener, ArticleEditRouteListener, ArticleListRouteListener } from "./articles";
+import { ArticleCreateRouteListener, ArticleEditRouteListener, ArticleListRouteListener, ArticleViewRouteListener } from "./articles";
 import { EpicListRouteListener, EpicViewRouteListener, EpicEditRouteListener, EpicCreateRouteListener } from "./epics";
 import { FeedbackCreateRouteListener, FeedbackReceivedRouteListener } from "./feedback";
 import { StoryEditRouteListener, StoryCreateRouteListener } from "./stories";
@@ -21,6 +21,7 @@ export class AppRouterOutletComponent extends RouterOutlet {
             { path: "/article/list", name: "article-list" },
             { path: "/article/edit/:id", name: "article-edit" },
             { path: "/article/create", name: "article-create" },
+            { path: "/article/:slug", name: "article-view" },
 
             { path: "/epic/list", name: "epic-list" },
             { path: "/product/:productId/epic/list", name: "epic-list" },
@@ -44,6 +45,7 @@ export class AppRouterOutletComponent extends RouterOutlet {
         this.use(new ArticleListRouteListener());
         this.use(new ArticleCreateRouteListener());
         this.use(new ArticleEditRouteListener());
+        this.use(new ArticleViewRouteListener());
         this.use(new LoginRouteListener());
         this.use(new EpicListRouteListener());
         this.use(new EpicViewRouteListener());

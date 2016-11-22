@@ -25,7 +25,7 @@
     "core-js": "^2.4.1",
     "handlebars": "^4.0.5",
     "html-loader": "^0.4.4",
-    "moment": "^2.15.2",
+    "moment": "^2.16.0",
     "node-sass": "^3.10.1",
     "pikaday": "^1.5.1",
     "ractive": "^0.8.3",

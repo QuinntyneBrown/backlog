@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -18,9 +19,11 @@ namespace Backlog.Models
         public bool IsReusable { get; set; }
         public bool IsDeleted { get; set; }
         public int? Priority { get; set; } = 0;
+        public DateTime? CompletedDate { get; set; }
         public ReusableStoryGroup ReusableStoryGroup { get; set; }
         public ICollection<StoryTheme> StoryThemes { get; set; } = new HashSet<StoryTheme>();
         public ICollection<StoryDigitalAsset> StoryDigitalAssets { get; set; } = new HashSet<StoryDigitalAsset>();
+        public ICollection<StoryArticle> StoryArticles { get; set; } = new HashSet<StoryArticle>();
         public Epic Epic { get; set; }
     }
 }

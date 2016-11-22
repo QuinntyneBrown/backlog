@@ -42,6 +42,7 @@ export class Router {
         if (!match) {            
             const _currentSegments = state.route.substring(1).split("/");
             for (var i = 0; i < this._routes.length; i++) {
+                
                 var segments = this._routes[i].path.substring(1).split("/");
 
                 if (_currentSegments.length === segments.length) {
@@ -49,7 +50,7 @@ export class Router {
                     for (var x = 0; x < segments.length; x++) {
                         if (_currentSegments[x] == segments[x]) {
                             match = true;
-                        } else if (segments[x].charAt(0) == ":" && isNumeric(_currentSegments[x])) {
+                        } else if (segments[x].charAt(0) == ":") {
                             match = true;
                             routeParams[segments[x].substring(1)] = _currentSegments[x];
                         } else {

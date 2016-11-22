@@ -381,6 +381,7 @@
     <Content Include="src\app\users\users.component.scss">
       <DependentUpon>users.component.ts</DependentUpon>
     </Content>
+    <Content Include="src\styles\rome.min.css" />
     <Content Include="webpack.config.js" />
     <Content Include="tsconfig.json" />
     <Content Include="typedoc.json" />

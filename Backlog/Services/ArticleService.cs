@@ -1,10 +1,9 @@
-using System;
 using System.Collections.Generic;
 using Backlog.Data;
 using Backlog.Dtos;
-using System.Data.Entity;
 using System.Linq;
 using Backlog.Models;
+using Backlog.Extenstions;
 
 namespace Backlog.Services
 {
@@ -24,6 +23,7 @@ namespace Backlog.Services
             if (entity == null) _repository.Add(entity = new Article());
             entity.Title = request.Title;
             entity.HtmlContent = request.HtmlContent;
+            entity.Slug = request.Title.GenerateSlug();
             _uow.SaveChanges();
             return new ArticleAddOrUpdateResponseDto(entity);
         }
@@ -43,11 +43,15 @@ namespace Backlog.Services
             foreach(var entity in entities) { response.Add(new ArticleDto(entity)); }    
             return response;
         }
-
-
+        
         public ArticleDto GetById(int id)
         {
             return new ArticleDto(_repository.GetAll().Where(x => x.Id == id && x.IsDeleted == false).FirstOrDefault());
+        }
+
+        public ArticleDto GetBySlug(string slug)
+        {
+            return new ArticleDto(_repository.GetAll().Where(x => x.Slug == slug && x.IsDeleted == false).FirstOrDefault());
         }
 
         protected readonly IUow _uow;

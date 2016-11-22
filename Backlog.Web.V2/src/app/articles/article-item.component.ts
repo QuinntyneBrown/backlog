@@ -51,7 +51,7 @@ export class ArticleItemComponent extends HTMLElement {
     }
 
     private _onViewClick() {
-        this._router.navigate(["article","view",this.entity.id]);
+        this._router.navigate(["article",this.entity.slug]);
     }
     
     attributeChangedCallback(name, oldValue, newValue) {

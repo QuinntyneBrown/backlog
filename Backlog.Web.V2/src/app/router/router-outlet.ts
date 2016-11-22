@@ -26,12 +26,15 @@ export abstract class RouterOutlet {
         if (listenerOptions.cancelled)
             return;
 
-        this._listeners.forEach(listener => {
-            nextView = listener.onViewTransition(listenerOptions);
-            if (nextView)
-                this._currentView = nextView;
 
-        });
+        for (let i = 0; i < this._listeners.length; i++) {
+            nextView = this._listeners[i].onViewTransition(listenerOptions);
+            if (nextView) {
+                this._currentView = nextView;
+                i = this._listeners.length + 1;
+            }
+        }
+
 
         if (this._nativeHTMLElement.children.length > 0)
             this._nativeHTMLElement.removeChild(this._nativeHTMLElement.firstChild);

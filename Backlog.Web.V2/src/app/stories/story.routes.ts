@@ -24,7 +24,7 @@ export class StoryCreateRouteListener extends AuthorizedRouteListener {
 
     public onViewTransition(options: RouteChangeOptions): HTMLElement {
         if (options.nextRouteName == "story-create") {
-            return createElement(`<ce-story-edit  epic-id='${options.routeParams.epicId}'></ce-story-edit>`);
+            return createElement(`<ce-story-edit epic-id='${options.routeParams.epicId}'></ce-story-edit>`);
         }
         return null;
     }
