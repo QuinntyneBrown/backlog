@@ -270,12 +270,6 @@
     <Content Include="src\app\feedback\feedback-received.component.scss">
       <DependentUpon>feedback-received.component.ts</DependentUpon>
     </Content>
-    <Content Include="src\app\landing\landing.component.html">
-      <DependentUpon>landing.component.ts</DependentUpon>
-    </Content>
-    <Content Include="src\app\landing\landing.component.scss">
-      <DependentUpon>landing.component.ts</DependentUpon>
-    </Content>
     <Content Include="src\app\products\product-edit.component.html">
       <DependentUpon>product-edit.component.ts</DependentUpon>
     </Content>
@@ -408,9 +402,6 @@
     <TypeScriptCompile Include="src\app\app.component.ts" />
     <TypeScriptCompile Include="src\app\environment.ts" />
     <TypeScriptCompile Include="src\app\index.ts" />
-    <TypeScriptCompile Include="src\app\landing\index.ts" />
-    <TypeScriptCompile Include="src\app\landing\landing.component.ts" />
-    <TypeScriptCompile Include="src\app\landing\landing.routes.ts" />
     <TypeScriptCompile Include="src\app\router\actions.ts" />
     <TypeScriptCompile Include="src\app\router\index.ts" />
     <TypeScriptCompile Include="src\app\router\link-image.component.ts" />
@@ -436,7 +427,6 @@
     <TypeScriptCompile Include="src\app\users\login-redirect.ts" />
     <TypeScriptCompile Include="src\app\users\login.component.ts" />
     <TypeScriptCompile Include="src\app\users\user.model.ts" />
-    <TypeScriptCompile Include="src\app\users\user.routes.ts" />
     <TypeScriptCompile Include="src\app\users\user.service.ts" />
     <TypeScriptCompile Include="src\app\users\users.component.ts" />
     <TypeScriptCompile Include="src\app\utilities\add-or-update.ts" />
@@ -480,13 +470,11 @@
     <TypeScriptCompile Include="src\app\epics\epic-list.component.ts" />
     <TypeScriptCompile Include="src\app\epics\epic-edit.component.ts" />
     <TypeScriptCompile Include="src\app\epics\epic-item.component.ts" />
-    <TypeScriptCompile Include="src\app\epics\epic.routes.ts" />
     <TypeScriptCompile Include="src\app\epics\actions.ts" />
     <TypeScriptCompile Include="src\app\epics\epic-view.component.ts" />
     <TypeScriptCompile Include="src\app\stories\index.ts" />
     <TypeScriptCompile Include="src\app\stories\story.model.ts" />
     <TypeScriptCompile Include="src\app\stories\story-edit.component.ts" />
-    <TypeScriptCompile Include="src\app\stories\story.routes.ts" />
     <TypeScriptCompile Include="src\app\stories\actions.ts" />
     <TypeScriptCompile Include="src\app\stories\story.service.ts" />
     <TypeScriptCompile Include="src\app\stories\story.component.ts" />
@@ -495,17 +483,14 @@
     <TypeScriptCompile Include="src\app\projects\index.ts" />
     <TypeScriptCompile Include="src\app\projects\project.model.ts" />
     <TypeScriptCompile Include="src\app\projects\project.service.ts" />
-    <TypeScriptCompile Include="src\app\projects\project.routes.ts" />
     <TypeScriptCompile Include="src\app\projects\actions.ts" />
     <TypeScriptCompile Include="src\app\feedback\index.ts" />
     <TypeScriptCompile Include="src\app\feedback\feedback.model.ts" />
     <TypeScriptCompile Include="src\app\feedback\feedback-edit.component.ts" />
     <TypeScriptCompile Include="src\app\feedback\feedback.service.ts" />
-    <TypeScriptCompile Include="src\app\feedback\feedback.routes.ts" />
     <TypeScriptCompile Include="src\app\products\product-list.component.ts" />
     <TypeScriptCompile Include="src\app\products\product.service.ts" />
     <TypeScriptCompile Include="src\app\feedback\feedback-received.component.ts" />
-    <TypeScriptCompile Include="src\app\products\product.routes.ts" />
     <TypeScriptCompile Include="src\app\products\product-edit.component.ts" />
     <TypeScriptCompile Include="src\app\shared\select.component.ts" />
     <TypeScriptCompile Include="src\app\shared\option.component.ts" />
@@ -515,7 +500,6 @@
     <TypeScriptCompile Include="src\app\shared\footer.component.ts" />
     <TypeScriptCompile Include="src\app\shared\tabs.component.ts" />
     <TypeScriptCompile Include="src\app\stories\story-digital-asset.component.ts" />
-    <TypeScriptCompile Include="src\app\articles\article.routes.ts" />
     <TypeScriptCompile Include="src\app\articles\index.ts" />
     <TypeScriptCompile Include="src\app\articles\actions.ts" />
     <TypeScriptCompile Include="src\app\articles\article.model.ts" />

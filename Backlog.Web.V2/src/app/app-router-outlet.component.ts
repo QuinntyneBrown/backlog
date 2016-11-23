@@ -1,5 +1,5 @@
 import { Router, RouterOutlet, Route } from "./router";
-import { AuthorizedRouteListener } from "./users";
+import { AuthorizedRouteMiddleware } from "./users";
 
 export class AppRouterOutletComponent extends RouterOutlet {
     constructor(nativeHTMLElement: HTMLElement) {
@@ -31,11 +31,11 @@ export class AppRouterOutletComponent extends RouterOutlet {
             { path: "/product/create", name: "product-create", authRequired: true },
             { path: "/product/edit/:productId", name: "product-edit", authRequired: true },
 
-            { path: "/feedback/create", name: "feedback-create", authRequired: true },
+            { path: "/feedback/create", name: "feedback-edit", authRequired: true },
             { path: "/feedback/received", name: "feedback-received", authRequired: true }            
         ] as any);
 
-        this.use(new AuthorizedRouteListener(null));
+        this.use(new AuthorizedRouteMiddleware());
 
         super.connectedCallback();
     }

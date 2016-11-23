@@ -4,6 +4,5 @@ export * from "./current-user";
 export * from "./login-redirect";
 export * from "./login.component";
 export * from "./user.model";
-export * from "./user.routes";
 export * from "./user.service";
 export * from "./users.component";

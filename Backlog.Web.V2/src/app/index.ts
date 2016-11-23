@@ -1,7 +1,6 @@
 export * from "./articles";
 export * from "./epics";
 export * from "./feedback";
-export * from "./landing";
 export * from "./products";
 export * from "./projects";
 export * from "./router";

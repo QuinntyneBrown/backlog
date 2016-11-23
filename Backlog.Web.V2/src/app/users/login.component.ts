@@ -1,11 +1,17 @@
 import { UserService } from "./user.service";
 import { UserLoginSuccess, userActions } from "./actions";
+import { Router } from "../router";
+import { LoginRedirect } from "./login-redirect";
+import { Storage, TOKEN_KEY } from "../utilities";
 
 let template = require("./login.component.html");
 let styles = require("./login.component.scss");
 
 export class LoginComponent extends HTMLElement {
-    constructor(private _userService: UserService = UserService.Instance) {
+    constructor(private _router: Router = Router.Instance,
+        private _loginRedirect: LoginRedirect = LoginRedirect.Instance,
+        private _storage: Storage = Storage.Instance,
+        private _userService: UserService = UserService.Instance) {
         super();      
     }
 
@@ -23,7 +29,9 @@ export class LoginComponent extends HTMLElement {
             username: this._usernameElement.value,
             password: this._passwordElement.value
         }).then((results:string) => {
-            this.dispatchEvent(new UserLoginSuccess(JSON.parse(results).access_token));
+            this._storage.put({ name: TOKEN_KEY, value: JSON.parse(results).access_token });
+            //this._loginRedirect.redirectPreLogin();
+            this._router.navigate(["epic","list"]);
         }).catch((e) => { });
     }
 
