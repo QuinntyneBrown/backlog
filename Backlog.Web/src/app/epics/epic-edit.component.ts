@@ -1,7 +1,6 @@
 import { Epic } from "./epic.model";
 import { EpicService } from "./epic.service";
 import { EditorComponent } from "../shared";
-import { EpicAddSuccess, EpicDeleteSuccess } from "./actions";
 import { Router } from "../router";
 import { ProductService } from "../products";
 
@@ -82,7 +81,7 @@ export class EpicEditComponent extends HTMLElement {
 
     public onDelete() {        
         this._epicService.remove({ id: this.epicId }).then((results) => {
-            this.dispatchEvent(new EpicDeleteSuccess(this.epicId));
+            this._router.navigate(["epic", "list"]);
         });
     }
 

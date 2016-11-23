@@ -1,7 +1,6 @@
 import { Article } from "./article.model";
 import { ArticleService } from "./article.service";
 import { EditorComponent } from "../shared";
-import { ArticleAddSuccess, ArticleDeleteSuccess, ArticleDeleteSelect } from "./actions";
 import { Router } from "../router";
 
 const template = require("./article-item.component.html");

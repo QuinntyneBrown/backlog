@@ -1,4 +1,3 @@
-export * from "./actions";
 export * from "./article-edit.component";
 export * from "./article-item.component";
 export * from "./article-list.component";

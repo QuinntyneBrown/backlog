@@ -1,7 +1,6 @@
 import { Story } from "./story.model";
 import { StoryService } from "./story.service";
 import { EditorComponent, dropZoneEvents, DropZoneComponent } from "../shared";
-import { StoryAddSuccess, StoryDeleteSuccess } from "./actions";
 import { Router } from "../router";
 
 const template = require("./story-edit.component.html");

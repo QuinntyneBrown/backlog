@@ -1,6 +1,5 @@
 import { Epic } from "./epic.model";
 import { EpicService } from "./epic.service";
-import { epicActions, EpicDeleteSelect } from "./actions";
 import { ProductService } from "../products";
 import { Router } from "../router";
 

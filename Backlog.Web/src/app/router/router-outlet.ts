@@ -1,4 +1,4 @@
-﻿import { RouteListener } from "./route-listener";
+﻿import { RouterMiddleware } from "./router-middleware";
 import { Router } from "./router";
 import { isArray, camelCaseToSnakeCase, Log } from "../utilities";
 
@@ -11,11 +11,11 @@ export abstract class RouterOutlet {
         this._router.addEventListener(this._onRouteChanged.bind(this));       
     }
 
-    public use(listener: RouteListener) {
-        this._listeners.push(listener as RouteListener);
+    public use(middleware: RouterMiddleware) {
+        this._middleware.push(middleware as RouterMiddleware);
     }
 
-    private _listeners: Array<RouteListener> = [];
+    private _middleware: Array<RouterMiddleware> = [];
 
     @Log()
     public _onRouteChanged(options: any) { 
@@ -31,17 +31,17 @@ export abstract class RouterOutlet {
             authRequired: options.authRequired
         };
         
-        this._listeners.forEach(listener => listener.beforeViewTransition(listenerOptions));
+        this._middleware.forEach(m => m.beforeViewTransition(listenerOptions));
 
         if (listenerOptions.cancelled)
             return;
 
 
-        for (let i = 0; i < this._listeners.length; i++) {
-            nextView = this._listeners[i].onViewTransition(listenerOptions);
+        for (let i = 0; i < this._middleware.length; i++) {
+            nextView = this._middleware[i].onViewTransition(listenerOptions);
             if (nextView) {
                 this._currentView = nextView;
-                i = this._listeners.length + 1;
+                i = this._middleware.length + 1;
             }
         }
 
@@ -63,7 +63,7 @@ export abstract class RouterOutlet {
 
         listenerOptions.currentView = this._currentView;
 
-        this._listeners.forEach(listener => listener.afterViewTransition(listenerOptions));    
+        this._middleware.forEach(listener => listener.afterViewTransition(listenerOptions));    
 
         window.scrollTo(0,0);
     }

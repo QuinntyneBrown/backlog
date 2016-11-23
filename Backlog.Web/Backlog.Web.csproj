@@ -403,7 +403,7 @@
     <TypeScriptCompile Include="src\app\router\index.ts" />
     <TypeScriptCompile Include="src\app\router\link.component.ts" />
     <TypeScriptCompile Include="src\app\router\local-router.ts" />
-    <TypeScriptCompile Include="src\app\router\route-listener.ts" />
+    <TypeScriptCompile Include="src\app\router\router-middleware.ts" />
     <TypeScriptCompile Include="src\app\router\route.ts" />
     <TypeScriptCompile Include="src\app\router\router-outlet.ts" />
     <TypeScriptCompile Include="src\app\router\router.ts" />
@@ -415,7 +415,6 @@
     <TypeScriptCompile Include="src\app\shared\popover.ts" />
     <TypeScriptCompile Include="src\app\shared\side-nav.component.ts" />
     <TypeScriptCompile Include="src\app\utilities\store.ts" />
-    <TypeScriptCompile Include="src\app\users\actions.ts" />
     <TypeScriptCompile Include="src\app\users\authorized-route-listener.ts" />
     <TypeScriptCompile Include="src\app\users\current-user.ts" />
     <TypeScriptCompile Include="src\app\users\index.ts" />
@@ -465,12 +464,10 @@
     <TypeScriptCompile Include="src\app\epics\epic-list.component.ts" />
     <TypeScriptCompile Include="src\app\epics\epic-edit.component.ts" />
     <TypeScriptCompile Include="src\app\epics\epic-item.component.ts" />
-    <TypeScriptCompile Include="src\app\epics\actions.ts" />
     <TypeScriptCompile Include="src\app\epics\epic-view.component.ts" />
     <TypeScriptCompile Include="src\app\stories\index.ts" />
     <TypeScriptCompile Include="src\app\stories\story.model.ts" />
     <TypeScriptCompile Include="src\app\stories\story-edit.component.ts" />
-    <TypeScriptCompile Include="src\app\stories\actions.ts" />
     <TypeScriptCompile Include="src\app\stories\story.service.ts" />
     <TypeScriptCompile Include="src\app\stories\story.component.ts" />
     <TypeScriptCompile Include="src\app\products\index.ts" />
@@ -478,7 +475,6 @@
     <TypeScriptCompile Include="src\app\projects\index.ts" />
     <TypeScriptCompile Include="src\app\projects\project.model.ts" />
     <TypeScriptCompile Include="src\app\projects\project.service.ts" />
-    <TypeScriptCompile Include="src\app\projects\actions.ts" />
     <TypeScriptCompile Include="src\app\feedback\index.ts" />
     <TypeScriptCompile Include="src\app\feedback\feedback.model.ts" />
     <TypeScriptCompile Include="src\app\feedback\feedback-edit.component.ts" />
@@ -496,7 +492,6 @@
     <TypeScriptCompile Include="src\app\shared\tabs.component.ts" />
     <TypeScriptCompile Include="src\app\stories\story-digital-asset.component.ts" />
     <TypeScriptCompile Include="src\app\articles\index.ts" />
-    <TypeScriptCompile Include="src\app\articles\actions.ts" />
     <TypeScriptCompile Include="src\app\articles\article.model.ts" />
     <TypeScriptCompile Include="src\app\articles\article-list.component.ts" />
     <TypeScriptCompile Include="src\app\articles\article-item.component.ts" />

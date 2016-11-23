@@ -1,7 +1,6 @@
 import { Epic } from "./epic.model";
 import { EpicService } from "./epic.service";
 import { EditorComponent } from "../shared";
-import { EpicAddSuccess, EpicDeleteSuccess, EpicDeleteSelect } from "./actions";
 import { Router } from "../router";
 
 const template = require("./epic-item.component.html");

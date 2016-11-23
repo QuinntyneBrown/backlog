@@ -1,7 +1,6 @@
 import { Article } from "./article.model";
 import { ArticleService } from "./article.service";
 import { EditorComponent } from "../shared";
-import { ArticleAddSuccess, ArticleDeleteSuccess } from "./actions";
 import { Router } from "../router";
 
 const template = require("./article-edit.component.html");
@@ -56,10 +55,8 @@ export class ArticleEditComponent extends HTMLElement {
         });
     }
 
-    public onDelete() {        
-        this._articleService.remove({ id: this.articleId }).then((results) => {
-            this.dispatchEvent(new ArticleDeleteSuccess(this.articleId));
-        });
+    public onDelete() {
+
     }
 
     attributeChangedCallback(name, oldValue, newValue) {

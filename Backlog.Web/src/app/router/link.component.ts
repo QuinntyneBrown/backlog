@@ -14,18 +14,20 @@ export class LinkComponent extends HTMLElement {
     }
 
     connectedCallback() {
-        this.addEventListener("click", this.onClick.bind(this));        
-        this._router.addEventListener(this.onRouteChanged.bind(this));
         this.style.cursor = "pointer";
+        this._addEventListeners();
+    }
+
+    private _addEventListeners() {
+        this.addEventListener("click", this.onClick.bind(this));
+        this._router.addEventListener(this.onRouteChanged.bind(this));
     }
 
     onClick(e: Event) {        
         this._router.navigate(this.routeSegments);
     }
 
-    disconnectedCallback() {
-        //this._router.removeEventListener(this.onRouterHubEvent.bind(this));
-    }
+    disconnectedCallback() { this._router.removeEventListener(this.onRouteChanged.bind(this)); }
 
     attributeChangedCallback(name, oldValue, newValue) {
 

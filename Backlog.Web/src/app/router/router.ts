@@ -98,6 +98,10 @@ export class Router {
         }
     }
 
+    public removeEventListener(callback: any) {
+        this._callbacks.splice(this._callbacks.indexOf(callback), 1);
+    }
+
     public routeName: string;
     public routePath: string;
     public routeParams;
