@@ -6,7 +6,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Backlog", "Backlog\Backlog.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Backlog.Client", "Backlog.Client\Backlog.Client.csproj", "{D10681CE-E5CB-49C2-B462-C4F74BF37A40}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Backlog.Web.V2", "Backlog.Web.V2\Backlog.Web.V2.csproj", "{94EAFF2E-6328-4353-B0EA-1FE5E09583C9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Backlog.Web", "Backlog.Web\Backlog.Web.csproj", "{94EAFF2E-6328-4353-B0EA-1FE5E09583C9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -175,7 +175,6 @@
     <Compile Include="ApiConfiguration.cs" />
     <Compile Include="Configuration\AppConfiguration.cs" />
     <Compile Include="Configuration\IAppConfiguration.cs" />
-    <Compile Include="ContentModels\ContentModelType.cs" />
     <Compile Include="Controllers\EpicController.cs" />
     <Compile Include="App_Start\WebApiUnityActionFilterProvider.cs" />
     <Compile Include="Authentication\JwtOptions.cs" />
@@ -247,11 +246,6 @@
     <Compile Include="Services\StoryService.cs" />
     <Compile Include="Services\IStoryService.cs" />
     <Compile Include="Controllers\StoryController.cs" />
-    <Compile Include="Controllers\ContentController.cs" />
-    <Compile Include="ContentModels\AppShellContentModel.cs" />
-    <Compile Include="ContentModels\IAppShellContentModel.cs" />
-    <Compile Include="ContentModels\LandingPageContentModel.cs" />
-    <Compile Include="ContentModels\ILandingPageContentModel.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Services\IUserService.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -283,7 +277,6 @@
     <Compile Include="Services\ThemeService.cs" />
     <Compile Include="Services\IThemeService.cs" />
     <Compile Include="Controllers\ThemeController.cs" />
-    <Compile Include="Migrations\ThemeConfiguration.cs" />
     <Compile Include="Models\StoryTheme.cs" />
     <Compile Include="Models\HtmlContent.cs" />
     <Compile Include="Models\DigitalAsset.cs" />
@@ -339,7 +332,6 @@
     <Compile Include="Controllers\FeedbackController.cs" />
     <Compile Include="Services\FeedbackService.cs" />
     <Compile Include="Services\IFeedbackService.cs" />
-    <Compile Include="Migrations\ProductConfiguration.cs" />
     <Compile Include="Models\Article.cs" />
     <Compile Include="Models\ArticleSnapShot.cs" />
     <Compile Include="Models\BrandOwner.cs" />

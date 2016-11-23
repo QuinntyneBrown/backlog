@@ -3,9 +3,9 @@ using System.Web.Http;
 using Microsoft.Owin;
 using Unity.WebApi;
 
-[assembly: OwinStartup(typeof(Backlog.Web.V2.Startup))]
+[assembly: OwinStartup(typeof(Backlog.Web.Startup))]
 
-namespace Backlog.Web.V2
+namespace Backlog.Web
 {
     public class Startup
     {
@@ -14,7 +14,7 @@ namespace Backlog.Web.V2
             GlobalConfiguration.Configure(config =>
             {
                 config.DependencyResolver = new UnityDependencyResolver(UnityConfiguration.GetContainer());
-                Backlog.ApiConfiguration.Install(config, app);
+                ApiConfiguration.Install(config, app);
             });
         }
     }

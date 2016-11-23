@@ -1,5 +1,4 @@
 using Backlog.Configuration;
-using Backlog.ContentModels;
 using Backlog.Data;
 using Backlog.Services;
 using Backlog.Utilities;
@@ -39,10 +38,7 @@ namespace Backlog
             container.RegisterType<IAgileTeamMemberService, AgileTeamMemberService>();
             container.RegisterType<IProductService, ProductService>();
             container.RegisterType<IFeedbackService, FeedbackService>();
-
-            container.RegisterType<ILandingPageContentModel, LandingPageContentModel>();
-            container.RegisterType<IAppShellContentModel, AppShellContentModel>();
-
+            
             container.RegisterInstance(AuthConfiguration.LazyConfig);            
             return container;
         }
