@@ -1,4 +1,4 @@
-﻿import { Storage } from "../utilities";
+﻿import { Storage } from "./storage";
 
 export const STORE_KEY = "[Store] store key";
 

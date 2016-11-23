@@ -5,7 +5,6 @@ export * from "./products";
 export * from "./projects";
 export * from "./router";
 export * from "./shared";
-export * from "./store";
 export * from "./stories";
 export * from "./users";
 export * from "./utilities";

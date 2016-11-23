@@ -1,8 +1,8 @@
-import { routerActions, RouterNavigate } from "./actions";
-import { RouterEventHub, routerEventHubEvents } from "./router-event-hub";
+import { Router } from "./router";
 
 export class LinkComponent extends HTMLElement {
-    constructor(private _routerEventHub:RouterEventHub = RouterEventHub.Instance) {
+    constructor(private _router: Router = Router.Instance
+    ) {
         super();
     }
 
@@ -14,17 +14,17 @@ export class LinkComponent extends HTMLElement {
     }
 
     connectedCallback() {
-        this.addEventListener("click", this.onClick.bind(this));
-        this._routerEventHub.addEventListener(routerEventHubEvents.ROUTE_CHANGED, this.onRouterHubEvent.bind(this));
+        this.addEventListener("click", this.onClick.bind(this));        
+        this._router.addEventListener(this.onRouteChanged.bind(this));
         this.style.cursor = "pointer";
     }
 
     onClick(e: Event) {        
-        this._routerEventHub.dispatch(routerEventHubEvents.NAVIGATE,new RouterNavigate(this.routeSegments));
+        this._router.navigate(this.routeSegments);
     }
 
     disconnectedCallback() {
-        this._routerEventHub.removeEventListener(routerEventHubEvents.NAVIGATE,this.onRouterHubEvent.bind(this));
+        //this._router.removeEventListener(this.onRouterHubEvent.bind(this));
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
@@ -46,9 +46,9 @@ export class LinkComponent extends HTMLElement {
         }
     }
 
-    public onRouterHubEvent(e: any) {        
+    public onRouteChanged(e: any) {        
         (this as any).classList.remove("active");        
-        if (this._routeName == e.detail.options.routeName)
+        if (this._routeName == this._router.routeName)
             (this as any).classList.add("active");
     }
 

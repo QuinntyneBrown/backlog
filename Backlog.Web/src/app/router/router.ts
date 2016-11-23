@@ -1,14 +1,11 @@
 import { Storage, isNumeric, Log } from "../utilities";
 import { Route } from "./route";
-import { RouterNavigate, RouteChanged } from "./actions";
-import { RouterEventHub, routerEventHubEvents } from "./router-event-hub";
 
 export class Router {
     constructor(
         private _routes: Array<Route>=[],
         private _storage: Storage = Storage.Instance,
-        private initialRoute: string = window.location.pathname,
-        private _routerEventHub: RouterEventHub = RouterEventHub.Instance
+        private initialRoute: string = window.location.pathname
     ) { }
 
     private static _instance;
@@ -33,7 +30,7 @@ export class Router {
 
         for (var i = 0; i < this._routes.length; i++) {
             if (state.route == this._routes[i].path) {
-                this._routeName = this._routes[i].name;
+                this.routeName = this._routes[i].name;
                 this.routePath = this._routes[i].path;
                 this.authRequired = this._routes[i].authRequired;
                 match = true;
@@ -63,7 +60,7 @@ export class Router {
 
                     if (match) {
                         this.routeParams = routeParams;
-                        this._routeName = this._routes[i].name;
+                        this.routeName = this._routes[i].name;
                         this.routePath = this._routes[i].path;
                         this.authRequired = this._routes[i].authRequired;
                     }
@@ -72,10 +69,9 @@ export class Router {
             }
         }
         
-        history.pushState({}, this._routeName, state.route);
-        this._routerEventHub.dispatch(routerEventHubEvents.ROUTE_CHANGED, new RouteChanged({ routeName: this._routeName, routeParams: this.routeParams }));
+        history.pushState({}, this.routeName, state.route);
         
-        this._callbacks.forEach(callback => callback({ routeName: this._routeName, routeParams: this.routeParams, authRequired: this.authRequired }));
+        this._callbacks.forEach(callback => callback({ routeName: this.routeName, routeParams: this.routeParams, authRequired: this.authRequired }));
 
         
     }
@@ -92,20 +88,17 @@ export class Router {
 
 
     public _addEventListeners() {
-        window.onpopstate = () => this.onChanged({ route: window.location.pathname }); 
-        this._routerEventHub.addEventListener(routerEventHubEvents.NAVIGATE, (e: RouterNavigate) => {            
-                this.onChanged({ routeSegments: e.detail.routeSegments })
-        });   
+        window.onpopstate = () => this.onChanged({ route: window.location.pathname });   
     }
 
     public addEventListener(callback: any) {        
         this._callbacks.push(callback);
-        if (this._routeName) {
-            callback({ routeName: this._routeName, routeParams: this.routeParams, authRequired: this.authRequired });
+        if (this.routeName) {
+            callback({ routeName: this.routeName, routeParams: this.routeParams, authRequired: this.authRequired });
         }
     }
 
-    private _routeName: string;
+    public routeName: string;
     public routePath: string;
     public routeParams;
     private _callbacks: Array<any> = [];
