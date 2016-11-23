@@ -1,8 +1,0 @@
-<div class="reusable-story-group-list-page">
-    <one-column-layout>
-		<a [routerLink]="['/reusablestorygroup']" href="">CREATE REUSABLE STORY GROUP</a>
-        <reusable-story-group-list [entities]="_store.reusableStoryGroups$() | async"
-                   (onDelete)="_reusableStoryGroupActions.remove({ id: $event.value.id })"
-                   (onEdit)="_router.navigate(['reusablestorygroup', $event.value.id])"></reusable-story-group-list>
-    </one-column-layout>    
-</div>

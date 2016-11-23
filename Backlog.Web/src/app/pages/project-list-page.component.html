@@ -1,8 +1,0 @@
-<div class="project-list-page">
-    <one-column-layout>
-		<a [routerLink]="['/project']" href="">CREATE PROJECT</a>
-        <project-list [entities]="_store.projects$() | async"
-                   (onDelete)="_projectActions.remove({ id: $event.value.id })"
-                   (onEdit)="_router.navigate(['project', $event.value.id])"></project-list>
-    </one-column-layout>    
-</div>

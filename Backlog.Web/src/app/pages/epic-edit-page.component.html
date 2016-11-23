@@ -1,9 +1,0 @@
-<div class="epic-edit-page">
-    <one-column-layout>
-        <epic-edit-form (onSubmit)="onSubmit($event)"
-                        (onCancel)="tryToCancel()"
-                        *ngIf="(!_activatedRoute.snapshot.params['id']) || (_activatedRoute.snapshot.params['id'] && (entity$ | async)?.id)"
-                        [epic]="entity$ | async"
-                        ></epic-edit-form>
-    </one-column-layout>    
-</div>

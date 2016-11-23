@@ -1,1 +1,0 @@
-﻿export const USER_LOGGED_IN = "[Authentication] User Logged In";

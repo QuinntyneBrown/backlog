@@ -1,8 +1,0 @@
-<div class="agile-team-member-list-page">
-    <one-column-layout>
-		<a [routerLink]="['/agileTeamMember']" href="">CREATE AGILE_TEAM_MEMBER</a>
-        <agile-team-member-list [entities]="_store.agileTeamMembers$() | async"
-                   (onDelete)="_agileTeamMemberActions.remove({ id: $event.value.id })"
-                   (onEdit)="_router.navigate(['agileteammember', $event.value.id])"></agile-team-member-list>
-    </one-column-layout>    
-</div>

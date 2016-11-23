@@ -1,9 +1,0 @@
-<div class="epic-detail-page">    
-    <one-column-layout>
-        <h1>Epic: {{ (epic$ | async)?.name }}</h1>
-        <a class="epic-detail-page-create-story" (click)="_router.navigate(['epic',epicId,'story'])">CREATE STORY</a>
-        <story-list [entities]="(epic$ | async)?.stories"
-                    (onDelete)="_storyActions.remove({ id: $event.value.id })"
-                    (onEdit)="_router.navigate(['epic', epicId, 'story',$event.value.id])"></story-list>
-    </one-column-layout> 
-</div>

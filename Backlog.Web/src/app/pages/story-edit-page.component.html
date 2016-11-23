@@ -1,8 +1,0 @@
-<div class="story-edit-page">
-    <one-column-layout>
-        <story-edit-form (onSubmit)="onSubmit($event)"
-                         (onCancel)="tryToCancel()"
-                         *ngIf="(!_activatedRoute.snapshot.params['id']) || (_activatedRoute.snapshot.params['id'] && (entity$ | async)?.id)"
-                         [story]="entity$ | async"></story-edit-form>
-    </one-column-layout>    
-</div>

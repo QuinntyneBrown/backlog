@@ -1,7 +1,0 @@
-<div class="html-content-list-page">
-    <one-column-layout>
-        <html-content-list [entities]="_store.htmlContents$() | async"
-                   (onDelete)="_htmlContentActions.remove({ id: $event.value.id })"
-                   (onEdit)="_router.navigate(['htmlcontent', $event.value.id])"></html-content-list>
-    </one-column-layout>    
-</div>
