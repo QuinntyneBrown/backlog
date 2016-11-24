@@ -32,7 +32,9 @@ export class AppRouterOutletComponent extends RouterOutlet {
             { path: "/product/edit/:productId", name: "product-edit", authRequired: true },
 
             { path: "/feedback/create", name: "feedback-edit", authRequired: true },
-            { path: "/feedback/received", name: "feedback-received", authRequired: true }            
+            { path: "/feedback/received", name: "feedback-received", authRequired: true },
+
+            { path: "/settings", name: "settings", authRequired: true }            
         ] as any);
 
         this.use(new AuthorizedRouteMiddleware());

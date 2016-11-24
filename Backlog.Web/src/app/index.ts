@@ -4,6 +4,7 @@ export * from "./feedback";
 export * from "./products";
 export * from "./projects";
 export * from "./router";
+export * from "./settings";
 export * from "./shared";
 export * from "./stories";
 export * from "./users";

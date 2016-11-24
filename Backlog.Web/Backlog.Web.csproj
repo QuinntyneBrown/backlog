@@ -288,6 +288,12 @@
     <Content Include="src\app\products\product-list.component.scss">
       <DependentUpon>product-list.component.ts</DependentUpon>
     </Content>
+    <Content Include="src\app\settings\settings.component.html">
+      <DependentUpon>settings.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\settings\settings.component.scss">
+      <DependentUpon>settings.component.ts</DependentUpon>
+    </Content>
     <Content Include="src\app\shared\button.component.html">
       <DependentUpon>button.component.ts</DependentUpon>
     </Content>
@@ -498,6 +504,8 @@
     <TypeScriptCompile Include="src\app\articles\article-view.component.ts" />
     <TypeScriptCompile Include="src\app\articles\article.service.ts" />
     <TypeScriptCompile Include="src\app\articles\article-edit.component.ts" />
+    <TypeScriptCompile Include="src\app\settings\settings.component.ts" />
+    <TypeScriptCompile Include="src\app\settings\index.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
