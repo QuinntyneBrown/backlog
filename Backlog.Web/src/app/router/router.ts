@@ -82,8 +82,12 @@ export class Router {
         this.onChanged({ routeSegments: routeSegments });
     }
 
-    public navigateUrl(path: string) {
-        this.onChanged({ routeSegments: path.split("/") });
+    public navigateUrl(path: string) {        
+        this.onChanged({ routeSegments: path.slice(1,path.length).split("/") });
+    }
+
+    public navigateRoute(route: Route) {
+
     }
 
 

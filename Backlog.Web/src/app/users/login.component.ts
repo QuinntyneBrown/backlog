@@ -3,8 +3,8 @@ import { Router } from "../router";
 import { LoginRedirect } from "./login-redirect";
 import { Storage, TOKEN_KEY } from "../utilities";
 
-let template = require("./login.component.html");
-let styles = require("./login.component.scss");
+const template = require("./login.component.html");
+const styles = require("./login.component.scss");
 
 export class LoginComponent extends HTMLElement {
     constructor(private _router: Router = Router.Instance,
@@ -21,24 +21,41 @@ export class LoginComponent extends HTMLElement {
 
     private _addEventListeners() {
         this._loginButtonElement.addEventListener("click", this._onTryToLogin.bind(this));
+        this._usernameElement.addEventListener("keyup", this._onKeyUp.bind(this));
+        this._passwordElement.addEventListener("keyup", this._onKeyUp.bind(this));
+    }
+
+    private _onKeyUp() {
+        this._errorElement.textContent = "";
     }
 
     private _onTryToLogin() {
         this._userService.tryToLogin({
             username: this._usernameElement.value,
             password: this._passwordElement.value
-        }).then((results:string) => {
-            this._storage.put({ name: TOKEN_KEY, value: JSON.parse(results).access_token });
-            this._router.navigate(["epic","list"]);
-        }).catch((e) => { });
+        }).then((results: string) => {
+            let resultsJSON = JSON.parse(results);
+            if (resultsJSON.error)
+                throw new Error(resultsJSON.error);
+            this._storage.put({ name: TOKEN_KEY, value: resultsJSON.access_token });
+            this._loginRedirect.redirectPreLogin();
+        }).catch((e:Error) => {
+            this._errorElement.textContent = "Invalid username or password.";
+            this._usernameElement.value = "";
+            this._passwordElement.value = "";
+            setTimeout(() => this._errorElement.textContent = "", 3000);
+        });
     }
 
     private get _usernameElement() { return this.querySelectorAll("input")[0] as HTMLInputElement; }
     private get _passwordElement() { return this.querySelectorAll("input")[1] as HTMLInputElement; }
+    private get _errorElement():HTMLElement { return this.querySelector(".error") as HTMLElement; }
     private get _loginButtonElement() { return this.querySelector("ce-button") as HTMLButtonElement; }
 
     disconnectedCallback() {
-        this._loginButtonElement.removeEventListener("click", this._onTryToLogin.bind(this));        
+        this._loginButtonElement.removeEventListener("click", this._onTryToLogin.bind(this));
+        this._usernameElement.removeEventListener("keyup", this._onKeyUp.bind(this));
+        this._passwordElement.removeEventListener("keyup", this._onKeyUp.bind(this));      
     }
 }
 

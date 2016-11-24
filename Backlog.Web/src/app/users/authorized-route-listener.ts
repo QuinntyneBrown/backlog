@@ -17,8 +17,8 @@ export class AuthorizedRouteMiddleware extends RouterMiddleware {
 
     public beforeViewTransition(options: RouteChangeOptions) {     
         
-        if (options.authRequired && !this._storage.get({ name: TOKEN_KEY })) {                       
-            this._loginRedirect.setLastPath(options.nextRouteName);
+        if (options.authRequired && !this._storage.get({ name: TOKEN_KEY })) {                      
+            this._loginRedirect.setLastPath(window.location.pathname);
             options.cancelled = true;
             this._router.navigate(["login"]);                        
         }

@@ -30,7 +30,7 @@ export class LoginRedirect {
     }
     
     redirectPreLogin = () => {
-        if (this.lastPath) {
+        if (this.lastPath) {            
             this._router.navigateUrl(this.lastPath);            
             this.lastPath = "";
         } else {

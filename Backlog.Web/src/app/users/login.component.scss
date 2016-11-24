@@ -1,5 +1,12 @@
 ce-login {
 	display:block;
+
+    .error {
+        display:block;
+        line-height:3em;
+        font-size:1.5em;
+        color:#ee2a2a
+    }
 }
 
 input {
@@ -11,3 +18,4 @@ input {
     font-size:1.5em;
     line-height:2em;
 }
+

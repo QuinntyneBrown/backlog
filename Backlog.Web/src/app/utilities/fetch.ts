@@ -23,7 +23,7 @@ export var fetch = (options: { url: string, method?: string, data?: any, headers
                     resolve(xhr.responseText);
                 }
                 else {
-                    console.error(xhr.statusText);
+                    resolve(xhr.responseText);
                 }
             }
         };

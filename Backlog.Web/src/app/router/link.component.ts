@@ -1,8 +1,7 @@
 import { Router } from "./router";
 
 export class LinkComponent extends HTMLElement {
-    constructor(private _router: Router = Router.Instance
-    ) {
+    constructor(private _router: Router = Router.Instance) {
         super();
     }
 
@@ -23,9 +22,7 @@ export class LinkComponent extends HTMLElement {
         this._router.addEventListener(this.onRouteChanged.bind(this));
     }
 
-    onClick(e: Event) {        
-        this._router.navigate(this.routeSegments);
-    }
+    onClick(e: Event) {this._router.navigate(this.routeSegments); }
 
     disconnectedCallback() { this._router.removeEventListener(this.onRouteChanged.bind(this)); }
 
