@@ -34,6 +34,8 @@ export class AppRouterOutletComponent extends RouterOutlet {
             { path: "/feedback/create", name: "feedback-edit", authRequired: true },
             { path: "/feedback/received", name: "feedback-received", authRequired: true },
 
+            { path: "/register", name: "register" },
+
             { path: "/settings", name: "settings", authRequired: true }            
         ] as any);
 

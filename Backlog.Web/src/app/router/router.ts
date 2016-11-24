@@ -5,7 +5,7 @@ export class Router {
     constructor(
         private _routes: Array<Route>=[],
         private _storage: Storage = Storage.Instance,
-        private initialRoute: string = window.location.pathname
+        private _initialRoute: string = window.location.pathname
     ) { }
 
     private static _instance;
@@ -18,7 +18,7 @@ export class Router {
     public setRoutes(routes: Array<Route>) {
         this._routes = routes;
         this._addEventListeners();
-        this.onChanged({ route: this.initialRoute });
+        this.onChanged({ route: this._initialRoute });
     }
 
     @Log()
@@ -90,7 +90,6 @@ export class Router {
 
     }
 
-
     public _addEventListeners() {
         window.onpopstate = () => this.onChanged({ route: window.location.pathname });   
     }
@@ -105,6 +104,8 @@ export class Router {
     public removeEventListener(callback: any) {
         this._callbacks.splice(this._callbacks.indexOf(callback), 1);
     }
+
+    public get activatedRoute(): Route { return this._routes.find(r => r.name === this.routeName); }
 
     public routeName: string;
     public routePath: string;

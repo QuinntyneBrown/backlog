@@ -6,7 +6,8 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion></ProductVersion>
+    <ProductVersion>
+    </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{94EAFF2E-6328-4353-B0EA-1FE5E09583C9}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -21,7 +22,8 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
-    <NuGetPackageImportStamp></NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
     <TypeScriptToolsVersion>2.0</TypeScriptToolsVersion>
     <TypeScriptEmitDecoratorMetadata>true</TypeScriptEmitDecoratorMetadata>
     <TypeScriptModuleKind>commonjs</TypeScriptModuleKind>
@@ -366,6 +368,12 @@
     <Content Include="src\app\users\login.component.scss">
       <DependentUpon>login.component.ts</DependentUpon>
     </Content>
+    <Content Include="src\app\users\register.component.html">
+      <DependentUpon>register.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\users\register.component.scss">
+      <DependentUpon>register.component.ts</DependentUpon>
+    </Content>
     <Content Include="src\app\users\users.component.html">
       <DependentUpon>users.component.ts</DependentUpon>
     </Content>
@@ -506,6 +514,7 @@
     <TypeScriptCompile Include="src\app\articles\article-edit.component.ts" />
     <TypeScriptCompile Include="src\app\settings\settings.component.ts" />
     <TypeScriptCompile Include="src\app\settings\index.ts" />
+    <TypeScriptCompile Include="src\app\users\register.component.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -525,7 +534,8 @@
           <IISUrl>http://localhost:56620/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl></CustomServerUrl>
+          <CustomServerUrl>
+          </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>

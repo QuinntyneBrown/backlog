@@ -26,10 +26,10 @@ export class HeaderComponent extends HTMLElement {
 
     private _onRouteChange(options: any) {
         Array.from(this.querySelectorAll("ce-link[auth-required]"))
-            .map((e: HTMLElement) => e.style.display = options.routeName == "login" ? "none" : "inline-block");
+            .map((e: HTMLElement) => e.style.display = this._router.activatedRoute.authRequired ? "inline-block" : "none");
 
         Array.from(this.querySelectorAll("ce-link[anonymous-required]"))
-            .map((e: HTMLElement) => e.style.display = options.routeName == "login" ? "inline-block" : "none");
+            .map((e: HTMLElement) => e.style.display = this._router.activatedRoute.authRequired ? "none" : "inline-block");
     }
 
     private _onLogoutClick() {
