@@ -9,13 +9,21 @@ body {
     height: 100vh;
     margin:0;
     padding:0;
+    background-color:#f4f4f4;
 }
 
 ce-app {
-	display:block;
-    margin: 0 auto 30px;
-    max-width:1280px;
 
+    display:block;
+    
+
+    .container {
+        display:block;
+        margin: 0px auto;
+        padding-top:30px;
+        padding-bottom:30px;
+        max-width:1280px;
+    }
 
     .router-outlet {        
         display:inline-block;
@@ -25,4 +33,6 @@ ce-app {
         margin:0 10px;
     }
 }
+
+
 

@@ -1,4 +1,23 @@
 ce-header {
+
+    -webkit-box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.15);
+    -moz-box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.15);
+    box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.15);
+
+
+    width:100%;
+    margin:0;
+    padding:0;
+    z-index:100;
+    margin-bottom:0px;
+    background-color:#FFF;
+
+    .container {
+        display:block;
+        max-width:1280px;
+        margin:0 auto;
+    }
+
 	display:block;
     h1 {
         cursor:pointer;
@@ -24,6 +43,8 @@ ce-header {
 
     ce-link.logout,
     ce-link.logout:hover,
+    ce-link.login,
+    ce-link.login:hover,
     ce-link.settings,
     ce-link.settings:hover,
     ce-link.register,
@@ -47,7 +68,6 @@ ce-header {
 
     height:100px;
     color:#111;
-    margin:0 10px;
 }
 
 center-header:after {

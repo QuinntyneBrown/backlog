@@ -1,4 +1,10 @@
+@import "../../styles/base";
+
+
 ce-epic-edit {
+
+    @extend .view-card;
+
     margin-bottom:40px;
 
     input {

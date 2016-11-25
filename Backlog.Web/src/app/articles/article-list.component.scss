@@ -1,4 +1,10 @@
+@import "../../styles/base";
+
+
 ce-article-list {
+
+    @extend .view-card;
+
 	display:block;
 
     h2 {

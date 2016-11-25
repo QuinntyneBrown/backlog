@@ -1,5 +1,8 @@
+@import "../../styles/base";
+
+
 ce-register {
-	display:block;
+	@extend .view-card;
 
     input[type="text"],
     input[type="password"] {

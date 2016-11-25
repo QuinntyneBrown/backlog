@@ -1,5 +1,7 @@
+@import "../../styles/base";
+
 ce-epic-list {
-	display:block;
+    @extend .view-card;
 
     h2 {
         margin-top:0px;

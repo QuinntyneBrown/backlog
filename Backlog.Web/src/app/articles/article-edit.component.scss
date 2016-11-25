@@ -1,4 +1,10 @@
+@import "../../styles/base";
+
+
 ce-article-edit {
+
+    @extend .view-card;
+
     margin-bottom:40px;
 
     input {

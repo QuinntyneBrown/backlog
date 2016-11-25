@@ -1,6 +1,10 @@
+@import "../../styles/base";
+
 ce-epic-view {
-	display:block;
+    @extend .view-card;
+
     width:100%;
+    background-color:#FFF;
 
     .epic-story {
         margin-bottom:40px;

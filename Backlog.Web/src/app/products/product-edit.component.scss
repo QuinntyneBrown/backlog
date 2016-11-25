@@ -1,4 +1,9 @@
+@import "../../styles/base";
+
 ce-product-edit {
+
+    @extend .view-card;
+
     margin-bottom:40px;
 
     input {

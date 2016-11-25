@@ -1,5 +1,7 @@
-ce-product-list {
-	display:block;
+@import "../../styles/base";
+
+ce-product-list {	
+    @extend .view-card;
 
     h2 {
         margin-top:0px;
