@@ -1,8 +1,8 @@
 import { Http } from "./utilities";
 import { AppRouterOutletComponent } from "./app-router-outlet.component";
 
-let template = require("./app.component.html");
-let styles = require("./app.component.scss");
+const template = require("./app.component.html");
+const styles = require("./app.component.scss");
 
 export class AppComponent extends HTMLElement {  
 
@@ -13,7 +13,6 @@ export class AppComponent extends HTMLElement {
     connectedCallback() {        
         this.innerHTML = `<style>${styles}</style>${template}`;
         this.routerOutlet = new AppRouterOutletComponent(this.routerOutletElement);
-
     }    
 
     routerOutlet: AppRouterOutletComponent;

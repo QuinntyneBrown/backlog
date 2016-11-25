@@ -1,5 +1,6 @@
 ﻿import { RouterMiddleware } from "./router-middleware";
 import { Router } from "./router";
+import { Route } from "./route";
 import { isArray, camelCaseToSnakeCase, Log } from "../utilities";
 
 export abstract class RouterOutlet {
@@ -22,23 +23,22 @@ export abstract class RouterOutlet {
         
         let nextView: HTMLElement = null;
         
-        const listenerOptions = {
+        const context = {
             currentView: this._currentView,
             nextRouteName: options.routeName,
             previousRouteName: this._routeName,
             routeParams: options.routeParams,
             cancelled: false,
-            authRequired: options.authRequired
+            nextRoute: options.nextRoute
         };
         
-        this._middleware.forEach(m => m.beforeViewTransition(listenerOptions));
+        this._middleware.forEach(m => m.beforeViewTransition(context));
 
-        if (listenerOptions.cancelled)
+        if (context.cancelled)
             return;
 
-
         for (let i = 0; i < this._middleware.length; i++) {
-            nextView = this._middleware[i].onViewTransition(listenerOptions);
+            nextView = this._middleware[i].onViewTransition(context);
             if (nextView) {
                 this._currentView = nextView;
                 i = this._middleware.length + 1;
@@ -61,11 +61,15 @@ export abstract class RouterOutlet {
 
         this._nativeHTMLElement.appendChild(this._currentView);
 
-        listenerOptions.currentView = this._currentView;
+        context.currentView = this._currentView;
 
-        this._middleware.forEach(listener => listener.afterViewTransition(listenerOptions));    
+        this._middleware.forEach(listener => listener.afterViewTransition(context));    
 
         window.scrollTo(0,0);
+    }
+
+    public setRoutes(routes: Array<Route>) {
+        this._router.setRoutes(routes);
     }
 
     private _currentView: HTMLElement;

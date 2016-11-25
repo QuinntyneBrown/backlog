@@ -17,13 +17,13 @@ export class AuthorizedRouteMiddleware extends RouterMiddleware {
 
     public beforeViewTransition(options: RouteChangeOptions) {     
         
-        if (options.authRequired && !this._storage.get({ name: TOKEN_KEY })) {                      
+        if (options.nextRoute.authRequired && !this._storage.get({ name: TOKEN_KEY })) {                      
             this._loginRedirect.setLastPath(window.location.pathname);
             options.cancelled = true;
             this._router.navigate(["login"]);                        
         }
 
-        if (options.authRequired)
+        if (options.nextRoute.authRequired)
             this._userService.getCurrentUser().then((results) => {
                 if (results == "") {
                     this._storage.put({ name: TOKEN_KEY, value: null });

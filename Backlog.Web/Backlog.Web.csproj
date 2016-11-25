@@ -416,7 +416,6 @@
     <TypeScriptCompile Include="src\app\index.ts" />
     <TypeScriptCompile Include="src\app\router\index.ts" />
     <TypeScriptCompile Include="src\app\router\link.component.ts" />
-    <TypeScriptCompile Include="src\app\router\local-router.ts" />
     <TypeScriptCompile Include="src\app\router\router-middleware.ts" />
     <TypeScriptCompile Include="src\app\router\route.ts" />
     <TypeScriptCompile Include="src\app\router\router-outlet.ts" />
@@ -428,6 +427,7 @@
     <TypeScriptCompile Include="src\app\shared\modal.ts" />
     <TypeScriptCompile Include="src\app\shared\popover.ts" />
     <TypeScriptCompile Include="src\app\shared\side-nav.component.ts" />
+    <TypeScriptCompile Include="src\app\utilities\load-style.ts" />
     <TypeScriptCompile Include="src\app\utilities\store.ts" />
     <TypeScriptCompile Include="src\app\users\authorized-route-listener.ts" />
     <TypeScriptCompile Include="src\app\users\current-user.ts" />

@@ -2,15 +2,28 @@
     customElements: any;
 }
 
+
+
+declare interface ActivatedRoute {
+    name: string;
+    params: any;
+    authRequired: boolean;
+    path: string;
+    segments: Array<any>;
+    routeParams: any;
+}
+
+
 interface Window extends ModernWindow { }
 
-interface RouteChangeOptions {
+declare interface RouteChangeOptions {
     currentView: HTMLElement;
     nextRouteName: string;
     previousRouteName: string;
     routeParams: any;
     cancelled: any;
-    authRequired?: boolean;
+    nextRoute?: ActivatedRoute;
+
 }
 
 declare var Quill;

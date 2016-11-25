@@ -10,7 +10,6 @@ export class ArticleEditComponent extends HTMLElement {
     constructor(private _articleService: ArticleService = ArticleService.Instance,
     private _router: Router = Router.Instance) {
         super();
-
     }
 
     static get observedAttributes() {
@@ -56,7 +55,9 @@ export class ArticleEditComponent extends HTMLElement {
     }
 
     public onDelete() {
-
+        this._articleService.remove({ id: this.articleId }).then(() => {
+            this._router.navigate(["article", "list"]);
+        });
     }
 
     attributeChangedCallback(name, oldValue, newValue) {

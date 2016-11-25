@@ -1,14 +1,13 @@
-import { Router, RouterOutlet, Route } from "./router";
+import { RouterOutlet } from "./router";
 import { AuthorizedRouteMiddleware } from "./users";
 
 export class AppRouterOutletComponent extends RouterOutlet {
-    constructor(nativeHTMLElement: HTMLElement) {
-        super(nativeHTMLElement);
+    constructor(el: HTMLElement) {
+        super(el);
     }
 
     connectedCallback() { 
-
-        this._router.setRoutes([
+        this.setRoutes([
             { path: "/", name: "epic-list", authRequired: true },
             { path: "/login", name: "login" },
 

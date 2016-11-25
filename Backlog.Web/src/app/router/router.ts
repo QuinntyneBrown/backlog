@@ -1,17 +1,22 @@
 import { Storage, isNumeric, Log } from "../utilities";
 import { Route } from "./route";
+import { environment } from "../environment";
+
+export const routerKeys = {
+    currentRoute: "[Router] current route"
+}
 
 export class Router {
     constructor(
         private _routes: Array<Route>=[],
-        private _storage: Storage = Storage.Instance,
-        private _initialRoute: string = window.location.pathname
+        private _storage: Storage = Storage.Instance,        
+        private _environment: { useUrlRouting: boolean } = environment
     ) { }
 
     private static _instance;
 
     public static get Instance(): Router {
-        this._instance = this._instance || new Router();
+        this._instance = this._instance || new this();
         return this._instance;
     }
 
@@ -23,25 +28,23 @@ export class Router {
 
     @Log()
     public onChanged(state: { route?: string, routeSegments?: Array<any> }) { 
-        var routeParams = {};        
-        var match = false;
+        let routeParams = {};        
+        let match = false;
         if (state.routeSegments)
             state.route = "/" + state.routeSegments.join("/");
 
         for (var i = 0; i < this._routes.length; i++) {
             if (state.route == this._routes[i].path) {
-                this.routeName = this._routes[i].name;
-                this.routePath = this._routes[i].path;
-                this.authRequired = this._routes[i].authRequired;
+                this.onRouteMatch(this._routes[i].name);
                 match = true;
             }
         }                
 
         if (!match) {            
             const _currentSegments = state.route.substring(1).split("/");
-            for (var i = 0; i < this._routes.length; i++) {
+            for (let i = 0; i < this._routes.length; i++) {
                 
-                var segments = this._routes[i].path.substring(1).split("/");
+                const segments = this._routes[i].path.substring(1).split("/");
 
                 if (_currentSegments.length === segments.length) {
      
@@ -53,30 +56,29 @@ export class Router {
                             routeParams[segments[x].substring(1)] = _currentSegments[x];
                         } else {
                             match = false;
-                            //exit for
                             x = segments.length;
                         }
                     }
 
-                    if (match) {
-                        this.routeParams = routeParams;
-                        this.routeName = this._routes[i].name;
-                        this.routePath = this._routes[i].path;
-                        this.authRequired = this._routes[i].authRequired;
-                    }
-
+                    if (match)
+                        this.onRouteMatch(this._routes[i].name, routeParams);                                            
                 }
             }
         }
-        
-        history.pushState({}, this.routeName, state.route);
-        
-        this._callbacks.forEach(callback => callback({ routeName: this.routeName, routeParams: this.routeParams, authRequired: this.authRequired }));
 
+        if(this._environment.useUrlRouting)
+            history.pushState({}, this.routeName, state.route);
+
+        this._storage.put({ name: routerKeys.currentRoute, value: state.route });
+        
+        this._callbacks.forEach(callback => callback({ routeName: this.routeName, routeParams: this.routeParams, nextRoute: this.activatedRoute }));
         
     }
 
-    authRequired: boolean = false;
+    public onRouteMatch(name:string,routeParams:any = null) {
+        this.routeName = name;
+        this.routeParams = routeParams;
+    }
 
     public navigate(routeSegments:Array<any>) {
         this.onChanged({ routeSegments: routeSegments });
@@ -96,23 +98,23 @@ export class Router {
 
     public addEventListener(callback: any) {        
         this._callbacks.push(callback);
-        if (this.routeName) {
-            callback({ routeName: this.routeName, routeParams: this.routeParams, authRequired: this.authRequired });
-        }
+        if (this.routeName) 
+            callback({ routeName: this.routeName, routeParams: this.routeParams, nextRoute: this.activatedRoute });        
     }
 
     public removeEventListener(callback: any) {
         this._callbacks.splice(this._callbacks.indexOf(callback), 1);
     }
 
-    public get activatedRoute(): Route { return this._routes.find(r => r.name === this.routeName); }
+    public get activatedRoute(): ActivatedRoute {
+        return Object.assign({}, this._routes.find(r => r.name === this.routeName, { routeParams: this.routeParams })) as ActivatedRoute;
+    }
+    
+    private get _initialRoute(): string { return this._environment.useUrlRouting ? window.location.pathname : this._storage.get({ name: routerKeys.currentRoute }) || "/"; }
 
     public routeName: string;
     public routePath: string;
     public routeParams;
     private _callbacks: Array<any> = [];
-    private _loginRedirect;
-    private _rootAsHTML;
-    private _location: string;
 }
 
