@@ -4,18 +4,19 @@ ce-header {
     -moz-box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.15);
     box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.15);
 
-
+    --background-color: #FFF;
     width:100%;
     margin:0;
     padding:0;
     z-index:100;
     margin-bottom:0px;
-    background-color:#FFF;
+    background-color:var(--background-color);
 
     .container {
         display:block;
-        max-width:1280px;
+        max-width:1240px;
         margin:0 auto;
+        padding: 0px 20px;
     }
 
 	display:block;
@@ -33,12 +34,12 @@ ce-header {
     }
 
     ce-link:hover {
-        border-bottom: 2px #777 solid;        
+        border-bottom: 3px #777 solid;        
     }
 
     ce-link.active {
         font-weight:600;
-        border-bottom: 2px #000 solid;
+        border-bottom: 3px #000 solid;
     }
 
     ce-link.logout,

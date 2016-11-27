@@ -13,8 +13,14 @@ export class HeaderComponent extends HTMLElement {
         super();
     }
 
+    static get observedAttributes() {
+        return [
+            "background-color"
+        ];
+    }
+
     connectedCallback() {
-        this.innerHTML = `<style>${styles}</style> ${template}`;        
+        this.innerHTML = `<style>${styles}</style> ${template}`;         
         this._addEventListeners();
     }
 
@@ -39,9 +45,19 @@ export class HeaderComponent extends HTMLElement {
     private _onTitleClick() {
         this._router.navigate([""]);
     }
+    
+    attributeChangedCallback(name, oldValue, newValue) {
+        switch (name) {
+            case "background-color":
+                this.style.setProperty("background-color",newValue);
+                break;
+        }
+    }
 
     private get _titleElement() { return this.querySelector("h1") as HTMLElement; }
     private get _logoutElement() { return this.querySelector(".logout") as HTMLElement; }
+
+
 }
 
 document.addEventListener("DOMContentLoaded",() => window.customElements.define(`ce-header`,HeaderComponent));

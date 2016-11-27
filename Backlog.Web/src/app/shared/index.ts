@@ -1,5 +1,7 @@
 export * from "./backdrop";
 export * from "./button.component";
+export * from "./drop-down-item.component";
+export * from "./drop-down.component";
 export * from "./drop-zone.component";
 export * from "./editor.component";
 export * from "./footer.component";

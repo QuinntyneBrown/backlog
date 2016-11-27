@@ -1,5 +1,5 @@
 body,html {
-    font-family:sans-serif;
+    font-family:Montserrat,sans-serif;
     width:100%;
     padding:0;
     margin:0;
@@ -16,7 +16,6 @@ ce-app {
 
     display:block;
     
-
     .container {
         display:block;
         margin: 0px auto;
@@ -26,11 +25,10 @@ ce-app {
     }
 
     .router-outlet {        
-        display:inline-block;
-        position:relative;
-        width:100%;
-        max-width:1280px;
-        margin:0 10px;
+        display:block;
+        position:relative;        
+        margin:0 15px;
+        max-width: 100%;
     }
 }
 

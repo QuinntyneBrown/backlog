@@ -7,7 +7,9 @@ const template = require("./login.component.html");
 const styles = require("./login.component.scss");
 
 export class LoginComponent extends HTMLElement {
-    constructor(private _router: Router = Router.Instance,
+    constructor(
+        private _document: Document = document,
+        private _router: Router = Router.Instance,
         private _loginRedirect: LoginRedirect = LoginRedirect.Instance,
         private _storage: Storage = Storage.Instance,
         private _userService: UserService = UserService.Instance) {
@@ -23,10 +25,19 @@ export class LoginComponent extends HTMLElement {
         this._loginButtonElement.addEventListener("click", this._onTryToLogin.bind(this));
         this._usernameElement.addEventListener("keyup", this._onKeyUp.bind(this));
         this._passwordElement.addEventListener("keyup", this._onKeyUp.bind(this));
+        this._document.body.addEventListener("keyup", this._onKeyUp.bind(this));
     }
 
-    private _onKeyUp() {
-        this._errorElement.textContent = "";
+    private _onKeyUp(e: KeyboardEvent) {    
+        switch (e.keyCode) {
+            case 13:
+                this._onTryToLogin();
+                break;
+
+            default:
+                this._errorElement.textContent = "";
+                break;
+        }
     }
 
     private _onTryToLogin() {
@@ -55,7 +66,8 @@ export class LoginComponent extends HTMLElement {
     disconnectedCallback() {
         this._loginButtonElement.removeEventListener("click", this._onTryToLogin.bind(this));
         this._usernameElement.removeEventListener("keyup", this._onKeyUp.bind(this));
-        this._passwordElement.removeEventListener("keyup", this._onKeyUp.bind(this));      
+        this._passwordElement.removeEventListener("keyup", this._onKeyUp.bind(this));    
+        this._document.body.removeEventListener("keyup", this._onKeyUp.bind(this)); 
     }
 }
 

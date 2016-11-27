@@ -302,6 +302,18 @@
     <Content Include="src\app\shared\button.component.scss">
       <DependentUpon>button.component.ts</DependentUpon>
     </Content>
+    <Content Include="src\app\shared\drop-down-item.component.html">
+      <DependentUpon>drop-down-item.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\shared\drop-down-item.component.scss">
+      <DependentUpon>drop-down-item.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\shared\drop-down.component.html">
+      <DependentUpon>drop-down.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\shared\drop-down.component.scss">
+      <DependentUpon>drop-down.component.ts</DependentUpon>
+    </Content>
     <Content Include="src\app\shared\drop-zone.component.html">
       <DependentUpon>drop-zone.component.ts</DependentUpon>
     </Content>
@@ -379,7 +391,9 @@
     </Content>
     <None Include="Properties\PublishProfiles\backlog - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\backlog - Web Deploy.pubxml" />
+    <None Include="src\styles\base\entity-list.scss" />
     <Content Include="src\styles\_base.scss" />
+    <Content Include="src\styles\base\view-card.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -394,6 +408,7 @@
     <Content Include="tsconfig.json" />
     <Content Include="typedoc.json" />
     <Content Include="typings.json" />
+    <Content Include="src\styles\base\_index.scss" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="index.html" />
@@ -516,6 +531,8 @@
     <TypeScriptCompile Include="src\app\settings\settings.component.ts" />
     <TypeScriptCompile Include="src\app\settings\index.ts" />
     <TypeScriptCompile Include="src\app\users\register.component.ts" />
+    <TypeScriptCompile Include="src\app\shared\drop-down.component.ts" />
+    <TypeScriptCompile Include="src\app\shared\drop-down-item.component.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -47,7 +47,7 @@ export class LinkComponent extends HTMLElement {
 
     public onRouteChanged(e: any) {        
         (this as any).classList.remove("active");        
-        if (this._routeName == this._router.routeName)
+        if (this._routeName == this._router.activatedRoute.name)
             (this as any).classList.add("active");
     }
 

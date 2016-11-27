@@ -21,7 +21,7 @@ export class Modal {
     private static _instance;
 
     public static get Instance() {
-        this._instance = this._instance || new Modal(Backdrop.Instance, appendToTargetAsync, createElement, extendCssAsync, removeElement, setOpacityAsync);
+        this._instance = this._instance || new this();
         return this._instance;
     }
 

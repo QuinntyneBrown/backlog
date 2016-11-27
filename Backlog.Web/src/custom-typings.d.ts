@@ -2,8 +2,6 @@
     customElements: any;
 }
 
-
-
 declare interface ActivatedRoute {
     name: string;
     params: any;
@@ -23,7 +21,6 @@ declare interface RouteChangeOptions {
     routeParams: any;
     cancelled: any;
     nextRoute?: ActivatedRoute;
-
 }
 
 declare var Quill;

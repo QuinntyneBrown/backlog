@@ -32,8 +32,8 @@ export class EpicListComponent extends HTMLElement {
 
             this.productId = products[0].id;
 
-            if (this._router.routeParams && this._router.routeParams.productId)
-                this.productId = this._router.routeParams.productId;
+            if (this._router.activatedRoute.routeParams && this._router.activatedRoute.routeParams.productId)
+                this.productId = this._router.activatedRoute.routeParams.productId;
             
             this.selectElement.value = this.productId;
             
