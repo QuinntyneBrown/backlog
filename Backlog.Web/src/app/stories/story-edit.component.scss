@@ -1,14 +1,7 @@
+@import "../../styles/base/index";
+
 ce-story-edit {
-    display:block;
-    padding-bottom:40px;
-
-    background-color:#FFF;
-    padding:10px 10px 30px;
-
-    -webkit-box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.15);
-    -moz-box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.15);
-    box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.15);
-
+    @extend .view-card;
 
     ce-drop-zone {
         margin-bottom:30px;
