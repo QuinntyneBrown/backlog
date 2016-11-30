@@ -374,6 +374,24 @@
     <Content Include="src\app\stories\story.component.scss">
       <DependentUpon>story.component.ts</DependentUpon>
     </Content>
+    <Content Include="src\app\tasks\task-edit.component.html">
+      <DependentUpon>task-edit.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\tasks\task-edit.component.scss">
+      <DependentUpon>task-edit.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\tasks\task-item.component.html">
+      <DependentUpon>task-item.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\tasks\task-item.component.scss">
+      <DependentUpon>task-item.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\tasks\task-list.component.html">
+      <DependentUpon>task-list.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\tasks\task-list.component.scss">
+      <DependentUpon>task-list.component.ts</DependentUpon>
+    </Content>
     <Content Include="src\app\users\login.component.html">
       <DependentUpon>login.component.ts</DependentUpon>
     </Content>
@@ -411,12 +429,6 @@
     <Content Include="typedoc.json" />
     <Content Include="typings.json" />
     <Content Include="src\styles\base\_index.scss" />
-    <Content Include="src\app\tasks\task-item.component.scss" />
-    <Content Include="src\app\tasks\task-item.component.html" />
-    <Content Include="src\app\tasks\task-list.component.scss" />
-    <Content Include="src\app\tasks\task-list.component.html" />
-    <Content Include="src\app\tasks\task-edit.component.scss" />
-    <Content Include="src\app\tasks\task-edit.component.html" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="index.html" />

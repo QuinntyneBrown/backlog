@@ -41,8 +41,14 @@ namespace Backlog.Controllers
         [ResponseType(typeof(int))]
         public IHttpActionResult Remove(int id) { return Ok(_taskService.Remove(id)); }
 
-        protected readonly ITaskService _taskService;
-
-
+        [Route("getByStoryId")]
+        [AllowAnonymous]
+        [HttpGet]
+        [ResponseType(typeof(ICollection<TaskDto>))]
+        public IHttpActionResult GetByStoryId(int storyId) {
+            return Ok(_taskService.GetByStoryId(storyId));
+        }
+        
+        protected readonly ITaskService _taskService;        
     }
 }

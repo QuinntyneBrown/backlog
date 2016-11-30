@@ -43,6 +43,16 @@ namespace Backlog.Services
             return response;
         }
 
+        public ICollection<TaskDto> GetByStoryId(int storyId)
+        {
+            ICollection<TaskDto> response = new HashSet<TaskDto>();
+            var entities = _repository.GetAll()
+                .Where(x => x.IsDeleted == false && x.StoryId == storyId)
+                .ToList();
+            foreach (var entity in entities) { response.Add(new TaskDto(entity)); }
+            return response;
+        }
+
 
         public TaskDto GetById(int id)
         {

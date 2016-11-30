@@ -6,12 +6,16 @@ export class TaskService {
     private static _instance: TaskService;
 
     public static get Instance() {
-        this._instance = this._instance || new TaskService();
+        this._instance = this._instance || new this();
         return this._instance;
     }
 
     public get() {
         return fetch({ url: "/api/task/get" });
+    }
+
+    public getByStoryId(storyid) {
+        return fetch({ url: `api/task/getbystoryid?storyid=${storyid}` });
     }
 
     public getById(id) {

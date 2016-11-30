@@ -9,5 +9,6 @@ namespace Backlog.Services
         ICollection<TaskDto> Get();
         TaskDto GetById(int id);
         dynamic Remove(int id);
+        ICollection<TaskDto> GetByStoryId(int storyId);
     }
 }

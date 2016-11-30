@@ -73,9 +73,9 @@ export class TaskEditComponent extends HTMLElement {
 
     public taskId: number;
     
-	private get _titleElement(): HTMLElement { return this.querySelector("h2") as HTMLElement; }
-    private get _saveButtonElement(): HTMLElement { return this.querySelector(".save-button") as HTMLElement };
-    private get _deleteButtonElement(): HTMLElement { return this.querySelector(".delete-button") as HTMLElement };
+	private get _titleElement(): HTMLElement { return this.querySelector(".task-edit-title") as HTMLElement; }
+    private get _saveButtonElement(): HTMLElement { return this.querySelector(".save-task-button") as HTMLElement };
+    private get _deleteButtonElement(): HTMLElement { return this.querySelector(".delete-task-button") as HTMLElement };
     private get _nameInputElement(): HTMLInputElement { return this.querySelector(".task-name") as HTMLInputElement;}
 }
 
