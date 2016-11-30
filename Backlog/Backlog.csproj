@@ -345,6 +345,13 @@
     <Compile Include="Services\IArticleService.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Models\StoryArticle.cs" />
+    <Compile Include="Models\Task.cs" />
+    <Compile Include="Dtos\TaskDto.cs" />
+    <Compile Include="Dtos\TaskAddOrUpdateRequestDto.cs" />
+    <Compile Include="Dtos\TaskAddOrUpdateResponseDto.cs" />
+    <Compile Include="Services\TaskService.cs" />
+    <Compile Include="Services\ITaskService.cs" />
+    <Compile Include="Controllers\TaskController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

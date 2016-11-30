@@ -1,4 +1,4 @@
-@import "../../styles/base";
+@import "../../styles/base/index";
 
 
 ce-epic-edit {
@@ -7,22 +7,8 @@ ce-epic-edit {
 
     margin-bottom:40px;
 
-    input {
-        display:block;
-        margin-bottom:20px;
-        font-size:1.25em;
-        line-height:1.5em;
-        width:400px;
-    }
 
-    select {
-        width:403px;
-        line-height:1.5em;
-        font-size:1.5em;
-        padding: 5px 7px;
-        display:block;
-        margin-bottom:30px;
-    }
+
 }
 
 

@@ -1,0 +1,21 @@
+@import "../../styles/base/index";
+
+ce-task-edit {
+    margin-bottom:40px;
+
+    input {
+        display:block;
+        margin-bottom:20px;
+        font-size:1.25em;
+        line-height:1.5em;
+        width:250px;
+    }
+
+    button {
+        width:100px;
+        line-height:30px;
+        font-size: 1em;
+    }
+}
+
+

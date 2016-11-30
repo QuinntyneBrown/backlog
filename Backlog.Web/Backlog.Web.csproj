@@ -392,6 +392,8 @@
     <None Include="Properties\PublishProfiles\backlog - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\backlog - Web Deploy.pubxml" />
     <None Include="src\styles\base\entity-list.scss" />
+    <None Include="src\styles\base\select.scss" />
+    <None Include="src\styles\base\entity-item.scss" />
     <Content Include="src\styles\_base.scss" />
     <Content Include="src\styles\base\view-card.scss" />
     <None Include="Web.Debug.config">
@@ -409,6 +411,12 @@
     <Content Include="typedoc.json" />
     <Content Include="typings.json" />
     <Content Include="src\styles\base\_index.scss" />
+    <Content Include="src\app\tasks\task-item.component.scss" />
+    <Content Include="src\app\tasks\task-item.component.html" />
+    <Content Include="src\app\tasks\task-list.component.scss" />
+    <Content Include="src\app\tasks\task-list.component.html" />
+    <Content Include="src\app\tasks\task-edit.component.scss" />
+    <Content Include="src\app\tasks\task-edit.component.html" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="index.html" />
@@ -533,6 +541,12 @@
     <TypeScriptCompile Include="src\app\users\register.component.ts" />
     <TypeScriptCompile Include="src\app\shared\drop-down.component.ts" />
     <TypeScriptCompile Include="src\app\shared\drop-down-item.component.ts" />
+    <TypeScriptCompile Include="src\app\tasks\task-item.component.ts" />
+    <TypeScriptCompile Include="src\app\tasks\task-list.component.ts" />
+    <TypeScriptCompile Include="src\app\tasks\task-edit.component.ts" />
+    <TypeScriptCompile Include="src\app\tasks\task.service.ts" />
+    <TypeScriptCompile Include="src\app\tasks\index.ts" />
+    <TypeScriptCompile Include="src\app\tasks\task.model.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -38,6 +38,7 @@ namespace Backlog
             container.RegisterType<IAgileTeamMemberService, AgileTeamMemberService>();
             container.RegisterType<IProductService, ProductService>();
             container.RegisterType<IFeedbackService, FeedbackService>();
+            container.RegisterType<ITaskService, TaskService>();
             
             container.RegisterInstance(AuthConfiguration.LazyConfig);            
             return container;

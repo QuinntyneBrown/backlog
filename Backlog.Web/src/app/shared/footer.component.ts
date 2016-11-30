@@ -1,10 +1,13 @@
 import { Router } from "../router";
-let template = require("./footer.component.html");
-let styles = require("./footer.component.scss");
+
+const template = require("./footer.component.html");
+const styles = require("./footer.component.scss");
 
 export class FooterComponent extends HTMLElement {
     constructor(private _router: Router = Router.Instance) {
         super();
+
+        this._onRouteChange = this._onRouteChange.bind(this);
     }
 
     static get observedAttributes () {
@@ -22,7 +25,7 @@ export class FooterComponent extends HTMLElement {
     }
 
     private _addEventListeners() {
-        this._router.addEventListener(this._onRouteChange.bind(this));
+        this._router.addEventListener(this._onRouteChange);
     }
 
     private _onRouteChange(options: any) {
@@ -30,7 +33,7 @@ export class FooterComponent extends HTMLElement {
     }
 
     disconnectedCallback() {
-
+        this._router.removeEventListener(this._onRouteChange);
     }
 
     attributeChangedCallback (name, oldValue, newValue) {

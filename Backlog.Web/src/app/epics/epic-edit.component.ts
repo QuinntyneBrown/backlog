@@ -87,7 +87,6 @@ export class EpicEditComponent extends HTMLElement {
 
     attributeChangedCallback(name, oldValue, newValue) {
         switch (name) {
-
             case "epic-id":
                 this.epicId = newValue;
 				break;

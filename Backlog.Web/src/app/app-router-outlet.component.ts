@@ -21,7 +21,7 @@ export class AppRouterOutletComponent extends RouterOutlet {
 
             { path: "/epic/view/:epicId", name: "epic-view", authRequired: true },
             { path: "/epic/edit/:epicId", name: "epic-edit", authRequired: true },
-            { path: "/epic/create", name: "epic-create", authRequired: true },
+            { path: "/epic/create", name: "epic-edit", authRequired: true },
 
             { path: "/epic/:epicId/story/edit/:storyId", name: "story-edit", authRequired: true },
             { path: "/epic/:epicId/story/create", name: "story-edit", authRequired: true },
@@ -29,6 +29,10 @@ export class AppRouterOutletComponent extends RouterOutlet {
             { path: "/product/list", name: "product-list", authRequired: true },
             { path: "/product/create", name: "product-edit", authRequired: true },
             { path: "/product/edit/:productId", name: "product-edit", authRequired: true },
+
+            { path: "/task/list", name: "task-list", authRequired: true },
+            { path: "/task/create", name: "task-edit", authRequired: true },
+            { path: "/task/edit/:taskId", name: "task-edit", authRequired: true },
 
             { path: "/feedback/create", name: "feedback-edit", authRequired: true },
             { path: "/feedback/received", name: "feedback-received", authRequired: true },

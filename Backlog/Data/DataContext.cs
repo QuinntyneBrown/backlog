@@ -27,6 +27,7 @@ namespace Backlog.Data
         public DbSet<ReusableStoryGroup> ReusableStoryGroups { get; set; }
         public DbSet<Project> Projects { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Task> Tasks { get; set; }
         public DbSet<AgileTeamMember> AgileTeamMembers { get; set; }
         public DbSet<Feedback> Feedbacks { get; set; }
 
