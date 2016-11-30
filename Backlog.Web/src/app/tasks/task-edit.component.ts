@@ -17,7 +17,10 @@ export class TaskEditComponent extends HTMLElement {
     }
 
     static get observedAttributes() {
-        return ["task-id"];
+        return [
+            "task-id",
+            "story-id"
+        ];
     }
     
     connectedCallback() {        
@@ -28,11 +31,13 @@ export class TaskEditComponent extends HTMLElement {
     
 	private _bind() {
         this._titleElement.textContent = "Create task";
+        this._descriptionEditor = new EditorComponent(this._descriptionElement);
 
         if (this.taskId) {
             this._taskService.getById(this.taskId).then((results: string) => { 
                 var resultsJSON: Task = JSON.parse(results) as Task;                
-                this._nameInputElement.value = resultsJSON.name;              
+                this._nameInputElement.value = resultsJSON.name;  
+                this._descriptionEditor.setHTML(resultsJSON.description);            
             });
             this._titleElement.textContent = "Edit Task";
         } else {
@@ -48,7 +53,9 @@ export class TaskEditComponent extends HTMLElement {
     public onSave() {
         var task = {
             id: this.taskId,
-            name: this._nameInputElement.value
+            storyId: this.storyId,
+            name: this._nameInputElement.value,
+            description: this._descriptionEditor.text
         } as Task;
         
         this._taskService.add(task).then((results) => {
@@ -67,12 +74,19 @@ export class TaskEditComponent extends HTMLElement {
 
             case "task-id":
                 this.taskId = newValue;
-				break;
+                break;
+
+            case "story-id":
+                this.storyId = newValue;
+                break;
         }        
     }
 
     public taskId: number;
-    
+    public storyId: number;
+
+    private _descriptionEditor: EditorComponent;
+    private get _descriptionElement(): HTMLElement { return this.querySelector(".task-edit-description") as HTMLElement; }
 	private get _titleElement(): HTMLElement { return this.querySelector(".task-edit-title") as HTMLElement; }
     private get _saveButtonElement(): HTMLElement { return this.querySelector(".save-task-button") as HTMLElement };
     private get _deleteButtonElement(): HTMLElement { return this.querySelector(".delete-task-button") as HTMLElement };

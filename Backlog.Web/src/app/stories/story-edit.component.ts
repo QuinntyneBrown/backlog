@@ -50,6 +50,9 @@ export class StoryEditComponent extends HTMLElement {
                 this.architecturePointsInputElement.value = resultsJSON.architecturePoints;
                 this.completedDateElement.value = resultsJSON.completedDate;
 
+                this._taskEditComponent.setAttribute("story-id", JSON.stringify(this.storyId));
+                this._taskListComponent.setAttribute("story-id", JSON.stringify(this.storyId));
+
                 resultsJSON.digitalAssets.map(d => {
                     let el = document.createElement("ce-story-digital-asset") as HTMLElement;
                     el.setAttribute("relative-path", d.relativePath);
@@ -127,6 +130,8 @@ export class StoryEditComponent extends HTMLElement {
 
     public storyId: number;
     public epicId: number;
+    private get _taskEditComponent(): HTMLElement { return this.querySelector("ce-task-edit") as HTMLElement; }
+    private get _taskListComponent(): HTMLElement { return this.querySelector("ce-task-list") as HTMLElement; }
     public get imageDropZoneElement(): DropZoneComponent { return this.querySelector("ce-drop-zone") as DropZoneComponent; }
     public get descriptionElement(): HTMLElement { return this.querySelector(".story-description") as HTMLElement; }
     public descriptionEditor: EditorComponent;

@@ -8,6 +8,7 @@ namespace Backlog.Dtos
         public TaskDto(Task entity)
         {
             Id = entity.Id;
+            StoryId = entity.StoryId;
             Name = entity.Name;
             Description = entity.Description;
             CompletedDate = entity.CompletedDate;
@@ -19,6 +20,7 @@ namespace Backlog.Dtos
         }
 
         public int Id { get; set; }
+        public int? StoryId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTime? CompletedDate { get; set; }

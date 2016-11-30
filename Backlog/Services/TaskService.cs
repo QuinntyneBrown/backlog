@@ -20,9 +20,12 @@ namespace Backlog.Services
         public TaskAddOrUpdateResponseDto AddOrUpdate(TaskAddOrUpdateRequestDto request)
         {
             var entity = _repository.GetAll()
+                .Include(x=>x.Story)
                 .FirstOrDefault(x => x.Id == request.Id && x.IsDeleted == false);
             if (entity == null) _repository.Add(entity = new Task());
             entity.Name = request.Name;
+            entity.StoryId = request.StoryId;
+            entity.Description = request.Description;
             _uow.SaveChanges();
             return new TaskAddOrUpdateResponseDto(entity);
         }
@@ -47,16 +50,18 @@ namespace Backlog.Services
         {
             ICollection<TaskDto> response = new HashSet<TaskDto>();
             var entities = _repository.GetAll()
+                .Include(x => x.Story)
                 .Where(x => x.IsDeleted == false && x.StoryId == storyId)
                 .ToList();
             foreach (var entity in entities) { response.Add(new TaskDto(entity)); }
             return response;
         }
-
-
+        
         public TaskDto GetById(int id)
         {
-            return new TaskDto(_repository.GetAll().Where(x => x.Id == id && x.IsDeleted == false).FirstOrDefault());
+            return new TaskDto(_repository.GetAll()
+                .Include(x => x.Story)
+                .Where(x => x.Id == id && x.IsDeleted == false).FirstOrDefault());
         }
 
         protected readonly IUow _uow;
