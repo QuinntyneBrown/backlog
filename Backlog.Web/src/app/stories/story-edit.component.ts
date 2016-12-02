@@ -20,6 +20,7 @@ export class StoryEditComponent extends HTMLElement {
         this.onTaskDelete = this.onTaskDelete.bind(this);
         this.onTaskEdit = this.onTaskEdit.bind(this);
         this.onTaskView = this.onTaskView.bind(this);
+        this.onTitleClick = this.onTitleClick.bind(this);
     }
 
     static get observedAttributes() {
@@ -30,10 +31,9 @@ export class StoryEditComponent extends HTMLElement {
         
         this.innerHTML = `<style>${styles}</style> ${template}`; 
         this.saveButtonElement = this.querySelector(".save-button") as HTMLButtonElement;
-        this.deleteButtonElement = this.querySelector(".delete-button") as HTMLButtonElement;
-        this.titleElement = this.querySelector(".story-edit-title") as HTMLElement;
+        this.deleteButtonElement = this.querySelector(".delete-button") as HTMLButtonElement;        
         this.nameInputElement = this.querySelector(".story-name") as HTMLInputElement;
-        this.titleElement.textContent = "Create Story";
+        this._titleElement.textContent = "Create Story";
         this.saveButtonElement.addEventListener("click", this.onSave.bind(this));
         this.deleteButtonElement.addEventListener("click", this.onDelete.bind(this));
         this.descriptionEditor = new EditorComponent(this.descriptionElement);
@@ -68,7 +68,7 @@ export class StoryEditComponent extends HTMLElement {
                 });
             });
 
-            this.titleElement.textContent = "Edit Story";
+            this._titleElement.textContent = "Edit Story";
         } else {
             this.deleteButtonElement.style.display = "none";
             this.imageDropZoneElement.style.display = "none";
@@ -84,6 +84,7 @@ export class StoryEditComponent extends HTMLElement {
         this.addEventListener(taskActions.EDIT, this.onTaskEdit);
         this.addEventListener(taskActions.VIEW, this.onTaskView);
         this.addEventListener(taskActions.DELETE, this.onTaskDelete);
+        this._titleElement.addEventListener("click", this.onTitleClick);
     }
 
     public disconnectedCallback() {
@@ -92,6 +93,11 @@ export class StoryEditComponent extends HTMLElement {
         this.removeEventListener(taskActions.EDIT, this.onTaskEdit);
         this.removeEventListener(taskActions.VIEW, this.onTaskView);
         this.removeEventListener(taskActions.DELETE, this.onTaskDelete);
+        this._titleElement.removeEventListener("click", this.onTitleClick);
+    }
+
+    public onTitleClick() {
+        this._router.navigate(["epic", "view", this.epicId]);
     }
 
     public onImageDrop(e) {
@@ -207,7 +213,7 @@ export class StoryEditComponent extends HTMLElement {
     public get architecturePointsInputElement(): HTMLInputElement { return this.querySelector(".architecture-points") as HTMLInputElement; }
     public get digitalAssetsContainer(): HTMLElement { return this.querySelector(".story-digital-assets") as HTMLElement; }
     public get completedDateElement(): HTMLInputElement { return this.querySelector(".completed-date") as HTMLInputElement; }
-    public titleElement: HTMLElement;
+    private get _titleElement(): HTMLElement { return this.querySelector(".story-edit-title") as HTMLElement; }
     public saveButtonElement: HTMLButtonElement;
     public deleteButtonElement: HTMLButtonElement;
     public nameInputElement: HTMLInputElement;

@@ -42,6 +42,10 @@ ce-story-edit {
         font-size: 1em;
     }
 
+    .story-edit-title {
+        cursor:pointer;
+    }
+
     .story-description,
     .story-notes {
         display:block;

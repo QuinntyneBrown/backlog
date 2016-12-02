@@ -60,7 +60,6 @@ export class ProductEditComponent extends HTMLElement {
 
     attributeChangedCallback(name, oldValue, newValue) {
         switch (name) {
-
             case "product-id":
                 this.productId = newValue;
 				break;
