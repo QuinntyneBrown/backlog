@@ -10,7 +10,7 @@ export class AppComponent extends HTMLElement {
         super();
     }  
 
-    connectedCallback() {        
+    connectedCallback() {                
         this.innerHTML = `<style>${styles}</style>${template}`;
         this.routerOutlet = new AppRouterOutletComponent(this.routerOutletElement);
     }    

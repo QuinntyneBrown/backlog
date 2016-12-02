@@ -45,8 +45,8 @@ namespace Backlog.Controllers
         [AllowAnonymous]
         [HttpGet]
         [ResponseType(typeof(ICollection<TaskDto>))]
-        public IHttpActionResult GetByStoryId(int storyId) {
-            return Ok(_taskService.GetByStoryId(storyId));
+        public IHttpActionResult GetByStoryId(int? storyId) {
+            return Ok(_taskService.GetByStoryId(storyId.Value));
         }
         
         protected readonly ITaskService _taskService;        

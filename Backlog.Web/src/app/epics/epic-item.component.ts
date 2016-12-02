@@ -20,7 +20,7 @@ export class EpicItemComponent extends HTMLElement {
     connectedCallback() {        
         this.innerHTML = `<style>${styles}</style> ${template}`;
         this._bind();
-        this._addEventListeners();
+        this._addEventListeners();        
     }
 
     disconnectedCallback() {
@@ -57,7 +57,7 @@ export class EpicItemComponent extends HTMLElement {
     
     attributeChangedCallback(name, oldValue, newValue) {
         switch (name) {
-            case "entity":
+            case "entity":                
                 this.entity = JSON.parse(newValue);
 				break;
         }        

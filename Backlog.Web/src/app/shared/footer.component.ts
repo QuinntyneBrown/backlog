@@ -29,7 +29,7 @@ export class FooterComponent extends HTMLElement {
     }
 
     private _onRouteChange(options: any) {
-        this.style.display = options.routeName == "login" ? "none" : "block";
+        //this.style.display = options.routeName == "login" ? "none" : "block";
     }
 
     disconnectedCallback() {

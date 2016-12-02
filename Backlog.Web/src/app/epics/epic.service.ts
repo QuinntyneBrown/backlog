@@ -7,7 +7,7 @@ export class EpicService {
     private static _instance: EpicService;
 
     public static get Instance() {
-        this._instance = this._instance || new EpicService();
+        this._instance = this._instance || new this();
         return this._instance;
     }
 
@@ -26,9 +26,6 @@ export class EpicService {
     public remove(options: { id : number }) {
         return fetch({ url: `${this._baseUrl}/api/epic/remove?id=${options.id}`, method: "DELETE", authRequired: true  });
     }
-
-    // private get _baseUrl() { return environment.baseUrl; }
-
-    private get _baseUrl() { return ""; }
     
+    private get _baseUrl() { return ""; }    
 }

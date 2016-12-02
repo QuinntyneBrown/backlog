@@ -26,6 +26,8 @@ namespace Backlog.Services
             entity.Name = request.Name;
             entity.StoryId = request.StoryId;
             entity.Description = request.Description;
+            entity.StartDate = request.StartDate;
+            entity.CompletedDate = request.CompletedDate;
             _uow.SaveChanges();
             return new TaskAddOrUpdateResponseDto(entity);
         }

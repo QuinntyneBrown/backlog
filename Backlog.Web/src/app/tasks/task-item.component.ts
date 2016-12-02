@@ -1,16 +1,16 @@
 import { Task } from "./task.model";
-import { TaskService } from "./task.service";
 import { EditorComponent } from "../shared";
-import { Router } from "../router";
+import { TaskDelete, TaskEdit, TaskView } from "./task.actions";
 
 const template = require("./task-item.component.html");
 const styles = require("./task-item.component.scss");
 
 export class TaskItemComponent extends HTMLElement {
-    constructor(
-        private _taskService: TaskService = TaskService.Instance,
-        private _router: Router = Router.Instance) {
+    constructor() {
         super();
+        this._onDeleteClick = this._onDeleteClick.bind(this);
+        this._onEditClick = this._onEditClick.bind(this);
+        this._onViewClick = this._onViewClick.bind(this);
     }
 
     static get observedAttributes() {
@@ -40,17 +40,15 @@ export class TaskItemComponent extends HTMLElement {
     }
 
     private _onDeleteClick(e:Event) {
-        this._taskService.remove({ id: this.entity.id }).then(() => {
-            this.parentNode.removeChild(this);
-        });
+        this.dispatchEvent(new TaskDelete(this.entity.id));
     }
 
     private _onEditClick() {
-        this._router.navigate(["task", "edit", this.entity.id]);
+        this.dispatchEvent(new TaskEdit(this.entity.id));
     }
 
     private _onViewClick() {
-        this._router.navigate(["task","view",this.entity.id]);
+        this.dispatchEvent(new TaskView(this.entity.id));
     }
     
     attributeChangedCallback(name, oldValue, newValue) {

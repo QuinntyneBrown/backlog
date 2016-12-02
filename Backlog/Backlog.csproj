@@ -352,6 +352,13 @@
     <Compile Include="Services\TaskService.cs" />
     <Compile Include="Services\ITaskService.cs" />
     <Compile Include="Controllers\TaskController.cs" />
+    <Compile Include="Models\UserSettings.cs" />
+    <Compile Include="Services\UserSettingsService.cs" />
+    <Compile Include="Services\IUserSettingsService.cs" />
+    <Compile Include="Dtos\UserSettingsDto.cs" />
+    <Compile Include="Dtos\UserSettingsAddOrUpdateRequestDto.cs" />
+    <Compile Include="Dtos\UserSettingsAddOrUpdateResponseDto.cs" />
+    <Compile Include="Controllers\UserSettingsController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

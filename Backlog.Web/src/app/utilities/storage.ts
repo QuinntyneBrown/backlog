@@ -1,8 +1,11 @@
 ﻿import { STORAGE_KEY } from "./constants";
 
 export class Storage {
-    constructor(private _key: string, private _localStorage = localStorage, private _window = window) {
-        _window.addEventListener("pagehide",this.onPageHide.bind(this));
+    constructor(private _key: string = STORAGE_KEY, private _localStorage: any = localStorage, private _window: Window = window) {
+
+        this.onPageHide = this.onPageHide.bind(this);
+
+        _window.addEventListener("pagehide",this.onPageHide);
     }
 
     private onPageHide() {
@@ -12,7 +15,7 @@ export class Storage {
     private static _instance;
 
     public static get Instance() {
-        this._instance = this._instance || new Storage(STORAGE_KEY);
+        this._instance = this._instance || new this();
         return this._instance;
     }
 
@@ -26,7 +29,6 @@ export class Storage {
             }
             this._items = JSON.parse(storageItems || "[]");
         }
-
         return this._items;
     }
 

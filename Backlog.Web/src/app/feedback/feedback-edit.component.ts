@@ -7,7 +7,8 @@ const template = require("./feedback-edit.component.html");
 const styles = require("./feedback-edit.component.scss");
 
 export class FeedbackEditComponent extends HTMLElement {
-    constructor(private _feedbackService: FeedbackService = FeedbackService.Instance,
+    constructor(
+        private _feedbackService: FeedbackService = FeedbackService.Instance,
         private _router: Router = Router.Instance
     ) {
         super();

@@ -2,7 +2,7 @@ import { Story } from "./story.model";
 import { StoryService } from "./story.service";
 import { EditorComponent, dropZoneEvents, DropZoneComponent } from "../shared";
 import { Router } from "../router";
-import { TaskService } from "../tasks";
+import { TaskService, taskActions, Task, TaskEditComponent, TaskListComponent } from "../tasks";
 
 const template = require("./story-edit.component.html");
 const styles = require("./story-edit.component.scss");
@@ -11,9 +11,15 @@ export class StoryEditComponent extends HTMLElement {
     constructor(
         private _storyService: StoryService = StoryService.Instance,
         private _router: Router = Router.Instance,
-        private _taskService: TaskService = TaskService.Instance
+        private _taskService: TaskService = TaskService.Instance,
+        private _window: Window = window
     ) {
         super();
+
+        this.onTaskAdd = this.onTaskAdd.bind(this);
+        this.onTaskDelete = this.onTaskDelete.bind(this);
+        this.onTaskEdit = this.onTaskEdit.bind(this);
+        this.onTaskView = this.onTaskView.bind(this);
     }
 
     static get observedAttributes() {
@@ -41,6 +47,7 @@ export class StoryEditComponent extends HTMLElement {
                 this._taskService.getByStoryId(this.storyId)
             ]).then((resultsArray: any) => {
                 let results = resultsArray[0];
+                this.tasks = JSON.parse(resultsArray[1]);
                 let resultsJSON: Story = JSON.parse(results) as Story;
                 this.nameInputElement.value = resultsJSON.name;
                 this.descriptionEditor.setHTML(resultsJSON.description);
@@ -73,6 +80,18 @@ export class StoryEditComponent extends HTMLElement {
 
     private _addEventListeners() {
         this.imageDropZoneElement.addEventListener(dropZoneEvents.DROP, this.onImageDrop.bind(this));
+        this.addEventListener(taskActions.ADD, this.onTaskAdd);
+        this.addEventListener(taskActions.EDIT, this.onTaskEdit);
+        this.addEventListener(taskActions.VIEW, this.onTaskView);
+        this.addEventListener(taskActions.DELETE, this.onTaskDelete);
+    }
+
+    public disconnectedCallback() {
+        this.imageDropZoneElement.removeEventListener(dropZoneEvents.DROP, this.onImageDrop.bind(this));
+        this.removeEventListener(taskActions.ADD, this.onTaskAdd);
+        this.removeEventListener(taskActions.EDIT, this.onTaskEdit);
+        this.removeEventListener(taskActions.VIEW, this.onTaskView);
+        this.removeEventListener(taskActions.DELETE, this.onTaskDelete);
     }
 
     public onImageDrop(e) {
@@ -89,6 +108,51 @@ export class StoryEditComponent extends HTMLElement {
             }
         };
         xhr.send(e.detail.files);
+    }
+
+    public onTaskAdd(e:any) {
+        e.stopPropagation();        
+        if (this.storyId) {
+            const task = Object.assign(e.detail.task, { storyId: this.storyId });
+            this._taskService.add(task).then((results) => {  
+                if (!this.tasks.find(t => t.id === task.id)) {
+                    this.tasks.push(task);
+                } else {                    
+                    this.tasks[this.tasks.findIndex(t => t.id === task.id)] = task;
+                }
+
+                this._taskEditComponent.setAttribute("task", "");
+                this._taskListComponent.setAttribute("tasks", JSON.stringify(this.tasks));
+            });
+        } else {
+            
+        }
+    }
+
+    public onTaskEdit(e: any) {
+        e.stopPropagation();        
+        const task: Task = this.tasks.find(t => t.id == e.detail.taskId);
+        this._taskEditComponent.setAttribute("task", JSON.stringify(task));
+        this._window.scrollTo(0, 0);
+    }
+
+    public onTaskView(e: any) {
+        e.stopPropagation();
+        const task: Task = this.tasks.find(t => t.id == e.detail.taskId);
+        this._taskEditComponent.setAttribute("task", JSON.stringify(task));
+        this._window.scrollTo(0, 0);
+    }
+
+    public onTaskDelete(e: any) {
+        e.stopPropagation();
+        const task: Task = this.tasks.find(t => t.id == e.detail.taskId);      
+        this._taskService.remove({ id: e.detail.taskId }).then(results => {
+            this.tasks.splice(this.tasks.indexOf(task), 1);
+            this._taskEditComponent.setAttribute("task", "");
+            if (this._taskEditComponent.taskId == e.detail.taskId)
+                this._taskEditComponent.setAttribute("task", "");
+            this._taskListComponent.setAttribute("tasks", "");
+        });
     }
 
     public onSave() {
@@ -130,8 +194,9 @@ export class StoryEditComponent extends HTMLElement {
 
     public storyId: number;
     public epicId: number;
-    private get _taskEditComponent(): HTMLElement { return this.querySelector("ce-task-edit") as HTMLElement; }
-    private get _taskListComponent(): HTMLElement { return this.querySelector("ce-task-list") as HTMLElement; }
+    public tasks: Array<Task> = [];
+    private get _taskEditComponent(): TaskEditComponent { return this.querySelector("ce-task-edit") as TaskEditComponent; }
+    private get _taskListComponent(): TaskListComponent { return this.querySelector("ce-task-list") as TaskListComponent; }
     public get imageDropZoneElement(): DropZoneComponent { return this.querySelector("ce-drop-zone") as DropZoneComponent; }
     public get descriptionElement(): HTMLElement { return this.querySelector(".story-description") as HTMLElement; }
     public descriptionEditor: EditorComponent;

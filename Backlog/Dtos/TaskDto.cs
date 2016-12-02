@@ -11,6 +11,7 @@ namespace Backlog.Dtos
             StoryId = entity.StoryId;
             Name = entity.Name;
             Description = entity.Description;
+            StartDate = entity.StartDate;
             CompletedDate = entity.CompletedDate;
         }
 
@@ -23,6 +24,7 @@ namespace Backlog.Dtos
         public int? StoryId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public DateTime? StartDate { get; set; }
         public DateTime? CompletedDate { get; set; }
     }
 }
