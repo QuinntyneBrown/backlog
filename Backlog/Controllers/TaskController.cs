@@ -26,7 +26,6 @@ namespace Backlog.Controllers
         public IHttpActionResult Update(TaskAddOrUpdateRequestDto dto) { return Ok(_taskService.AddOrUpdate(dto)); }
 
         [Route("get")]
-        [AllowAnonymous]
         [HttpGet]
         [ResponseType(typeof(ICollection<TaskDto>))]
         public IHttpActionResult Get() { return Ok(_taskService.Get()); }
@@ -42,7 +41,6 @@ namespace Backlog.Controllers
         public IHttpActionResult Remove(int id) { return Ok(_taskService.Remove(id)); }
 
         [Route("getByStoryId")]
-        [AllowAnonymous]
         [HttpGet]
         [ResponseType(typeof(ICollection<TaskDto>))]
         public IHttpActionResult GetByStoryId(int? storyId) {

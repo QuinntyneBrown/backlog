@@ -3,19 +3,19 @@ import { SprintService, Sprint } from "../sprints";
 const template = require("./kanban-board.component.html");
 const styles = require("./kanban-board.component.scss");
 
-export class KanbanBoardComponent extends HTMLElement {
-    constructor(
-        private _sprintService: SprintService = SprintService.Instance
-    ) {
-        super();
-    }
+export class KanbanBoardComponent extends HTMLButtonElement {
+    //constructor(
+    //    private _sprintService: SprintService = SprintService.Instance
+    //) {
+    //    super();
+    //}
 
     static get observedAttributes () {
         return [];
     }
 
     connectedCallback() {
-        this.innerHTML = `<style>${styles}</style> ${template}`;
+        //this.innerHTML = `<style>${styles}</style> ${template}`;
         this._bind();
         this._addEventListeners();
     }
@@ -40,4 +40,4 @@ export class KanbanBoardComponent extends HTMLElement {
     }
 }
 
-document.addEventListener("DOMContentLoaded",() => window.customElements.define(`ce-kanban-board`,KanbanBoardComponent));
+document.addEventListener("DOMContentLoaded", () => window.customElements.define(`ce-kanban-board`, KanbanBoardComponent, { extends: "button" }));

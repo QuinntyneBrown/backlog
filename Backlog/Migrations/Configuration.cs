@@ -14,7 +14,8 @@ namespace Backlog.Migrations
 
         protected override void Seed(Backlog.Data.DataContext context)
         {
-
+            RoleConfiguration.Seed(context);
+            TaskStatusConfiguration.Seed(context);
         }
     }
 }

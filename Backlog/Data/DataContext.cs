@@ -31,6 +31,7 @@ namespace Backlog.Data
         public DbSet<AgileTeamMember> AgileTeamMembers { get; set; }
         public DbSet<Feedback> Feedbacks { get; set; }
         public DbSet<UserSettings> UserSettings { get; set; }
+        public DbSet<TaskStatus> TaskStatuses { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
