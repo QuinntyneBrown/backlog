@@ -39,7 +39,7 @@ export class TaskEditComponent extends HTMLElement {
 
         if (this.taskId) {
             this._taskService.getById(this.taskId).then((results: string) => { 
-                var resultsJSON: Task = JSON.parse(results) as Task;                
+                const resultsJSON: Task = JSON.parse(results) as Task;                
                 this._nameInputElement.value = resultsJSON.name;  
                 this._descriptionEditor.setHTML(resultsJSON.description); 
                 this._startElement.value = resultsJSON.startDate;
@@ -87,18 +87,23 @@ export class TaskEditComponent extends HTMLElement {
                 break;
 
             case "task":                
-                var task: Task = newValue == "" ? new Task() : JSON.parse(newValue) as Task;
-                this.taskId = task.id;
-                this._nameInputElement.value = task.name;
-                this._descriptionEditor.setHTML(task.description);  
-                this._startElement.value = task.startDate;
-                this._completedElement.value = task.completedDate;  
+                this.task = newValue == "" ? new Task() : JSON.parse(newValue) as Task;
                 break;
         }        
     }
 
     private startDatePicker;
     private completedDatePicker;
+    private _task: Task;
+    public get task() { return this._task; }
+    public set task(value: Task) {
+        this._task = value;
+        this.taskId = this._task.id;
+        this._nameInputElement.value = this._task.name;
+        this._descriptionEditor.setHTML(this._task.description);
+        this._startElement.value = this._task.startDate;
+        this._completedElement.value = this._task.completedDate; 
+    }
 
     private _taskId: number;
     public get taskId(): number { return this._taskId; }

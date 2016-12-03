@@ -127,7 +127,7 @@ export class StoryEditComponent extends HTMLElement {
                     this.tasks[this.tasks.findIndex(t => t.id === task.id)] = task;
                 }
 
-                this._taskEditComponent.setAttribute("task", "");
+                this._taskEditComponent.setAttribute("task", JSON.stringify(new Task()));
                 this._taskListComponent.setAttribute("tasks", JSON.stringify(this.tasks));
             });
         } else {
@@ -153,10 +153,9 @@ export class StoryEditComponent extends HTMLElement {
         e.stopPropagation();
         const task: Task = this.tasks.find(t => t.id == e.detail.taskId);      
         this._taskService.remove({ id: e.detail.taskId }).then(results => {
-            this.tasks.splice(this.tasks.indexOf(task), 1);
-            this._taskEditComponent.setAttribute("task", "");
+            this.tasks.splice(this.tasks.indexOf(task), 1);            
             if (this._taskEditComponent.taskId == e.detail.taskId)
-                this._taskEditComponent.setAttribute("task", "");
+                this._taskEditComponent.setAttribute("task", JSON.stringify(new Task()));
             this._taskListComponent.setAttribute("tasks", "");
         });
     }

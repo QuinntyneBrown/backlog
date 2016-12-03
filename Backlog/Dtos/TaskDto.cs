@@ -1,5 +1,6 @@
 using Backlog.Models;
 using System;
+using System.Collections.Generic;
 
 namespace Backlog.Dtos
 {
@@ -13,6 +14,7 @@ namespace Backlog.Dtos
             Description = entity.Description;
             StartDate = entity.StartDate;
             CompletedDate = entity.CompletedDate;
+            TaskStatus = new TaskStatusDto(entity.TaskStatus);
         }
 
         public TaskDto()
@@ -26,5 +28,6 @@ namespace Backlog.Dtos
         public string Description { get; set; }
         public DateTime? StartDate { get; set; }
         public DateTime? CompletedDate { get; set; }
+        public TaskStatusDto TaskStatus { get; set; }
     }
 }

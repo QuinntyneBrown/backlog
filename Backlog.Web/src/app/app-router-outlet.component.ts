@@ -39,7 +39,7 @@ export class AppRouterOutletComponent extends RouterOutlet {
 
             { path: "/register", name: "register" },
 
-            { path: "/settings", name: "settings", authRequired: true }            
+            { path: "/user-settings", name: "user-settings", authRequired: true }            
         ] as any);
 
         this.use(new AuthorizedRouteMiddleware());

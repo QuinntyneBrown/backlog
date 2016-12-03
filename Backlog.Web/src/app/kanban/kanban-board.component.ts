@@ -1,7 +1,7 @@
-const template = require("./settings.component.html");
-const styles = require("./settings.component.scss");
+const template = require("./kanban-board.component.html");
+const styles = require("./kanban-board.component.scss");
 
-export class SettingsComponent extends HTMLElement {
+export class KanbanBoardComponent extends HTMLElement {
     constructor() {
         super();
     }
@@ -36,4 +36,4 @@ export class SettingsComponent extends HTMLElement {
     }
 }
 
-document.addEventListener("DOMContentLoaded",() => window.customElements.define(`ce-settings`,SettingsComponent));
+document.addEventListener("DOMContentLoaded",() => window.customElements.define(`ce-kanban-board`,KanbanBoardComponent));

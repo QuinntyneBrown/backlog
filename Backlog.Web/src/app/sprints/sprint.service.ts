@@ -1,0 +1,29 @@
+import { fetch } from "../utilities";
+import { Sprint } from "./sprint.model";
+
+export class SprintService {
+    
+    private static _instance: SprintService;
+
+    public static get Instance() {
+        this._instance = this._instance || new SprintService();
+        return this._instance;
+    }
+
+    public get() {
+        return fetch({ url: "/api/sprint/get" });
+    }
+
+    public getById(id) {
+        return fetch({ url: `/api/sprint/getbyid?id=${id}`, authRequired: true });
+    }
+
+    public add(entity) {
+        return fetch({ url: `/api/sprint/add`, method: "POST", data: entity, authRequired: true  });
+    }
+
+    public remove(options: { id : number }) {
+        return fetch({ url: `/api/sprint/remove?id=${options.id}`, method: "DELETE", authRequired: true  });
+    }
+    
+}

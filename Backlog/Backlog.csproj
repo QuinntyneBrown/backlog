@@ -359,6 +359,11 @@
     <Compile Include="Dtos\UserSettingsAddOrUpdateRequestDto.cs" />
     <Compile Include="Dtos\UserSettingsAddOrUpdateResponseDto.cs" />
     <Compile Include="Controllers\UserSettingsController.cs" />
+    <Compile Include="Models\TaskStatus.cs" />
+    <Compile Include="Dtos\TaskStatusDto.cs" />
+    <Compile Include="Dtos\TaskStatusAddOrUpdateRequestDto.cs" />
+    <Compile Include="Dtos\TaskStatusAddOrUpdateResponseDto.cs" />
+    <Compile Include="Models\SprintStory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

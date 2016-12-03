@@ -270,6 +270,12 @@
     <Content Include="src\app\feedback\feedback-received.component.scss">
       <DependentUpon>feedback-received.component.ts</DependentUpon>
     </Content>
+    <Content Include="src\app\kanban\kanban-board.component.html">
+      <DependentUpon>kanban-board.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\kanban\kanban-board.component.scss">
+      <DependentUpon>kanban-board.component.ts</DependentUpon>
+    </Content>
     <Content Include="src\app\products\product-edit.component.html">
       <DependentUpon>product-edit.component.ts</DependentUpon>
     </Content>
@@ -287,12 +293,6 @@
     </Content>
     <Content Include="src\app\products\product-list.component.scss">
       <DependentUpon>product-list.component.ts</DependentUpon>
-    </Content>
-    <Content Include="src\app\settings\settings.component.html">
-      <DependentUpon>settings.component.ts</DependentUpon>
-    </Content>
-    <Content Include="src\app\settings\settings.component.scss">
-      <DependentUpon>settings.component.ts</DependentUpon>
     </Content>
     <Content Include="src\app\shared\button.component.html">
       <DependentUpon>button.component.ts</DependentUpon>
@@ -354,6 +354,24 @@
     <Content Include="src\app\shared\tabs.component.scss">
       <DependentUpon>tabs.component.ts</DependentUpon>
     </Content>
+    <Content Include="src\app\sprints\sprint-edit.component.html">
+      <DependentUpon>sprint-edit.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\sprints\sprint-edit.component.scss">
+      <DependentUpon>sprint-edit.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\sprints\sprint-item.component.html">
+      <DependentUpon>sprint-item.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\sprints\sprint-item.component.scss">
+      <DependentUpon>sprint-item.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\sprints\sprint-list.component.html">
+      <DependentUpon>sprint-list.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\sprints\sprint-list.component.scss">
+      <DependentUpon>sprint-list.component.ts</DependentUpon>
+    </Content>
     <Content Include="src\app\stories\story-digital-asset.component.html">
       <DependentUpon>story-digital-asset.component.ts</DependentUpon>
     </Content>
@@ -389,6 +407,12 @@
     </Content>
     <Content Include="src\app\tasks\task-list.component.scss">
       <DependentUpon>task-list.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\user-settings\user-settings.component.html">
+      <DependentUpon>user-settings.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\user-settings\user-settings.component.scss">
+      <DependentUpon>user-settings.component.ts</DependentUpon>
     </Content>
     <Content Include="src\app\users\login.component.html">
       <DependentUpon>login.component.ts</DependentUpon>
@@ -546,8 +570,6 @@
     <TypeScriptCompile Include="src\app\articles\article-view.component.ts" />
     <TypeScriptCompile Include="src\app\articles\article.service.ts" />
     <TypeScriptCompile Include="src\app\articles\article-edit.component.ts" />
-    <TypeScriptCompile Include="src\app\settings\settings.component.ts" />
-    <TypeScriptCompile Include="src\app\settings\index.ts" />
     <TypeScriptCompile Include="src\app\users\register.component.ts" />
     <TypeScriptCompile Include="src\app\shared\drop-down.component.ts" />
     <TypeScriptCompile Include="src\app\shared\drop-down-item.component.ts" />
@@ -558,6 +580,19 @@
     <TypeScriptCompile Include="src\app\tasks\index.ts" />
     <TypeScriptCompile Include="src\app\tasks\task.model.ts" />
     <TypeScriptCompile Include="src\app\tasks\task.actions.ts" />
+    <TypeScriptCompile Include="src\app\sprints\sprint-item.component.ts" />
+    <TypeScriptCompile Include="src\app\sprints\sprint-list.component.ts" />
+    <TypeScriptCompile Include="src\app\sprints\sprint-edit.component.ts" />
+    <TypeScriptCompile Include="src\app\sprints\index.ts" />
+    <TypeScriptCompile Include="src\app\sprints\sprint.model.ts" />
+    <TypeScriptCompile Include="src\app\sprints\sprint.service.ts" />
+    <TypeScriptCompile Include="src\app\kanban\index.ts" />
+    <TypeScriptCompile Include="src\app\kanban\kanban-board.component.ts" />
+    <TypeScriptCompile Include="src\app\user-settings\user-settings.component.ts" />
+    <TypeScriptCompile Include="src\app\user-settings\user-settings.service.ts" />
+    <TypeScriptCompile Include="src\app\user-settings\index.ts" />
+    <TypeScriptCompile Include="src\app\user-settings\user-settings.model.ts" />
+    <TypeScriptCompile Include="src\app\tasks\task-status.model.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
