@@ -30,6 +30,12 @@ export class AppRouterOutletComponent extends RouterOutlet {
             { path: "/product/create", name: "product-edit", authRequired: true },
             { path: "/product/edit/:productId", name: "product-edit", authRequired: true },
 
+            { path: "/sprint/list", name: "sprint-list", authRequired: true },
+            { path: "/sprint/create", name: "sprint-edit", authRequired: true },
+            { path: "/sprint/edit/:sprintId", name: "sprint-edit", authRequired: true },
+
+            { path: "/kanban-board", name: "kanban-board", authRequired: true },
+
             { path: "/task/list", name: "task-list", authRequired: true },
             { path: "/task/create", name: "task-edit", authRequired: true },
             { path: "/task/edit/:taskId", name: "task-edit", authRequired: true },

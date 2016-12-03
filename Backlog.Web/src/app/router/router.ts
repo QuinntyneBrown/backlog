@@ -65,8 +65,7 @@ export class Router {
                 
                 const segments = this._routes[i].path.substring(1).split("/");
 
-                if (_currentSegments.length === segments.length) {
-     
+                if (_currentSegments.length === segments.length) {     
                     for (var x = 0; x < segments.length; x++) {
                         if (_currentSegments[x] == segments[x]) {
                             match = true;
@@ -75,7 +74,7 @@ export class Router {
                             routeParams[segments[x].substring(1)] = _currentSegments[x];
                         } else {
                             match = false;
-                            x = segments.length;
+                            break;
                         }
                     }
 

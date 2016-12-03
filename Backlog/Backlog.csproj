@@ -364,6 +364,7 @@
     <Compile Include="Dtos\TaskStatusAddOrUpdateRequestDto.cs" />
     <Compile Include="Dtos\TaskStatusAddOrUpdateResponseDto.cs" />
     <Compile Include="Models\SprintStory.cs" />
+    <Compile Include="Models\ProductSprint.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

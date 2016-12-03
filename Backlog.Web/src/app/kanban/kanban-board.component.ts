@@ -1,8 +1,12 @@
+import { SprintService, Sprint } from "../sprints";
+
 const template = require("./kanban-board.component.html");
 const styles = require("./kanban-board.component.scss");
 
 export class KanbanBoardComponent extends HTMLElement {
-    constructor() {
+    constructor(
+        private _sprintService: SprintService = SprintService.Instance
+    ) {
         super();
     }
 

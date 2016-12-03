@@ -9,6 +9,7 @@ export * from "./shared";
 export * from "./sprints";
 export * from "./stories";
 export * from "./tasks";
+export * from "./user-settings";
 export * from "./users";
 export * from "./utilities";
 export * from "./app-router-outlet.component";
