@@ -26,11 +26,15 @@ namespace Backlog.Controllers
         public IHttpActionResult Update(SprintAddOrUpdateRequestDto dto) { return Ok(_sprintService.AddOrUpdate(dto)); }
 
         [Route("get")]
-        [AllowAnonymous]
         [HttpGet]
         [ResponseType(typeof(ICollection<SprintDto>))]
         public IHttpActionResult Get() { return Ok(_sprintService.Get()); }
 
+        [Route("getCurrent")]
+        [HttpGet]
+        [ResponseType(typeof(SprintDto))]
+        public IHttpActionResult GetCurrent() { return Ok(_sprintService.Get()); }
+        
         [Route("getById")]
         [HttpGet]
         [ResponseType(typeof(SprintDto))]

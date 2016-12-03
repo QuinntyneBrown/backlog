@@ -7,6 +7,7 @@ namespace Backlog.Services
     {
         TaskAddOrUpdateResponseDto AddOrUpdate(TaskAddOrUpdateRequestDto request);
         ICollection<TaskDto> Get();
+        ICollection<TaskStatusDto> GetTaskStatuses();
         TaskDto GetById(int id);
         dynamic Remove(int id);
         ICollection<TaskDto> GetByStoryId(int storyId);

@@ -6,12 +6,16 @@ export class SprintService {
     private static _instance: SprintService;
 
     public static get Instance() {
-        this._instance = this._instance || new SprintService();
+        this._instance = this._instance || new this();
         return this._instance;
     }
 
     public get() {
-        return fetch({ url: "/api/sprint/get" });
+        return fetch({ url: "/api/sprint/get", authRequired: true });
+    }
+
+    public getCurrent() {
+        return fetch({ url: "/api/sprint/getcurrent", authRequired: true });
     }
 
     public getById(id) {

@@ -48,6 +48,14 @@ namespace Backlog.Services
             return response;
         }
 
+        public ICollection<TaskStatusDto> GetTaskStatuses()
+        {
+            ICollection<TaskStatusDto> response = new HashSet<TaskStatusDto>();
+            var entities = _uow.TaskStatuses.GetAll().Where(x => x.IsDeleted == false).ToList();
+            foreach (var entity in entities) { response.Add(new TaskStatusDto(entity)); }
+            return response;
+        }
+
         public ICollection<TaskDto> GetByStoryId(int storyId)
         {
             ICollection<TaskDto> response = new HashSet<TaskDto>();

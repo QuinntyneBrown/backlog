@@ -30,6 +30,11 @@ namespace Backlog.Controllers
         [ResponseType(typeof(ICollection<TaskDto>))]
         public IHttpActionResult Get() { return Ok(_taskService.Get()); }
 
+        [Route("gettaskstatuses")]
+        [HttpGet]
+        [ResponseType(typeof(ICollection<TaskStatusDto>))]
+        public IHttpActionResult GetTaskStatuses() { return Ok(_taskService.GetTaskStatuses()); }
+
         [Route("getById")]
         [HttpGet]
         [ResponseType(typeof(TaskDto))]

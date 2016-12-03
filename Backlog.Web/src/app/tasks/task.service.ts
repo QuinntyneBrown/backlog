@@ -11,7 +11,11 @@ export class TaskService {
     }
 
     public get() {
-        return fetch({ url: "/api/task/get" });
+        return fetch({ url: "/api/task/get", authRequired: true });
+    }
+
+    public getTaskStatuses() {
+        return fetch({ url: "/api/taskstatus/gettaskstatuses" });
     }
 
     public getByStoryId(storyid) {
