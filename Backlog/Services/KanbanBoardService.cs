@@ -19,20 +19,49 @@ namespace Backlog.Services
         public KanbanBoardDto Get()
         {
             var kanbanBoard = new KanbanBoardDto();
-            kanbanBoard.Stories.Add(new KanbanBoardStoryDto() {
-                Points = 3,
-                Name = "Story",
-                Description = "Story Description",
-                Tasks = new List<KanbanBoardTaskDto>()
+            kanbanBoard.Stories = new List<KanbanBoardStoryDto>() {
+                new KanbanBoardStoryDto()
                 {
-                    new KanbanBoardTaskDto()
+                    Points = 3,
+                    Name = "Story",
+                    Description = "Story Description",
+                    Tasks = new List<KanbanBoardTaskDto>()
                     {
-                        Name = "Task",
-                        Description = "Task Description",
-                        Status = KanbanBoardTaskStatus.NotStarted
+                        new KanbanBoardTaskDto()
+                        {
+                            Name = "Task",
+                            Description = "Task Description",
+                            Status = KanbanBoardTaskStatus.NotStarted
+                        },
+                        new KanbanBoardTaskDto()
+                        {
+                            Name = "Another Task",
+                            Description = "Another Task Description",
+                            Status = KanbanBoardTaskStatus.NotStarted
+                        }
                     }
-                }
-            });
+                },
+                new KanbanBoardStoryDto()
+                {
+                    Points = 3,
+                    Name = "Another Story",
+                    Description = "Another Story Description",
+                    Tasks = new List<KanbanBoardTaskDto>()
+                    {
+                        new KanbanBoardTaskDto()
+                        {
+                            Name = "Task",
+                            Description = "Task Description",
+                            Status = KanbanBoardTaskStatus.NotStarted
+                        },
+                        new KanbanBoardTaskDto()
+                        {
+                            Name = "Another Task",
+                            Description = "Another Task Description",
+                            Status = KanbanBoardTaskStatus.NotStarted
+                        }
+                    }
+                }            };
             return kanbanBoard;
         }
 

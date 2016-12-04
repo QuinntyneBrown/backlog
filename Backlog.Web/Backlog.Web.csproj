@@ -270,12 +270,6 @@
     <Content Include="src\app\feedback\feedback-received.component.scss">
       <DependentUpon>feedback-received.component.ts</DependentUpon>
     </Content>
-    <Content Include="src\app\kanban-board\kanban-board-item-container.component.html">
-      <DependentUpon>kanban-board-item-container.component.ts</DependentUpon>
-    </Content>
-    <Content Include="src\app\kanban-board\kanban-board-item-container.component.scss">
-      <DependentUpon>kanban-board-item-container.component.ts</DependentUpon>
-    </Content>
     <Content Include="src\app\kanban-board\kanban-board-story.component.html">
       <DependentUpon>kanban-board-story.component.ts</DependentUpon>
     </Content>
@@ -620,7 +614,6 @@
     <TypeScriptCompile Include="src\app\kanban-board\kanban-board.model.ts" />
     <TypeScriptCompile Include="src\app\kanban-board\kanban-board.service.ts" />
     <TypeScriptCompile Include="src\app\kanban-board\kanban-board-task.model.ts" />
-    <TypeScriptCompile Include="src\app\kanban-board\kanban-board-item-container.component.ts" />
     <TypeScriptCompile Include="src\app\kanban-board\kanban-board-task-status.model.ts" />
     <TypeScriptCompile Include="src\app\kanban-board\kanban-board-task.component.ts" />
     <TypeScriptCompile Include="src\app\kanban-board\kanban-board-story.component.ts" />

@@ -1,4 +1,3 @@
-export * from "./kanban-board-item-container.component";
 export * from "./kanban-board-story.component";
 export * from "./kanban-board-story.model";
 export * from "./kanban-board-task-container.component";

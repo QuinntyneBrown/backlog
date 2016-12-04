@@ -1,3 +1,5 @@
+import { KanbanBoardTask } from "./kanban-board-task.model";
+
 const template = require("./kanban-board-task-container.component.html");
 const styles = require("./kanban-board-task-container.component.scss");
 
@@ -26,6 +28,12 @@ export class KanbanBoardTaskContainerComponent extends HTMLElement {
 
     disconnectedCallback() {
 
+    }
+
+    private _kanbanBoardTask: KanbanBoardTask;
+    public get task(): KanbanBoardTask { return this._kanbanBoardTask; }
+    public set task(value: KanbanBoardTask) {
+        this._kanbanBoardTask = value;
     }
 
     attributeChangedCallback (name, oldValue, newValue) {

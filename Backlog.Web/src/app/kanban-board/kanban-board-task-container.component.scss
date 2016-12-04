@@ -1,5 +1,30 @@
 @import "../../styles/base/index";
 
 ce-kanban-board-task-container {
-	display:block;
+    display:block;
+    width:100%;
+    margin:0;
+    padding:0;
+    border:0;
+
+    .not-started-container,
+    .in-progress-container,
+    .qa-container,
+    .complete-container {
+        margin:0;
+        padding:0;
+        border:0;
+        display:inline-block;
+        background-color:#ccc;
+        height:100px;
+        width: calc(25%);
+        position:relative;
+        float:left;
+    }            
+}
+
+ce-kanban-board-task-container:after {
+    content:" ";
+    clear:both;
+    display:block;
 }

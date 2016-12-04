@@ -1,5 +1,5 @@
 import { KanbanBoardService } from "./kanban-board.service";
-import { KanbanBoardItemContainerComponent } from "./kanban-board-item-container.component";
+import { KanbanBoardStoryComponent } from "./kanban-board-story.component";
 import { KanbanBoard } from "./kanban-board.model";
 
 const template = require("./kanban-board.component.html");
@@ -8,9 +8,7 @@ const styles = require("./kanban-board.component.scss");
 export class KanbanBoardComponent extends HTMLElement {
     constructor(
         private _kanbanBoardService: KanbanBoardService = KanbanBoardService.Instance,        
-    ) {
-        super();
-    }
+    ) { super(); }
 
     static get observedAttributes () {
         return [];
@@ -25,10 +23,10 @@ export class KanbanBoardComponent extends HTMLElement {
     private _bind() {
         this._kanbanBoardService.get().then((results: string) => {
             this.kanbanBoard = JSON.parse(results) as KanbanBoard;
-            for (var i = 0; i < this.kanbanBoard.items.length; i++) {
-                let kanbanBoardItemContainer = document.createElement("ce-kanban-board-item-container") as KanbanBoardItemContainerComponent;
-                kanbanBoardItemContainer.kanbanBoardItem = this.kanbanBoard.items[i];
-                this.appendChild(kanbanBoardItemContainer);
+            for (var i = 0; i < this.kanbanBoard.stories.length; i++) {                                
+                let kanbanBoardStory = document.createElement("ce-kanban-board-story") as KanbanBoardStoryComponent;                
+                kanbanBoardStory.story = this.kanbanBoard.stories[i];                
+                this.appendChild(kanbanBoardStory);
             }
         });
     }
