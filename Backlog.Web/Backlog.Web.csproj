@@ -270,6 +270,12 @@
     <Content Include="src\app\feedback\feedback-received.component.scss">
       <DependentUpon>feedback-received.component.ts</DependentUpon>
     </Content>
+    <Content Include="src\app\kanban\kanban-board-item.component.html">
+      <DependentUpon>kanban-board-item.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\kanban\kanban-board-item.component.scss">
+      <DependentUpon>kanban-board-item.component.ts</DependentUpon>
+    </Content>
     <Content Include="src\app\kanban\kanban-board.component.html">
       <DependentUpon>kanban-board.component.ts</DependentUpon>
     </Content>
@@ -593,6 +599,7 @@
     <TypeScriptCompile Include="src\app\user-settings\index.ts" />
     <TypeScriptCompile Include="src\app\user-settings\user-settings.model.ts" />
     <TypeScriptCompile Include="src\app\tasks\task-status.model.ts" />
+    <TypeScriptCompile Include="src\app\kanban\kanban-board-item.component.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

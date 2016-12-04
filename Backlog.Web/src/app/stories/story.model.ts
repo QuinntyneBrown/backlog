@@ -1,3 +1,5 @@
+import { Task } from "../tasks";
+
 export class Story { 
     public id: number;
     public epicId: number;
@@ -9,4 +11,5 @@ export class Story {
     public description: string; 
     public notes: string;
     public digitalAssets: Array<any> = [];
+    public tasks: Array<Task> = [];
 }

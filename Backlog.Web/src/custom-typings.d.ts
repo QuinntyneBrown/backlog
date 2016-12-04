@@ -1,8 +1,4 @@
-﻿interface ModernWindow {
-    customElements: any;
-}
-
-declare interface ActivatedRoute {
+﻿declare interface ActivatedRoute {
     name: string;
     params: any;
     authRequired: boolean;
@@ -10,9 +6,6 @@ declare interface ActivatedRoute {
     segments: Array<any>;
     routeParams: any;
 }
-
-
-interface Window extends ModernWindow { }
 
 declare interface RouteChangeOptions {
     currentView: HTMLElement;
@@ -26,3 +19,24 @@ declare interface RouteChangeOptions {
 declare var Quill;
 
 declare var rome: any;
+
+/**
+ * Custom Elements v1
+ *
+ * Based on https://www.w3.org/TR/2016/WD-custom-elements-20160830/
+ */
+
+interface Window {
+    readonly customElements: CustomElementRegistry;
+}
+declare let customElements: CustomElementRegistry;
+
+interface CustomElementRegistry {
+    define(name: string, constructor: Function, options?: ElementDefinitionOptions): void;
+    get(name: string): any;
+    whenDefined(name: string): Promise<void>;
+}
+
+interface ElementDefinitionOptions {
+    extends: string;
+}

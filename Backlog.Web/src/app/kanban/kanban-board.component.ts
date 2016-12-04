@@ -1,5 +1,6 @@
 import { SprintService, Sprint } from "../sprints";
 import { TaskService, TaskStatus } from "../tasks";
+import { KanbanBoardItemComponent } from "./kanban-board-item.component";
 
 const template = require("./kanban-board.component.html");
 const styles = require("./kanban-board.component.scss");
@@ -27,7 +28,13 @@ export class KanbanBoardComponent extends HTMLElement {
             this._taskService.getTaskStatuses(),
             this._sprintService.getCurrent()
         ]).then((results: any) => {
-
+            this.sprint = JSON.parse(results[1]) as Sprint;
+            for (var i = 0; i < this.sprint.stories.length; i++) {
+                for (var x = 0; x < this.sprint.stories[i].tasks.length; x++) {
+                    let kanbanBoardItem = document.createElement("ce-kanban-board-item") as KanbanBoardItemComponent;
+                    this.appendChild(kanbanBoardItem);
+                }
+            }
         });
     }
 
@@ -43,9 +50,9 @@ export class KanbanBoardComponent extends HTMLElement {
     public get taskStatuses() { return this._taskStatuses; }
     public set taskStatuses(value:any) { this._taskStatuses = value; }
 
-    private _sprints: Array<Sprint> = [];
-    public get sprints() { return this._sprints; }
-    public set sprints(value: any) { this._sprints = value; }
+    private _sprint: Sprint;
+    public get sprint():Sprint { return this._sprint; }
+    public set sprint(value: Sprint) { this._sprint = value; }
 
     attributeChangedCallback (name, oldValue, newValue) {
         switch (name) {
