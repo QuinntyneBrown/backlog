@@ -270,16 +270,34 @@
     <Content Include="src\app\feedback\feedback-received.component.scss">
       <DependentUpon>feedback-received.component.ts</DependentUpon>
     </Content>
-    <Content Include="src\app\kanban\kanban-board-item.component.html">
-      <DependentUpon>kanban-board-item.component.ts</DependentUpon>
+    <Content Include="src\app\kanban-board\kanban-board-item-container.component.html">
+      <DependentUpon>kanban-board-item-container.component.ts</DependentUpon>
     </Content>
-    <Content Include="src\app\kanban\kanban-board-item.component.scss">
-      <DependentUpon>kanban-board-item.component.ts</DependentUpon>
+    <Content Include="src\app\kanban-board\kanban-board-item-container.component.scss">
+      <DependentUpon>kanban-board-item-container.component.ts</DependentUpon>
     </Content>
-    <Content Include="src\app\kanban\kanban-board.component.html">
+    <Content Include="src\app\kanban-board\kanban-board-story.component.html">
+      <DependentUpon>kanban-board-story.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\kanban-board\kanban-board-story.component.scss">
+      <DependentUpon>kanban-board-story.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\kanban-board\kanban-board-task-container.component.html">
+      <DependentUpon>kanban-board-task-container.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\kanban-board\kanban-board-task-container.component.scss">
+      <DependentUpon>kanban-board-task-container.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\kanban-board\kanban-board-task.component.html">
+      <DependentUpon>kanban-board-task.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\kanban-board\kanban-board-task.component.scss">
+      <DependentUpon>kanban-board-task.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\kanban-board\kanban-board.component.html">
       <DependentUpon>kanban-board.component.ts</DependentUpon>
     </Content>
-    <Content Include="src\app\kanban\kanban-board.component.scss">
+    <Content Include="src\app\kanban-board\kanban-board.component.scss">
       <DependentUpon>kanban-board.component.ts</DependentUpon>
     </Content>
     <Content Include="src\app\products\product-edit.component.html">
@@ -592,17 +610,22 @@
     <TypeScriptCompile Include="src\app\sprints\index.ts" />
     <TypeScriptCompile Include="src\app\sprints\sprint.model.ts" />
     <TypeScriptCompile Include="src\app\sprints\sprint.service.ts" />
-    <TypeScriptCompile Include="src\app\kanban\index.ts" />
-    <TypeScriptCompile Include="src\app\kanban\kanban-board.component.ts" />
+    <TypeScriptCompile Include="src\app\kanban-board\index.ts" />
+    <TypeScriptCompile Include="src\app\kanban-board\kanban-board.component.ts" />
     <TypeScriptCompile Include="src\app\user-settings\user-settings.component.ts" />
     <TypeScriptCompile Include="src\app\user-settings\user-settings.service.ts" />
     <TypeScriptCompile Include="src\app\user-settings\index.ts" />
     <TypeScriptCompile Include="src\app\user-settings\user-settings.model.ts" />
     <TypeScriptCompile Include="src\app\tasks\task-status.model.ts" />
-    <TypeScriptCompile Include="src\app\kanban\kanban-board-item.component.ts" />
-    <TypeScriptCompile Include="src\app\kanban\kanban-board.model.ts" />
-    <TypeScriptCompile Include="src\app\kanban\kanban-board.service.ts" />
-    <TypeScriptCompile Include="src\app\kanban\kanban-board-item.model.ts" />
+    <TypeScriptCompile Include="src\app\kanban-board\kanban-board.model.ts" />
+    <TypeScriptCompile Include="src\app\kanban-board\kanban-board.service.ts" />
+    <TypeScriptCompile Include="src\app\kanban-board\kanban-board-task.model.ts" />
+    <TypeScriptCompile Include="src\app\kanban-board\kanban-board-item-container.component.ts" />
+    <TypeScriptCompile Include="src\app\kanban-board\kanban-board-task-status.model.ts" />
+    <TypeScriptCompile Include="src\app\kanban-board\kanban-board-task.component.ts" />
+    <TypeScriptCompile Include="src\app\kanban-board\kanban-board-story.component.ts" />
+    <TypeScriptCompile Include="src\app\kanban-board\kanban-board-task-container.component.ts" />
+    <TypeScriptCompile Include="src\app\kanban-board\kanban-board-story.model.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

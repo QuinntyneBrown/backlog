@@ -8,5 +8,6 @@ namespace Backlog.Dtos
 {
     public class KanbanBoardDto
     {
+        public ICollection<KanbanBoardStoryDto> Stories { get; set; } = new HashSet<KanbanBoardStoryDto>();
     }
 }

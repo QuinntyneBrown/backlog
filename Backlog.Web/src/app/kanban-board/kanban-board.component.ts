@@ -1,5 +1,5 @@
 import { KanbanBoardService } from "./kanban-board.service";
-import { KanbanBoardItemComponent } from "./kanban-board-item.component";
+import { KanbanBoardItemContainerComponent } from "./kanban-board-item-container.component";
 import { KanbanBoard } from "./kanban-board.model";
 
 const template = require("./kanban-board.component.html");
@@ -26,8 +26,9 @@ export class KanbanBoardComponent extends HTMLElement {
         this._kanbanBoardService.get().then((results: string) => {
             this.kanbanBoard = JSON.parse(results) as KanbanBoard;
             for (var i = 0; i < this.kanbanBoard.items.length; i++) {
-                let kanbanBoardItem = document.createElement("ce-kanban-board-item") as KanbanBoardItemComponent;
-                this.appendChild(kanbanBoardItem);
+                let kanbanBoardItemContainer = document.createElement("ce-kanban-board-item-container") as KanbanBoardItemContainerComponent;
+                kanbanBoardItemContainer.kanbanBoardItem = this.kanbanBoard.items[i];
+                this.appendChild(kanbanBoardItemContainer);
             }
         });
     }

@@ -18,12 +18,25 @@ namespace Backlog.Services
 
         public KanbanBoardDto Get()
         {
-            throw new NotImplementedException();
+            var kanbanBoard = new KanbanBoardDto();
+            kanbanBoard.Stories.Add(new KanbanBoardStoryDto() {
+                Points = 3,
+                Name = "Story",
+                Description = "Story Description",
+                Tasks = new List<KanbanBoardTaskDto>()
+                {
+                    new KanbanBoardTaskDto()
+                    {
+                        Name = "Task",
+                        Description = "Task Description",
+                        Status = KanbanBoardTaskStatus.NotStarted
+                    }
+                }
+            });
+            return kanbanBoard;
         }
 
         protected readonly IUow _uow;
-        protected readonly ICache _cache;
-
-
+        protected readonly ICache _cache;        
     }
 }

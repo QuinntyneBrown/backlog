@@ -20,7 +20,7 @@ namespace Backlog.Controllers
         [ResponseType(typeof(ICollection<KanbanBoardDto>))]
         public IHttpActionResult Get()
         {
-            return Ok();
+            return Ok(_kanbanBoardService.Get());
         }
         
         protected readonly IKanbanBoardService _kanbanBoardService;

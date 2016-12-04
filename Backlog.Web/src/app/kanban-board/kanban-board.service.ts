@@ -11,6 +11,6 @@ export class KanbanBoardService {
     }
 
     public get() {
-        return fetch({ url: "/api/kanban-board/get", authRequired: true });
+        return fetch({ url: "/api/kanbanboard/get", authRequired: true });
     }    
 }
