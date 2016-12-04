@@ -1,14 +1,13 @@
-import { SprintService, Sprint } from "../sprints";
-import { TaskService, TaskStatus } from "../tasks";
+import { KanbanBoardService } from "./kanban-board.service";
 import { KanbanBoardItemComponent } from "./kanban-board-item.component";
+import { KanbanBoard } from "./kanban-board.model";
 
 const template = require("./kanban-board.component.html");
 const styles = require("./kanban-board.component.scss");
 
 export class KanbanBoardComponent extends HTMLElement {
     constructor(
-        private _sprintService: SprintService = SprintService.Instance,
-        private _taskService: TaskService = TaskService.Instance
+        private _kanbanBoardService: KanbanBoardService = KanbanBoardService.Instance,        
     ) {
         super();
     }
@@ -24,16 +23,11 @@ export class KanbanBoardComponent extends HTMLElement {
     }
 
     private _bind() {
-        Promise.all([
-            this._taskService.getTaskStatuses(),
-            this._sprintService.getCurrent()
-        ]).then((results: any) => {
-            this.sprint = JSON.parse(results[1]) as Sprint;
-            for (var i = 0; i < this.sprint.stories.length; i++) {
-                for (var x = 0; x < this.sprint.stories[i].tasks.length; x++) {
-                    let kanbanBoardItem = document.createElement("ce-kanban-board-item") as KanbanBoardItemComponent;
-                    this.appendChild(kanbanBoardItem);
-                }
+        this._kanbanBoardService.get().then((results: string) => {
+            this.kanbanBoard = JSON.parse(results) as KanbanBoard;
+            for (var i = 0; i < this.kanbanBoard.items.length; i++) {
+                let kanbanBoardItem = document.createElement("ce-kanban-board-item") as KanbanBoardItemComponent;
+                this.appendChild(kanbanBoardItem);
             }
         });
     }
@@ -46,13 +40,10 @@ export class KanbanBoardComponent extends HTMLElement {
 
     }
 
-    private _taskStatuses: Array<TaskStatus> = [];    
-    public get taskStatuses() { return this._taskStatuses; }
-    public set taskStatuses(value:any) { this._taskStatuses = value; }
-
-    private _sprint: Sprint;
-    public get sprint():Sprint { return this._sprint; }
-    public set sprint(value: Sprint) { this._sprint = value; }
+    
+    private _kanbanBoard: KanbanBoard;
+    public get kanbanBoard():KanbanBoard { return this._kanbanBoard; }
+    public set kanbanBoard(value: KanbanBoard) { this._kanbanBoard = value; }
 
     attributeChangedCallback (name, oldValue, newValue) {
         switch (name) {

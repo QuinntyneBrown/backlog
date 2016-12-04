@@ -200,6 +200,7 @@
     <Compile Include="Dtos\EpicAddOrUpdateRequestDto.cs" />
     <Compile Include="Dtos\EpicAddOrUpdateResponseDto.cs" />
     <Compile Include="Dtos\EpicDto.cs" />
+    <Compile Include="Dtos\KanbanBoardDto.cs" />
     <Compile Include="Dtos\RegistrationRequestDto.cs" />
     <Compile Include="Dtos\RegistrationResponseDto.cs" />
     <Compile Include="Dtos\TokenDto.cs" />
@@ -366,6 +367,9 @@
     <Compile Include="Models\SprintStory.cs" />
     <Compile Include="Models\ProductSprint.cs" />
     <Compile Include="Migrations\TaskStatusConfiguration.cs" />
+    <Compile Include="Services\KanbanBoardService.cs" />
+    <Compile Include="Services\IKanbanBoardService.cs" />
+    <Compile Include="Controllers\KanbanBoardController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

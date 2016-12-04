@@ -26,7 +26,6 @@ namespace Backlog.Controllers
         public IHttpActionResult Update(AgileTeamAddOrUpdateRequestDto dto) { return Ok(_agileTeamService.AddOrUpdate(dto)); }
 
         [Route("get")]
-        [AllowAnonymous]
         [HttpGet]
         [ResponseType(typeof(ICollection<AgileTeamDto>))]
         public IHttpActionResult Get() { return Ok(_agileTeamService.Get()); }

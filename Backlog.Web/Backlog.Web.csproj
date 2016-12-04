@@ -600,6 +600,9 @@
     <TypeScriptCompile Include="src\app\user-settings\user-settings.model.ts" />
     <TypeScriptCompile Include="src\app\tasks\task-status.model.ts" />
     <TypeScriptCompile Include="src\app\kanban\kanban-board-item.component.ts" />
+    <TypeScriptCompile Include="src\app\kanban\kanban-board.model.ts" />
+    <TypeScriptCompile Include="src\app\kanban\kanban-board.service.ts" />
+    <TypeScriptCompile Include="src\app\kanban\kanban-board-item.model.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
