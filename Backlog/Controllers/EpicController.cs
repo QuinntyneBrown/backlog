@@ -21,20 +21,17 @@ namespace Backlog.Controllers
         [Route("add")]
         [HttpPost]
         [ResponseType(typeof(EpicAddOrUpdateResponseDto))]
-        [InvalidateCacheOutput("get")]
         public IHttpActionResult Add(EpicAddOrUpdateRequestDto dto)
         { return Ok(_epicService.AddOrUpdate(dto)); }
 
         [Route("update")]
         [HttpPut]
         [ResponseType(typeof(EpicAddOrUpdateResponseDto))]
-        [InvalidateCacheOutput("get")]
         public IHttpActionResult Update(EpicAddOrUpdateRequestDto dto) { return Ok(_epicService.AddOrUpdate(dto)); }
 
         [Route("get")]
         [HttpGet]
         [ResponseType(typeof(ICollection<EpicDto>))]
-        [CacheOutput(ServerTimeSpan = CacheOutputServerTimeSpan)]
         public IHttpActionResult Get() { return Ok(_epicService.Get()); }
 
         [Route("getById")]
@@ -45,22 +42,18 @@ namespace Backlog.Controllers
         [Route("remove")]
         [HttpDelete]
         [ResponseType(typeof(int))]
-        [InvalidateCacheOutput("get")]
         public IHttpActionResult Remove(int id) { return Ok(_epicService.Remove(id)); }
 
 
         [Route("incrementPriority")]
         [HttpGet]
-        [ResponseType(typeof(ICollection<EpicDto>))]
-        [InvalidateCacheOutput("get")]
+        [ResponseType(typeof(ICollection<EpicDto>))]        
         public IHttpActionResult IncrementPriority(int id) { return Ok(_epicService.IncrementPriority(id)); }
 
         [Route("decrementPriority")]
         [HttpGet]
         [ResponseType(typeof(ICollection<EpicDto>))]
-        [InvalidateCacheOutput("get")]
         public IHttpActionResult DecrementPriority(int id) { return Ok(_epicService.DecrementPriority(id)); }
-
 
         protected readonly IEpicService _epicService;
 

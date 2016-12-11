@@ -1,8 +1,11 @@
 using Backlog.Dtos;
+using static Backlog.Infrastructure.Constants;
 using Backlog.Services;
 using System.Collections.Generic;
 using System.Web.Http;
 using System.Web.Http.Description;
+using WebApi.OutputCache.V2;
+
 
 namespace Backlog.Controllers
 {
@@ -47,7 +50,7 @@ namespace Backlog.Controllers
 
         [Route("incrementPriority")]
         [HttpGet]
-        [ResponseType(typeof(ICollection<EpicDto>))]
+        [ResponseType(typeof(ICollection<EpicDto>))]        
         public IHttpActionResult IncrementPriority(int id) { return Ok(_storyService.IncrementPriority(id)); }
 
         [Route("decrementPriority")]

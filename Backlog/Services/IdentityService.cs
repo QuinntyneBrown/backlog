@@ -43,7 +43,8 @@ namespace Backlog.Services
 
             var user = _cache.FromCacheOrService<User>(() => _uow.Users.GetAll()
                 .Include(x => x.Roles)
-                .Single(x => x.Username == username), string.Format("User: {0}", username));
+                .Single(x => x.Username == username), $"User: {username}");
+            
 
             claims.Add(new System.Security.Claims.Claim("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name", username));
 

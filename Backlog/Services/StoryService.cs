@@ -19,12 +19,7 @@ namespace Backlog.Services
 
         public StoryAddOrUpdateResponseDto AddOrUpdate(StoryAddOrUpdateRequestDto request)
         {
-            var entity = _repository.GetAll()
-                .Include(x=>x.Epic)
-                .Include(x=>x.StoryDigitalAssets)
-                .Include(x=>x.StoryArticles)
-                .Include("StoryDigitalAssets.DigitalAsset")
-                .Include("StoryArticles.Article")
+            var entity = StoryQuery()
                 .FirstOrDefault(x => x.Id == request.Id && x.IsDeleted == false);
             if (entity == null) _repository.Add(entity = new Story());
 
@@ -46,6 +41,7 @@ namespace Backlog.Services
             entity.ArchitecturePoints = request.ArchitecturePoints;
             entity.CompletedDate = request.CompletedDate;
             _uow.SaveChanges();
+            _cache.ClearAll();
             return new StoryAddOrUpdateResponseDto(entity);
         }
 
@@ -54,17 +50,24 @@ namespace Backlog.Services
             var entity = _repository.GetById(id);
             entity.IsDeleted = true;
             _uow.SaveChanges();
+            _cache.ClearAll();
             return id;
         }
+
+        public IQueryable<Story> StoryQuery() => _repository.GetAll()
+                .Include(x => x.Epic)
+                .Include(x => x.StoryDigitalAssets)
+                .Include(x => x.StoryArticles)
+                .Include("StoryDigitalAssets.DigitalAsset")
+                .Include("StoryArticles.Article")
+                .Where(x => x.IsDeleted == false);
 
         public ICollection<StoryDto> Get()
         {
             ICollection<StoryDto> response = new HashSet<StoryDto>();
-            var entities = _repository.GetAll()
-                .Include(x=>x.Epic)
-                .Include(x => x.StoryDigitalAssets)
-                .Include("StoryDigitalAssets.DigitalAsset")
-                .Where(x => x.IsDeleted == false).ToList();
+
+            var entities = StoryQuery().ToList();
+
             foreach (var entity in entities
                 .OrderBy(x => x.Name)
                 .OrderByDescending(x => x.Priority)) { response.Add(new StoryDto(entity)); }
@@ -74,7 +77,7 @@ namespace Backlog.Services
         public ICollection<StoryDto> GetReusableStories()
         {
             ICollection<StoryDto> response = new HashSet<StoryDto>();
-            var entities = _repository.GetAll()
+            var entities = StoryQuery()
                 .Where(x => x.IsDeleted == false && x.IsReusable).ToList();
             foreach (var entity in entities
                 .OrderBy(x => x.Name)
@@ -82,18 +85,11 @@ namespace Backlog.Services
             return response;
         }
 
-        public StoryDto GetById(int id)
-        {
-            return new StoryDto(_repository.GetAll()
-                .Include(x => x.Epic)
-                .Include(x => x.StoryDigitalAssets)
-                .Include("StoryDigitalAssets.DigitalAsset")
-                .Where(x => x.Id == id && x.IsDeleted == false).FirstOrDefault());
-        }
+        public StoryDto GetById(int id) => new StoryDto(StoryQuery().Where(x=>x.Id ==id).FirstOrDefault());
 
         public ICollection<StoryDto> IncrementPriority(int id)
         {
-            var entities = _repository.GetAll()
+            var entities = StoryQuery()
                 .OrderBy(x => x.Priority)
                 .Where(x => !x.IsDeleted)
                 .ToList();
@@ -124,8 +120,7 @@ namespace Backlog.Services
 
         public ICollection<StoryDto> DecrementPriority(int id)
         {
-            var entities = _repository.GetAll()
-                .Where(x => !x.IsDeleted)
+            var entities = StoryQuery()
                 .OrderByDescending(x => x.Priority)
                 .ToList();
 

@@ -58,8 +58,8 @@ namespace Backlog.Services
 
         public override void ClearAll()
         {
-            _cache.Dispose();
-            _cache = System.Runtime.Caching.MemoryCache.Default;
+            foreach (var item in _cache) 
+                _cache.Remove(item.Key);            
         }
 
         public override bool Exists(string key) => _cache.Contains(key);

@@ -19,20 +19,17 @@ namespace Backlog.Controllers
 
         [Route("add")]
         [HttpPost]
-        [ResponseType(typeof(ProductAddOrUpdateResponseDto))]
-        [InvalidateCacheOutput("get")]
+        [ResponseType(typeof(ProductAddOrUpdateResponseDto))]        
         public IHttpActionResult Add(ProductAddOrUpdateRequestDto dto) { return Ok(_productService.AddOrUpdate(dto)); }
 
         [Route("update")]
         [HttpPut]
-        [ResponseType(typeof(ProductAddOrUpdateResponseDto))]
-        [InvalidateCacheOutput("get")]
+        [ResponseType(typeof(ProductAddOrUpdateResponseDto))]        
         public IHttpActionResult Update(ProductAddOrUpdateRequestDto dto) { return Ok(_productService.AddOrUpdate(dto)); }
 
         [Route("get")]        
         [HttpGet]
         [ResponseType(typeof(ICollection<ProductDto>))]
-        [CacheOutput(ServerTimeSpan = CacheOutputServerTimeSpan)]
         public IHttpActionResult Get() { return Ok(_productService.Get()); }
 
         [Route("getById")]
@@ -43,7 +40,6 @@ namespace Backlog.Controllers
         [Route("remove")]
         [HttpDelete]
         [ResponseType(typeof(int))]
-        [InvalidateCacheOutput("get")]
         public IHttpActionResult Remove(int id) { return Ok(_productService.Remove(id)); }
 
         protected readonly IProductService _productService;
