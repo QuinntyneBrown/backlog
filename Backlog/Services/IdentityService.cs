@@ -9,6 +9,7 @@ using System.Linq;
 using Backlog.Configuration;
 using Backlog.Authentication;
 using Microsoft.Owin.Security;
+using Backlog.Exceptions;
 
 namespace Backlog.Services
 {
@@ -46,11 +47,11 @@ namespace Backlog.Services
                 .Single(x => x.Username == username), $"User: {username}");
             
 
-            claims.Add(new System.Security.Claims.Claim("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name", username));
+            claims.Add(new Claim("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name", username));
 
             foreach (var role in user.Roles.Select(x => x.Name))
             {
-                claims.Add(new System.Security.Claims.Claim("http://schemas.microsoft.com/ws/2008/06/identity/claims/role", role));
+                claims.Add(new Claim("http://schemas.microsoft.com/ws/2008/06/identity/claims/role", role));
             }
 
             return claims;
@@ -58,8 +59,11 @@ namespace Backlog.Services
 
         public TokenDto TryToRegister(RegistrationRequestDto registrationRequestDto, IList<string> roles)
         {
+            if (registrationRequestDto.EmailAddress != registrationRequestDto.EmailAddressConfirmation)
+                throw new EmailConfirmationException();
+
             if (_uow.Users.GetAll().FirstOrDefault(x => x.Username.ToLower() == registrationRequestDto.EmailAddress.ToLower() && !x.IsDeleted) != null)
-                return null;
+                throw new EmailExistsException();
             
             var user = new User()
             {

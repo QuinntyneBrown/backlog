@@ -22,7 +22,7 @@ namespace Backlog.Services
         {
             var entity = EpicsQuery()
                 .FirstOrDefault(x => x.Id == request.Id && x.IsDeleted == false);
-            if (entity == null) _repository.Add(entity = new Models.Epic());
+            if (entity == null) _repository.Add(entity = new Epic());
             entity.Name = request.Name;
             entity.Description = request.Description;
             entity.IsTemplate = request.IsTemplate;
@@ -59,9 +59,9 @@ namespace Backlog.Services
         public dynamic Remove(int id)
         {
             var entity = _repository.GetById(id);
-            entity.IsDeleted = true;
-            _cache.ClearAll();
+            entity.IsDeleted = true;            
             _uow.SaveChanges();
+            _cache.ClearAll();
             return id;
         }
 
@@ -140,7 +140,7 @@ namespace Backlog.Services
                 .Include("Stories.StoryDigitalAssets.DigitalAsset");
 
         protected readonly IUow _uow;
-        protected readonly IRepository<Models.Epic> _repository;
+        protected readonly IRepository<Epic> _repository;
         protected readonly ICache _cache;
         protected readonly IPrioritizationService _prioritizationService;
     }

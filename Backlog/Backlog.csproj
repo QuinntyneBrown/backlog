@@ -206,6 +206,8 @@
     <Compile Include="Dtos\RegistrationRequestDto.cs" />
     <Compile Include="Dtos\RegistrationResponseDto.cs" />
     <Compile Include="Dtos\TokenDto.cs" />
+    <Compile Include="Exceptions\EmailConfirmationException.cs" />
+    <Compile Include="Exceptions\EmailExisitsException.cs" />
     <Compile Include="Extenstions\StringExtensions.cs" />
     <Compile Include="Filters\HandleError.cs" />
     <Compile Include="Infrastructure\Constants.cs" />
@@ -378,9 +380,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Exceptions\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
