@@ -463,6 +463,7 @@
     <Content Include="src\app\users\users.component.html">
       <DependentUpon>users.component.ts</DependentUpon>
     </Content>
+    <Content Include="webpack.tests.config.js" />
     <None Include="Properties\PublishProfiles\backlog - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\backlog - Web Deploy.pubxml" />
     <Content Include="src\app\pagination\paged-list.scss" />
@@ -501,7 +502,9 @@
       <Name>Backlog</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="tests\" />
+  </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="src\app\app-router-outlet.component.ts" />
     <TypeScriptCompile Include="src\app\app.component.ts" />
@@ -532,6 +535,7 @@
     <TypeScriptCompile Include="src\app\shared\popover.ts" />
     <TypeScriptCompile Include="src\app\shared\side-nav.component.ts" />
     <TypeScriptCompile Include="src\app\utilities\load-style.ts" />
+    <TypeScriptCompile Include="src\app\utilities\store.specs.ts" />
     <TypeScriptCompile Include="src\app\utilities\store.ts" />
     <TypeScriptCompile Include="src\app\users\authorized-route-listener.ts" />
     <TypeScriptCompile Include="src\app\users\current-user.ts" />

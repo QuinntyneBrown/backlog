@@ -28,6 +28,7 @@ src/**/*.css
 src/**/*.css.map
 
 dist
+tests
 
 # Visual Studio 2015 cache/options directory
 .vs/
