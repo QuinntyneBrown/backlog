@@ -53,7 +53,7 @@ namespace Backlog.Services
             => new UserDto(_repository.GetAll().Single(x => x.IsDeleted == false && x.Username == username));
 
         public dynamic Register(RegistrationRequestDto request, IList<string> roles)
-            => _identityService.TryToRegister(request);
+            => _identityService.TryToRegister(request,roles);
 
         protected readonly IUow _uow;
         protected readonly IRepository<User> _repository;

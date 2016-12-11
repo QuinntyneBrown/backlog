@@ -15,14 +15,20 @@ export class EpicListComponent extends HTMLElement {
         super();
         this.onNext = this.onNext.bind(this);
         this.onPrevious = this.onPrevious.bind(this);
+        this.onSelectChange = this.onSelectChange.bind(this);
     }
 
-    async connectedCallback() {
+    connectedCallback() {
         this.innerHTML = `<style>${styles}</style> ${template}`;
+        this._bind();
+        this._addEventListeners();
+    } 
 
+    private async _bind() {
         let resultsArray: Array<any> = await Promise.all([this._productService.get(), this._epicService.get()]);
 
         let products = JSON.parse(resultsArray[0]) as Array<any>;
+        this._epics = JSON.parse(resultsArray[1]) as Array<Epic>;
 
         for (let i = 0; i < products.length; i++) {
             let option = document.createElement("option");
@@ -37,37 +43,28 @@ export class EpicListComponent extends HTMLElement {
             this.productId = this._router.activatedRoute.routeParams.productId;
 
         this.selectElement.value = this.productId;
-
-        var resultsJSON: Array<Epic> = JSON.parse(resultsArray[1]) as Array<Epic>;
-
-        this._epics = resultsJSON;
+        
         for (let i = 0; i < this._epics.length; i++) {
-            if (resultsJSON[i].productId == this.productId) {
+            if (this._epics[i].productId == this.productId) {
                 let el = document.createElement("ce-epic-item");
                 el.setAttribute("entity", JSON.stringify(this._epics[i]));
                 this.appendChild(el);
             }
         }
-
-        this._addEventListeners();
-    } 
-
-    public disconnectedCallback() {
-        this.selectElement.removeEventListener("change", this.onSelectChange.bind(this));
     }
 
     private _addEventListeners() {
-        this.selectElement.addEventListener("change", this.onSelectChange.bind(this));
+        this.selectElement.addEventListener("change", this.onSelectChange);
+    }
+
+    public disconnectedCallback() {
+        this.selectElement.removeEventListener("change", this.onSelectChange);
     }
 
     public onSelectChange() {
         this._router.navigate(["product", this.selectElement.value, "epic", "list"]);
     }
-
-    private _bind() {
-        this._pagedList = toPageListFromInMemory(this._epics, this._pageNumber, this._pageSize);
-    }
-
+    
     private _epics: Array<Epic> = [];
 
     private _pageSize: number;
@@ -101,4 +98,4 @@ export class EpicListComponent extends HTMLElement {
     public get selectElement(): HTMLSelectElement { return this.querySelector("select") as HTMLSelectElement; }
 }
 
-document.addEventListener("DOMContentLoaded", () => window.customElements.define("ce-epic-list", EpicListComponent));
+customElements.define("ce-epic-list", EpicListComponent);

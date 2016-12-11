@@ -55,11 +55,11 @@ namespace Backlog.Services
             return claims;
         }
 
-        public TokenDto TryToRegister(RegistrationRequestDto registrationRequestDto)
+        public TokenDto TryToRegister(RegistrationRequestDto registrationRequestDto, IList<string> roles)
         {
             if (_uow.Users.GetAll().FirstOrDefault(x => x.Username.ToLower() == registrationRequestDto.EmailAddress.ToLower() && !x.IsDeleted) != null)
                 return null;
-
+            
             var user = new User()
             {
                 Firstname = registrationRequestDto.Firstname,
@@ -68,7 +68,9 @@ namespace Backlog.Services
                 Username = registrationRequestDto.EmailAddress,
                 Password = _encryptionService.TransformPassword(registrationRequestDto.Password)
             };
-            
+
+            foreach (var role in roles) { user.Roles.Add(_uow.Roles.GetAll().Where(x => x.Name == role).First()); }
+
             _uow.Users.Add(user);
             _uow.SaveChanges();
 
