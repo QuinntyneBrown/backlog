@@ -8,11 +8,11 @@ export const routerKeys = {
 
 export class Router {
     constructor(
-        private _routes: Array<Route>=[],
-        private _storage: Storage = Storage.Instance,        
+        private _routes: Array<Route> = [],
+        private _storage: Storage = Storage.Instance,
         private _environment: { useUrlRouting: boolean } = environment
     ) { }
-    
+
     public static get Instance(): Router {
         this._instance = this._instance || new this();
         return this._instance;
@@ -45,9 +45,10 @@ export class Router {
     public navigateUrl(path: string) {
         this._onChanged({ routeSegments: path.slice(1, path.length).split("/") });
     }
-    
-    private _onChanged(state: { route?: string, routeSegments?: Array<any> }) { 
-        let routeParams = {};        
+
+    private _onChanged(state: { route?: string, routeSegments?: Array<any> }) {
+
+        let routeParams = {};
         let match = false;
         if (state.routeSegments)
             state.route = "/" + state.routeSegments.join("/");
@@ -57,15 +58,16 @@ export class Router {
                 this._onRouteMatch(this._routes[i].name);
                 match = true;
             }
-        }                
+        }
 
-        if (!match) {            
+        if (!match) {
             const _currentSegments = state.route.substring(1).split("/");
             for (let i = 0; i < this._routes.length; i++) {
-                
+
                 const segments = this._routes[i].path.substring(1).split("/");
 
-                if (_currentSegments.length === segments.length) {     
+                if (_currentSegments.length === segments.length) {
+
                     for (var x = 0; x < segments.length; x++) {
                         if (_currentSegments[x] == segments[x]) {
                             match = true;
@@ -78,30 +80,40 @@ export class Router {
                         }
                     }
 
-                    if (match)
-                        this._onRouteMatch(this._routes[i].name, routeParams);                                            
+                    if (match) {
+                        this._onRouteMatch(this._routes[i].name, routeParams);
+                        i = this._routes.length;
+                    }
                 }
             }
         }
 
-        if(this._environment.useUrlRouting)
+        if (!match)
+            for (var i = 0; i < this._routes.length; i++) {
+                if (this._routes[i].path === "*") {
+                    this._onRouteMatch(this._routes[i].name);
+                    match = true;
+                }
+            }
+
+        if (this._environment.useUrlRouting)
             history.pushState({}, this._routeName, state.route);
 
         this._storage.put({ name: routerKeys.currentRoute, value: state.route });
-        
+
         this._callbacks.forEach(callback => callback({ routeName: this._routeName, routeParams: this._routeParams, nextRoute: this.activatedRoute }));
-        
+
     }
 
-    private _onRouteMatch(name:string,routeParams:any = null) {
+    private _onRouteMatch(name: string, routeParams: any = null) {
         this._routeName = name;
         this._routeParams = routeParams;
     }
-    
+
     public _addEventListeners() {
-        window.onpopstate = () => this._onChanged({ route: window.location.pathname });   
+        window.onpopstate = () => this._onChanged({ route: window.location.pathname });
     }
-    
+
     private get _initialRoute(): string { return this._environment.useUrlRouting ? window.location.pathname : this._storage.get({ name: routerKeys.currentRoute }) || "/"; }
 
     private _routeName: string;

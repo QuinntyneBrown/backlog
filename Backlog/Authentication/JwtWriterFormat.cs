@@ -3,6 +3,7 @@ using Microsoft.Owin.Security;
 using System;
 using Microsoft.Owin.Security.OAuth;
 using Backlog.Configuration;
+using Backlog.Services;
 
 namespace Backlog.Authentication
 {
@@ -11,6 +12,11 @@ namespace Backlog.Authentication
         private readonly OAuthAuthorizationServerOptions _options;
         protected IAuthConfiguration _authConfiguration { get { return _lazyAuthConfiguration.Value; } }
         protected Lazy<IAuthConfiguration> _lazyAuthConfiguration;
+
+        public static JwtWriterFormat Get(Lazy<IAuthConfiguration> lazyAuthConfiguration, IIdentityService identityService)
+        {
+            return new JwtWriterFormat(lazyAuthConfiguration, new OAuthOptions(lazyAuthConfiguration, identityService));
+        }
 
         public JwtWriterFormat(Lazy<IAuthConfiguration> lazyAuthConfiguration, OAuthAuthorizationServerOptions options)
         {

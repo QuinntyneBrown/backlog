@@ -6,7 +6,8 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion></ProductVersion>
+    <ProductVersion>
+    </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{94EAFF2E-6328-4353-B0EA-1FE5E09583C9}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -21,8 +22,9 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
-    <NuGetPackageImportStamp></NuGetPackageImportStamp>
-    <TypeScriptToolsVersion>2.0</TypeScriptToolsVersion>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>2.1</TypeScriptToolsVersion>
     <TypeScriptEmitDecoratorMetadata>true</TypeScriptEmitDecoratorMetadata>
     <TypeScriptModuleKind>commonjs</TypeScriptModuleKind>
     <TypeScriptExperimentalDecorators>True</TypeScriptExperimentalDecorators>
@@ -202,7 +204,9 @@
     <Content Include="lib\quill.snow.css" />
     <Content Include="lib\rome.min.css" />
     <Content Include="lib\rome.min.js" />
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="package.json" />
     <Content Include="src\app\app.component.html">
       <DependentUpon>app.component.ts</DependentUpon>
@@ -258,6 +262,12 @@
     <Content Include="src\app\epics\epic-view.component.scss">
       <DependentUpon>epic-view.component.ts</DependentUpon>
     </Content>
+    <Content Include="src\app\error\error.component.html">
+      <DependentUpon>error.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\error\error.component.scss">
+      <DependentUpon>error.component.ts</DependentUpon>
+    </Content>
     <Content Include="src\app\feedback\feedback-edit.component.html">
       <DependentUpon>feedback-edit.component.ts</DependentUpon>
     </Content>
@@ -293,6 +303,12 @@
     </Content>
     <Content Include="src\app\kanban-board\kanban-board.component.scss">
       <DependentUpon>kanban-board.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\not-found\not-found.component.html">
+      <DependentUpon>not-found.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\not-found\not-found.component.scss">
+      <DependentUpon>not-found.component.ts</DependentUpon>
     </Content>
     <Content Include="src\app\products\product-edit.component.html">
       <DependentUpon>product-edit.component.ts</DependentUpon>
@@ -449,6 +465,7 @@
     </Content>
     <None Include="Properties\PublishProfiles\backlog - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\backlog - Web Deploy.pubxml" />
+    <Content Include="src\app\pagination\paged-list.scss" />
     <None Include="src\styles\base\entity-list.scss" />
     <None Include="src\styles\base\select.scss" />
     <None Include="src\styles\base\entity-item.scss" />
@@ -489,7 +506,18 @@
     <TypeScriptCompile Include="src\app\app-router-outlet.component.ts" />
     <TypeScriptCompile Include="src\app\app.component.ts" />
     <TypeScriptCompile Include="src\app\environment.ts" />
+    <TypeScriptCompile Include="src\app\error\error.component.ts" />
+    <TypeScriptCompile Include="src\app\error\index.ts" />
     <TypeScriptCompile Include="src\app\index.ts" />
+    <TypeScriptCompile Include="src\app\not-found\index.ts" />
+    <TypeScriptCompile Include="src\app\not-found\not-found.component.ts" />
+    <TypeScriptCompile Include="src\app\pagination\index.ts" />
+    <TypeScriptCompile Include="src\app\pagination\ipaged-list.d.ts" />
+    <TypeScriptCompile Include="src\app\pagination\paged-list.model.ts" />
+    <TypeScriptCompile Include="src\app\pagination\paging-config.model.ts" />
+    <TypeScriptCompile Include="src\app\pagination\to-paged-list-from-in-memory.ts" />
+    <TypeScriptCompile Include="src\app\pagination\to-paged-list.ts" />
+    <TypeScriptCompile Include="src\app\pagination\validate-page-properties-and-get-skip-count.ts" />
     <TypeScriptCompile Include="src\app\router\index.ts" />
     <TypeScriptCompile Include="src\app\router\link.component.ts" />
     <TypeScriptCompile Include="src\app\router\router-middleware.ts" />
@@ -638,7 +666,8 @@
           <IISUrl>http://localhost:56620/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl></CustomServerUrl>
+          <CustomServerUrl>
+          </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>

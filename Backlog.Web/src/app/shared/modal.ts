@@ -47,6 +47,24 @@ export class Modal {
         });
     }
 
+    //public async openAsync = (options) => {
+    //    return new Promise((resolve) => {
+    //        this._html = options.html;
+    //        var openAsyncFn = () => {
+    //            return this.initializeAsync()
+    //                .then(this._backdrop.openAsync)
+    //                .then(this.appendModalToBodyAsync)
+    //                .then(this.showAsync)
+    //                .then(() => {
+    //                    resolve();
+    //                });
+    //            await this.initializeAsync();
+    //            await this._backdrop.openAsync()
+    //        }
+    //        setTimeout(openAsyncFn, 0);
+    //    });
+    //}
+
     initializeAsync = () => {
         return new Promise((resolve) => {
             this.compileAsync().then(() => {                
@@ -75,7 +93,7 @@ export class Modal {
         });
     }
 
-    compileAsync = () => {
+    public async compileAsync() {
         return new Promise((resolve) => {
             this.nativeHTMLElement = this._createElement(this.html);
             setTimeout(() => {
@@ -84,7 +102,9 @@ export class Modal {
         });
     }
 
-    appendModalToBodyAsync = () => this._appendToTargetAsync({ nativeHTMLElement: this.nativeHTMLElement, target: document.body });
+    public async appendModalToBodyAsync() {
+        return this._appendToTargetAsync({ nativeHTMLElement: this.nativeHTMLElement, target: document.body });
+    }
 
     showAsync = () => this._extendCssAsync({
         nativeHTMLElement: this.nativeHTMLElement,

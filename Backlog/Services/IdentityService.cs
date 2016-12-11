@@ -6,16 +6,25 @@ using System.Collections.Generic;
 using System.Security.Claims;
 using System.Data.Entity;
 using System.Linq;
+using Backlog.Configuration;
+using Backlog.Authentication;
+using Microsoft.Owin.Security;
 
 namespace Backlog.Services
 {
     public class IdentityService : IIdentityService
     {
-        public IdentityService(IUow uow, IEncryptionService encryptionService, ICacheProvider cacheProvider)
+        public IdentityService(
+            IUow uow, 
+            IEncryptionService encryptionService, 
+            ICacheProvider cacheProvider,
+            Lazy<IAuthConfiguration> lazyAuthConfiguration
+            )
         {
             _cache = cacheProvider.GetCache();
             _encryptionService = encryptionService;
             _uow = uow;
+            _jwtWriterFormat = JwtWriterFormat.Get(lazyAuthConfiguration, this);
         }
 
         public bool AuthenticateUser(string username, string password)
@@ -48,7 +57,23 @@ namespace Backlog.Services
 
         public TokenDto TryToRegister(RegistrationRequestDto registrationRequestDto)
         {
-            throw new NotImplementedException();
+            if (_uow.Users.GetAll().FirstOrDefault(x => x.Username.ToLower() == registrationRequestDto.EmailAddress.ToLower() && !x.IsDeleted) != null)
+                return null;
+
+            var user = new User()
+            {
+                Firstname = registrationRequestDto.Firstname,
+                Lastname = registrationRequestDto.Lastname,
+                Email = registrationRequestDto.EmailAddress,
+                Username = registrationRequestDto.EmailAddress,
+                Password = _encryptionService.TransformPassword(registrationRequestDto.Password)
+            };
+            
+            _uow.Users.Add(user);
+            _uow.SaveChanges();
+
+            var authenticationTicket = new AuthenticationTicket(new ClaimsIdentity(GetClaimsForUser(user.Username)), new AuthenticationProperties());
+            return new TokenDto() { Token = _jwtWriterFormat.Protect(authenticationTicket) };
         }
 
         private bool ValidateUser(string usermame, string password)
@@ -59,5 +84,6 @@ namespace Backlog.Services
         protected readonly IUow _uow;
         protected readonly ICache _cache;
         protected readonly IEncryptionService _encryptionService;
+        protected readonly JwtWriterFormat _jwtWriterFormat;
     }
 }

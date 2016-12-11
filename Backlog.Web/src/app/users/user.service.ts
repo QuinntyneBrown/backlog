@@ -33,6 +33,8 @@ export class UserService {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
             data: formEncode(options)
+        }).catch((error) => {
+
         });
     }
 

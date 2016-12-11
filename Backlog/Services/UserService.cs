@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Backlog.Data;
 using Backlog.Dtos;
-using System.Data.Entity;
 using System.Linq;
 using Backlog.Models;
 
@@ -10,11 +9,12 @@ namespace Backlog.Services
 {
     public class UserService : IUserService
     {
-        public UserService(IUow uow, ICacheProvider cacheProvider)
+        public UserService(IUow uow, ICacheProvider cacheProvider, IIdentityService identityService)
         {
             _uow = uow;
             _repository = uow.Users;
             _cache = cacheProvider.GetCache();
+            _identityService = identityService;
         }
 
         public UserAddOrUpdateResponseDto AddOrUpdate(UserAddOrUpdateRequestDto request)
@@ -52,8 +52,12 @@ namespace Backlog.Services
         public UserDto Current(string username)
             => new UserDto(_repository.GetAll().Single(x => x.IsDeleted == false && x.Username == username));
 
+        public dynamic Register(RegistrationRequestDto request, IList<string> roles)
+            => _identityService.TryToRegister(request);
+
         protected readonly IUow _uow;
         protected readonly IRepository<User> _repository;
         protected readonly ICache _cache;
+        protected readonly IIdentityService _identityService;
     }
 }

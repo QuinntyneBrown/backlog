@@ -9,14 +9,14 @@ export class ProductListComponent extends HTMLElement {
         super();
     }
 
-    connectedCallback() {
+    async connectedCallback() {
         this.innerHTML = `<style>${styles}</style> ${template}`;
-        this._productService.get().then((results: string) => {
-            var resultsJSON: Array<Product> = JSON.parse(results) as Array<Product>;
-            for (var i = 0; i < resultsJSON.length; i++) {
-                this.appendChild(createElement(`<ce-product-item entity='${JSON.stringify(resultsJSON[i])}'></ce-product-item>`));
-            }
-        });
+        let results = await this._productService.get() as string;
+        var resultsJSON: Array<Product> = JSON.parse(results) as Array<Product>;
+        for (var i = 0; i < resultsJSON.length; i++) {
+            this.appendChild(createElement(`<ce-product-item entity='${JSON.stringify(resultsJSON[i])}'></ce-product-item>`));
+        }
+        
     }    
 }
 

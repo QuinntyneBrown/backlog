@@ -58,8 +58,8 @@ export class LoginComponent extends HTMLElement {
         });
     }
 
-    private get _usernameElement() { return this.querySelectorAll("input")[0] as HTMLInputElement; }
-    private get _passwordElement() { return this.querySelectorAll("input")[1] as HTMLInputElement; }
+    private get _usernameElement() { return this.querySelectorAll("input")[0]; }
+    private get _passwordElement() { return this.querySelectorAll("input")[1]; }
     private get _errorElement():HTMLElement { return this.querySelector(".error") as HTMLElement; }
     private get _loginButtonElement() { return this.querySelector("ce-button") as HTMLButtonElement; }
 

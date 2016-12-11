@@ -4,8 +4,12 @@ namespace Backlog.Dtos
     {
         public UserSettingsDto(Backlog.Models.UserSettings entity)
         {
-            this.Id = entity.Id;
-            this.Name = entity.Name;
+            Id = entity.Id;
+            Name = entity.Name;
+            IsKanbanEnabled = entity.IsKanbanEnabled;
+            IsSpecsEnabled = entity.IsSpecsEnabled;
+            IsTasksEnabled = entity.IsTasksEnabled;
+
         }
 
         public UserSettingsDto()
@@ -15,5 +19,8 @@ namespace Backlog.Dtos
 
         public int Id { get; set; }
         public string Name { get; set; }
+        public bool? IsKanbanEnabled { get; set; }
+        public bool? IsTasksEnabled { get; set; }
+        public bool? IsSpecsEnabled { get; set; }
     }
 }

@@ -10,5 +10,6 @@ namespace Backlog.Services
         UserDto GetById(int id);
         dynamic Remove(int id);
         UserDto Current(string username);
+        dynamic Register(RegistrationRequestDto request, IList<string> roles);
     }
 }

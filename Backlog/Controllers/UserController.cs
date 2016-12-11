@@ -52,6 +52,14 @@ namespace Backlog.Controllers
         [ResponseType(typeof(int))]
         public IHttpActionResult Remove(int id) { return Ok(_userService.Remove(id)); }
 
+        [Route("register")]
+        [HttpPost]
+        [AllowAnonymous]
+        public IHttpActionResult Register(RegistrationRequestDto request)
+        {
+            return Ok(_userService.Register(request, new List<string>() { }));
+        }
+
         protected readonly IUserService _userService;
 
 
