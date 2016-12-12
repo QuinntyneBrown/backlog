@@ -13,14 +13,13 @@ export class EpicEditComponent extends HTMLElement {
         private _router: Router = Router.Instance
     ) {
         super();
-
     }
 
     static get observedAttributes() {
         return ["epic-id"];
     }
     
-    connectedCallback() {        
+    async connectedCallback() {        
         this.innerHTML = `<style>${styles}</style> ${template}`; 
         this.saveButtonElement = this.querySelector(".save-button") as HTMLButtonElement;
         this.deleteButtonElement = this.querySelector(".delete-button") as HTMLButtonElement;
@@ -34,55 +33,51 @@ export class EpicEditComponent extends HTMLElement {
 
         if (this.epicId) {
             promises.push(this._epicService.getById(this.epicId));
-            Promise.all(promises).then((results: Array<any>) => { 
 
-                var products = JSON.parse(results[0]) as Array<any>;
-                for (let i = 0; i < products.length; i++) {
-                    let option = document.createElement("option");
-                    option.textContent = products[i].name;
-                    option.value = products[i].id;
-                    this.selectElement.appendChild(option);
-                }
+            const results: Array<any> = await Promise.all(promises);
 
-                var resultsJSON: Epic = JSON.parse(results[1]) as Epic;                
-                this.nameInputElement.value = resultsJSON.name; 
-                this.priorityElement.value = resultsJSON.priority;  
-                this.selectElement.value = resultsJSON.productId;           
-            });
+            var products = JSON.parse(results[0]) as Array<any>;
+            for (let i = 0; i < products.length; i++) {
+                let option = document.createElement("option");
+                option.textContent = products[i].name;
+                option.value = products[i].id;
+                this.selectElement.appendChild(option);
+            }
+
+            var resultsJSON: Epic = JSON.parse(results[1]) as Epic;
+            this.nameInputElement.value = resultsJSON.name;
+            this.priorityElement.value = resultsJSON.priority;
+            this.selectElement.value = resultsJSON.productId;
             this.titleElement.textContent = "Edit Epic";
         } else {
-
-            Promise.all(promises).then((results: Array<any>) => {
-                var products = JSON.parse(results[0]) as Array<any>;
-                for (let i = 0; i < products.length; i++) {
-                    let option = document.createElement("option");
-                    option.textContent = products[i].name;
-                    option.value = products[i].id;
-                    this.selectElement.appendChild(option);
-                }
-            });
-
+            let results: Array<any> = await Promise.all(promises);
+            let products = JSON.parse(results[0]) as Array<any>;
+            for (let i = 0; i < products.length; i++) {
+                let option = document.createElement("option");
+                option.textContent = products[i].name;
+                option.value = products[i].id;
+                this.selectElement.appendChild(option);
+            }
             this.deleteButtonElement.style.display = "none";
         } 
     }
     
-    public onSave() {
+    public async onSave() {
         var epic = {
             id: this.epicId,
             productId: this.selectElement.value,
             name: this.nameInputElement.value,
             priority: this.priorityElement.value
         } as any;
-        
-        this._epicService.add(epic).then((results) => {
-            this._router.navigate(["epic", "list"]);
-        });
+
+        await this._epicService.add(epic);
+        const link = ["product", this.selectElement.value, "epic", "list"];
+        this._router.navigate(link);
     }
 
-    public onDelete() {        
-        this._epicService.remove({ id: this.epicId }).then((results) => {
-            this._router.navigate(["epic", "list"]);
-        });
+    public async onDelete() {        
+        await this._epicService.remove({ id: this.epicId });
+        this._router.navigate(["epic", "list"]);
     }
 
     attributeChangedCallback(name, oldValue, newValue) {

@@ -11,6 +11,9 @@ export class EpicItemComponent extends HTMLElement {
         private _epicService: EpicService = EpicService.Instance,
         private _router: Router = Router.Instance) {
         super();
+        this._onDeleteClick = this._onDeleteClick.bind(this);
+        this._onEditClick = this._onEditClick.bind(this);
+        this._onViewClick = this._onViewClick.bind(this);
     }
 
     static get observedAttributes() {
@@ -24,10 +27,10 @@ export class EpicItemComponent extends HTMLElement {
     }
 
     disconnectedCallback() {
-        this._deleteLinkElement.removeEventListener("click", this._onDeleteClick.bind(this));
-        this._editLinkElement.removeEventListener("click", this._onEditClick.bind(this));
-        this._viewLinkElement.removeEventListener("click", this._onViewClick.bind(this));
-        this._storiesElement.removeEventListener("click", this._onViewClick.bind(this));
+        this._deleteLinkElement.removeEventListener("click", this._onDeleteClick);
+        this._editLinkElement.removeEventListener("click", this._onEditClick);
+        this._viewLinkElement.removeEventListener("click", this._onViewClick);
+        this._storiesElement.removeEventListener("click", this._onViewClick);
     }
     private _bind() {
         this._nameElement.textContent = this.entity.name;
@@ -35,16 +38,15 @@ export class EpicItemComponent extends HTMLElement {
     }
 
     private _addEventListeners() {
-        this._deleteLinkElement.addEventListener("click", this._onDeleteClick.bind(this));
-        this._editLinkElement.addEventListener("click", this._onEditClick.bind(this));
-        this._viewLinkElement.addEventListener("click", this._onViewClick.bind(this));
-        this._storiesElement.addEventListener("click", this._onViewClick.bind(this));
+        this._deleteLinkElement.addEventListener("click", this._onDeleteClick);
+        this._editLinkElement.addEventListener("click", this._onEditClick);
+        this._viewLinkElement.addEventListener("click", this._onViewClick);
+        this._storiesElement.addEventListener("click", this._onViewClick);
     }
 
-    private _onDeleteClick(e:Event) {
-        this._epicService.remove({ id: this.entity.id }).then(() => {
-            this.parentNode.removeChild(this);
-        });
+    private async _onDeleteClick(e:Event) {
+        await this._epicService.remove({ id: this.entity.id });
+        this.parentNode.removeChild(this);
     }
 
     private _onEditClick() {
