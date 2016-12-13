@@ -19,7 +19,7 @@ export class TaskService {
     }
 
     public getByStoryId(storyid) {
-        return fetch({ url: `api/task/getbystoryid?storyid=${storyid}` });
+        return fetch({ url: `api/task/getbystoryid?storyid=${storyid}`, authRequired: true });
     }
 
     public getById(id) {

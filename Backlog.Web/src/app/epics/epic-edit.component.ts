@@ -8,60 +8,69 @@ const template = require("./epic-edit.component.html");
 const styles = require("./epic-edit.component.scss");
 
 export class EpicEditComponent extends HTMLElement {
-    constructor(private _epicService: EpicService = EpicService.Instance,
+    constructor(
+        private _epicService: EpicService = EpicService.Instance,
         private _productService: ProductService = ProductService.Instance,
         private _router: Router = Router.Instance
     ) {
         super();
+        this.onSave = this.onSave.bind(this);
+        this.onDelete = this.onDelete.bind(this);
+        this.onTitleClick = this.onTitleClick.bind(this);
     }
 
     static get observedAttributes() {
         return ["epic-id"];
     }
     
-    async connectedCallback() {        
+    connectedCallback() {        
         this.innerHTML = `<style>${styles}</style> ${template}`; 
-        this.saveButtonElement = this.querySelector(".save-button") as HTMLButtonElement;
-        this.deleteButtonElement = this.querySelector(".delete-button") as HTMLButtonElement;
-        this.titleElement = this.querySelector("h2") as HTMLElement;
-        this.nameInputElement = this.querySelector(".epic-name") as HTMLInputElement;
-        this.titleElement.textContent = "Create epic";
-        this.saveButtonElement.addEventListener("click", this.onSave.bind(this));
-        this.deleteButtonElement.addEventListener("click", this.onDelete.bind(this));
+        this._addEventListeners();
+        this._bind();
+    }
+
+    private async _bind() {
+        
+        this.titleElement.textContent = this.epicId ? "Edit Epic" : "Create Epic";
 
         let promises = [this._productService.get()];
 
-        if (this.epicId) {
+        if (this.epicId)
             promises.push(this._epicService.getById(this.epicId));
 
-            const results: Array<any> = await Promise.all(promises);
+        const results: Array<any> = await Promise.all(promises);
 
-            var products = JSON.parse(results[0]) as Array<any>;
-            for (let i = 0; i < products.length; i++) {
-                let option = document.createElement("option");
-                option.textContent = products[i].name;
-                option.value = products[i].id;
-                this.selectElement.appendChild(option);
-            }
+        let products = JSON.parse(results[0]) as Array<any>;
 
-            var resultsJSON: Epic = JSON.parse(results[1]) as Epic;
-            this.nameInputElement.value = resultsJSON.name;
-            this.priorityElement.value = resultsJSON.priority;
-            this.selectElement.value = resultsJSON.productId;
-            this.titleElement.textContent = "Edit Epic";
-        } else {
-            let results: Array<any> = await Promise.all(promises);
-            let products = JSON.parse(results[0]) as Array<any>;
-            for (let i = 0; i < products.length; i++) {
-                let option = document.createElement("option");
-                option.textContent = products[i].name;
-                option.value = products[i].id;
-                this.selectElement.appendChild(option);
-            }
+        for (let i = 0; i < products.length; i++) {
+            let option = document.createElement("option");
+            option.textContent = products[i].name;
+            option.value = products[i].id;
+            this.selectElement.appendChild(option);
+        }
+
+        if (this.epicId) {            
+            this.entity = JSON.parse(results[1]) as Epic;
+            this.nameInputElement.value = this.entity.name;
+            this.priorityElement.value = this.entity.priority;
+            this.selectElement.value = this.entity.productId;            
+        } else {            
             this.deleteButtonElement.style.display = "none";
         } 
     }
-    
+
+    private _addEventListeners() {
+        this.saveButtonElement.addEventListener("click", this.onSave);
+        this.deleteButtonElement.addEventListener("click", this.onDelete);
+        this.titleElement.addEventListener("click", this.onTitleClick);
+    }
+
+    private disconntectedCallback() {
+        this.saveButtonElement.removeEventListener("click", this.onSave);
+        this.deleteButtonElement.removeEventListener("click", this.onDelete);
+        this.titleElement.removeEventListener("click", this.onTitleClick);
+    }
+
     public async onSave() {
         var epic = {
             id: this.epicId,
@@ -77,7 +86,13 @@ export class EpicEditComponent extends HTMLElement {
 
     public async onDelete() {        
         await this._epicService.remove({ id: this.epicId });
-        this._router.navigate(["epic", "list"]);
+        const link = ["epic", "list"];
+        this._router.navigate(link);
+    }
+
+    public onTitleClick() {
+        const link = ["product",this.selectElement.value,"epic","list"];        
+        this._router.navigate(link);        
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
@@ -89,12 +104,13 @@ export class EpicEditComponent extends HTMLElement {
     }
 
     public epicId: number;
+    public entity: Epic;
     public get priorityElement(): HTMLInputElement { return this.querySelector(".epic-priority") as HTMLInputElement; }
     public get selectElement(): HTMLSelectElement { return this.querySelector("select") as HTMLSelectElement; }
-    public titleElement: HTMLElement;
-    public saveButtonElement: HTMLButtonElement;
-    public deleteButtonElement: HTMLButtonElement;
-    public nameInputElement: HTMLInputElement;
+    public get titleElement(): HTMLElement { return this.querySelector("h2") as HTMLElement; }
+    public get saveButtonElement(): HTMLButtonElement { return this.querySelector(".save-button") as HTMLButtonElement; }
+    public get deleteButtonElement(): HTMLButtonElement { return this.querySelector(".delete-button") as HTMLButtonElement; }
+    public get nameInputElement(): HTMLInputElement { return this.querySelector(".epic-name") as HTMLInputElement; }
 }
 
-document.addEventListener("DOMContentLoaded",() => window.customElements.define(`ce-epic-edit`,EpicEditComponent));
+customElements.define(`ce-epic-edit`,EpicEditComponent);

@@ -5,6 +5,7 @@ using Backlog.Data;
 using System.Linq;
 using System.Data.Entity;
 using Backlog.Models;
+using Backlog.Extenstions;
 
 namespace Backlog.Services
 {
@@ -20,7 +21,7 @@ namespace Backlog.Services
 
         public EpicAddOrUpdateResponseDto AddOrUpdate(EpicAddOrUpdateRequestDto request)
         {
-            var entity = EpicsQuery()
+            var entity = EpicsQuery
                 .FirstOrDefault(x => x.Id == request.Id && x.IsDeleted == false);
             if (entity == null) _repository.Add(entity = new Epic());
             entity.Name = request.Name;
@@ -28,6 +29,7 @@ namespace Backlog.Services
             entity.IsTemplate = request.IsTemplate;
             entity.ProductId = request.ProductId;
             entity.Product = this._uow.Products.GetById(request.ProductId.Value);
+            entity.Slug = request.Name.GenerateSlug();
 
             if (request.Priority.HasValue)
                 entity.Priority = request.Priority.Value;
@@ -40,7 +42,7 @@ namespace Backlog.Services
         public ICollection<EpicDto> Get()
         {
             ICollection<EpicDto> response = new HashSet<EpicDto>();
-            List<Epic> entities = _cache.FromCacheOrService(() => EpicsQuery()
+            List<Epic> entities = _cache.FromCacheOrService(() => EpicsQuery
                 .Where(x => x.IsDeleted == false).ToList(),"[EpicService] Get");
 
             foreach (var entity in entities
@@ -52,7 +54,7 @@ namespace Backlog.Services
 
         public EpicDto GetById(int id)
         {
-            return new EpicDto(_cache.FromCacheOrService(() => EpicsQuery()
+            return new EpicDto(_cache.FromCacheOrService(() => EpicsQuery
                 .Where(x => x.Id == id && x.IsDeleted == false).FirstOrDefault(), $"[EpicService] GetById {id}"));
         }
 
@@ -67,11 +69,7 @@ namespace Backlog.Services
 
         public ICollection<EpicDto> IncrementPriority(int id)
         {
-            var entities = _repository.GetAll()
-                .Include(x => x.Stories)
-                .Include(x => x.Product)
-                .Include("Stories.StoryDigitalAssets")
-                .Include("Stories.StoryDigitalAssets.DigitalAsset")
+            var entities = EpicsQuery
                 .OrderBy(x => x.Priority)
                 .Where(x=>!x.IsDeleted)
                 .ToList();
@@ -102,9 +100,7 @@ namespace Backlog.Services
 
         public ICollection<EpicDto> DecrementPriority(int id)
         {
-            var entities = _repository.GetAll()
-                .Include(x => x.Stories)
-                .Where(x=> !x.IsDeleted)
+            var entities = EpicsQuery                
                 .OrderByDescending(x => x.Priority)
                 .ToList();
 
@@ -132,12 +128,15 @@ namespace Backlog.Services
                 .OrderByDescending(x => x.Priority).ToList();
         }
 
-        public IQueryable<Epic> EpicsQuery() => _repository
-                .GetAll()
-                .Include(x => x.Stories)
-                .Include(x => x.Product)
-                .Include("Stories.StoryDigitalAssets")
-                .Include("Stories.StoryDigitalAssets.DigitalAsset");
+        public IQueryable<Epic> EpicsQuery { get {
+                return _repository
+                    .GetAll()
+                    .Include(x => x.Stories)
+                    .Include(x => x.Product)
+                    .Include("Stories.StoryDigitalAssets")
+                    .Include("Stories.StoryDigitalAssets.DigitalAsset");
+            }
+        }
 
         protected readonly IUow _uow;
         protected readonly IRepository<Epic> _repository;

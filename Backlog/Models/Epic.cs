@@ -10,6 +10,7 @@ namespace Backlog.Models
         public int? ProductId { get; set; }
         [ForeignKey("Project")]
         public int? ProjectId { get; set; }
+        public string Slug { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public Product Product { get; set; }

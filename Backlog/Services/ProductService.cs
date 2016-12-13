@@ -5,6 +5,7 @@ using Backlog.Dtos;
 using System.Data.Entity;
 using System.Linq;
 using Backlog.Models;
+using Backlog.Extenstions;
 
 namespace Backlog.Services
 {
@@ -26,6 +27,7 @@ namespace Backlog.Services
                 .FirstOrDefault(x => x.Id == request.Id && x.IsDeleted == false);
             if (entity == null) _repository.Add(entity = new Product());
             entity.Name = request.Name;
+            entity.Slug = request.Name.GenerateSlug();
             _uow.SaveChanges();
             return new ProductAddOrUpdateResponseDto(entity);
         }
