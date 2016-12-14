@@ -32,6 +32,9 @@ namespace Backlog.Data
         public DbSet<Feedback> Feedbacks { get; set; }
         public DbSet<UserSettings> UserSettings { get; set; }
         public DbSet<TaskStatus> TaskStatuses { get; set; }
+        public DbSet<Brand> Brands { get; set; }
+        public DbSet<Feature> Features { get; set; }
+        public DbSet<Template> Templates { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

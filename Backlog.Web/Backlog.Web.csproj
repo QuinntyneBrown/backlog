@@ -6,8 +6,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>
-    </ProductVersion>
+    <ProductVersion></ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{94EAFF2E-6328-4353-B0EA-1FE5E09583C9}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -22,8 +21,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
+    <NuGetPackageImportStamp></NuGetPackageImportStamp>
     <TypeScriptToolsVersion>2.1</TypeScriptToolsVersion>
     <TypeScriptEmitDecoratorMetadata>true</TypeScriptEmitDecoratorMetadata>
     <TypeScriptModuleKind>commonjs</TypeScriptModuleKind>
@@ -238,6 +236,24 @@
     <Content Include="src\app\articles\article-view.component.scss">
       <DependentUpon>article-view.component.ts</DependentUpon>
     </Content>
+    <Content Include="src\app\brands\brand-edit.component.html">
+      <DependentUpon>brand-edit.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\brands\brand-edit.component.scss">
+      <DependentUpon>brand-edit.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\brands\brand-item.component.html">
+      <DependentUpon>brand-item.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\brands\brand-item.component.scss">
+      <DependentUpon>brand-item.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\brands\brand-list.component.html">
+      <DependentUpon>brand-list.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\brands\brand-list.component.scss">
+      <DependentUpon>brand-list.component.ts</DependentUpon>
+    </Content>
     <Content Include="src\app\epics\epic-edit.component.html">
       <DependentUpon>epic-edit.component.ts</DependentUpon>
     </Content>
@@ -267,6 +283,24 @@
     </Content>
     <Content Include="src\app\error\error.component.scss">
       <DependentUpon>error.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\features\feature-edit.component.html">
+      <DependentUpon>feature-edit.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\features\feature-edit.component.scss">
+      <DependentUpon>feature-edit.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\features\feature-item.component.html">
+      <DependentUpon>feature-item.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\features\feature-item.component.scss">
+      <DependentUpon>feature-item.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\features\feature-list.component.html">
+      <DependentUpon>feature-list.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\features\feature-list.component.scss">
+      <DependentUpon>feature-list.component.ts</DependentUpon>
     </Content>
     <Content Include="src\app\feedback\feedback-edit.component.html">
       <DependentUpon>feedback-edit.component.ts</DependentUpon>
@@ -442,6 +476,30 @@
     <Content Include="src\app\tasks\task-list.component.scss">
       <DependentUpon>task-list.component.ts</DependentUpon>
     </Content>
+    <Content Include="src\app\templates\template-edit-overlay.component.html">
+      <DependentUpon>template-edit-overlay.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\templates\template-edit-overlay.component.scss">
+      <DependentUpon>template-edit-overlay.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\templates\template-edit.component.html">
+      <DependentUpon>template-edit.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\templates\template-edit.component.scss">
+      <DependentUpon>template-edit.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\templates\template-item.component.html">
+      <DependentUpon>template-item.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\templates\template-item.component.scss">
+      <DependentUpon>template-item.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\templates\template-list.component.html">
+      <DependentUpon>template-list.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\templates\template-list.component.scss">
+      <DependentUpon>template-list.component.ts</DependentUpon>
+    </Content>
     <Content Include="src\app\user-settings\user-settings.component.html">
       <DependentUpon>user-settings.component.ts</DependentUpon>
     </Content>
@@ -508,6 +566,9 @@
   <ItemGroup>
     <TypeScriptCompile Include="src\app\app-router-outlet.component.ts" />
     <TypeScriptCompile Include="src\app\app.component.ts" />
+    <TypeScriptCompile Include="src\app\digital-assets\digital-asset.model.ts" />
+    <TypeScriptCompile Include="src\app\digital-assets\digital-asset.service.ts" />
+    <TypeScriptCompile Include="src\app\digital-assets\index.ts" />
     <TypeScriptCompile Include="src\app\environment.ts" />
     <TypeScriptCompile Include="src\app\error\error.component.ts" />
     <TypeScriptCompile Include="src\app\error\index.ts" />
@@ -651,6 +712,29 @@
     <TypeScriptCompile Include="src\app\kanban-board\kanban-board-story.component.ts" />
     <TypeScriptCompile Include="src\app\kanban-board\kanban-board-task-container.component.ts" />
     <TypeScriptCompile Include="src\app\kanban-board\kanban-board-story.model.ts" />
+    <TypeScriptCompile Include="src\app\brands\index.ts" />
+    <TypeScriptCompile Include="src\app\brands\brand.model.ts" />
+    <TypeScriptCompile Include="src\app\features\index.ts" />
+    <TypeScriptCompile Include="src\app\features\feature.model.ts" />
+    <TypeScriptCompile Include="src\app\features\feature.service.ts" />
+    <TypeScriptCompile Include="src\app\brands\brand.service.ts" />
+    <TypeScriptCompile Include="src\app\brands\brand-item.component.ts" />
+    <TypeScriptCompile Include="src\app\brands\brand-list.component.ts" />
+    <TypeScriptCompile Include="src\app\brands\brand-edit.component.ts" />
+    <TypeScriptCompile Include="src\app\features\feature-item.component.ts" />
+    <TypeScriptCompile Include="src\app\features\feature-list.component.ts" />
+    <TypeScriptCompile Include="src\app\features\feature-edit.component.ts" />
+    <TypeScriptCompile Include="src\app\templates\index.ts" />
+    <TypeScriptCompile Include="src\app\templates\template.model.ts" />
+    <TypeScriptCompile Include="src\app\templates\template.service.ts" />
+    <TypeScriptCompile Include="src\app\templates\template-edit.component.ts" />
+    <TypeScriptCompile Include="src\app\templates\template-item.component.ts" />
+    <TypeScriptCompile Include="src\app\templates\template-list.component.ts" />
+    <TypeScriptCompile Include="src\app\brands\brand-owner.model.ts" />
+    <TypeScriptCompile Include="src\app\brands\brand-owner.service.ts" />
+    <TypeScriptCompile Include="src\app\features\feature-category.model.ts" />
+    <TypeScriptCompile Include="src\app\features\feature-category.service.ts" />
+    <TypeScriptCompile Include="src\app\templates\template-edit-overlay.component.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -670,8 +754,7 @@
           <IISUrl>http://localhost:56620/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
+          <CustomServerUrl></CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>

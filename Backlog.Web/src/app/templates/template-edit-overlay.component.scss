@@ -1,0 +1,23 @@
+@import "../../styles/base/index";
+
+ce-template-edit-overlay {
+
+    height:400px;
+
+    .container {
+        @extend .view-card;
+        max-width:calc(100% - 100px);
+    }
+	
+    .close {
+        text-align:right;
+        cursor:pointer;
+
+        span {
+            display:inline-block;
+            height:2em;      
+            font-weight:100;
+        }
+    }
+
+}

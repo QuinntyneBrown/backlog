@@ -36,4 +36,4 @@ export class NotFoundComponent extends HTMLElement {
     }
 }
 
-document.addEventListener("DOMContentLoaded",() => window.customElements.define(`ce-not-found`,NotFoundComponent));
+customElements.define(`ce-not-found`,NotFoundComponent);

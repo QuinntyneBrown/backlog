@@ -1,6 +1,9 @@
 export * from "./articles";
+export * from "./brands";
+export * from "./digital-assets";
 export * from "./epics";
 export * from "./error";
+export * from "./features";
 export * from "./feedback";
 export * from "./kanban-board";
 export * from "./not-found";
@@ -12,6 +15,7 @@ export * from "./shared";
 export * from "./sprints";
 export * from "./stories";
 export * from "./tasks";
+export * from "./templates";
 export * from "./user-settings";
 export * from "./users";
 export * from "./utilities";

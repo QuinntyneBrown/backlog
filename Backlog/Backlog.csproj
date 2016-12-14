@@ -375,6 +375,32 @@
     <Compile Include="Services\IKanbanBoardService.cs" />
     <Compile Include="Controllers\KanbanBoardController.cs" />
     <Compile Include="Models\KanbanBoardTaskStatus.cs" />
+    <Compile Include="Models\Feature.cs" />
+    <Compile Include="Models\BrandFeature.cs" />
+    <Compile Include="Dtos\BrandDto.cs" />
+    <Compile Include="Dtos\BrandAddOrUpdateRequestDto.cs" />
+    <Compile Include="Dtos\BrandAddOrUpdateResponseDto.cs" />
+    <Compile Include="Dtos\FeatureDto.cs" />
+    <Compile Include="Dtos\FeatureAddOrUpdateRequestDto.cs" />
+    <Compile Include="Dtos\FeatureAddOrUpdateResponseDto.cs" />
+    <Compile Include="Services\BrandService.cs" />
+    <Compile Include="Services\IBrandService.cs" />
+    <Compile Include="Services\FeatureService.cs" />
+    <Compile Include="Services\IFeatureService.cs" />
+    <Compile Include="Controllers\BrandController.cs" />
+    <Compile Include="Controllers\FeatureController.cs" />
+    <Compile Include="Models\Template.cs" />
+    <Compile Include="Models\BrandTemplate.cs" />
+    <Compile Include="Dtos\TemplateDto.cs" />
+    <Compile Include="Dtos\TemplateAddOrUpdateRequestDto.cs" />
+    <Compile Include="Dtos\TemplateAddOrUpdateResponseDto.cs" />
+    <Compile Include="Services\TemplateService.cs" />
+    <Compile Include="Services\ITemplateService.cs" />
+    <Compile Include="Controllers\TemplateController.cs" />
+    <Compile Include="Dtos\BrandOwnerDto.cs" />
+    <Compile Include="Dtos\BrandOwnerAddOrUpdateRequestDto.cs" />
+    <Compile Include="Dtos\BrandOwnerAddOrUpdateResponseDto.cs" />
+    <Compile Include="Models\FeatureCategory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

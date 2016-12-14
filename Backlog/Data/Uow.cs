@@ -45,6 +45,9 @@ namespace Backlog.Data
         public IRepository<Task> Tasks { get { return GetStandardRepo<Task>(); } }
         public IRepository<TaskStatus> TaskStatuses {  get { return GetStandardRepo<TaskStatus>(); } }
         public IRepository<UserSettings> UserSettings { get { return GetStandardRepo<UserSettings>(); } }
+        public IRepository<Brand> Brands { get { return GetStandardRepo<Brand>(); } }
+        public IRepository<Feature> Features { get { return GetStandardRepo<Feature>(); } }
+        public IRepository<Template> Templates { get { return GetStandardRepo<Template>(); } }
 
         protected void ConfigureDbContext(IDbContext dbContext)
         {

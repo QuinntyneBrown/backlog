@@ -47,27 +47,9 @@ export class Modal {
         });
     }
 
-    //public async openAsync = (options) => {
-    //    return new Promise((resolve) => {
-    //        this._html = options.html;
-    //        var openAsyncFn = () => {
-    //            return this.initializeAsync()
-    //                .then(this._backdrop.openAsync)
-    //                .then(this.appendModalToBodyAsync)
-    //                .then(this.showAsync)
-    //                .then(() => {
-    //                    resolve();
-    //                });
-    //            await this.initializeAsync();
-    //            await this._backdrop.openAsync()
-    //        }
-    //        setTimeout(openAsyncFn, 0);
-    //    });
-    //}
-
     initializeAsync = () => {
         return new Promise((resolve) => {
-            this.compileAsync().then(() => {                
+            this.compileAsync().then(() => {
                 this._extendCssAsync({
                     nativeHTMLElement: this.nativeHTMLElement,
                     cssObject: {
@@ -82,9 +64,8 @@ export class Modal {
                         "padding": "30px",
                         "transition": "all 0.5s",
                         "-webkit-transition": "all 0.5s",
-                        "-o-transition": "all 0.5s",
-                        "pointer-events": "none"
-                    }                    
+                        "-o-transition": "all 0.5s"
+                    }
                 }).then(function () {
                     resolve();
                 });
@@ -93,7 +74,7 @@ export class Modal {
         });
     }
 
-    public async compileAsync() {
+    compileAsync = () => {
         return new Promise((resolve) => {
             this.nativeHTMLElement = this._createElement(this.html);
             setTimeout(() => {
@@ -102,9 +83,7 @@ export class Modal {
         });
     }
 
-    public async appendModalToBodyAsync() {
-        return this._appendToTargetAsync({ nativeHTMLElement: this.nativeHTMLElement, target: document.body });
-    }
+    appendModalToBodyAsync = () => this._appendToTargetAsync({ nativeHTMLElement: this.nativeHTMLElement, target: document.body });
 
     showAsync = () => this._extendCssAsync({
         nativeHTMLElement: this.nativeHTMLElement,
@@ -118,7 +97,8 @@ export class Modal {
             try {
                 this._extendCssAsync({
                     nativeHTMLElement: this.nativeHTMLElement,
-                    cssObject: { "opacity": "0" }})
+                    cssObject: { "opacity": "0" }
+                })
                     .then(this._backdrop.closeAsync)
                     .then(() => {
                         this.nativeHTMLElement.parentNode.removeChild(this.nativeHTMLElement);
@@ -127,9 +107,9 @@ export class Modal {
             } catch (error) {
                 resolve();
             }
-        });        
+        });
     }
-    
+
     nativeHTMLElement: HTMLElement;
-    
+
 }

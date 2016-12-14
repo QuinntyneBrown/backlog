@@ -3,12 +3,15 @@ import { StoryService } from "./story.service";
 import { EditorComponent, dropZoneEvents, DropZoneComponent } from "../shared";
 import { Router } from "../router";
 import { TaskService, taskActions, Task, TaskEditComponent, TaskListComponent } from "../tasks";
+import { DigitalAssetService } from "../digital-assets";
+
 
 const template = require("./story-edit.component.html");
 const styles = require("./story-edit.component.scss");
 
 export class StoryEditComponent extends HTMLElement {
     constructor(
+        private _digitalAssetService: DigitalAssetService = DigitalAssetService.Instance,
         private _storyService: StoryService = StoryService.Instance,
         private _router: Router = Router.Instance,
         private _taskService: TaskService = TaskService.Instance,
@@ -27,13 +30,13 @@ export class StoryEditComponent extends HTMLElement {
         return ["story-id","epic-id"];
     }
     
-    connectedCallback() {        
+    async connectedCallback() {        
         
         this.innerHTML = `<style>${styles}</style> ${template}`; 
         this.saveButtonElement = this.querySelector(".save-button") as HTMLButtonElement;
         this.deleteButtonElement = this.querySelector(".delete-button") as HTMLButtonElement;        
         this.nameInputElement = this.querySelector(".story-name") as HTMLInputElement;
-        this._titleElement.textContent = "Create Story";
+        this._titleElement.textContent = this.storyId ? "Edit Story" : "Create Story";
         this.saveButtonElement.addEventListener("click", this.onSave.bind(this));
         this.deleteButtonElement.addEventListener("click", this.onDelete.bind(this));
         this.descriptionEditor = new EditorComponent(this.descriptionElement);
@@ -42,33 +45,27 @@ export class StoryEditComponent extends HTMLElement {
         this.descriptionEditor.setHTML("<p><strong>As a </strong>product owner</p> <p><strong>I want/can</strong> &lt;action&gt;</p> <p><strong>so that</strong> &lt;reason&gt;</p>");
 
         if (this.storyId) {
-            Promise.all([
-                this._storyService.getById(this.storyId),
-                this._taskService.getByStoryId(this.storyId)
-            ]).then((resultsArray: any) => {
-                let results = resultsArray[0];
-                this.tasks = JSON.parse(resultsArray[1]);
-                let resultsJSON: Story = JSON.parse(results) as Story;
-                this.nameInputElement.value = resultsJSON.name;
-                this.descriptionEditor.setHTML(resultsJSON.description);
-                this.priorityElement.value = resultsJSON.priority;
-                this.notesEditor.setHTML(resultsJSON.notes);
-                this.pointsInputElement.value = resultsJSON.points;
-                this.architecturePointsInputElement.value = resultsJSON.architecturePoints;
-                this.completedDateElement.value = resultsJSON.completedDate;
+            let resultsArray: any = await Promise.all([ this._storyService.getById(this.storyId), this._taskService.getByStoryId(this.storyId) ]);
+            let results = resultsArray[0];
+            this.tasks = JSON.parse(resultsArray[1]);
+            let resultsJSON: Story = JSON.parse(results) as Story;
+            this.nameInputElement.value = resultsJSON.name;
+            this.descriptionEditor.setHTML(resultsJSON.description);
+            this.priorityElement.value = resultsJSON.priority;
+            this.notesEditor.setHTML(resultsJSON.notes);
+            this.pointsInputElement.value = resultsJSON.points;
+            this.architecturePointsInputElement.value = resultsJSON.architecturePoints;
+            this.completedDateElement.value = resultsJSON.completedDate;
 
-                this._taskEditComponent.setAttribute("story-id", JSON.stringify(this.storyId));
-                this._taskListComponent.setAttribute("story-id", JSON.stringify(this.storyId));
+            this._taskEditComponent.setAttribute("story-id", JSON.stringify(this.storyId));
+            this._taskListComponent.setAttribute("story-id", JSON.stringify(this.storyId));
 
-                resultsJSON.digitalAssets.map(d => {
-                    let el = document.createElement("ce-story-digital-asset") as HTMLElement;
-                    el.setAttribute("relative-path", d.relativePath);
-                    el.setAttribute("digital-asset-id", d.id);
-                    this.digitalAssetsContainer.appendChild(el);
-                });
-            });
-
-            this._titleElement.textContent = "Edit Story";
+            resultsJSON.digitalAssets.map(d => {
+                let el = document.createElement("ce-story-digital-asset");
+                el.setAttribute("relative-path", d.relativePath);
+                el.setAttribute("digital-asset-id", d.id);
+                this.digitalAssetsContainer.appendChild(el);
+            });            
         } else {
             this.deleteButtonElement.style.display = "none";
             this.imageDropZoneElement.style.display = "none";
@@ -116,20 +113,21 @@ export class StoryEditComponent extends HTMLElement {
         xhr.send(e.detail.files);
     }
 
-    public onTaskAdd(e:any) {
+    public async onTaskAdd(e:any) {
         e.stopPropagation();        
         if (this.storyId) {
             const task = Object.assign(e.detail.task, { storyId: this.storyId });
-            this._taskService.add(task).then((results) => {  
-                if (!this.tasks.find(t => t.id === task.id)) {
-                    this.tasks.push(task);
-                } else {                    
-                    this.tasks[this.tasks.findIndex(t => t.id === task.id)] = task;
-                }
 
-                this._taskEditComponent.setAttribute("task", JSON.stringify(new Task()));
-                this._taskListComponent.setAttribute("tasks", JSON.stringify(this.tasks));
-            });
+            await this._taskService.add(task);
+
+            if (!this.tasks.find(t => t.id === task.id)) {
+                this.tasks.push(task);
+            } else {
+                this.tasks[this.tasks.findIndex(t => t.id === task.id)] = task;
+            }
+
+            this._taskEditComponent.setAttribute("task", JSON.stringify(new Task()));
+            this._taskListComponent.setAttribute("tasks", JSON.stringify(this.tasks));
         } else {
             
         }
@@ -149,18 +147,17 @@ export class StoryEditComponent extends HTMLElement {
         this._window.scrollTo(0, 0);
     }
 
-    public onTaskDelete(e: any) {
+    public async onTaskDelete(e: any) {
         e.stopPropagation();
         const task: Task = this.tasks.find(t => t.id == e.detail.taskId);      
-        this._taskService.remove({ id: e.detail.taskId }).then(results => {
-            this.tasks.splice(this.tasks.indexOf(task), 1);            
-            if (this._taskEditComponent.taskId == e.detail.taskId)
-                this._taskEditComponent.setAttribute("task", JSON.stringify(new Task()));
-            this._taskListComponent.setAttribute("tasks", "");
-        });
+        await this._taskService.remove({ id: e.detail.taskId });
+        this.tasks.splice(this.tasks.indexOf(task), 1);
+        if (this._taskEditComponent.taskId == e.detail.taskId)
+            this._taskEditComponent.setAttribute("task", JSON.stringify(new Task()));
+        this._taskListComponent.setAttribute("tasks", "");
     }
 
-    public onSave() {
+    public async onSave() {
         var story = {
             id: this.storyId,
             epicId: this.epicId,
@@ -173,15 +170,13 @@ export class StoryEditComponent extends HTMLElement {
             architecturePoints: this.architecturePointsInputElement.value
         } as Story;
         
-        this._storyService.add(story).then((results) => {
-            this._router.navigate(["epic", "view", this.epicId]);
-        });
+        await this._storyService.add(story);
+        this._router.navigate(["epic", "view", this.epicId]);
     }
 
-    public onDelete() {        
-        this._storyService.remove({ id: this.storyId }).then((results) => {
-            this._router.navigate(["epic", "view", this.epicId]);            
-        });        
+    public async onDelete() {        
+        await this._storyService.remove({ id: this.storyId });
+        this._router.navigate(["epic", "view", this.epicId]);       
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
@@ -219,4 +214,4 @@ export class StoryEditComponent extends HTMLElement {
     public completedDatePicker: any;
 }
 
-document.addEventListener("DOMContentLoaded",() => window.customElements.define(`ce-story-edit`,StoryEditComponent));
+customElements.define(`ce-story-edit`,StoryEditComponent);

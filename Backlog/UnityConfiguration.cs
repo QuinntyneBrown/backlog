@@ -41,6 +41,9 @@ namespace Backlog
             container.RegisterType<ITaskService, TaskService>();
             container.RegisterType<IUserSettingsService, UserSettingsService>();
             container.RegisterType<IKanbanBoardService, KanbanBoardService>();
+            container.RegisterType<IBrandService, BrandService>();
+            container.RegisterType<IFeatureService, FeatureService>();
+            container.RegisterType<ITemplateService, TemplateService>();
             
             container.RegisterInstance(AuthConfiguration.LazyConfig);            
             return container;

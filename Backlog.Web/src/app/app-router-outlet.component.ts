@@ -16,6 +16,22 @@ export class AppRouterOutletComponent extends RouterOutlet {
             { path: "/article/create", name: "article-edit", authRequired: true },
             { path: "/article/:slug", name: "article-view", authRequired: true },
 
+            { path: "/brand/list", name: "brand-list", authRequired: true },
+            { path: "/brand/create", name: "brand-edit", authRequired: true },
+            { path: "/brand/edit/:brandId", name: "brand-edit", authRequired: true },
+
+            { path: "/feature/list", name: "feature-list", authRequired: true },
+            { path: "/feature/create", name: "feature-edit", authRequired: true },
+            { path: "/feature/edit/:featureId", name: "feature-edit", authRequired: true },
+
+            { path: "/task/list", name: "task-list", authRequired: true },
+            { path: "/task/create", name: "task-edit", authRequired: true },
+            { path: "/task/edit/:taskId", name: "task-edit", authRequired: true },
+
+            { path: "/template/list", name: "template-list", authRequired: true },
+            { path: "/template/create", name: "template-edit", authRequired: true },
+            { path: "/template/edit/:templateId", name: "template-edit", authRequired: true },
+
             { path: "/epic/list", name: "epic-list", authRequired: true },
             { path: "/product/:productId/epic/list", name: "epic-list", authRequired: true },
 

@@ -23,6 +23,9 @@ namespace Backlog.Data
         IRepository<Task> Tasks { get; }
         IRepository<TaskStatus> TaskStatuses { get; }
         IRepository<UserSettings> UserSettings { get; }
+        IRepository<Brand> Brands { get; }
+        IRepository<Feature> Features { get; }
+        IRepository<Template> Templates { get; }
 
         void SaveChanges();
     }
