@@ -27,6 +27,7 @@ namespace Backlog.Data
         }
 
         public IRepository<Article> Articles { get { return GetStandardRepo<Article>(); } }
+        public IRepository<Author> Authors { get { return GetStandardRepo<Author>(); } }
         public IRepository<Epic> Epics { get { return GetStandardRepo<Epic>(); } }
         public IRepository<Story> Stories { get { return GetStandardRepo<Story>(); } }
         public IRepository<User> Users { get { return GetStandardRepo<User>(); } }

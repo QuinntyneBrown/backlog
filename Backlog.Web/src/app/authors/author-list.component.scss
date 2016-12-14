@@ -1,0 +1,9 @@
+@import "../../styles/base/index";
+
+ce-author-list {
+	@extend .view-card;
+
+    h2 {
+        margin-top:0px;
+    }
+}

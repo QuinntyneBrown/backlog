@@ -44,6 +44,7 @@ namespace Backlog
             container.RegisterType<IBrandService, BrandService>();
             container.RegisterType<IFeatureService, FeatureService>();
             container.RegisterType<ITemplateService, TemplateService>();
+            container.RegisterType<IAuthorService, AuthorService>();
             
             container.RegisterInstance(AuthConfiguration.LazyConfig);            
             return container;

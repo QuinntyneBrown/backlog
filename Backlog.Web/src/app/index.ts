@@ -1,4 +1,5 @@
 export * from "./articles";
+export * from "./authors";
 export * from "./brands";
 export * from "./digital-assets";
 export * from "./epics";

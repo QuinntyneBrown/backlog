@@ -1,0 +1,11 @@
+@import "../../styles/base/index";
+
+ce-author-edit {
+	@extend .view-card;
+
+	h2 {
+		cursor:pointer;
+	}
+}
+
+

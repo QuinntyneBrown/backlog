@@ -15,6 +15,7 @@ namespace Backlog.Data
 
         public DbSet<Epic> Epics { get; set; }
         public DbSet<Article> Articles { get; set; }
+        public DbSet<Author> Authors { get; set; }
         public DbSet<Story> Stories { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
@@ -35,6 +36,7 @@ namespace Backlog.Data
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Feature> Features { get; set; }
         public DbSet<Template> Templates { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

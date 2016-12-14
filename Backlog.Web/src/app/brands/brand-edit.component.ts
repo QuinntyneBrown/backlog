@@ -4,7 +4,6 @@ import { EditorComponent, Modal } from "../shared";
 import { Router } from "../router";
 import { TemplateService, TemplateModel, templateOverlayEvents } from "../templates";
 
-
 const template = require("./brand-edit.component.html");
 const styles = require("./brand-edit.component.scss");
 
@@ -57,10 +56,7 @@ export class BrandEditComponent extends HTMLElement {
             var brand: Brand = JSON.parse(resultsArray[1]) as Brand;
             this._nameInputElement.value = brand.name;
             this._selectElement.value = brand.templateId;
-        }
-
-
-
+        }        
 	}
 
 	private _addEventListeners() {
@@ -80,7 +76,7 @@ export class BrandEditComponent extends HTMLElement {
     public async onTemplateSaved() {
         await this._modal.closeAsync();
         const results = await this._templateService.get() as string;
-        let templates = JSON.parse(results) as Array<TemplateModel>;
+        const templates = JSON.parse(results) as Array<TemplateModel>;
 
         this._selectElement.innerHTML = "";
 
@@ -134,4 +130,4 @@ export class BrandEditComponent extends HTMLElement {
     private get _createTemplateElement(): HTMLElement { return this.querySelector(".template-create") as HTMLElement; }
 }
 
-document.addEventListener("DOMContentLoaded",() => window.customElements.define(`ce-brand-edit`,BrandEditComponent));
+customElements.define(`ce-brand-edit`,BrandEditComponent);

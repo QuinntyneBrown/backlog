@@ -236,6 +236,24 @@
     <Content Include="src\app\articles\article-view.component.scss">
       <DependentUpon>article-view.component.ts</DependentUpon>
     </Content>
+    <Content Include="src\app\authors\author-edit.component.html">
+      <DependentUpon>author-edit.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\authors\author-edit.component.scss">
+      <DependentUpon>author-edit.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\authors\author-item.component.html">
+      <DependentUpon>author-item.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\authors\author-item.component.scss">
+      <DependentUpon>author-item.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\authors\author-list.component.html">
+      <DependentUpon>author-list.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\authors\author-list.component.scss">
+      <DependentUpon>author-list.component.ts</DependentUpon>
+    </Content>
     <Content Include="src\app\brands\brand-edit.component.html">
       <DependentUpon>brand-edit.component.ts</DependentUpon>
     </Content>
@@ -735,6 +753,12 @@
     <TypeScriptCompile Include="src\app\features\feature-category.model.ts" />
     <TypeScriptCompile Include="src\app\features\feature-category.service.ts" />
     <TypeScriptCompile Include="src\app\templates\template-edit-overlay.component.ts" />
+    <TypeScriptCompile Include="src\app\authors\index.ts" />
+    <TypeScriptCompile Include="src\app\authors\author.model.ts" />
+    <TypeScriptCompile Include="src\app\authors\author.service.ts" />
+    <TypeScriptCompile Include="src\app\authors\author-edit.component.ts" />
+    <TypeScriptCompile Include="src\app\authors\author-list.component.ts" />
+    <TypeScriptCompile Include="src\app\authors\author-item.component.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

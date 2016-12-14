@@ -5,6 +5,7 @@ namespace Backlog.Data
     public interface IUow
     {
         IRepository<Article> Articles { get; }
+        IRepository<Author> Authors { get; }
         IRepository<Epic> Epics { get; }
         IRepository<Story> Stories { get; }
         IRepository<User> Users { get; }

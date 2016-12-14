@@ -401,6 +401,13 @@
     <Compile Include="Dtos\BrandOwnerAddOrUpdateRequestDto.cs" />
     <Compile Include="Dtos\BrandOwnerAddOrUpdateResponseDto.cs" />
     <Compile Include="Models\FeatureCategory.cs" />
+    <Compile Include="Models\Author.cs" />
+    <Compile Include="Dtos\AuthorDto.cs" />
+    <Compile Include="Dtos\AuthorAddOrUpdateRequestDto.cs" />
+    <Compile Include="Dtos\AuthorAddOrUpdateResponseDto.cs" />
+    <Compile Include="Services\AuthorService.cs" />
+    <Compile Include="Services\IAuthorService.cs" />
+    <Compile Include="Controllers\AuthorController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
