@@ -19,7 +19,7 @@ namespace Backlog.Services
 
         public UserAddOrUpdateResponseDto AddOrUpdate(UserAddOrUpdateRequestDto request)
         {
-            var entity = _repository.GetAll()
+            var entity = UsersQuery
                 .FirstOrDefault(x => x.Id == request.Id && x.IsDeleted == false);
             if (entity == null) _repository.Add(entity = new User());
             entity.Name = request.Name;
@@ -38,7 +38,7 @@ namespace Backlog.Services
         public ICollection<UserDto> Get()
         {
             ICollection<UserDto> response = new HashSet<UserDto>();
-            var entities = _repository.GetAll().Where(x => x.IsDeleted == false).ToList();
+            var entities = UsersQuery.ToList();
             foreach(var entity in entities) { response.Add(new UserDto(entity)); }    
             return response;
         }
@@ -46,11 +46,19 @@ namespace Backlog.Services
 
         public UserDto GetById(int id)
         {
-            return new UserDto(_repository.GetAll().Where(x => x.Id == id && x.IsDeleted == false).FirstOrDefault());
+            return new UserDto(UsersQuery.Where(x => x.Id == id).FirstOrDefault());
         }
-
+        
         public UserDto Current(string username)
-            => new UserDto(_repository.GetAll().Single(x => x.IsDeleted == false && x.Username == username));
+            => new UserDto(_cache.FromCacheOrService<User>(() => UsersQuery
+            .Single(x => x.Username == username), $"User: {username}"));
+
+        public IQueryable<User> UsersQuery
+        {
+            get {
+                return _repository.GetAll()
+                    .Where(x => x.IsDeleted == false); }
+        }
 
         public dynamic Register(RegistrationRequestDto request, IList<string> roles)
             => _identityService.TryToRegister(request,roles);
