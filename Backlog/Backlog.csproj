@@ -210,6 +210,8 @@
     <Compile Include="Exceptions\EmailExisitsException.cs" />
     <Compile Include="Extenstions\StringExtensions.cs" />
     <Compile Include="Filters\HandleError.cs" />
+    <Compile Include="Hubs\ArticleHub.cs" />
+    <Compile Include="Hubs\StoryHub.cs" />
     <Compile Include="Infrastructure\Constants.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Epic.cs" />
@@ -230,6 +232,7 @@
     <Compile Include="Services\IPrioritizationService.cs" />
     <Compile Include="Services\MemoryCache.cs" />
     <Compile Include="Services\PrioritizationService.cs" />
+    <Compile Include="SignalRContractResolver.cs" />
     <Compile Include="UnityConfiguration.cs" />
     <Compile Include="Utilities\ILogger.cs" />
     <Compile Include="Utilities\ILoggerFactory.cs" />

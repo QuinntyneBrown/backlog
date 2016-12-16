@@ -24,7 +24,6 @@ namespace Backlog
 
             app.MapSignalR();
 
-
             config.Filters.Add(new HandleErrorAttribute(UnityConfiguration.GetContainer().Resolve<ILoggerFactory>()));
 
             app.UseCors(CorsOptions.AllowAll);
@@ -47,9 +46,11 @@ namespace Backlog
             var jSettings = new JsonSerializerSettings();
             jSettings.Formatting = Formatting.Indented;
 			jSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-            jSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-            config.Formatters.Remove(config.Formatters.XmlFormatter);
+            jSettings.ContractResolver = new SignalRContractResolver();
             config.Formatters.JsonFormatter.SerializerSettings = jSettings;
+
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
+            
             config.MapHttpAttributeRoutes();
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
