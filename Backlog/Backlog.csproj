@@ -411,6 +411,7 @@
     <Compile Include="Services\AuthorService.cs" />
     <Compile Include="Services\IAuthorService.cs" />
     <Compile Include="Controllers\AuthorController.cs" />
+    <Compile Include="Controllers\HealthController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

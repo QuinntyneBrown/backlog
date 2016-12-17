@@ -2,4 +2,13 @@
 
 ce-user-settings {
 	@extend .view-card;
+
+    input[type=checkbox] {
+        display:inline-block;
+        width:25px;
+    }
+
+    section {
+        margin-bottom:30px;
+    }
 }
