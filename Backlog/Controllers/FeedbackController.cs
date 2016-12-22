@@ -26,10 +26,14 @@ namespace Backlog.Controllers
         public IHttpActionResult Update(FeedbackAddOrUpdateRequestDto dto) { return Ok(_feedbackService.AddOrUpdate(dto)); }
 
         [Route("get")]
-        [AllowAnonymous]
         [HttpGet]
         [ResponseType(typeof(ICollection<FeedbackDto>))]
         public IHttpActionResult Get() { return Ok(_feedbackService.Get()); }
+
+        [Route("getByUsername")]
+        [HttpGet]
+        [ResponseType(typeof(FeedbackDto))]
+        public IHttpActionResult GetById(string username) { return Ok(_feedbackService.GetByUsername(username)); }
 
         [Route("getById")]
         [HttpGet]

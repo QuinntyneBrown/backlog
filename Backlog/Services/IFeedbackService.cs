@@ -7,6 +7,7 @@ namespace Backlog.Services
     {
         FeedbackAddOrUpdateResponseDto AddOrUpdate(FeedbackAddOrUpdateRequestDto request);
         ICollection<FeedbackDto> Get();
+        ICollection<FeedbackDto> GetByUsername(string username);
         FeedbackDto GetById(int id);
         dynamic Remove(int id);
     }

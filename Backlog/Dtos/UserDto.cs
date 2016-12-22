@@ -5,7 +5,7 @@ namespace Backlog.Dtos
         public UserDto(Backlog.Models.User entity)
         {
             this.Id = entity.Id;
-            this.Name = entity.Name;
+            this.Name = entity.Username;
         }
 
         public UserDto()

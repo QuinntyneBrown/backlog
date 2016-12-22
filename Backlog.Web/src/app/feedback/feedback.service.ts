@@ -10,8 +10,8 @@ export class FeedbackService {
         return this._instance;
     }
 
-    public get() {
-        return fetch({ url: "/api/feedback/get" });
+    public get(options: { username:string }) {
+        return fetch({ url: `/api/feedback/getbyusername?username=${options.username}`, authRequired: true });
     }
 
     public getById(id) {

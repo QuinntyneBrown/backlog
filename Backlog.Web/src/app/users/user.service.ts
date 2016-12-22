@@ -38,12 +38,17 @@ export class UserService {
         });
     }
 
-    public register(options: { username: string, password: string }) {
+    public register(options: {
+        firstname: string,
+        lastname: string,
+        emailAddress: string,
+        password: string,
+        confirmPassword: string
+    }) {
         return fetch({
-            url: "/api/user/regiser",
+            url: "/api/user/register",
             method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            data: formEncode(options)
+            data: options
         });
     }
 

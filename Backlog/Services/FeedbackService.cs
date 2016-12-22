@@ -51,6 +51,14 @@ namespace Backlog.Services
             return new FeedbackDto(_repository.GetAll().Where(x => x.Id == id && x.IsDeleted == false).FirstOrDefault());
         }
 
+        public ICollection<FeedbackDto> GetByUsername(string username)
+        {
+            ICollection<FeedbackDto> response = new HashSet<FeedbackDto>();
+            var entities = _repository.GetAll().Where(x => x.IsDeleted == false && x.EmailAddress == username).ToList();
+            foreach (var entity in entities) { response.Add(new FeedbackDto(entity)); }
+            return response;
+        }
+
         protected readonly IUow _uow;
         protected readonly IRepository<Feedback> _repository;
         protected readonly ICache _cache;

@@ -208,9 +208,12 @@
     <Compile Include="Dtos\TokenDto.cs" />
     <Compile Include="Exceptions\EmailConfirmationException.cs" />
     <Compile Include="Exceptions\EmailExisitsException.cs" />
+    <Compile Include="Exceptions\RegistrationClosedException.cs" />
     <Compile Include="Extenstions\StringExtensions.cs" />
     <Compile Include="Filters\HandleError.cs" />
     <Compile Include="Hubs\ArticleHub.cs" />
+    <Compile Include="Hubs\ConversationHub.cs" />
+    <Compile Include="Hubs\MessageHub.cs" />
     <Compile Include="Hubs\StoryHub.cs" />
     <Compile Include="Infrastructure\Constants.cs" />
     <Compile Include="Migrations\Configuration.cs" />

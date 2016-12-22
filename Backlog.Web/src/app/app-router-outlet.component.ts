@@ -57,7 +57,9 @@ export class AppRouterOutletComponent extends RouterOutlet {
             { path: "/task/edit/:taskId", name: "task-edit", authRequired: true },
 
             { path: "/feedback/create", name: "feedback-edit", authRequired: true },
+            { path: "/feedback/edit/:feedbackId", name: "feedback-edit", authRequired: true },
             { path: "/feedback/received", name: "feedback-received", authRequired: true },
+            { path: "/feedback/list", name: "feedback-list", authRequired: true },
 
             { path: "/register", name: "register" },
 

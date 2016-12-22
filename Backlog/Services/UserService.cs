@@ -4,6 +4,7 @@ using Backlog.Data;
 using Backlog.Dtos;
 using System.Linq;
 using Backlog.Models;
+using Backlog.Exceptions;
 
 namespace Backlog.Services
 {
@@ -60,8 +61,11 @@ namespace Backlog.Services
                     .Where(x => x.IsDeleted == false); }
         }
 
-        public dynamic Register(RegistrationRequestDto request, IList<string> roles)
-            => _identityService.TryToRegister(request,roles);
+        public dynamic Register(RegistrationRequestDto request, IList<string> roles) {
+            throw new RegistrationClosedException();
+
+            return _identityService.TryToRegister(request, roles);
+        }
 
         protected readonly IUow _uow;
         protected readonly IRepository<User> _repository;

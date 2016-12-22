@@ -2,39 +2,63 @@ import { Feedback } from "./feedback.model";
 import { FeedbackService } from "./feedback.service";
 import { EditorComponent } from "../shared";
 import { Router } from "../router";
+import { CurrentUser } from "../users";
 
 const template = require("./feedback-edit.component.html");
 const styles = require("./feedback-edit.component.scss");
 
 export class FeedbackEditComponent extends HTMLElement {
     constructor(
+        private _currentUser: CurrentUser = CurrentUser.Instance,
         private _feedbackService: FeedbackService = FeedbackService.Instance,
         private _router: Router = Router.Instance
     ) {
         super();
+        this.onSave = this.onSave.bind(this);
     }
-    
+
+    static get observedAttributes() {
+        return ["feedback-id"];
+    }
+
     connectedCallback() {        
         this.innerHTML = `<style>${styles}</style> ${template}`;         
-        this.titleElement.textContent = "Add Your 2 Cents";
-        this.saveButtonElement.addEventListener("click", this.onSave.bind(this));
-        this.descriptionEditor = new EditorComponent(this.descriptionElement);        
+        this.titleElement.textContent = "Feedback";
+        this.saveButtonElement.addEventListener("click", this.onSave);
+        this.descriptionEditor = new EditorComponent(this.descriptionElement); 
+        this.bind();       
     }
-    
-    public onSave() {
-        var feedback = {
+
+    public async bind() {
+        if (this.feedbackId) {
+            var results = await this._feedbackService.getById(this.feedbackId) as string;
+            const feedback = JSON.parse(results);
+            this.descriptionEditor.setHTML(feedback.description);
+        }
+    }
+    public async onSave() {
+        const feedback = {
             id: this.feedbackId,
-            emailAddress: this.emailAddressElement.value,
+            emailAddress: this._currentUser.username,
             description: this.descriptionEditor.text
         } as any;
         
-        this._feedbackService.add(feedback).then((results) => {
-            this._router.navigate(["feedback","received"]);
-        });
+        await this._feedbackService.add(feedback);           
+        this._router.navigate(["feedback", "received"]);
     }
-    
-    public feedbackId: number;
+
+
+    public feedbackId: number = 0;
     private descriptionEditor: EditorComponent;
+
+
+    attributeChangedCallback(name, oldValue, newValue) {
+        switch (name) {
+            case "feedback-id":
+                this.feedbackId = newValue;
+                break;
+        }
+    }
 
     private get descriptionElement(): HTMLElement { return this.querySelector(".description") as HTMLElement; }
     private get emailAddressElement(): HTMLInputElement { return this.querySelector(".email-address") as HTMLInputElement; }
@@ -44,4 +68,4 @@ export class FeedbackEditComponent extends HTMLElement {
 
 }
 
-document.addEventListener("DOMContentLoaded",() => window.customElements.define(`ce-feedback-edit`,FeedbackEditComponent));
+customElements.define(`ce-feedback-edit`,FeedbackEditComponent);
