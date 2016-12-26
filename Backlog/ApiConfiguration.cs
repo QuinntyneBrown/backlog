@@ -13,6 +13,7 @@ using Backlog.Configuration;
 using Backlog.Services;
 using Backlog.Authentication;
 using Backlog.Filters;
+using System.Web.Http.Cors;
 
 namespace Backlog
 {
@@ -42,6 +43,8 @@ namespace Backlog
             app.UseJwtBearerAuthentication(new JwtOptions(lazyAuthConfiguration));
 
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
+
+            config.Filters.Add(new AuthorizeAttribute());
 
             var jSettings = new JsonSerializerSettings();
             jSettings.Formatting = Formatting.Indented;

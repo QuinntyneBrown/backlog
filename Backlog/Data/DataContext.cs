@@ -40,6 +40,7 @@ namespace Backlog.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+
             modelBuilder.Entity<User>().
                 HasMany(u => u.Roles).
                 WithMany(r => r.Users).
