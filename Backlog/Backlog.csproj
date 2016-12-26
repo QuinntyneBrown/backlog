@@ -174,6 +174,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiConfiguration.cs" />
+    <Compile Include="ApiModels\UserApiModel.cs" />
     <Compile Include="Configuration\AppConfiguration.cs" />
     <Compile Include="Configuration\IAppConfiguration.cs" />
     <Compile Include="Controllers\EpicController.cs" />
@@ -194,6 +195,7 @@
     <Compile Include="Data\IRepository.cs" />
     <Compile Include="Data\IRepositoryProvider.cs" />
     <Compile Include="Data\IUow.cs" />
+    <Compile Include="Data\Repositories\UserRepository.cs" />
     <Compile Include="Data\RepositoryFactories.cs" />
     <Compile Include="Data\RepositoryProvider.cs" />
     <Compile Include="Data\Uow.cs" />
@@ -206,7 +208,7 @@
     <Compile Include="Dtos\KanbanStoryDto.cs" />
     <Compile Include="Dtos\RegistrationRequestDto.cs" />
     <Compile Include="Dtos\RegistrationResponseDto.cs" />
-    <Compile Include="Dtos\TokenDto.cs" />
+    <Compile Include="ApiModels\TokenApiModel.cs" />
     <Compile Include="Exceptions\EmailConfirmationException.cs" />
     <Compile Include="Exceptions\EmailExisitsException.cs" />
     <Compile Include="Exceptions\RegistrationClosedException.cs" />
@@ -223,6 +225,7 @@
     <Compile Include="Models\IPrioritized.cs" />
     <Compile Include="Models\StoryDigitalAsset.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Responses\UserAddOrUpdateResponse.cs" />
     <Compile Include="Services\EpicService.cs" />
     <Compile Include="Services\Cache.cs" />
     <Compile Include="Services\CacheProvider.cs" />
@@ -246,9 +249,7 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Story.cs" />
-    <Compile Include="Dtos\UserDto.cs" />
-    <Compile Include="Dtos\UserAddOrUpdateRequestDto.cs" />
-    <Compile Include="Dtos\UserAddOrUpdateResponseDto.cs" />
+    <Compile Include="Requests\UserAddOrUpdateRequest.cs" />
     <Compile Include="Dtos\RoleDto.cs" />
     <Compile Include="Dtos\RoleAddOrUpdateRequestDto.cs" />
     <Compile Include="Dtos\RoleAddOrUpdateResponseDto.cs" />

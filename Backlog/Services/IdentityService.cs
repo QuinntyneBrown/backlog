@@ -1,5 +1,5 @@
 using Backlog.Data;
-using Backlog.Dtos;
+using Backlog.Responses;
 using Backlog.Models;
 using System;
 using System.Collections.Generic;
@@ -57,7 +57,7 @@ namespace Backlog.Services
             return claims;
         }
 
-        public TokenDto TryToRegister(RegistrationRequestDto registrationRequestDto, IList<string> roles)
+        public TokenApiModel TryToRegister(RegistrationRequestDto registrationRequestDto, IList<string> roles)
         {
             if (registrationRequestDto.EmailAddress != registrationRequestDto.EmailAddressConfirmation)
                 throw new EmailConfirmationException();
@@ -80,7 +80,7 @@ namespace Backlog.Services
             _uow.SaveChanges();
 
             var authenticationTicket = new AuthenticationTicket(new ClaimsIdentity(GetClaimsForUser(user.Username)), new AuthenticationProperties());
-            return new TokenDto() { Token = _jwtWriterFormat.Protect(authenticationTicket) };
+            return new TokenApiModel() { Token = _jwtWriterFormat.Protect(authenticationTicket) };
         }
 
         private bool ValidateUser(string usermame, string password)

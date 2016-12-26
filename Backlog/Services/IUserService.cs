@@ -1,15 +1,17 @@
-using Backlog.Dtos;
+using Backlog.ApiModels;
+using Backlog.Requests;
+using Backlog.Responses;
 using System.Collections.Generic;
 
 namespace Backlog.Services
 {
     public interface IUserService
     {
-        UserAddOrUpdateResponseDto AddOrUpdate(UserAddOrUpdateRequestDto request);
-        ICollection<UserDto> Get();
-        UserDto GetById(int id);
+        UserAddOrUpdateResponse AddOrUpdate(UserAddOrUpdateRequest request);
+        ICollection<UserApiModel> Get();
+        UserApiModel GetById(int id);
         dynamic Remove(int id);
-        UserDto Current(string username);
+        UserApiModel Current(string username);
         dynamic Register(RegistrationRequestDto request, IList<string> roles);
     }
 }

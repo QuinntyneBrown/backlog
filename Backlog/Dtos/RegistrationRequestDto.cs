@@ -1,4 +1,4 @@
-namespace Backlog.Dtos
+namespace Backlog.Responses
 {
     public class RegistrationRequestDto
     {

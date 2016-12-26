@@ -1,3 +1,4 @@
+using Backlog.Data.Repositories;
 using System;
 using System.Collections.Generic;
 
@@ -9,7 +10,7 @@ namespace Backlog.Data
         {
             return new Dictionary<Type, Func<dynamic, object>>
             {
-
+                { typeof(UserRepository), (dynamic context) => new UserRepository(context) }
             };
         }
 

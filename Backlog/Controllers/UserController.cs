@@ -1,4 +1,6 @@
-using Backlog.Dtos;
+using Backlog.ApiModels;
+using Backlog.Requests;
+using Backlog.Responses;
 using Backlog.Services;
 using System.Collections.Generic;
 using System.Web.Http;
@@ -18,7 +20,7 @@ namespace Backlog.Controllers
         [Route("current")]
         [AllowAnonymous]
         [HttpGet]
-        [ResponseType(typeof(UserDto))]
+        [ResponseType(typeof(UserApiModel))]
         public IHttpActionResult Current()
         {            
             if (!User.Identity.IsAuthenticated)
@@ -28,23 +30,23 @@ namespace Backlog.Controllers
 
         [Route("add")]
         [HttpPost]
-        [ResponseType(typeof(UserAddOrUpdateResponseDto))]
-        public IHttpActionResult Add(UserAddOrUpdateRequestDto dto) { return Ok(_userService.AddOrUpdate(dto)); }
+        [ResponseType(typeof(UserAddOrUpdateResponse))]
+        public IHttpActionResult Add(UserAddOrUpdateRequest dto) { return Ok(_userService.AddOrUpdate(dto)); }
 
         [Route("update")]
         [HttpPut]
-        [ResponseType(typeof(UserAddOrUpdateResponseDto))]
-        public IHttpActionResult Update(UserAddOrUpdateRequestDto dto) { return Ok(_userService.AddOrUpdate(dto)); }
+        [ResponseType(typeof(UserAddOrUpdateResponse))]
+        public IHttpActionResult Update(UserAddOrUpdateRequest dto) { return Ok(_userService.AddOrUpdate(dto)); }
 
         [Route("get")]
         [AllowAnonymous]
         [HttpGet]
-        [ResponseType(typeof(ICollection<UserDto>))]
+        [ResponseType(typeof(ICollection<UserApiModel>))]
         public IHttpActionResult Get() { return Ok(_userService.Get()); }
 
         [Route("getById")]
         [HttpGet]
-        [ResponseType(typeof(UserDto))]
+        [ResponseType(typeof(UserApiModel))]
         public IHttpActionResult GetById(int id) { return Ok(_userService.GetById(id)); }
 
         [Route("remove")]

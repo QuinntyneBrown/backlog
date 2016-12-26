@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
 using Backlog.Data;
-using Backlog.Dtos;
+using Backlog.Responses;
 using System.Linq;
 using Backlog.Models;
 using Backlog.Exceptions;
+using Backlog.Requests;
+using Backlog.ApiModels;
 
 namespace Backlog.Services
 {
@@ -18,14 +20,14 @@ namespace Backlog.Services
             _identityService = identityService;
         }
 
-        public UserAddOrUpdateResponseDto AddOrUpdate(UserAddOrUpdateRequestDto request)
+        public UserAddOrUpdateResponse AddOrUpdate(UserAddOrUpdateRequest request)
         {
-            var entity = UsersQuery
-                .FirstOrDefault(x => x.Id == request.Id && x.IsDeleted == false);
+            var entity = _repository.GetAll()
+                .FirstOrDefault(x => x.Id == request.Id);
             if (entity == null) _repository.Add(entity = new User());
-            entity.Name = request.Name;
+            entity.Name = request.Username;
             _uow.SaveChanges();
-            return new UserAddOrUpdateResponseDto(entity);
+            return new UserAddOrUpdateResponse(entity);
         }
 
         public dynamic Remove(int id)
@@ -36,30 +38,24 @@ namespace Backlog.Services
             return id;
         }
 
-        public ICollection<UserDto> Get()
+        public ICollection<UserApiModel> Get()
         {
-            ICollection<UserDto> response = new HashSet<UserDto>();
-            var entities = UsersQuery.ToList();
-            foreach(var entity in entities) { response.Add(new UserDto(entity)); }    
+            ICollection<UserApiModel> response = new HashSet<UserApiModel>();
+            var entities = _repository.GetAll().ToList();
+            foreach(var entity in entities) { response.Add(new UserApiModel(entity)); }    
             return response;
         }
 
 
-        public UserDto GetById(int id)
+        public UserApiModel GetById(int id)
         {
-            return new UserDto(UsersQuery.Where(x => x.Id == id).FirstOrDefault());
+            return new UserApiModel(_repository.GetAll().Where(x => x.Id == id).FirstOrDefault());
         }
         
-        public UserDto Current(string username)
-            => new UserDto(_cache.FromCacheOrService<User>(() => UsersQuery
+        public UserApiModel Current(string username)
+            => new UserApiModel(_cache.FromCacheOrService<User>(() => _repository.GetAll()
             .Single(x => x.Username == username), $"User: {username}"));
 
-        public IQueryable<User> UsersQuery
-        {
-            get {
-                return _repository.GetAll()
-                    .Where(x => x.IsDeleted == false); }
-        }
 
         public dynamic Register(RegistrationRequestDto request, IList<string> roles) {
             throw new RegistrationClosedException();

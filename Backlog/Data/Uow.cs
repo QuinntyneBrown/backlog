@@ -1,3 +1,4 @@
+using Backlog.Data.Repositories;
 using Backlog.Models;
 using System;
 
@@ -30,7 +31,7 @@ namespace Backlog.Data
         public IRepository<Author> Authors { get { return GetStandardRepo<Author>(); } }
         public IRepository<Epic> Epics { get { return GetStandardRepo<Epic>(); } }
         public IRepository<Story> Stories { get { return GetStandardRepo<Story>(); } }
-        public IRepository<User> Users { get { return GetStandardRepo<User>(); } }
+        public IRepository<User> Users { get { return GetRepo<UserRepository>(); } }
         public IRepository<Role> Roles { get { return GetStandardRepo<Role>(); } }
         public IRepository<Sprint> Sprints { get { return GetStandardRepo<Sprint>(); } }
         public IRepository<Tag> Tags { get { return GetStandardRepo<Tag>(); } }

@@ -1,4 +1,4 @@
-using Backlog.Dtos;
+using Backlog.Responses;
 using System.Collections.Generic;
 using System.Security.Claims;
 
@@ -7,7 +7,7 @@ namespace Backlog.Services
     public interface IIdentityService
     {
 
-        TokenDto TryToRegister(RegistrationRequestDto registrationRequestDto, IList<string> roles);
+        TokenApiModel TryToRegister(RegistrationRequestDto registrationRequestDto, IList<string> roles);
 
         bool AuthenticateUser(string username, string password);
 
