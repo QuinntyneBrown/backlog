@@ -60,4 +60,4 @@ export class KanbanBoardStoryComponent extends HTMLElement {
     }
 }
 
-document.addEventListener("DOMContentLoaded",() => window.customElements.define(`ce-kanban-board-story`,KanbanBoardStoryComponent));
+customElements.define(`ce-kanban-board-story`,KanbanBoardStoryComponent);

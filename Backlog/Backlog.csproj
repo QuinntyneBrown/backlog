@@ -208,7 +208,6 @@
     <Compile Include="Dtos\KanbanStoryDto.cs" />
     <Compile Include="Dtos\RegistrationRequestDto.cs" />
     <Compile Include="Dtos\RegistrationResponseDto.cs" />
-    <Compile Include="ApiModels\TokenApiModel.cs" />
     <Compile Include="Exceptions\EmailConfirmationException.cs" />
     <Compile Include="Exceptions\EmailExisitsException.cs" />
     <Compile Include="Exceptions\RegistrationClosedException.cs" />
@@ -417,6 +416,9 @@
     <Compile Include="Services\IAuthorService.cs" />
     <Compile Include="Controllers\AuthorController.cs" />
     <Compile Include="Controllers\HealthController.cs" />
+    <Compile Include="ApiModels\BrandApiModel.cs" />
+    <Compile Include="ApiModels\EpicApiModel.cs" />
+    <Compile Include="ApiModels\StoryApiModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
