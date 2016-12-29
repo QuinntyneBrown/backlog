@@ -12,6 +12,6 @@ namespace Backlog.Services
         UserApiModel GetById(int id);
         dynamic Remove(int id);
         UserApiModel Current(string username);
-        dynamic Register(RegistrationRequestDto request, IList<string> roles);
+        dynamic Register(RegistrationRequest request, IList<string> roles);
     }
 }

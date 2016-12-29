@@ -206,8 +206,7 @@
     <Compile Include="Dtos\KanbanBoardDto.cs" />
     <Compile Include="Dtos\KanbanBoardTaskDto.cs" />
     <Compile Include="Dtos\KanbanStoryDto.cs" />
-    <Compile Include="Dtos\RegistrationRequestDto.cs" />
-    <Compile Include="Dtos\RegistrationResponseDto.cs" />
+    <Compile Include="Requests\RegistrationRequest.cs" />
     <Compile Include="Exceptions\EmailConfirmationException.cs" />
     <Compile Include="Exceptions\EmailExisitsException.cs" />
     <Compile Include="Exceptions\RegistrationClosedException.cs" />
@@ -224,6 +223,7 @@
     <Compile Include="Models\IPrioritized.cs" />
     <Compile Include="Models\StoryDigitalAsset.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Responses\RegistrationResponse.cs" />
     <Compile Include="Responses\UserAddOrUpdateResponse.cs" />
     <Compile Include="Services\EpicService.cs" />
     <Compile Include="Services\Cache.cs" />

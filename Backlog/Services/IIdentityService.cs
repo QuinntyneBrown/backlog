@@ -7,7 +7,7 @@ namespace Backlog.Services
     public interface IIdentityService
     {
 
-        TokenApiModel TryToRegister(RegistrationRequestDto registrationRequestDto, IList<string> roles);
+        RegistrationResponse TryToRegister(RegistrationRequest request, IList<string> roles);
 
         bool AuthenticateUser(string username, string password);
 

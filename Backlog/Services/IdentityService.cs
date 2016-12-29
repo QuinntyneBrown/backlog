@@ -57,7 +57,7 @@ namespace Backlog.Services
             return claims;
         }
 
-        public TokenApiModel TryToRegister(RegistrationRequestDto registrationRequestDto, IList<string> roles)
+        public RegistrationResponse TryToRegister(RegistrationRequest registrationRequestDto, IList<string> roles)
         {
             if (registrationRequestDto.EmailAddress != registrationRequestDto.EmailAddressConfirmation)
                 throw new EmailConfirmationException();
@@ -80,7 +80,7 @@ namespace Backlog.Services
             _uow.SaveChanges();
 
             var authenticationTicket = new AuthenticationTicket(new ClaimsIdentity(GetClaimsForUser(user.Username)), new AuthenticationProperties());
-            return new TokenApiModel() { Token = _jwtWriterFormat.Protect(authenticationTicket) };
+            return new RegistrationResponse() { Token = _jwtWriterFormat.Protect(authenticationTicket) };
         }
 
         private bool ValidateUser(string usermame, string password)

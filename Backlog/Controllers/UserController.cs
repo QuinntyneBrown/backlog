@@ -57,7 +57,7 @@ namespace Backlog.Controllers
         [Route("register")]
         [HttpPost]
         [AllowAnonymous]
-        public IHttpActionResult Register(RegistrationRequestDto request)
+        public IHttpActionResult Register(RegistrationRequest request)
         {
             return Ok(_userService.Register(request, new List<string>() { }));
         }

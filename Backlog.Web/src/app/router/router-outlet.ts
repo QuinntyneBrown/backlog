@@ -2,6 +2,7 @@
 import { Router } from "./router";
 import { Route } from "./route";
 import { isArray, camelCaseToSnakeCase, Log } from "../utilities";
+import { RouteReloadMiddleware } from "./route-reload-middleware";
 
 export abstract class RouterOutlet {
     constructor(private _nativeHTMLElement: HTMLElement, public _router: Router = Router.Instance) {
@@ -9,6 +10,7 @@ export abstract class RouterOutlet {
     }
 
     public connectedCallback() {
+        this.use(new RouteReloadMiddleware());
         this._router.addEventListener(this._onRouteChanged.bind(this));       
     }
 
@@ -62,6 +64,7 @@ export abstract class RouterOutlet {
         this._nativeHTMLElement.appendChild(this._currentView);
 
         context.currentView = this._currentView;
+        this._routeName = options.routeName;
 
         this._middleware.forEach(listener => listener.afterViewTransition(context));    
 

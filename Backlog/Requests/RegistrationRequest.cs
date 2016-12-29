@@ -1,8 +1,8 @@
 namespace Backlog.Responses
 {
-    public class RegistrationRequestDto
+    public class RegistrationRequest
     {
-        public RegistrationRequestDto()
+        public RegistrationRequest()
         {
 
         }

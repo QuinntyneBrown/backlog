@@ -57,7 +57,7 @@ namespace Backlog.Services
             .Single(x => x.Username == username), $"User: {username}"));
 
 
-        public dynamic Register(RegistrationRequestDto request, IList<string> roles) {
+        public dynamic Register(RegistrationRequest request, IList<string> roles) {
             throw new RegistrationClosedException();
 
             return _identityService.TryToRegister(request, roles);
