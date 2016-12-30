@@ -1,4 +1,5 @@
 using Backlog.Dtos;
+using Backlog.Filters;
 using Backlog.Services;
 using System.Collections.Generic;
 using System.Web.Http;
@@ -29,6 +30,7 @@ namespace Backlog.Controllers
         [AllowAnonymous]
         [HttpGet]
         [ResponseType(typeof(ICollection<BrandDto>))]
+        [RateLimit(maxPerHour:150)]
         public IHttpActionResult Get() { return Ok(_brandService.Get()); }
 
         [Route("getById")]

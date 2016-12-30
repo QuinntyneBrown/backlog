@@ -1,5 +1,6 @@
 using Backlog.Configuration;
 using Backlog.Data;
+using Backlog.Data.Repositories;
 using Backlog.Services;
 using Backlog.Utilities;
 using Microsoft.Practices.Unity;
@@ -45,7 +46,7 @@ namespace Backlog
             container.RegisterType<IFeatureService, FeatureService>();
             container.RegisterType<ITemplateService, TemplateService>();
             container.RegisterType<IAuthorService, AuthorService>();
-            
+            container.RegisterType<IIpRepository, IpRepository>();
             container.RegisterInstance(AuthConfiguration.LazyConfig);            
             return container;
         }
