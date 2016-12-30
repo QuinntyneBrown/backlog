@@ -7,10 +7,15 @@ const template = require("./product-edit.component.html");
 const styles = require("./product-edit.component.scss");
 
 export class ProductEditComponent extends HTMLElement {
-    constructor(private _productService: ProductService = ProductService.Instance,
-        private _router: Router = Router.Instance
+    constructor(
+        private _productService: ProductService = ProductService.Instance,
+        private _router: Router = Router.Instance,
+        private _window: Window = window
     ) {
         super();
+        this.onSave = this.onSave.bind(this);
+        this.onDelete = this.onDelete.bind(this);
+        this.onBack = this.onBack.bind(this);
     }
 
     static get observedAttributes() {
@@ -20,42 +25,41 @@ export class ProductEditComponent extends HTMLElement {
     connectedCallback() {        
         this.innerHTML = `<style>${styles}</style> ${template}`;     
         this._bind();
-        this._addEventListeners();   
+        this._setEventListeners();   
     }
 
-    private _bind() {
-        this.titleElement.textContent = "Create product";
+    private async _bind() {
+        this.titleElement.textContent = this.productId ? "Edit Product" : "Create Product";        
+        this.deleteButtonElement.style.display = this.productId ? this._window.getComputedStyle(this.deleteButtonElement).getPropertyValue("display"): "none";
         if (this.productId) {
-            this._productService.getById(this.productId).then((results: string) => {
-                var resultsJSON: Product = JSON.parse(results) as Product;
-                this.nameInputElement.value = resultsJSON.name;
-            });
-            this.titleElement.textContent = "Edit Product";
-        } else {
-            this.deleteButtonElement.style.display = "none";
-        } 
+            const results = await this._productService.getById(this.productId) as string;
+            var product: Product = JSON.parse(results) as Product;
+            this.nameInputElement.value = product.name;
+        }
     }
 
-    private _addEventListeners() {
-        this.saveButtonElement.addEventListener("click", this.onSave.bind(this));
-        this.deleteButtonElement.addEventListener("click", this.onDelete.bind(this));
+    private _setEventListeners() {
+        this.saveButtonElement.addEventListener("click", this.onSave);
+        this.deleteButtonElement.addEventListener("click", this.onDelete);
+        this.titleElement.addEventListener("click", this.onBack);
     }
     
-    public onSave() {
-        var product = {
+    public async onSave() {
+        const product = {
             id: this.productId,
             name: this.nameInputElement.value
         } as Product;
-        
-        this._productService.add(product).then((results) => {
-            this._router.navigate(["product", "list"]);
-        });
+
+        await this._productService.add(product);
+        this._router.navigate(["product", "list"]);
     }
 
-    public onDelete() {        
-        this._productService.remove({ id: this.productId }).then((results) => {
-            
-        });
+    public async onDelete() {        
+        await this._productService.remove({ id: this.productId });
+    }
+
+    onBack() {
+        this._router.navigate(["product", "list"]);
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
@@ -67,11 +71,11 @@ export class ProductEditComponent extends HTMLElement {
     }
 
     public productId: number;
-    public get titleElement(): HTMLElement { return this.querySelector("h2") as HTMLElement; }
+    public get titleElement(): HTMLElement { return this.querySelector(".product-edit-title") as HTMLElement; }
     public get saveButtonElement(): HTMLButtonElement { return this.querySelector(".save-button") as HTMLButtonElement; }
     public get deleteButtonElement(): HTMLButtonElement { return this.querySelector(".delete-button") as HTMLButtonElement; }
     public get nameInputElement(): HTMLInputElement { return this.querySelector(".product-name") as HTMLInputElement; }
 
 }
 
-document.addEventListener("DOMContentLoaded",() => window.customElements.define(`ce-product-edit`,ProductEditComponent));
+customElements.define(`ce-product-edit`,ProductEditComponent);

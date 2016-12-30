@@ -40,6 +40,7 @@ export class AppRouterOutletComponent extends RouterOutlet {
             { path: "/epic/create", name: "epic-edit", authRequired: true },
 
             { path: "/epic/:epicId/story/edit/:storyId", name: "story-edit", authRequired: true },
+            { path: "/epic/:epicId/story/edit/:storyId/tab/:tabIndex", name: "story-edit", authRequired: true },
             { path: "/epic/:epicId/story/create", name: "story-edit", authRequired: true },
 
             { path: "/product/list", name: "product-list", authRequired: true },

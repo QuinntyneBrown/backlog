@@ -24,7 +24,7 @@ export class AuthorEditComponent extends HTMLElement {
     connectedCallback() {        
         this.innerHTML = `<style>${styles}</style> ${template}`; 
 		this._bind();
-		this._addEventListeners();
+		this._setEventListeners();
     }
     
 	private async _bind() {
@@ -39,7 +39,7 @@ export class AuthorEditComponent extends HTMLElement {
         } 	
 	}
 
-	private _addEventListeners() {
+	private _setEventListeners() {
         this._saveButtonElement.addEventListener("click", this.onSave);        
         this._titleElement.addEventListener("click", this.onTitleClick);
         this._deleteButtonElement.addEventListener("click", this.onDelete);

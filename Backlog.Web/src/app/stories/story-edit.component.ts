@@ -1,10 +1,9 @@
 import { Story } from "./story.model";
 import { StoryService } from "./story.service";
-import { EditorComponent, dropZoneEvents, DropZoneComponent } from "../shared";
+import { EditorComponent, dropZoneEvents, DropZoneComponent, tabsEvents } from "../shared";
 import { Router } from "../router";
 import { TaskService, taskActions, Task, TaskEditComponent, TaskListComponent } from "../tasks";
 import { DigitalAssetService } from "../digital-assets";
-
 
 const template = require("./story-edit.component.html");
 const styles = require("./story-edit.component.scss");
@@ -24,6 +23,7 @@ export class StoryEditComponent extends HTMLElement {
         this.onTaskEdit = this.onTaskEdit.bind(this);
         this.onTaskView = this.onTaskView.bind(this);
         this.onTitleClick = this.onTitleClick.bind(this);
+        this.onTabSelectedIndexChanged = this.onTabSelectedIndexChanged.bind(this);
     }
 
     static get observedAttributes() {
@@ -71,17 +71,17 @@ export class StoryEditComponent extends HTMLElement {
             this.imageDropZoneElement.style.display = "none";
         } 
         
-        this._addEventListeners();
+        this._setEventListeners();
     }
 
-
-    private _addEventListeners() {
+    private _setEventListeners() {
         this.imageDropZoneElement.addEventListener(dropZoneEvents.DROP, this.onImageDrop.bind(this));
         this.addEventListener(taskActions.ADD, this.onTaskAdd);
         this.addEventListener(taskActions.EDIT, this.onTaskEdit);
         this.addEventListener(taskActions.VIEW, this.onTaskView);
         this.addEventListener(taskActions.DELETE, this.onTaskDelete);
         this._titleElement.addEventListener("click", this.onTitleClick);
+        this.addEventListener(tabsEvents.SELECTED_INDEX_CHANGED, this.onTabSelectedIndexChanged);
     }
 
     public disconnectedCallback() {
@@ -145,6 +145,10 @@ export class StoryEditComponent extends HTMLElement {
         const task: Task = this.tasks.find(t => t.id == e.detail.taskId);
         this._taskEditComponent.setAttribute("task", JSON.stringify(task));
         this._window.scrollTo(0, 0);
+    }
+
+    public onTabSelectedIndexChanged(e: any) {
+        this._router.navigate(["epic",this.epicId,"story", "edit", this.storyId, "tab", e.detail.selectedIndex]);
     }
 
     public async onTaskDelete(e: any) {

@@ -30,7 +30,7 @@ export class BrandEditComponent extends HTMLElement {
     connectedCallback() {        
         this.innerHTML = `<style>${styles}</style> ${template}`; 
 		this._bind();
-		this._addEventListeners();
+		this._setEventListeners();
     }
     
 	private async _bind() {
@@ -59,7 +59,7 @@ export class BrandEditComponent extends HTMLElement {
         }        
 	}
 
-	private _addEventListeners() {
+	private _setEventListeners() {
         this._saveButtonElement.addEventListener("click", this.onSave);
         this._createTemplateElement.addEventListener("click", this.onCreateTemplateClick);
         this._document.addEventListener(templateOverlayEvents.SAVED, this.onTemplateSaved);

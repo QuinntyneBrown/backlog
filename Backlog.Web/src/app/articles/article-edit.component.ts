@@ -7,8 +7,10 @@ const template = require("./article-edit.component.html");
 const styles = require("./article-edit.component.scss");
 
 export class ArticleEditComponent extends HTMLElement {
-    constructor(private _articleService: ArticleService = ArticleService.Instance,
-    private _router: Router = Router.Instance) {
+    constructor(
+        private _articleService: ArticleService = ArticleService.Instance,
+        private _router: Router = Router.Instance
+    ) {
         super();
     }
 
@@ -19,45 +21,43 @@ export class ArticleEditComponent extends HTMLElement {
     connectedCallback() {        
         this.innerHTML = `<style>${styles}</style> ${template}`; 
         this._bind();
-        this._addEventListeners();
+        this._setEventListeners();
     }
 
-    private _bind() {
+    private async _bind() {
         this.titleElement.textContent = "Create Spec";
         this.htmlContentEditor = new EditorComponent(this.htmlContentElement);
         if (this.articleId) {
-            this._articleService.getById(this.articleId).then((results: string) => {
-                var resultsJSON: Article = JSON.parse(results) as Article;
-                this.articleTitleInputElement.value = resultsJSON.title;
-                this.htmlContentEditor.setHTML(resultsJSON.htmlContent); 
-            });
+            const results = await this._articleService.getById(this.articleId) as string;
+            const resultsJSON: Article = JSON.parse(results) as Article;
+            this.articleTitleInputElement.value = resultsJSON.title;
+            this.htmlContentEditor.setHTML(resultsJSON.htmlContent); 
             this.titleElement.textContent = "Edit Spec";
         } else {
             this.deleteButtonElement.style.display = "none";
         } 
     }
 
-    private _addEventListeners() {
+    private _setEventListeners() {
         this.saveButtonElement.addEventListener("click", this.onSave.bind(this));
         this.deleteButtonElement.addEventListener("click", this.onDelete.bind(this));
     }
 
-    public onSave() {
-        var article = {
+    public async onSave() {
+        const article = {
             id: this.articleId,
             title: this.articleTitleInputElement.value,
             htmlContent: this.htmlContentEditor.text
         } as Article;
         
-        this._articleService.add(article).then((results) => {
-            this._router.navigate(["article", "list"]);
-        });
+        await this._articleService.add(article);
+        this._router.navigate(["article", "list"]);
+
     }
 
-    public onDelete() {
-        this._articleService.remove({ id: this.articleId }).then(() => {
-            this._router.navigate(["article", "list"]);
-        });
+    public async onDelete() {
+        await this._articleService.remove({ id: this.articleId });
+        this._router.navigate(["article", "list"]);
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
@@ -77,4 +77,4 @@ export class ArticleEditComponent extends HTMLElement {
     public get articleTitleInputElement(): HTMLInputElement { return this.querySelector(".article-title") as HTMLInputElement; }
 }
 
-document.addEventListener("DOMContentLoaded",() => window.customElements.define(`ce-article-edit`,ArticleEditComponent));
+customElements.define(`ce-article-edit`,ArticleEditComponent);
