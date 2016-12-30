@@ -27,12 +27,13 @@ export class StoryEditComponent extends HTMLElement {
     }
 
     static get observedAttributes() {
-        return ["story-id","epic-id"];
+        return ["story-id","epic-id","tab-index"];
     }
     
     async connectedCallback() {        
         
         this.innerHTML = `<style>${styles}</style> ${template}`; 
+        this.tabsElement.setAttribute("custom-tab-index", `${this.customTabIndex}`);
         this.saveButtonElement = this.querySelector(".save-button") as HTMLButtonElement;
         this.deleteButtonElement = this.querySelector(".delete-button") as HTMLButtonElement;        
         this.nameInputElement = this.querySelector(".story-name") as HTMLInputElement;
@@ -193,12 +194,18 @@ export class StoryEditComponent extends HTMLElement {
             case "epic-id":
                 this.epicId = newValue;
                 break;
+
+            case "tab-index":
+                this.customTabIndex = newValue;
+                break;
         }        
     }
 
     public storyId: number;
     public epicId: number;
+    public customTabIndex: any;
     public tasks: Array<Task> = [];
+    public get tabsElement(): HTMLElement { return this.querySelector("ce-tabs") as HTMLElement; }
     private get _taskEditComponent(): TaskEditComponent { return this.querySelector("ce-task-edit") as TaskEditComponent; }
     private get _taskListComponent(): TaskListComponent { return this.querySelector("ce-task-list") as TaskListComponent; }
     public get imageDropZoneElement(): DropZoneComponent { return this.querySelector("ce-drop-zone") as DropZoneComponent; }
