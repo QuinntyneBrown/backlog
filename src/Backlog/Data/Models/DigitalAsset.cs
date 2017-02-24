@@ -2,7 +2,7 @@ using System;
 
 namespace Backlog.Data.Models
 {
-    public class DigitalAsset
+    public class DigitalAsset: ILoggable
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -10,11 +10,16 @@ namespace Backlog.Data.Models
         public string Description { get; set; }
         public DateTime? Created { get; set; }
         public DateTime? FileModified { get; set; }
+        public DateTime CreatedOn { get; set; }
+        public string CreatedBy { get; set; }
         public long? Size { get; set; }
         public string ContentType { get; set; }
         public string RelativePath { get { return $"api/digitalasset/serve?uniqueid={UniqueId}"; } }
         public Byte[] Bytes { get; set; } = new byte[0];
         public Guid? UniqueId { get; set; } = Guid.NewGuid();
+        public string Folder { get; set; }
         public bool IsDeleted { get; set; }
+        public DateTime LastModifiedOn { get; set; }
+        public string LastModifiedBy { get; set; }
     }
 }

@@ -1,6 +1,5 @@
 using MediatR;
 using Backlog.Data;
-using Backlog.Features.Core;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
@@ -26,7 +25,6 @@ namespace Backlog.Security
             public GetClaimsForUserHandler(DataContext dataContext)
             {
                 _dataContext = dataContext;
-
             }
 
             public async Task<GetClaimsForUserResponse> Handle(GetClaimsForUserRequest message)
@@ -54,7 +52,5 @@ namespace Backlog.Security
             private readonly DataContext _dataContext;
             
         }
-
     }
-
 }

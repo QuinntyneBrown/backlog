@@ -16,10 +16,7 @@ namespace Backlog.Features.Products
             public ProductApiModel Product { get; set; }
         }
 
-        public class AddOrUpdateProductResponse
-        {
-
-        }
+        public class AddOrUpdateProductResponse { }
 
         public class AddOrUpdateProductHandler : IAsyncRequestHandler<AddOrUpdateProductRequest, AddOrUpdateProductResponse>
         {

@@ -46,6 +46,5 @@ namespace Backlog.Features.Feedback
             => Ok(await _mediator.Send(request));
 
         protected readonly IMediator _mediator;
-
     }
 }

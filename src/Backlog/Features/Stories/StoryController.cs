@@ -29,9 +29,9 @@ namespace Backlog.Features.Stories
         [Route("get")]
         [AllowAnonymous]
         [HttpGet]
-        [ResponseType(typeof(GetStorysQuery.GetStorysResponse))]
+        [ResponseType(typeof(GetStoriesQuery.GetStoriesResponse))]
         public async Task<IHttpActionResult> Get()
-            => Ok(await _mediator.Send(new GetStorysQuery.GetStorysRequest()));
+            => Ok(await _mediator.Send(new GetStoriesQuery.GetStoriesRequest()));
 
         [Route("getById")]
         [HttpGet]
@@ -43,6 +43,18 @@ namespace Backlog.Features.Stories
         [HttpDelete]
         [ResponseType(typeof(RemoveStoryCommand.RemoveStoryResponse))]
         public async Task<IHttpActionResult> Remove([FromUri]RemoveStoryCommand.RemoveStoryRequest request)
+            => Ok(await _mediator.Send(request));
+
+        [Route("incrementPriority")]
+        [HttpGet]
+        [ResponseType(typeof(IncrementStoryPriorityCommand.IncrementStoryPriorityResponse))]
+        public async Task<IHttpActionResult> IncrementPriority([FromUri]IncrementStoryPriorityCommand.IncrementStoryPriorityRequest request)
+            => Ok(await _mediator.Send(request));
+
+        [Route("decrementPriority")]
+        [HttpGet]
+        [ResponseType(typeof(DecrementStoryPriorityCommand.DecrementStoryPriorityResponse))]
+        public async Task<IHttpActionResult> DecrementPriority([FromUri]IncrementStoryPriorityCommand.IncrementStoryPriorityRequest request)
             => Ok(await _mediator.Send(request));
 
         protected readonly IMediator _mediator;

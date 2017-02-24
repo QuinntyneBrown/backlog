@@ -45,6 +45,19 @@ namespace Backlog.Features.Users
         public async Task<IHttpActionResult> Remove([FromUri]RemoveUserCommand.RemoveUserRequest request)
             => Ok(await _mediator.Send(request));
 
+        [Route("current")]
+        [HttpGet]
+        [AllowAnonymous]
+        [ResponseType(typeof(GetUserByUsernameQuery.GetUserByUsernameResponse))]
+        public async Task<IHttpActionResult> Current()
+        {
+            if (!User.Identity.IsAuthenticated)
+                return Ok();
+
+            var request = new GetUserByUsernameQuery.GetUserByUsernameRequest() { Username = User.Identity.Name };
+            return Ok(await _mediator.Send(request));
+        }
+
         protected readonly IMediator _mediator;
 
     }

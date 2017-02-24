@@ -34,7 +34,7 @@ namespace Backlog.Features.Blog
                 var entity = await _dataContext.Authors
                     .SingleOrDefaultAsync(x => x.Id == request.Author.Id && x.IsDeleted == false);
                 if (entity == null) _dataContext.Authors.Add(entity = new Author());
-                entity.Name = request.Author.Name;
+                
                 await _dataContext.SaveChangesAsync();
 
                 return new AddOrUpdateAuthorResponse()

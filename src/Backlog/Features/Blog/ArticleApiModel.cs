@@ -14,6 +14,9 @@ namespace Backlog.Features.Blog
         {
             var model = new TModel();
             model.Id = article.Id;
+            model.Slug = article.Slug;
+            model.Title = article.Title;
+            model.HtmlContent = article.HtmlContent;
             return model;
         }
 

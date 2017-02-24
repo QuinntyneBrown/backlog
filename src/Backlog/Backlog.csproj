@@ -180,12 +180,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="Data\Models\ILoggable.cs" />
     <Compile Include="Data\Models\Ip.cs" />
     <Compile Include="Data\Models\IPrioritizable.cs" />
     <Compile Include="Data\Models\PrioritizableEntity.cs" />
     <Compile Include="Features\Blog\AuthorController.cs" />
+    <Compile Include="Features\DigitalAssets\AddOrUpdateDigitalAssetCommand.cs" />
+    <Compile Include="Features\DigitalAssets\Constants.cs" />
+    <Compile Include="Features\DigitalAssets\DigitalAssetApiModel.cs" />
+    <Compile Include="Features\DigitalAssets\DigitalAssetController.cs" />
+    <Compile Include="Features\DigitalAssets\GetDigitalAssetByIdQuery.cs" />
+    <Compile Include="Features\DigitalAssets\GetDigitalAssetsQuery.cs" />
+    <Compile Include="Features\DigitalAssets\RemoveDigitalAssetCommand.cs" />
+    <Compile Include="Features\DigitalAssets\UploadDigitalAssetCommand.cs" />
     <Compile Include="Features\Tasks\Constants.cs" />
     <Compile Include="Features\Users\Constants.cs" />
+    <Compile Include="Features\Users\GetUserByUsernameQuery.cs" />
     <Compile Include="Security\AuthenticateCommand.cs" />
     <Compile Include="Security\GetClaimsForUserQuery.cs" />
     <Compile Include="Features\Core\WebApiUnityActionFilterProvider.cs" />
@@ -330,7 +340,7 @@
     <Compile Include="Features\Projects\ProjectApiModel.cs" />
     <Compile Include="Features\Projects\ProjectController.cs" />
     <Compile Include="Features\Stories\AddOrUpdateStoryCommand.cs" />
-    <Compile Include="Features\Stories\GetStorysQuery.cs" />
+    <Compile Include="Features\Stories\GetStoriesQuery.cs" />
     <Compile Include="Features\Stories\GetStoryByIdQuery.cs" />
     <Compile Include="Features\Stories\RemoveStoryCommand.cs" />
     <Compile Include="Features\Stories\StoryApiModel.cs" />
@@ -345,14 +355,14 @@
     <Compile Include="Features\Tasks\TaskController.cs" />
     <Compile Include="Features\Tasks\IncrementTaskPriorityCommand.cs" />
     <Compile Include="Features\Tasks\DecrementTaskPriorityCommand.cs" />
+    <Compile Include="Features\Stories\IncrementStoryPriorityCommand.cs" />
+    <Compile Include="Features\Stories\DecrementStoryPriorityCommand.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Features\Notifications\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

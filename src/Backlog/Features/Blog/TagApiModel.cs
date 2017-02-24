@@ -12,11 +12,11 @@ namespace Backlog.Features.Blog
         {
             var model = new TModel();
             model.Id = tag.Id;
+            model.Name = tag.Name;
             return model;
         }
 
         public static TagApiModel FromTag(Tag tag)
             => FromTag<TagApiModel>(tag);
-
     }
 }

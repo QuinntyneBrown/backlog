@@ -16,10 +16,7 @@ namespace Backlog.Features.Brands
             public BrandApiModel Brand { get; set; }
         }
 
-        public class AddOrUpdateBrandResponse
-        {
-
-        }
+        public class AddOrUpdateBrandResponse { }
 
         public class AddOrUpdateBrandHandler : IAsyncRequestHandler<AddOrUpdateBrandRequest, AddOrUpdateBrandResponse>
         {
@@ -46,7 +43,5 @@ namespace Backlog.Features.Brands
             private readonly DataContext _dataContext;
             private readonly ICache _cache;
         }
-
     }
-
 }
