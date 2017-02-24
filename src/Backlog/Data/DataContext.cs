@@ -1,12 +1,14 @@
-using Backlog.Models;
+using Backlog.Data.Models;
+using System;
 using System.Data.Entity;
+using System.Linq;
 
 namespace Backlog.Data
-{
-    public class DataContext: DbContext, IDbContext
+{    
+    public class DataContext: DbContext
     {
         public DataContext()
-            : base(nameOrConnectionString: "BacklogDataContext")
+            : base(nameOrConnectionString: "DataContext")
         {
             Configuration.ProxyCreationEnabled = false;
             Configuration.LazyLoadingEnabled = false;
@@ -36,11 +38,21 @@ namespace Backlog.Data
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Feature> Features { get; set; }
         public DbSet<Template> Templates { get; set; }
+        public DbSet<Ip> Ips { get; set; }
 
+        public override int SaveChanges()
+        {
+            foreach (var entity in ChangeTracker.Entries()
+                .Where(e => e.Entity is ILoggable && ((e.State == EntityState.Added || (e.State == EntityState.Modified))))
+                .Select(x=>x.Entity as ILoggable)) {
+                entity.CreatedOn = entity.CreatedOn == default(DateTime) ? DateTime.UtcNow : entity.CreatedOn;
+                entity.LastModifiedOn = DateTime.UtcNow;
+            }
+            return base.SaveChanges();
+        }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-
             modelBuilder.Entity<User>().
                 HasMany(u => u.Roles).
                 WithMany(r => r.Users).
