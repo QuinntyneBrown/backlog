@@ -3,9 +3,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Backlog.Data.Models
 {
-    public class Task
+    public class Task: PrioritizableEntity
     {
-        public int Id { get; set; }
+        public override int Id { get; set; }
         [ForeignKey("Story")]
         public int? StoryId { get; set; }
         public int? TaskStatusId { get; set; }

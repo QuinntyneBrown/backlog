@@ -337,6 +337,14 @@
     <Compile Include="Features\Stories\StoryController.cs" />
     <Compile Include="Features\Epics\DecrementEpicPriorityCommand.cs" />
     <Compile Include="Features\Epics\IncrementEpicPriorityCommand.cs" />
+    <Compile Include="Features\Tasks\AddOrUpdateTaskCommand.cs" />
+    <Compile Include="Features\Tasks\GetTasksQuery.cs" />
+    <Compile Include="Features\Tasks\GetTaskByIdQuery.cs" />
+    <Compile Include="Features\Tasks\RemoveTaskCommand.cs" />
+    <Compile Include="Features\Tasks\TaskApiModel.cs" />
+    <Compile Include="Features\Tasks\TaskController.cs" />
+    <Compile Include="Features\Tasks\IncrementTaskPriorityCommand.cs" />
+    <Compile Include="Features\Tasks\DecrementTaskPriorityCommand.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

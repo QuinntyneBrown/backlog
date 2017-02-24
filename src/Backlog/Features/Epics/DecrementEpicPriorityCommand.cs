@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Linq;
 using System.Data.Entity;
 using Backlog.Data.Models;
+using Task = System.Threading.Tasks.Task;
+using static System.Threading.Tasks.Task;
 
 namespace Backlog.Features.Epics
 {
@@ -28,9 +30,10 @@ namespace Backlog.Features.Epics
 
             public async Task<DecrementEpicPriorityResponse> Handle(DecrementEpicPriorityRequest request)
             {
-                var epic = await _dataContext.Epics.FindAsync(request.Id);
-                var epics = new List<IPrioritizable>((await _dataContext.Epics.Where(x => x.IsDeleted == false).ToListAsync()).Cast<IPrioritizable>());
-                epic.DecrementPriority(epics);
+                var epicTask = _dataContext.Epics.FindAsync(request.Id);
+                var epicsTasks =_dataContext.Epics.Where(x => x.IsDeleted == false).ToListAsync();                
+                WaitAll(new Task[] { epicTask, epicsTasks });
+                epicTask.Result.DecrementPriority(new List<IPrioritizable>(epicsTasks.Result.Cast<IPrioritizable>()));
                 await _dataContext.SaveChangesAsync();
                 return new DecrementEpicPriorityResponse();
             }
