@@ -1,8 +1,14 @@
-using Backlog.Models;
+using Backlog.Data.Models;
+using Backlog.Data.Models;
 using System.Data.Entity;
 
 namespace Backlog.Data
 {
+    public interface IDbContext
+    {
+
+    }
+
     public class DataContext: DbContext, IDbContext
     {
         public DataContext()
@@ -36,7 +42,7 @@ namespace Backlog.Data
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Feature> Features { get; set; }
         public DbSet<Template> Templates { get; set; }
-
+        public DbSet<Ip> Ips { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
