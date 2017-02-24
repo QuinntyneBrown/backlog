@@ -45,6 +45,18 @@ namespace Backlog.Features.Epics
         public async Task<IHttpActionResult> Remove([FromUri]RemoveEpicCommand.RemoveEpicRequest request)
             => Ok(await _mediator.Send(request));
 
+        [Route("incrementPriority")]
+        [HttpGet]
+        [ResponseType(typeof(IncrementEpicPriorityCommand.IncrementEpicPriorityResponse))]
+        public async Task<IHttpActionResult> IncrementPriority([FromUri]IncrementEpicPriorityCommand.IncrementEpicPriorityRequest request)
+            => Ok(await _mediator.Send(request));
+
+        [Route("decrementPriority")]
+        [HttpGet]
+        [ResponseType(typeof(DecrementEpicPriorityCommand.DecrementEpicPriorityResponse))]
+        public async Task<IHttpActionResult> DecrementPriority([FromUri]IncrementEpicPriorityCommand.IncrementEpicPriorityRequest request)
+            => Ok(await _mediator.Send(request));
+
         protected readonly IMediator _mediator;
 
     }

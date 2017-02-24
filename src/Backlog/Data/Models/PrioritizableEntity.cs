@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Backlog.Data.Models
 {
-    public abstract class PrioritizableEntity : IPrioritizable
+    public abstract class PrioritizableEntity: IPrioritizable, IPrioritizer        
     {
         public abstract int Id { get; set; }
         public int? Priority { get; set; } = 0;

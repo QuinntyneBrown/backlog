@@ -335,19 +335,15 @@
     <Compile Include="Features\Stories\RemoveStoryCommand.cs" />
     <Compile Include="Features\Stories\StoryApiModel.cs" />
     <Compile Include="Features\Stories\StoryController.cs" />
+    <Compile Include="Features\Epics\DecrementEpicPriorityCommand.cs" />
+    <Compile Include="Features\Epics\IncrementEpicPriorityCommand.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Features\Epics\" />
-    <Folder Include="Features\Feedback\" />
-    <Folder Include="Features\Kanban\" />
     <Folder Include="Features\Notifications\" />
-    <Folder Include="Features\Products\" />
-    <Folder Include="Features\Projects\" />
-    <Folder Include="Features\Stories\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -6,7 +7,7 @@ namespace Backlog.Data.Models
 {
     public class Epic: PrioritizableEntity
     {
-        public override int Id { get; set; }
+        public override int Id { get; set; }        
         [ForeignKey("Product")]
         public int? ProductId { get; set; }
         [ForeignKey("Project")]
