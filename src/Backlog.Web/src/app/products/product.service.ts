@@ -19,7 +19,7 @@ export class ProductService {
     }
 
     public add(entity) {
-        return fetch({ url: `/api/product/add`, method: "POST", data: entity, authRequired: true  });
+        return fetch({ url: `/api/product/add`, method: "POST", data: { product: entity }, authRequired: true  });
     }
 
     public remove(options: { id : number }) {

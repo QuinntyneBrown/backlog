@@ -1,10 +1,12 @@
+using Backlog.Features.Epics;
 using MediatR;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 
 namespace Backlog.Features.Products
-{
+{    
     [Authorize]
     [RoutePrefix("api/product")]
     public class ProductController : ApiController
@@ -19,7 +21,7 @@ namespace Backlog.Features.Products
         [ResponseType(typeof(AddOrUpdateProductCommand.AddOrUpdateProductResponse))]
         public async Task<IHttpActionResult> Add(AddOrUpdateProductCommand.AddOrUpdateProductRequest request)
             => Ok(await _mediator.Send(request));
-
+        
         [Route("update")]
         [HttpPut]
         [ResponseType(typeof(AddOrUpdateProductCommand.AddOrUpdateProductResponse))]

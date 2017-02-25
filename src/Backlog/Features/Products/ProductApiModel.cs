@@ -7,8 +7,9 @@ namespace Backlog.Features.Products
 {
     public class ProductApiModel
     {        
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public string Name { get; set; }
+        public string Slug { get; set; }
         public ICollection<EpicApiModel> Epics { get; set; }
 
         public static TModel FromProduct<TModel>(Product product) where
@@ -16,6 +17,8 @@ namespace Backlog.Features.Products
         {
             var model = new TModel();
             model.Id = product.Id;
+            model.Name = product.Name;
+            model.Slug = product.Slug;
             model.Epics = product.Epics.Select(x => EpicApiModel.FromEpic(x)).ToList();
             return model;
         }

@@ -1,11 +1,10 @@
-using MediatR;
 using Backlog.Data;
 using Backlog.Data.Models;
 using Backlog.Features.Core;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Linq;
+using MediatR;
 using System.Data.Entity;
+using System.Threading.Tasks;
+
 
 namespace Backlog.Features.Products
 {
@@ -32,6 +31,8 @@ namespace Backlog.Features.Products
                     .SingleOrDefaultAsync(x => x.Id == request.Product.Id && x.IsDeleted == false);
                 if (entity == null) _dataContext.Products.Add(entity = new Product());
                 entity.Name = request.Product.Name;
+                entity.Slug = request.Product.Name.GenerateSlug();
+
                 await _dataContext.SaveChangesAsync();
 
                 return new AddOrUpdateProductResponse()
@@ -43,7 +44,5 @@ namespace Backlog.Features.Products
             private readonly IDataContext _dataContext;
             private readonly ICache _cache;
         }
-
     }
-
 }

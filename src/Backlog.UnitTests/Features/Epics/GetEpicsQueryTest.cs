@@ -17,10 +17,11 @@ namespace Backlog.UnitTests.Features.Epics
     public class GetEpicsQueryTest
     {        
         [TestMethod]
-        public async System.Threading.Tasks.Task Handle()
+        public async System.Threading.Tasks.Task HandleGetEpicsQuery()
         {
             var epics = new List<Epic> {
-                new Epic() { }
+                new Epic() { },
+                new Epic() { IsDeleted = true }
             }.AsQueryable();
 
             var mockSet = new Mock<DbSet<Epic>>();
@@ -38,7 +39,7 @@ namespace Backlog.UnitTests.Features.Epics
 
             mockSet.As<IQueryable<Epic>>().Setup(m => m.GetEnumerator()).Returns(epics.GetEnumerator());
             
-            var mockContext = new Mock<IDataContext>();
+            Mock<IDataContext> mockContext = new Mock<IDataContext>();
 
             mockContext.Setup(c => c.Epics).Returns(mockSet.Object);
             

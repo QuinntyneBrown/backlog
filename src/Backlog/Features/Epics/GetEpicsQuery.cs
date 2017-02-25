@@ -27,7 +27,10 @@ namespace Backlog.Features.Epics
 
             public async Task<GetEpicsResponse> Handle(GetEpicsRequest request)
             {
-                var epics = await _dataContext.Epics.ToListAsync();
+                var epics = await _dataContext.Epics
+                    .Where(x=>x.IsDeleted == false)
+                    .ToListAsync();
+
                 return new GetEpicsResponse()
                 {
                     Epics = epics.Select(x => EpicApiModel.FromEpic(x)).ToList()
