@@ -357,12 +357,20 @@
     <Compile Include="Features\Tasks\DecrementTaskPriorityCommand.cs" />
     <Compile Include="Features\Stories\IncrementStoryPriorityCommand.cs" />
     <Compile Include="Features\Stories\DecrementStoryPriorityCommand.cs" />
+    <Compile Include="Features\UserSettings\AddOrUpdateUserSettingsCommand.cs" />
+    <Compile Include="Features\UserSettings\GetUserSettingssQuery.cs" />
+    <Compile Include="Features\UserSettings\GetUserSettingsByIdQuery.cs" />
+    <Compile Include="Features\UserSettings\RemoveUserSettingsCommand.cs" />
+    <Compile Include="Features\UserSettings\UserSettingsApiModel.cs" />
+    <Compile Include="Features\UserSettings\UserSettingsController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Features\UserSettings\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
