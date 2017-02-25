@@ -18,7 +18,7 @@ namespace Backlog.Features.Blog
 
         public class GetTagByIdHandler : IAsyncRequestHandler<GetTagByIdRequest, GetTagByIdResponse>
         {
-            public GetTagByIdHandler(DataContext dataContext, ICache cache)
+            public GetTagByIdHandler(IDataContext dataContext, ICache cache)
             {
                 _dataContext = dataContext;
                 _cache = cache;
@@ -32,7 +32,7 @@ namespace Backlog.Features.Blog
                 };
             }
 
-            private readonly DataContext _dataContext;
+            private readonly IDataContext _dataContext;
             private readonly ICache _cache;
         }
     }

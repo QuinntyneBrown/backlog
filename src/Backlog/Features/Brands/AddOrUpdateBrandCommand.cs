@@ -20,7 +20,7 @@ namespace Backlog.Features.Brands
 
         public class AddOrUpdateBrandHandler : IAsyncRequestHandler<AddOrUpdateBrandRequest, AddOrUpdateBrandResponse>
         {
-            public AddOrUpdateBrandHandler(DataContext dataContext, ICache cache)
+            public AddOrUpdateBrandHandler(IDataContext dataContext, ICache cache)
             {
                 _dataContext = dataContext;
                 _cache = cache;
@@ -40,7 +40,7 @@ namespace Backlog.Features.Brands
                 };
             }
 
-            private readonly DataContext _dataContext;
+            private readonly IDataContext _dataContext;
             private readonly ICache _cache;
         }
     }

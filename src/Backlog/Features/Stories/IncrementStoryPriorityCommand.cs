@@ -28,7 +28,7 @@ namespace Backlog.Features.Stories
 
         public class IncrementStoryPriorityHandler : IAsyncRequestHandler<IncrementStoryPriorityRequest, IncrementStoryPriorityResponse>
         {
-            public IncrementStoryPriorityHandler(DataContext dataContext, ICache cache)
+            public IncrementStoryPriorityHandler(IDataContext dataContext, ICache cache)
             {
                 _dataContext = dataContext;
                 _cache = cache;
@@ -39,7 +39,7 @@ namespace Backlog.Features.Stories
 				throw new System.NotImplementedException();
             }
 
-            private readonly DataContext _dataContext;
+            private readonly IDataContext _dataContext;
             private readonly ICache _cache;
         }
 

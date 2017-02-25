@@ -23,7 +23,7 @@ namespace Backlog.Features.Users
 
         public class AddOrUpdateUserHandler : IAsyncRequestHandler<AddOrUpdateUserRequest, AddOrUpdateUserResponse>
         {
-            public AddOrUpdateUserHandler(DataContext dataContext, ICache cache)
+            public AddOrUpdateUserHandler(IDataContext dataContext, ICache cache)
             {
                 _dataContext = dataContext;
                 _cache = cache;
@@ -43,7 +43,7 @@ namespace Backlog.Features.Users
                 };
             }
 
-            private readonly DataContext _dataContext;
+            private readonly IDataContext _dataContext;
             private readonly ICache _cache;
         }
 

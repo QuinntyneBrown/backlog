@@ -20,7 +20,7 @@ namespace Backlog.Features.DigitalAssets
 
         public class AddOrUpdateDigitalAssetHandler : IAsyncRequestHandler<AddOrUpdateDigitalAssetRequest, AddOrUpdateDigitalAssetResponse>
         {
-            public AddOrUpdateDigitalAssetHandler(DataContext dataContext, ICache cache)
+            public AddOrUpdateDigitalAssetHandler(IDataContext dataContext, ICache cache)
             {
                 _dataContext = dataContext;
                 _cache = cache;
@@ -38,7 +38,7 @@ namespace Backlog.Features.DigitalAssets
                 return new AddOrUpdateDigitalAssetResponse() { };
             }
 
-            private readonly DataContext _dataContext;
+            private readonly IDataContext _dataContext;
             private readonly ICache _cache;
         }
 

@@ -23,7 +23,7 @@ namespace Backlog.Features.Stories
 
         public class AddOrUpdateStoryHandler : IAsyncRequestHandler<AddOrUpdateStoryRequest, AddOrUpdateStoryResponse>
         {
-            public AddOrUpdateStoryHandler(DataContext dataContext, ICache cache)
+            public AddOrUpdateStoryHandler(IDataContext dataContext, ICache cache)
             {
                 _dataContext = dataContext;
                 _cache = cache;
@@ -43,7 +43,7 @@ namespace Backlog.Features.Stories
                 };
             }
 
-            private readonly DataContext _dataContext;
+            private readonly IDataContext _dataContext;
             private readonly ICache _cache;
         }
 

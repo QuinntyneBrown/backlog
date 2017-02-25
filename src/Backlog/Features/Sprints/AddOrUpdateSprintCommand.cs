@@ -23,7 +23,7 @@ namespace Backlog.Features.Sprints
 
         public class AddOrUpdateSprintHandler : IAsyncRequestHandler<AddOrUpdateSprintRequest, AddOrUpdateSprintResponse>
         {
-            public AddOrUpdateSprintHandler(DataContext dataContext, ICache cache)
+            public AddOrUpdateSprintHandler(IDataContext dataContext, ICache cache)
             {
                 _dataContext = dataContext;
                 _cache = cache;
@@ -43,7 +43,7 @@ namespace Backlog.Features.Sprints
                 };
             }
 
-            private readonly DataContext _dataContext;
+            private readonly IDataContext _dataContext;
             private readonly ICache _cache;
         }
 

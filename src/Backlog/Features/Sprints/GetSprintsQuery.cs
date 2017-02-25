@@ -19,7 +19,7 @@ namespace Backlog.Features.Sprints
 
         public class GetSprintsHandler : IAsyncRequestHandler<GetSprintsRequest, GetSprintsResponse>
         {
-            public GetSprintsHandler(DataContext dataContext, ICache cache)
+            public GetSprintsHandler(IDataContext dataContext, ICache cache)
             {
                 _dataContext = dataContext;
                 _cache = cache;
@@ -34,7 +34,7 @@ namespace Backlog.Features.Sprints
                 };
             }
 
-            private readonly DataContext _dataContext;
+            private readonly IDataContext _dataContext;
             private readonly ICache _cache;
         }
 

@@ -19,7 +19,7 @@ namespace Backlog.Features.Blog
 
         public class GetArticlesHandler : IAsyncRequestHandler<GetArticlesRequest, GetArticlesResponse>
         {
-            public GetArticlesHandler(DataContext dataContext, ICache cache)
+            public GetArticlesHandler(IDataContext dataContext, ICache cache)
             {
                 _dataContext = dataContext;
                 _cache = cache;
@@ -34,7 +34,7 @@ namespace Backlog.Features.Blog
                 };
             }
 
-            private readonly DataContext _dataContext;
+            private readonly IDataContext _dataContext;
             private readonly ICache _cache;
         }
 

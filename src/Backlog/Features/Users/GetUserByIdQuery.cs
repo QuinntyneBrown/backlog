@@ -21,7 +21,7 @@ namespace Backlog.Features.Users
 
         public class GetUserByIdHandler : IAsyncRequestHandler<GetUserByIdRequest, GetUserByIdResponse>
         {
-            public GetUserByIdHandler(DataContext dataContext, ICache cache)
+            public GetUserByIdHandler(IDataContext dataContext, ICache cache)
             {
                 _dataContext = dataContext;
                 _cache = cache;
@@ -35,7 +35,7 @@ namespace Backlog.Features.Users
                 };
             }
 
-            private readonly DataContext _dataContext;
+            private readonly IDataContext _dataContext;
             private readonly ICache _cache;
         }
 

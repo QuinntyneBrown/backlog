@@ -20,7 +20,7 @@ namespace Backlog.Features.Blog
 
         public class RemoveAuthorHandler : IAsyncRequestHandler<RemoveAuthorRequest, RemoveAuthorResponse>
         {
-            public RemoveAuthorHandler(DataContext dataContext, ICache cache)
+            public RemoveAuthorHandler(IDataContext dataContext, ICache cache)
             {
                 _dataContext = dataContext;
                 _cache = cache;
@@ -34,7 +34,7 @@ namespace Backlog.Features.Blog
                 return new RemoveAuthorResponse();
             }
 
-            private readonly DataContext _dataContext;
+            private readonly IDataContext _dataContext;
             private readonly ICache _cache;
         }
     }

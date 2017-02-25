@@ -23,7 +23,7 @@ namespace Backlog.Features.AgileTeams
 
         public class AddOrUpdateAgileTeamHandler : IAsyncRequestHandler<AddOrUpdateAgileTeamRequest, AddOrUpdateAgileTeamResponse>
         {
-            public AddOrUpdateAgileTeamHandler(DataContext dataContext, ICache cache)
+            public AddOrUpdateAgileTeamHandler(IDataContext dataContext, ICache cache)
             {
                 _dataContext = dataContext;
                 _cache = cache;
@@ -43,7 +43,7 @@ namespace Backlog.Features.AgileTeams
                 };
             }
 
-            private readonly DataContext _dataContext;
+            private readonly IDataContext _dataContext;
             private readonly ICache _cache;
         }
 

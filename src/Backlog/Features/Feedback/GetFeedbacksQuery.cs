@@ -19,7 +19,7 @@ namespace Backlog.Features.Feedback
 
         public class GetFeedbacksHandler : IAsyncRequestHandler<GetFeedbacksRequest, GetFeedbacksResponse>
         {
-            public GetFeedbacksHandler(DataContext dataContext, ICache cache)
+            public GetFeedbacksHandler(IDataContext dataContext, ICache cache)
             {
                 _dataContext = dataContext;
                 _cache = cache;
@@ -34,7 +34,7 @@ namespace Backlog.Features.Feedback
                 };
             }
 
-            private readonly DataContext _dataContext;
+            private readonly IDataContext _dataContext;
             private readonly ICache _cache;
         }
 

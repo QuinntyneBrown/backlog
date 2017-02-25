@@ -21,7 +21,7 @@ namespace Backlog.Features.Brands
 
         public class GetBrandByIdHandler : IAsyncRequestHandler<GetBrandByIdRequest, GetBrandByIdResponse>
         {
-            public GetBrandByIdHandler(DataContext dataContext, ICache cache)
+            public GetBrandByIdHandler(IDataContext dataContext, ICache cache)
             {
                 _dataContext = dataContext;
                 _cache = cache;
@@ -35,7 +35,7 @@ namespace Backlog.Features.Brands
                 };
             }
 
-            private readonly DataContext _dataContext;
+            private readonly IDataContext _dataContext;
             private readonly ICache _cache;
         }
 

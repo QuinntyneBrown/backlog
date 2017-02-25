@@ -22,7 +22,7 @@ namespace Backlog.Features.Tasks
 
         public class IncrementTaskPriorityHandler : IAsyncRequestHandler<IncrementTaskPriorityRequest, IncrementTaskPriorityResponse>
         {
-            public IncrementTaskPriorityHandler(DataContext dataContext, ICache cache)
+            public IncrementTaskPriorityHandler(IDataContext dataContext, ICache cache)
             {
                 _dataContext = dataContext;
                 _cache = cache;
@@ -38,7 +38,7 @@ namespace Backlog.Features.Tasks
                 return new IncrementTaskPriorityResponse();
             }
 
-            private readonly DataContext _dataContext;
+            private readonly IDataContext _dataContext;
             private readonly ICache _cache;
         }
 

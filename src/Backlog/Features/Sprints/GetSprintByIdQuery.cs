@@ -21,7 +21,7 @@ namespace Backlog.Features.Sprints
 
         public class GetSprintByIdHandler : IAsyncRequestHandler<GetSprintByIdRequest, GetSprintByIdResponse>
         {
-            public GetSprintByIdHandler(DataContext dataContext, ICache cache)
+            public GetSprintByIdHandler(IDataContext dataContext, ICache cache)
             {
                 _dataContext = dataContext;
                 _cache = cache;
@@ -35,7 +35,7 @@ namespace Backlog.Features.Sprints
                 };
             }
 
-            private readonly DataContext _dataContext;
+            private readonly IDataContext _dataContext;
             private readonly ICache _cache;
         }
 

@@ -20,7 +20,7 @@ namespace Backlog.Features.Projects
 
         public class RemoveProjectHandler : IAsyncRequestHandler<RemoveProjectRequest, RemoveProjectResponse>
         {
-            public RemoveProjectHandler(DataContext dataContext, ICache cache)
+            public RemoveProjectHandler(IDataContext dataContext, ICache cache)
             {
                 _dataContext = dataContext;
                 _cache = cache;
@@ -34,7 +34,7 @@ namespace Backlog.Features.Projects
                 return new RemoveProjectResponse();
             }
 
-            private readonly DataContext _dataContext;
+            private readonly IDataContext _dataContext;
             private readonly ICache _cache;
         }
     }

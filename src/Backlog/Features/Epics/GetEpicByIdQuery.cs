@@ -21,7 +21,7 @@ namespace Backlog.Features.Epics
 
         public class GetEpicByIdHandler : IAsyncRequestHandler<GetEpicByIdRequest, GetEpicByIdResponse>
         {
-            public GetEpicByIdHandler(DataContext dataContext, ICache cache)
+            public GetEpicByIdHandler(IDataContext dataContext, ICache cache)
             {
                 _dataContext = dataContext;
                 _cache = cache;
@@ -35,7 +35,7 @@ namespace Backlog.Features.Epics
                 };
             }
 
-            private readonly DataContext _dataContext;
+            private readonly IDataContext _dataContext;
             private readonly ICache _cache;
         }
 

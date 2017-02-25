@@ -23,7 +23,7 @@ namespace Backlog.Features.Projects
 
         public class AddOrUpdateProjectHandler : IAsyncRequestHandler<AddOrUpdateProjectRequest, AddOrUpdateProjectResponse>
         {
-            public AddOrUpdateProjectHandler(DataContext dataContext, ICache cache)
+            public AddOrUpdateProjectHandler(IDataContext dataContext, ICache cache)
             {
                 _dataContext = dataContext;
                 _cache = cache;
@@ -43,7 +43,7 @@ namespace Backlog.Features.Projects
                 };
             }
 
-            private readonly DataContext _dataContext;
+            private readonly IDataContext _dataContext;
             private readonly ICache _cache;
         }
 

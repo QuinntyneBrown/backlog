@@ -20,7 +20,7 @@ namespace Backlog.Features.Products
 
         public class AddOrUpdateProductHandler : IAsyncRequestHandler<AddOrUpdateProductRequest, AddOrUpdateProductResponse>
         {
-            public AddOrUpdateProductHandler(DataContext dataContext, ICache cache)
+            public AddOrUpdateProductHandler(IDataContext dataContext, ICache cache)
             {
                 _dataContext = dataContext;
                 _cache = cache;
@@ -40,7 +40,7 @@ namespace Backlog.Features.Products
                 };
             }
 
-            private readonly DataContext _dataContext;
+            private readonly IDataContext _dataContext;
             private readonly ICache _cache;
         }
 

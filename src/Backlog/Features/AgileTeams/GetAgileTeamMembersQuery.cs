@@ -19,7 +19,7 @@ namespace Backlog.Features.AgileTeams
 
         public class GetAgileTeamMembersHandler : IAsyncRequestHandler<GetAgileTeamMembersRequest, GetAgileTeamMembersResponse>
         {
-            public GetAgileTeamMembersHandler(DataContext dataContext, ICache cache)
+            public GetAgileTeamMembersHandler(IDataContext dataContext, ICache cache)
             {
                 _dataContext = dataContext;
                 _cache = cache;
@@ -34,7 +34,7 @@ namespace Backlog.Features.AgileTeams
                 };
             }
 
-            private readonly DataContext _dataContext;
+            private readonly IDataContext _dataContext;
             private readonly ICache _cache;
         }
 

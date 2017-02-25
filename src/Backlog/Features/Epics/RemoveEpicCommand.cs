@@ -20,7 +20,7 @@ namespace Backlog.Features.Epics
 
         public class RemoveEpicHandler : IAsyncRequestHandler<RemoveEpicRequest, RemoveEpicResponse>
         {
-            public RemoveEpicHandler(DataContext dataContext, ICache cache)
+            public RemoveEpicHandler(IDataContext dataContext, ICache cache)
             {
                 _dataContext = dataContext;
                 _cache = cache;
@@ -34,7 +34,7 @@ namespace Backlog.Features.Epics
                 return new RemoveEpicResponse();
             }
 
-            private readonly DataContext _dataContext;
+            private readonly IDataContext _dataContext;
             private readonly ICache _cache;
         }
     }

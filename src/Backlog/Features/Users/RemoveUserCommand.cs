@@ -20,7 +20,7 @@ namespace Backlog.Features.Users
 
         public class RemoveUserHandler : IAsyncRequestHandler<RemoveUserRequest, RemoveUserResponse>
         {
-            public RemoveUserHandler(DataContext dataContext, ICache cache)
+            public RemoveUserHandler(IDataContext dataContext, ICache cache)
             {
                 _dataContext = dataContext;
                 _cache = cache;
@@ -34,7 +34,7 @@ namespace Backlog.Features.Users
                 return new RemoveUserResponse();
             }
 
-            private readonly DataContext _dataContext;
+            private readonly IDataContext _dataContext;
             private readonly ICache _cache;
         }
     }

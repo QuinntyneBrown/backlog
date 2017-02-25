@@ -21,7 +21,7 @@ namespace Backlog.Features.UserSettings
 
         public class GetUserSettingsByIdHandler : IAsyncRequestHandler<GetUserSettingsByIdRequest, GetUserSettingsByIdResponse>
         {
-            public GetUserSettingsByIdHandler(DataContext dataContext, ICache cache)
+            public GetUserSettingsByIdHandler(IDataContext dataContext, ICache cache)
             {
                 _dataContext = dataContext;
                 _cache = cache;
@@ -35,7 +35,7 @@ namespace Backlog.Features.UserSettings
                 };
             }
 
-            private readonly DataContext _dataContext;
+            private readonly IDataContext _dataContext;
             private readonly ICache _cache;
         }
 

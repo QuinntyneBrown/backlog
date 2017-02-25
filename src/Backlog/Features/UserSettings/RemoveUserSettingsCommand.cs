@@ -20,7 +20,7 @@ namespace Backlog.Features.UserSettings
 
         public class RemoveUserSettingsHandler : IAsyncRequestHandler<RemoveUserSettingsRequest, RemoveUserSettingsResponse>
         {
-            public RemoveUserSettingsHandler(DataContext dataContext, ICache cache)
+            public RemoveUserSettingsHandler(IDataContext dataContext, ICache cache)
             {
                 _dataContext = dataContext;
                 _cache = cache;
@@ -34,7 +34,7 @@ namespace Backlog.Features.UserSettings
                 return new RemoveUserSettingsResponse();
             }
 
-            private readonly DataContext _dataContext;
+            private readonly IDataContext _dataContext;
             private readonly ICache _cache;
         }
     }

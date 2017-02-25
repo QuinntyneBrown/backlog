@@ -20,7 +20,7 @@ namespace Backlog.Features.Sprints
 
         public class RemoveSprintHandler : IAsyncRequestHandler<RemoveSprintRequest, RemoveSprintResponse>
         {
-            public RemoveSprintHandler(DataContext dataContext, ICache cache)
+            public RemoveSprintHandler(IDataContext dataContext, ICache cache)
             {
                 _dataContext = dataContext;
                 _cache = cache;
@@ -34,7 +34,7 @@ namespace Backlog.Features.Sprints
                 return new RemoveSprintResponse();
             }
 
-            private readonly DataContext _dataContext;
+            private readonly IDataContext _dataContext;
             private readonly ICache _cache;
         }
     }

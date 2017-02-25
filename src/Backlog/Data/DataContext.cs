@@ -2,10 +2,42 @@ using Backlog.Data.Models;
 using System;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Backlog.Data
 {    
-    public class DataContext: DbContext
+
+    public interface IDataContext
+    {
+        DbSet<Epic> Epics { get; set; }
+        DbSet<Article> Articles { get; set; }
+        DbSet<Author> Authors { get; set; }
+        DbSet<Story> Stories { get; set; }
+        DbSet<User> Users { get; set; }
+        DbSet<Role> Roles { get; set; }
+        DbSet<Sprint> Sprints { get; set; }
+        DbSet<Tag> Tags { get; set; }
+        DbSet<AgileTeam> AgileTeams { get; set; }
+        DbSet<Theme> Themes { get; set; }
+        DbSet<DigitalAsset> DigitalAssets { get; set; }
+        DbSet<HtmlContent> HtmlContents { get; set; }
+        DbSet<ReusableStoryGroup> ReusableStoryGroups { get; set; }
+        DbSet<Project> Projects { get; set; }
+        DbSet<Product> Products { get; set; }
+        DbSet<Data.Models.Task> Tasks { get; set; }
+        DbSet<AgileTeamMember> AgileTeamMembers { get; set; }
+        DbSet<Feedback> Feedbacks { get; set; }
+        DbSet<UserSettings> UserSettings { get; set; }
+        DbSet<Data.Models.TaskStatus> TaskStatuses { get; set; }
+        DbSet<Brand> Brands { get; set; }
+        DbSet<Feature> Features { get; set; }
+        DbSet<Template> Templates { get; set; }
+        DbSet<Ip> Ips { get; set; }
+
+        Task<int> SaveChangesAsync();
+    }
+
+    public class DataContext: DbContext, IDataContext
     {
         public DataContext()
             : base(nameOrConnectionString: "DataContext")
@@ -15,30 +47,30 @@ namespace Backlog.Data
             Configuration.AutoDetectChangesEnabled = true;
         }
 
-        public DbSet<Epic> Epics { get; set; }
-        public DbSet<Article> Articles { get; set; }
-        public DbSet<Author> Authors { get; set; }
-        public DbSet<Story> Stories { get; set; }
-        public DbSet<User> Users { get; set; }
-        public DbSet<Role> Roles { get; set; }
-        public DbSet<Sprint> Sprints { get; set; }
-        public DbSet<Tag> Tags { get; set; }
-        public DbSet<AgileTeam> AgileTeams { get; set; }
-        public DbSet<Theme> Themes { get; set; }
-        public DbSet<DigitalAsset> DigitalAssets { get; set; }
-        public DbSet<HtmlContent> HtmlContents { get; set; }
-        public DbSet<ReusableStoryGroup> ReusableStoryGroups { get; set; }
-        public DbSet<Project> Projects { get; set; }
-        public DbSet<Product> Products { get; set; }
-        public DbSet<Task> Tasks { get; set; }
-        public DbSet<AgileTeamMember> AgileTeamMembers { get; set; }
-        public DbSet<Feedback> Feedbacks { get; set; }
-        public DbSet<UserSettings> UserSettings { get; set; }
-        public DbSet<TaskStatus> TaskStatuses { get; set; }
-        public DbSet<Brand> Brands { get; set; }
-        public DbSet<Feature> Features { get; set; }
-        public DbSet<Template> Templates { get; set; }
-        public DbSet<Ip> Ips { get; set; }
+        public virtual DbSet<Epic> Epics { get; set; }
+        public virtual DbSet<Article> Articles { get; set; }
+        public virtual DbSet<Author> Authors { get; set; }
+        public virtual DbSet<Story> Stories { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<Sprint> Sprints { get; set; }
+        public virtual DbSet<Tag> Tags { get; set; }
+        public virtual DbSet<AgileTeam> AgileTeams { get; set; }
+        public virtual DbSet<Theme> Themes { get; set; }
+        public virtual DbSet<DigitalAsset> DigitalAssets { get; set; }
+        public virtual DbSet<HtmlContent> HtmlContents { get; set; }
+        public virtual DbSet<ReusableStoryGroup> ReusableStoryGroups { get; set; }
+        public virtual DbSet<Project> Projects { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<Data.Models.Task> Tasks { get; set; }
+        public virtual DbSet<AgileTeamMember> AgileTeamMembers { get; set; }
+        public virtual DbSet<Feedback> Feedbacks { get; set; }
+        public virtual DbSet<UserSettings> UserSettings { get; set; }
+        public virtual DbSet<Data.Models.TaskStatus> TaskStatuses { get; set; }
+        public virtual DbSet<Brand> Brands { get; set; }
+        public virtual DbSet<Feature> Features { get; set; }
+        public virtual DbSet<Template> Templates { get; set; }
+        public virtual DbSet<Ip> Ips { get; set; }
 
         public override int SaveChanges()
         {

@@ -23,7 +23,7 @@ namespace Backlog.Features.Feedback
 
         public class AddOrUpdateFeedbackHandler : IAsyncRequestHandler<AddOrUpdateFeedbackRequest, AddOrUpdateFeedbackResponse>
         {
-            public AddOrUpdateFeedbackHandler(DataContext dataContext, ICache cache)
+            public AddOrUpdateFeedbackHandler(IDataContext dataContext, ICache cache)
             {
                 _dataContext = dataContext;
                 _cache = cache;
@@ -43,7 +43,7 @@ namespace Backlog.Features.Feedback
                 };
             }
 
-            private readonly DataContext _dataContext;
+            private readonly IDataContext _dataContext;
             private readonly ICache _cache;
         }
 

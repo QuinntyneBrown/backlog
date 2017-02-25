@@ -22,7 +22,7 @@ namespace Backlog.Features.Epics
 
         public class IncrementEpicPriorityHandler : IAsyncRequestHandler<IncrementEpicPriorityRequest, IncrementEpicPriorityResponse>
         {
-            public IncrementEpicPriorityHandler(DataContext dataContext, ICache cache)
+            public IncrementEpicPriorityHandler(IDataContext dataContext, ICache cache)
             {
                 _dataContext = dataContext;
                 _cache = cache;
@@ -38,7 +38,7 @@ namespace Backlog.Features.Epics
                 return new IncrementEpicPriorityResponse();
             }
 
-            private readonly DataContext _dataContext;
+            private readonly IDataContext _dataContext;
             private readonly ICache _cache;
         }
     }

@@ -23,7 +23,7 @@ namespace Backlog.Features.Blog
 
         public class AddOrUpdateTagHandler : IAsyncRequestHandler<AddOrUpdateTagRequest, AddOrUpdateTagResponse>
         {
-            public AddOrUpdateTagHandler(DataContext dataContext, ICache cache)
+            public AddOrUpdateTagHandler(IDataContext dataContext, ICache cache)
             {
                 _dataContext = dataContext;
                 _cache = cache;
@@ -43,7 +43,7 @@ namespace Backlog.Features.Blog
                 };
             }
 
-            private readonly DataContext _dataContext;
+            private readonly IDataContext _dataContext;
             private readonly ICache _cache;
         }
 

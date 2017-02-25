@@ -20,7 +20,7 @@ namespace Backlog.Features.Stories
 
         public class RemoveStoryHandler : IAsyncRequestHandler<RemoveStoryRequest, RemoveStoryResponse>
         {
-            public RemoveStoryHandler(DataContext dataContext, ICache cache)
+            public RemoveStoryHandler(IDataContext dataContext, ICache cache)
             {
                 _dataContext = dataContext;
                 _cache = cache;
@@ -34,7 +34,7 @@ namespace Backlog.Features.Stories
                 return new RemoveStoryResponse();
             }
 
-            private readonly DataContext _dataContext;
+            private readonly IDataContext _dataContext;
             private readonly ICache _cache;
         }
     }

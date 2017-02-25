@@ -1,3 +1,4 @@
+using Backlog.Data;
 using Backlog.Security;
 using MediatR;
 using Microsoft.Practices.Unity;
@@ -11,8 +12,11 @@ namespace Backlog
     {
         public static IUnityContainer GetContainer()
         {
-            var container = new UnityContainer()
-                .AddMediator<UnityConfiguration>();
+            var container = new UnityContainer();
+
+            //container.RegisterType<IDataContext, DataContext>();
+
+            container.AddMediator<UnityConfiguration>();
             container.RegisterInstance(AuthConfiguration.LazyConfig);            
             return container;
         }

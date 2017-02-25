@@ -21,7 +21,7 @@ namespace Backlog.Features.Stories
 
         public class GetStoryByIdHandler : IAsyncRequestHandler<GetStoryByIdRequest, GetStoryByIdResponse>
         {
-            public GetStoryByIdHandler(DataContext dataContext, ICache cache)
+            public GetStoryByIdHandler(IDataContext dataContext, ICache cache)
             {
                 _dataContext = dataContext;
                 _cache = cache;
@@ -35,7 +35,7 @@ namespace Backlog.Features.Stories
                 };
             }
 
-            private readonly DataContext _dataContext;
+            private readonly IDataContext _dataContext;
             private readonly ICache _cache;
         }
 
