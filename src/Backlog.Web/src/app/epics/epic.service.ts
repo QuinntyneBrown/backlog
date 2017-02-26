@@ -11,7 +11,7 @@ export class EpicService {
         return this._instance;
     }
 
-    public get() {
+    public get() {        
         return fetch({ url: `${this._baseUrl}/api/epic/get`, authRequired: true });
     }
 
@@ -19,8 +19,8 @@ export class EpicService {
         return fetch({ url: `${this._baseUrl}/api/epic/getbyid?id=${id}`, authRequired: true });
     }
 
-    public add(entity) {
-        return fetch({ url: `${this._baseUrl}/api/epic/add`, method: "POST", data: entity, authRequired: true  });
+    public add(epic) {
+        return fetch({ url: `${this._baseUrl}/api/epic/add`, method: "POST", data: { epic }, authRequired: true  });
     }
 
     public remove(options: { id : number }) {
