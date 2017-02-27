@@ -120,10 +120,6 @@
       <Project>{ba3a0650-a18b-4731-8eaa-f73868320ef7}</Project>
       <Name>Backlog</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\EntityFramework.Testing\EntityFramework.Testing.csproj">
-      <Project>{60eab600-983d-432a-aacb-8ccf50cc7625}</Project>
-      <Name>EntityFramework.Testing</Name>
-    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
