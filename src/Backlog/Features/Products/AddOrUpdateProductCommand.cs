@@ -5,7 +5,6 @@ using MediatR;
 using System.Data.Entity;
 using System.Threading.Tasks;
 
-
 namespace Backlog.Features.Products
 {
     public class AddOrUpdateProductCommand

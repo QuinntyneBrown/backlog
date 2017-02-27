@@ -199,7 +199,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Backlog\Backlog.csproj">
+    <ProjectReference Include="..\..\src\Backlog\Backlog.csproj">
       <Project>{ba3a0650-a18b-4731-8eaa-f73868320ef7}</Project>
       <Name>Backlog</Name>
     </ProjectReference>

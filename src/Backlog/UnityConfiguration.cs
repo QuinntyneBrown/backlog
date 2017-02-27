@@ -12,10 +12,7 @@ namespace Backlog
     {
         public static IUnityContainer GetContainer()
         {
-            var container = new UnityContainer();
-
-            //container.RegisterType<IDataContext, DataContext>();
-
+            var container = new UnityContainer();            
             container.AddMediator<UnityConfiguration>();
             container.RegisterInstance(AuthConfiguration.LazyConfig);            
             return container;
