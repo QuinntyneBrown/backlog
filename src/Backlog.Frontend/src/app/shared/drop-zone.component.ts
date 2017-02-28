@@ -96,4 +96,4 @@ export class DropZoneComponent extends HTMLElement {
     }
 }
 
-document.addEventListener("DOMContentLoaded", () => window.customElements.define(`ce-drop-zone`, DropZoneComponent));
+customElements.define(`ce-drop-zone`, DropZoneComponent);

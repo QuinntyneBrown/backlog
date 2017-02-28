@@ -54,4 +54,4 @@ export class SelectComponent extends HTMLElement {
     }
 }
 
-document.addEventListener("DOMContentLoaded", () => window.customElements.define(`ce-select`, SelectComponent));
+customElements.define(`ce-select`, SelectComponent);

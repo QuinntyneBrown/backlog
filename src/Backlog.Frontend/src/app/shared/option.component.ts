@@ -48,4 +48,4 @@ export class OptionComponent extends HTMLElement {
     }
 }
 
-document.addEventListener("DOMContentLoaded", () => window.customElements.define(`ce-option`, OptionComponent));
+customElements.define(`ce-option`, OptionComponent);
