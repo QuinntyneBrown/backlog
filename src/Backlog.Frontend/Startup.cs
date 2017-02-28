@@ -3,9 +3,9 @@ using System.Web.Http;
 using Microsoft.Owin;
 using Unity.WebApi;
 
-[assembly: OwinStartup(typeof(Backlog.Web.Startup))]
+[assembly: OwinStartup(typeof(Backlog.Frontend.Startup))]
 
-namespace Backlog.Web
+namespace Backlog.Frontend
 {
     public class Startup
     {

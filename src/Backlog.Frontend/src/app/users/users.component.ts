@@ -1,5 +1,5 @@
-let template = require("./users.component.html");
-let styles = require("./users.component.scss");
+const template = require("./users.component.html");
+const styles = require("./users.component.scss");
 
 export class UsersComponent extends HTMLElement {
     constructor() {
@@ -11,7 +11,7 @@ export class UsersComponent extends HTMLElement {
     }
 
     connectedCallback() {
-        this._ractive = new Ractive({ el: this, template: `<style>${styles}</style> ${template}`, data: this }); 
+        
     }
 
     disconnectedCallback() {
@@ -21,7 +21,7 @@ export class UsersComponent extends HTMLElement {
     private _ractive;
 
     attributeChangedCallback (name, oldValue, newValue) {
-        this._ractive.set(name, newValue);
+        
     }
 }
 

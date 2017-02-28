@@ -18,6 +18,10 @@ export class ArticleService {
         return fetch({ url: `/api/article/getbyid?id=${id}`, authRequired: true });
     }
 
+    public getBySlug(slug) {
+        return fetch({ url: `/api/author/getbyslug?slug=${slug}`, authRequired: true });
+    }
+
     public add(article) {
         return fetch({ url: `/api/article/add`, method: "POST", data: { article }, authRequired: true  });
     }

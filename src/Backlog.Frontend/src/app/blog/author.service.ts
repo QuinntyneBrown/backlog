@@ -18,6 +18,10 @@ export class AuthorService {
         return fetch({ url: `/api/author/getbyid?id=${id}`, authRequired: true });
     }
 
+    public getBySlug(slug) {
+        return fetch({ url: `/api/author/getbyslug?slug=${slug}`, authRequired: true });
+    }
+
     public add(author) {
         return fetch({ url: `/api/author/add`, method: "POST", data: { author }, authRequired: true  });
     }

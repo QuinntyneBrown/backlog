@@ -1,7 +1,6 @@
 {
   "globalDependencies": {
     "moment": "registry:dt/moment#2.11.1+20161010105546",
-    "ractive": "registry:dt/ractive#0.0.0+20160316171810",
     "reflect-metadata": "registry:dt/reflect-metadata#0.0.0+20160630155503",
     "require": "registry:dt/require#2.1.20+20160316155526"
   }

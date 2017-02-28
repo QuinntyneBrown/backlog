@@ -1,6 +1,6 @@
 using MediatR;
-using Backlog.Cli.Data;
-using Backlog.Cli.Features.Core;
+using Backlog.Data;
+using Backlog.Features.Core;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
