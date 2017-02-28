@@ -54,4 +54,4 @@ export class StoryComponent extends HTMLElement {
     private get headingElement() { return this.querySelector("h4") as HTMLElement; }
 }
 
-document.addEventListener("DOMContentLoaded",() => window.customElements.define(`ce-story`,StoryComponent));
+customElements.define(`ce-story`,StoryComponent);
