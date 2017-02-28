@@ -17,6 +17,5 @@ namespace Backlog.Features.Epics
 
         public static EpicApiModel FromEpic(Epic epic)
             => FromEpic<EpicApiModel>(epic);
-
     }
 }

@@ -68,4 +68,4 @@ export class TemplateItemComponent extends HTMLElement {
     public entity: TemplateModel;
 }
 
-document.addEventListener("DOMContentLoaded",() => window.customElements.define(`ce-template-item`,TemplateItemComponent));
+customElements.define(`ce-template-item`,TemplateItemComponent);

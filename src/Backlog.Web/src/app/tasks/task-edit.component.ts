@@ -126,4 +126,4 @@ export class TaskEditComponent extends HTMLElement {
     private get _nameInputElement(): HTMLInputElement { return this.querySelector(".task-name") as HTMLInputElement;}
 }
 
-document.addEventListener("DOMContentLoaded",() => window.customElements.define(`ce-task-edit`,TaskEditComponent));
+customElements.define(`ce-task-edit`,TaskEditComponent);

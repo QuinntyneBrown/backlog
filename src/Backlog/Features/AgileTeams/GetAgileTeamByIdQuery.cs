@@ -1,18 +1,15 @@
 using MediatR;
 using Backlog.Data;
 using Backlog.Features.Core;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Linq;
-using System.Data.Entity;
 
 namespace Backlog.Features.AgileTeams
 {
     public class GetAgileTeamByIdQuery
     {
         public class GetAgileTeamByIdRequest : IRequest<GetAgileTeamByIdResponse> { 
-			public int Id { get; set; }
-		}
+            public int Id { get; set; }
+        }
 
         public class GetAgileTeamByIdResponse
         {
@@ -38,7 +35,5 @@ namespace Backlog.Features.AgileTeams
             private readonly IDataContext _dataContext;
             private readonly ICache _cache;
         }
-
     }
-
 }

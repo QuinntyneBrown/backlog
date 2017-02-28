@@ -215,46 +215,46 @@
     <Content Include="src\app\app.component.scss">
       <DependentUpon>app.component.ts</DependentUpon>
     </Content>
-    <Content Include="src\app\articles\article-edit.component.html">
+    <Content Include="src\app\blog\article-edit.component.html">
       <DependentUpon>article-edit.component.ts</DependentUpon>
     </Content>
-    <Content Include="src\app\articles\article-edit.component.scss">
+    <Content Include="src\app\blog\article-edit.component.scss">
       <DependentUpon>article-edit.component.ts</DependentUpon>
     </Content>
-    <Content Include="src\app\articles\article-item.component.html">
+    <Content Include="src\app\blog\article-item.component.html">
       <DependentUpon>article-item.component.ts</DependentUpon>
     </Content>
-    <Content Include="src\app\articles\article-item.component.scss">
+    <Content Include="src\app\blog\article-item.component.scss">
       <DependentUpon>article-item.component.ts</DependentUpon>
     </Content>
-    <Content Include="src\app\articles\article-list.component.html">
+    <Content Include="src\app\blog\article-list.component.html">
       <DependentUpon>article-list.component.ts</DependentUpon>
     </Content>
-    <Content Include="src\app\articles\article-list.component.scss">
+    <Content Include="src\app\blog\article-list.component.scss">
       <DependentUpon>article-list.component.ts</DependentUpon>
     </Content>
-    <Content Include="src\app\articles\article-view.component.html">
+    <Content Include="src\app\blog\article-view.component.html">
       <DependentUpon>article-view.component.ts</DependentUpon>
     </Content>
-    <Content Include="src\app\articles\article-view.component.scss">
+    <Content Include="src\app\blog\article-view.component.scss">
       <DependentUpon>article-view.component.ts</DependentUpon>
     </Content>
-    <Content Include="src\app\authors\author-edit.component.html">
+    <Content Include="src\app\blog\author-edit.component.html">
       <DependentUpon>author-edit.component.ts</DependentUpon>
     </Content>
-    <Content Include="src\app\authors\author-edit.component.scss">
+    <Content Include="src\app\blog\author-edit.component.scss">
       <DependentUpon>author-edit.component.ts</DependentUpon>
     </Content>
-    <Content Include="src\app\authors\author-item.component.html">
+    <Content Include="src\app\blog\author-item.component.html">
       <DependentUpon>author-item.component.ts</DependentUpon>
     </Content>
-    <Content Include="src\app\authors\author-item.component.scss">
+    <Content Include="src\app\blog\author-item.component.scss">
       <DependentUpon>author-item.component.ts</DependentUpon>
     </Content>
-    <Content Include="src\app\authors\author-list.component.html">
+    <Content Include="src\app\blog\author-list.component.html">
       <DependentUpon>author-list.component.ts</DependentUpon>
     </Content>
-    <Content Include="src\app\authors\author-list.component.scss">
+    <Content Include="src\app\blog\author-list.component.scss">
       <DependentUpon>author-list.component.ts</DependentUpon>
     </Content>
     <Content Include="src\app\brands\brand-edit.component.html">
@@ -593,10 +593,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="src\environments\" />
-    <Folder Include="tests\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <TypeScriptCompile Include="src\app\app-router-outlet.component.ts" />
     <TypeScriptCompile Include="src\app\app.component.ts" />
@@ -605,6 +602,7 @@
     <TypeScriptCompile Include="src\app\digital-assets\index.ts" />
     <TypeScriptCompile Include="src\app\environment.ts" />
     <TypeScriptCompile Include="src\app\error\error.component.ts" />
+    <TypeScriptCompile Include="src\app\error\error.service.ts" />
     <TypeScriptCompile Include="src\app\error\index.ts" />
     <TypeScriptCompile Include="src\app\index.ts" />
     <TypeScriptCompile Include="src\app\not-found\index.ts" />
@@ -709,13 +707,13 @@
     <TypeScriptCompile Include="src\app\shared\footer.component.ts" />
     <TypeScriptCompile Include="src\app\shared\tabs.component.ts" />
     <TypeScriptCompile Include="src\app\stories\story-digital-asset.component.ts" />
-    <TypeScriptCompile Include="src\app\articles\index.ts" />
-    <TypeScriptCompile Include="src\app\articles\article.model.ts" />
-    <TypeScriptCompile Include="src\app\articles\article-list.component.ts" />
-    <TypeScriptCompile Include="src\app\articles\article-item.component.ts" />
-    <TypeScriptCompile Include="src\app\articles\article-view.component.ts" />
-    <TypeScriptCompile Include="src\app\articles\article.service.ts" />
-    <TypeScriptCompile Include="src\app\articles\article-edit.component.ts" />
+    <TypeScriptCompile Include="src\app\blog\index.ts" />
+    <TypeScriptCompile Include="src\app\blog\article.model.ts" />
+    <TypeScriptCompile Include="src\app\blog\article-list.component.ts" />
+    <TypeScriptCompile Include="src\app\blog\article-item.component.ts" />
+    <TypeScriptCompile Include="src\app\blog\article-view.component.ts" />
+    <TypeScriptCompile Include="src\app\blog\article.service.ts" />
+    <TypeScriptCompile Include="src\app\blog\article-edit.component.ts" />
     <TypeScriptCompile Include="src\app\users\register.component.ts" />
     <TypeScriptCompile Include="src\app\shared\drop-down.component.ts" />
     <TypeScriptCompile Include="src\app\shared\drop-down-item.component.ts" />
@@ -770,15 +768,16 @@
     <TypeScriptCompile Include="src\app\features\feature-category.model.ts" />
     <TypeScriptCompile Include="src\app\features\feature-category.service.ts" />
     <TypeScriptCompile Include="src\app\templates\template-edit-overlay.component.ts" />
-    <TypeScriptCompile Include="src\app\authors\index.ts" />
-    <TypeScriptCompile Include="src\app\authors\author.model.ts" />
-    <TypeScriptCompile Include="src\app\authors\author.service.ts" />
-    <TypeScriptCompile Include="src\app\authors\author-edit.component.ts" />
-    <TypeScriptCompile Include="src\app\authors\author-list.component.ts" />
-    <TypeScriptCompile Include="src\app\authors\author-item.component.ts" />
+    <TypeScriptCompile Include="src\app\blog\author.model.ts" />
+    <TypeScriptCompile Include="src\app\blog\author.service.ts" />
+    <TypeScriptCompile Include="src\app\blog\author-edit.component.ts" />
+    <TypeScriptCompile Include="src\app\blog\author-list.component.ts" />
+    <TypeScriptCompile Include="src\app\blog\author-item.component.ts" />
     <TypeScriptCompile Include="src\app\shared\checkbox-field.component.ts" />
     <TypeScriptCompile Include="src\app\feedback\feedback-list.component.ts" />
     <TypeScriptCompile Include="src\app\feedback\feedback-item.component.ts" />
+    <TypeScriptCompile Include="src\app\blog\tag.model.ts" />
+    <TypeScriptCompile Include="src\app\blog\tag.service.ts" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Backlog\Backlog.csproj">

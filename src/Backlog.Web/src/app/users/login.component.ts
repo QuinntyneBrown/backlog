@@ -71,4 +71,4 @@ export class LoginComponent extends HTMLElement {
     }
 }
 
-document.addEventListener("DOMContentLoaded",() => window.customElements.define(`ce-login`,LoginComponent));
+customElements.define(`ce-login`,LoginComponent);

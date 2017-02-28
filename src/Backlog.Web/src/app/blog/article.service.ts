@@ -6,7 +6,7 @@ export class ArticleService {
     private static _instance: ArticleService;
 
     public static get Instance() {
-        this._instance = this._instance || new this();
+        this._instance = this._instance || new ArticleService();
         return this._instance;
     }
 
@@ -18,12 +18,8 @@ export class ArticleService {
         return fetch({ url: `/api/article/getbyid?id=${id}`, authRequired: true });
     }
 
-    public getBySlug(slug) {
-        return fetch({ url: `/api/article/getbyslug?slug=${slug}`, authRequired: true });
-    }
-
-    public add(entity) {
-        return fetch({ url: `/api/article/add`, method: "POST", data: entity, authRequired: true  });
+    public add(article) {
+        return fetch({ url: `/api/article/add`, method: "POST", data: { article }, authRequired: true  });
     }
 
     public remove(options: { id : number }) {

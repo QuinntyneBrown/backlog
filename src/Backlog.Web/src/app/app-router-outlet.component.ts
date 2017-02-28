@@ -78,4 +78,4 @@ export class AppRouterOutletComponent extends RouterOutlet {
 
 }
 
-document.addEventListener("DOMContentLoaded",() => window.customElements.define(`ce-app-router-oulet`,AppRouterOutletComponent));
+customElements.define(`ce-app-router-oulet`,AppRouterOutletComponent);

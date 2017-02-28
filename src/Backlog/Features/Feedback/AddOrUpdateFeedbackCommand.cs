@@ -16,10 +16,7 @@ namespace Backlog.Features.Feedback
             public FeedbackApiModel Feedback { get; set; }
         }
 
-        public class AddOrUpdateFeedbackResponse
-        {
-
-        }
+        public class AddOrUpdateFeedbackResponse { }
 
         public class AddOrUpdateFeedbackHandler : IAsyncRequestHandler<AddOrUpdateFeedbackRequest, AddOrUpdateFeedbackResponse>
         {

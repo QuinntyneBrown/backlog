@@ -16,10 +16,7 @@ namespace Backlog.Features.AgileTeams
             public AgileTeamMemberApiModel AgileTeamMember { get; set; }
         }
 
-        public class AddOrUpdateAgileTeamMemberResponse
-        {
-
-        }
+        public class AddOrUpdateAgileTeamMemberResponse { }
 
         public class AddOrUpdateAgileTeamMemberHandler : IAsyncRequestHandler<AddOrUpdateAgileTeamMemberRequest, AddOrUpdateAgileTeamMemberResponse>
         {

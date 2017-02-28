@@ -22,8 +22,8 @@ export class SprintService {
         return fetch({ url: `/api/sprint/getbyid?id=${id}`, authRequired: true });
     }
 
-    public add(entity) {
-        return fetch({ url: `/api/sprint/add`, method: "POST", data: entity, authRequired: true  });
+    public add(sprint) {
+        return fetch({ url: `/api/sprint/add`, method: "POST", data: { sprint }, authRequired: true  });
     }
 
     public remove(options: { id : number }) {

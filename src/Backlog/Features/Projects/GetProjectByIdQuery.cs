@@ -1,10 +1,7 @@
 using MediatR;
 using Backlog.Data;
 using Backlog.Features.Core;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Linq;
-using System.Data.Entity;
 
 namespace Backlog.Features.Projects
 {
@@ -38,7 +35,5 @@ namespace Backlog.Features.Projects
             private readonly IDataContext _dataContext;
             private readonly ICache _cache;
         }
-
     }
-
 }

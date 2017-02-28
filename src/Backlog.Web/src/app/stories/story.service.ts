@@ -18,8 +18,8 @@ export class StoryService {
         return fetch({ url: `/api/story/getbyid?id=${id}`, authRequired: true });
     }
 
-    public add(entity) {
-        return fetch({ url: `/api/story/add`, method: "POST", data: entity, authRequired: true  });
+    public add(story) {
+        return fetch({ url: `/api/story/add`, method: "POST", data: { story }, authRequired: true  });
     }
 
     public remove(options: { id : number }) {

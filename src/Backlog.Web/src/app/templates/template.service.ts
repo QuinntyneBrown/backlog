@@ -6,7 +6,7 @@ export class TemplateService {
     private static _instance: TemplateService;
 
     public static get Instance() {
-        this._instance = this._instance || new TemplateService();
+        this._instance = this._instance || new this();
         return this._instance;
     }
 
@@ -18,8 +18,8 @@ export class TemplateService {
         return fetch({ url: `/api/template/getbyid?id=${id}`, authRequired: true });
     }
 
-    public add(entity) {
-        return fetch({ url: `/api/template/add`, method: "POST", data: entity, authRequired: true  });
+    public add(template) {
+        return fetch({ url: `/api/template/add`, method: "POST", data: { template }, authRequired: true  });
     }
 
     public remove(options: { id : number }) {

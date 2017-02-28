@@ -25,4 +25,4 @@ export class UsersComponent extends HTMLElement {
     }
 }
 
-document.addEventListener("DOMContentLoaded",() => window.customElements.define(`ce-users`,UsersComponent));
+customElements.define(`ce-users`,UsersComponent);

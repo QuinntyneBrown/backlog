@@ -35,4 +35,4 @@ export class DropDownItemComponent extends HTMLElement {
     }
 }
 
-document.addEventListener("DOMContentLoaded",() => window.customElements.define(`ce-drop-down-item`,DropDownItemComponent));
+customElements.define(`ce-drop-down-item`,DropDownItemComponent);

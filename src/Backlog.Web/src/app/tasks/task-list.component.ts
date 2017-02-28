@@ -74,4 +74,4 @@ export class TaskListComponent extends HTMLElement {
     }
 }
 
-document.addEventListener("DOMContentLoaded", () => window.customElements.define("ce-task-list", TaskListComponent));
+customElements.define("ce-task-list", TaskListComponent);

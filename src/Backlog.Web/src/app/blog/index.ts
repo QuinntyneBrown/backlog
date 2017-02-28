@@ -4,3 +4,8 @@ export * from "./article-list.component";
 export * from "./article-view.component";
 export * from "./article.model";
 export * from "./article.service";
+export * from "./author-edit.component";
+export * from "./author-item.component";
+export * from "./author-list.component";
+export * from "./author.model";
+export * from "./author.service";

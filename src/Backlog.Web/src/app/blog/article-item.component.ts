@@ -68,4 +68,4 @@ export class ArticleItemComponent extends HTMLElement {
     public entity: Article;
 }
 
-document.addEventListener("DOMContentLoaded",() => window.customElements.define(`ce-article-item`,ArticleItemComponent));
+customElements.define(`ce-article-item`,ArticleItemComponent);

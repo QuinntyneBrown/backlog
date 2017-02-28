@@ -66,4 +66,4 @@ export class TaskItemComponent extends HTMLElement {
     public entity: Task;
 }
 
-document.addEventListener("DOMContentLoaded",() => window.customElements.define(`ce-task-item`,TaskItemComponent));
+customElements.define(`ce-task-item`,TaskItemComponent);

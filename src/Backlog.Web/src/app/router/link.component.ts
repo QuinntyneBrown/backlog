@@ -61,4 +61,4 @@ export class LinkComponent extends HTMLElement {
 
 }
 
-document.addEventListener("DOMContentLoaded", () => (window as any).customElements.define(`ce-link`, LinkComponent));
+customElements.define(`ce-link`, LinkComponent);

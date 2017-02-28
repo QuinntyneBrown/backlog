@@ -19,4 +19,4 @@ export class AppComponent extends HTMLElement {
     get routerOutletElement() { return this.querySelector(".router-outlet") as HTMLElement; }
 }
 
-document.addEventListener("DOMContentLoaded", () => window.customElements.define(`ce-app`, AppComponent));
+customElements.define(`ce-app`, AppComponent);

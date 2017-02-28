@@ -62,6 +62,7 @@ export class EpicViewComponent extends HTMLElement {
     
     private get titleElement(): HTMLElement { return this.querySelector(".epic-view-title") as HTMLElement; }
     private get createStoryLinkElement(): HTMLElement { return this.querySelector("a") as HTMLElement; }
+    
     attributeChangedCallback (name, oldValue, newValue) {
         switch (name) {
             case "epic-id":
@@ -71,4 +72,4 @@ export class EpicViewComponent extends HTMLElement {
     }
 }
 
-document.addEventListener("DOMContentLoaded",() => window.customElements.define(`ce-epic-view`,EpicViewComponent));
+customElements.define(`ce-epic-view`,EpicViewComponent);

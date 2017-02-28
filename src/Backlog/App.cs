@@ -1,19 +1,18 @@
-using Owin;
-using System.Web.Http;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
-using Microsoft.Practices.Unity;
-using Microsoft.Owin.Security.OAuth;
-using Swashbuckle.Application;
-using Microsoft.Owin.Cors;
-using System;
 using Backlog.Features.Core;
 using Backlog.Security;
-using System.Web.Http.Cors;
 using MediatR;
+using Microsoft.AspNet.SignalR.Infrastructure;
+using Microsoft.Owin.Cors;
+using Microsoft.Owin.Security.OAuth;
+using Microsoft.Practices.Unity;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using Owin;
+using Swashbuckle.Application;
+using System;
 using System.Configuration;
 using System.Reflection;
-using Microsoft.AspNet.SignalR.Infrastructure;
+using System.Web.Http;
 
 namespace Backlog
 {

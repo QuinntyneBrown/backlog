@@ -6,7 +6,7 @@ export class UserSettingsService {
     private static _instance: UserSettingsService;
 
     public static get Instance() {
-        this._instance = this._instance || new UserSettingsService();
+        this._instance = this._instance || new this();
         return this._instance;
     }
 
@@ -18,8 +18,8 @@ export class UserSettingsService {
         return fetch({ url: `/api/user-settings/getbyid?id=${id}`, authRequired: true });
     }
 
-    public add(entity) {
-        return fetch({ url: `/api/user-settings/add`, method: "POST", data: entity, authRequired: true  });
+    public add(userSettings) {
+        return fetch({ url: `/api/user-settings/add`, method: "POST", data: { userSettings }, authRequired: true  });
     }
 
     public remove(options: { id : number }) {

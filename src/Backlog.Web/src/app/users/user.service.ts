@@ -18,8 +18,8 @@ export class UserService {
         return fetch({ url: `/api/user/getbyid?id=${id}`, authRequired: true });
     }
 
-    public add(entity) {
-        return fetch({ url: `/api/user/add`, method: "POST", data: entity, authRequired: true });
+    public add(user) {
+        return fetch({ url: `/api/user/add`, method: "POST", data: { user }, authRequired: true });
     }
 
     public remove(options: { id: number }) {

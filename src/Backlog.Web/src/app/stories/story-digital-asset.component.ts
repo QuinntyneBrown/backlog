@@ -59,4 +59,4 @@ export class StoryDigitalAssetComponent extends HTMLElement {
     }
 }
 
-document.addEventListener("DOMContentLoaded",() => window.customElements.define(`ce-story-digital-asset`,StoryDigitalAssetComponent));
+customElements.define(`ce-story-digital-asset`,StoryDigitalAssetComponent);

@@ -60,4 +60,4 @@ export class HeaderComponent extends HTMLElement {
 
 }
 
-document.addEventListener("DOMContentLoaded",() => window.customElements.define(`ce-header`,HeaderComponent));
+customElements.define(`ce-header`,HeaderComponent);

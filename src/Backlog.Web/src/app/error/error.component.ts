@@ -36,4 +36,4 @@ export class ErrorComponent extends HTMLElement {
     }
 }
 
-document.addEventListener("DOMContentLoaded",() => window.customElements.define(`ce-error`,ErrorComponent));
+customElements.define(`ce-error`,ErrorComponent);

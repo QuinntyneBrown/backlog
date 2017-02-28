@@ -18,8 +18,8 @@ export class FeatureService {
         return fetch({ url: `/api/feature/getbyid?id=${id}`, authRequired: true });
     }
 
-    public add(entity) {
-        return fetch({ url: `/api/feature/add`, method: "POST", data: entity, authRequired: true  });
+    public add(feature) {
+        return fetch({ url: `/api/feature/add`, method: "POST", data: { feature }, authRequired: true  });
     }
 
     public remove(options: { id : number }) {

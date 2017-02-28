@@ -53,4 +53,4 @@ export class FooterComponent extends HTMLElement {
     private get developedByElement(): HTMLParagraphElement { return this.querySelector("p"); }
 }
 
-document.addEventListener("DOMContentLoaded",() => window.customElements.define(`ce-footer`,FooterComponent));
+customElements.define(`ce-footer`,FooterComponent);

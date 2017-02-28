@@ -17,6 +17,5 @@ namespace Backlog.Features.AgileTeams
 
         public static AgileTeamApiModel FromAgileTeam(AgileTeam agileTeam)
             => FromAgileTeam<AgileTeamApiModel>(agileTeam);
-
     }
 }

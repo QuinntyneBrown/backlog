@@ -26,8 +26,8 @@ export class TaskService {
         return fetch({ url: `/api/task/getbyid?id=${id}`, authRequired: true });
     }
 
-    public add(entity) {
-        return fetch({ url: `/api/task/add`, method: "POST", data: entity, authRequired: true  });
+    public add(task) {
+        return fetch({ url: `/api/task/add`, method: "POST", data: { task }, authRequired: true  });
     }
 
     public remove(options: { id : number }) {

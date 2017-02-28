@@ -68,4 +68,4 @@ export class SprintItemComponent extends HTMLElement {
     public entity: Sprint;
 }
 
-document.addEventListener("DOMContentLoaded",() => window.customElements.define(`ce-sprint-item`,SprintItemComponent));
+customElements.define(`ce-sprint-item`,SprintItemComponent);

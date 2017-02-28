@@ -18,8 +18,8 @@ export class ProjectService {
         return fetch({ url: `/api/project/getbyid?id=${id}`, authRequired: true });
     }
 
-    public add(entity) {
-        return fetch({ url: `/api/project/add`, method: "POST", data: entity, authRequired: true  });
+    public add(project) {
+        return fetch({ url: `/api/project/add`, method: "POST", data: { project }, authRequired: true  });
     }
 
     public remove(options: { id : number }) {

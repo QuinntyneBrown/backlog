@@ -29,8 +29,8 @@ export class DigitalAssetService {
         return fetch({ url: `/api/digitalasset/getbyid?id=${id}`, authRequired: true });
     }
 
-    public add(entity) {
-        return fetch({ url: `/api/digitalasset/add`, method: "POST", data: entity, authRequired: true  });
+    public add(digitalAsset) {
+        return fetch({ url: `/api/digitalasset/add`, method: "POST", data: { digitalAsset }, authRequired: true  });
     }
 
     public remove(options: { id : number }) {

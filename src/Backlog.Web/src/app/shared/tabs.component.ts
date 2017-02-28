@@ -5,7 +5,6 @@ export const tabsEvents = {
     SELECTED_INDEX_CHANGED: "[Tabs] Selected Index Changed"
 };
 
-
 export class SelectedIndexChanged extends CustomEvent {
     constructor(selectedIndex: number) {
         super(tabsEvents.SELECTED_INDEX_CHANGED, {

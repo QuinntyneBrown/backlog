@@ -79,4 +79,4 @@ export class SprintEditComponent extends HTMLElement {
     private get _nameInputElement(): HTMLInputElement { return this.querySelector(".sprint-name") as HTMLInputElement;}
 }
 
-document.addEventListener("DOMContentLoaded",() => window.customElements.define(`ce-sprint-edit`,SprintEditComponent));
+customElements.define(`ce-sprint-edit`,SprintEditComponent);

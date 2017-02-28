@@ -43,4 +43,4 @@ export class SideNavComponent extends HTMLElement {
     
 }
 
-document.addEventListener("DOMContentLoaded",() => window.customElements.define(`ce-side-nav`,SideNavComponent));
+customElements.define(`ce-side-nav`,SideNavComponent);

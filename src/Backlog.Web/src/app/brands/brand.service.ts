@@ -11,15 +11,15 @@ export class BrandService {
     }
 
     public get() {
-        return fetch({ url: "/api/brand/get" });
+        return fetch({ url: "/api/brand/get", authRequired: true });
     }
 
     public getById(id) {
         return fetch({ url: `/api/brand/getbyid?id=${id}`, authRequired: true });
     }
 
-    public add(entity) {
-        return fetch({ url: `/api/brand/add`, method: "POST", data: entity, authRequired: true  });
+    public add(brand) {
+        return fetch({ url: `/api/brand/add`, method: "POST", data: { brand }, authRequired: true  });
     }
 
     public remove(options: { id : number }) {

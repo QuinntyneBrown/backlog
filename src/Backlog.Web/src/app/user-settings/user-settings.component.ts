@@ -40,4 +40,4 @@ export class UserSettingsComponent extends HTMLElement {
     }
 }
 
-document.addEventListener("DOMContentLoaded",() => window.customElements.define(`ce-user-settings`,UserSettingsComponent));
+customElements.define(`ce-user-settings`,UserSettingsComponent);

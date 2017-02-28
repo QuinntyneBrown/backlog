@@ -28,4 +28,4 @@ export class TemplateListComponent extends HTMLElement {
 	}
 }
 
-document.addEventListener("DOMContentLoaded", () => window.customElements.define("ce-template-list", TemplateListComponent));
+customElements.define("ce-template-list", TemplateListComponent);

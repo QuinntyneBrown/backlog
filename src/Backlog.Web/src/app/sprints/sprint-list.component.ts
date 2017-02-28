@@ -28,4 +28,4 @@ export class SprintListComponent extends HTMLElement {
 	}
 }
 
-document.addEventListener("DOMContentLoaded", () => window.customElements.define("ce-sprint-list", SprintListComponent));
+customElements.define("ce-sprint-list", SprintListComponent);

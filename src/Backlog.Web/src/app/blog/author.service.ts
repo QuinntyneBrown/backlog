@@ -11,15 +11,15 @@ export class AuthorService {
     }
 
     public get() {
-        return fetch({ url: "/api/author/get" });
+        return fetch({ url: "/api/author/get", authRequired: true });
     }
 
     public getById(id) {
         return fetch({ url: `/api/author/getbyid?id=${id}`, authRequired: true });
     }
 
-    public add(entity) {
-        return fetch({ url: `/api/author/add`, method: "POST", data: entity, authRequired: true  });
+    public add(author) {
+        return fetch({ url: `/api/author/add`, method: "POST", data: { author }, authRequired: true  });
     }
 
     public remove(options: { id : number }) {
