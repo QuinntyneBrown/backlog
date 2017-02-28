@@ -11,8 +11,8 @@ namespace Backlog.Features.Blog
     public class GetArticleByIdQuery
     {
         public class GetArticleByIdRequest : IRequest<GetArticleByIdResponse> { 
-			public int Id { get; set; }
-		}
+            public int Id { get; set; }
+        }
 
         public class GetArticleByIdResponse
         {
