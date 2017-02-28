@@ -1,8 +1,9 @@
 import { Product } from "./product.model";
 import { ProductService } from "./product.service";
 import { createElement } from "../utilities";
-let template = require("./product-list.component.html");
-let styles = require("./product-list.component.scss");
+
+const template = require("./product-list.component.html");
+const styles = require("./product-list.component.scss");
 
 export class ProductListComponent extends HTMLElement {
     constructor(private _productService: ProductService = ProductService.Instance) {
@@ -20,4 +21,4 @@ export class ProductListComponent extends HTMLElement {
     }    
 }
 
-document.addEventListener("DOMContentLoaded", () => window.customElements.define("ce-product-list", ProductListComponent));
+customElements.define("ce-product-list", ProductListComponent);

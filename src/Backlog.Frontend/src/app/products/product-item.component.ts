@@ -44,4 +44,4 @@ export class ProductItemComponent extends HTMLElement {
     public get _editLinkElement() { return this.querySelector(".entity-item-edit") as HTMLElement; }
 }
 
-document.addEventListener("DOMContentLoaded",() => window.customElements.define(`ce-product-item`,ProductItemComponent));
+customElements.define(`ce-product-item`,ProductItemComponent);
