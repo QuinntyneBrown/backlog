@@ -35,6 +35,7 @@ namespace Backlog.Features.Epics
                     .SingleOrDefaultAsync(x => x.Id == request.Epic.Id && x.IsDeleted == false);
                 if (entity == null) _dataContext.Epics.Add(entity = new Epic());
                 entity.Name = request.Epic.Name;
+                entity.ProductId = request.Epic.ProductId;
                 await _dataContext.SaveChangesAsync();
 
                 return new AddOrUpdateEpicResponse()

@@ -6,12 +6,15 @@ namespace Backlog.Features.Epics
     {        
         public int Id { get; set; }
         public string Name { get; set; }
+        public int? ProductId { get; set; }
 
         public static TModel FromEpic<TModel>(Epic epic) where
             TModel : EpicApiModel, new()
         {
             var model = new TModel();
             model.Id = epic.Id;
+            model.Name = epic.Name;
+            model.ProductId = epic.ProductId;
             return model;
         }
 

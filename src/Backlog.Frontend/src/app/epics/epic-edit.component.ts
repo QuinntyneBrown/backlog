@@ -39,8 +39,7 @@ export class EpicEditComponent extends HTMLElement {
             promises.push(this._epicService.getById(this.epicId));
 
         const results: Array<any> = await Promise.all(promises);
-
-        let products = JSON.parse(results[0]) as Array<any>;
+        const products = (JSON.parse(results[0]) as { products: Array<any>}).products;
 
         for (let i = 0; i < products.length; i++) {
             let option = document.createElement("option");

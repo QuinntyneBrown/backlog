@@ -17,7 +17,7 @@ namespace Backlog.Features.Blog
         public class GetArticleByIdResponse
         {
             public ArticleApiModel Article { get; set; } 
-		}
+        }
 
         public class GetArticleByIdHandler : IAsyncRequestHandler<GetArticleByIdRequest, GetArticleByIdResponse>
         {
