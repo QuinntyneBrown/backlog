@@ -28,7 +28,8 @@ namespace Backlog.Features.Epics
             public async Task<GetEpicsResponse> Handle(GetEpicsRequest request)
             {
                 var epics = await _dataContext.Epics
-                    .Where(x=>x.IsDeleted == false)
+                    .Include(x=>x.Stories)
+                    .Include(x=>x.Product)
                     .ToListAsync();
 
                 return new GetEpicsResponse()

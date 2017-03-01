@@ -15,6 +15,8 @@ namespace Backlog.Features.Products
         public static TModel FromProduct<TModel>(Product product) where
             TModel : ProductApiModel, new()
         {
+            if (product == null) return null;
+
             var model = new TModel();
             model.Id = product.Id;
             model.Name = product.Name;

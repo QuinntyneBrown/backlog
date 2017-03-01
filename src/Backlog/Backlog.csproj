@@ -180,11 +180,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="Data\Migrations\DbConfiguration.cs" />
     <Compile Include="Data\Models\ILoggable.cs" />
     <Compile Include="Data\Models\Ip.cs" />
     <Compile Include="Data\Models\IPrioritizable.cs" />
     <Compile Include="Data\Models\PrioritizableEntity.cs" />
     <Compile Include="Features\Blog\AuthorController.cs" />
+    <Compile Include="Data\Helpers\SoftDeleteAttribute.cs" />
+    <Compile Include="Data\Helpers\SoftDeleteInterceptor.cs" />
+    <Compile Include="Data\Helpers\SoftDeleteQueryVisitor.cs" />
     <Compile Include="Features\DigitalAssets\AddOrUpdateDigitalAssetCommand.cs" />
     <Compile Include="Features\DigitalAssets\Constants.cs" />
     <Compile Include="Features\DigitalAssets\DigitalAssetApiModel.cs" />
@@ -368,9 +372,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Features\UserSettings\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

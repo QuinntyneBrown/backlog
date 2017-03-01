@@ -3,7 +3,7 @@ using Backlog.Data.Models;
 namespace Backlog.Features.Brands
 {
     public class BrandApiModel
-    {        
+    {
         public int Id { get; set; }
         public string Name { get; set; }
 
@@ -17,6 +17,5 @@ namespace Backlog.Features.Brands
 
         public static BrandApiModel FromBrand(Brand brand)
             => FromBrand<BrandApiModel>(brand);
-
     }
 }

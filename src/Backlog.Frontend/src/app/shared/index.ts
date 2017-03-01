@@ -1,5 +1,6 @@
 export * from "./backdrop";
 export * from "./button.component";
+export * from "./checkbox-field.component";
 export * from "./drop-down-item.component";
 export * from "./drop-down.component";
 export * from "./drop-zone.component";
@@ -10,5 +11,7 @@ export * from "./modal";
 export * from "./option.component";
 export * from "./popover";
 export * from "./select.component";
+export * from "./seo.service";
 export * from "./side-nav.component";
 export * from "./tabs.component";
+export * from "./title.service";

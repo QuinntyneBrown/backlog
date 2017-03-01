@@ -49,7 +49,7 @@ export class FeatureEditComponent extends HTMLElement {
 	}
 
     public async onSave() {
-        var feature = {
+        const feature = {
             id: this.featureId,
             name: this._nameInputElement.value
         } as Feature;

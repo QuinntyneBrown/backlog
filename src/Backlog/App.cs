@@ -10,7 +10,6 @@ using Newtonsoft.Json.Serialization;
 using Owin;
 using Swashbuckle.Application;
 using System;
-using System.Configuration;
 using System.Reflection;
 using System.Web.Http;
 
@@ -60,27 +59,6 @@ namespace Backlog
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
                 );
-        }
-    }
-
-    public interface IAppConfiguration
-    {
-        string BaseUri { get; set; }
-    }
-
-    public class AppConfiguration : ConfigurationSection, IAppConfiguration
-    {
-
-        [ConfigurationProperty("baseUri")]
-        public string BaseUri
-        {
-            get { return (string)this["baseUri"]; }
-            set { this["baseUri"] = value; }
-        }
-
-        public static IAppConfiguration Config
-        {
-            get { return ConfigurationManager.GetSection("appConfiguration") as IAppConfiguration; }
         }
     }
 

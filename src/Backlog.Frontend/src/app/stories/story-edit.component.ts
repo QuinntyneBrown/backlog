@@ -99,7 +99,7 @@ export class StoryEditComponent extends HTMLElement {
     }
 
     public onImageDrop(e) {
-        var xhr = new XMLHttpRequest();
+        const xhr = new XMLHttpRequest();
         xhr.open("POST", `/api/digitalasset/upload?id=${this.storyId}`, true);
         xhr.onload = (e) => {
             if (xhr.readyState === 4) {
@@ -129,8 +129,6 @@ export class StoryEditComponent extends HTMLElement {
 
             this._taskEditComponent.setAttribute("task", JSON.stringify(new Task()));
             this._taskListComponent.setAttribute("tasks", JSON.stringify(this.tasks));
-        } else {
-            
         }
     }
 
@@ -163,7 +161,7 @@ export class StoryEditComponent extends HTMLElement {
     }
 
     public async onSave() {
-        var story = {
+        const story = {
             id: this.storyId,
             epicId: this.epicId,
             name: this.nameInputElement.value,

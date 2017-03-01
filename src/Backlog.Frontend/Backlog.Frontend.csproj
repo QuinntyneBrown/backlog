@@ -627,7 +627,9 @@
     <TypeScriptCompile Include="src\app\shared\index.ts" />
     <TypeScriptCompile Include="src\app\shared\modal.ts" />
     <TypeScriptCompile Include="src\app\shared\popover.ts" />
+    <TypeScriptCompile Include="src\app\shared\seo.service.ts" />
     <TypeScriptCompile Include="src\app\shared\side-nav.component.ts" />
+    <TypeScriptCompile Include="src\app\shared\title.service.ts" />
     <TypeScriptCompile Include="src\app\utilities\load-style.ts" />
     <TypeScriptCompile Include="src\app\utilities\store.specs.ts" />
     <TypeScriptCompile Include="src\app\utilities\store.ts" />
@@ -671,6 +673,7 @@
     <TypeScriptCompile Include="src\app\utilities\translate-x.ts" />
     <TypeScriptCompile Include="src\app\utilities\translate-xy.ts" />
     <TypeScriptCompile Include="src\app\utilities\wait.ts" />
+    <TypeScriptCompile Include="src\container.ts" />
     <TypeScriptCompile Include="src\custom-typings.d.ts" />
     <TypeScriptCompile Include="src\main.ts" />
     <TypeScriptCompile Include="src\polyfills.ts" />
@@ -778,6 +781,7 @@
     <TypeScriptCompile Include="src\app\feedback\feedback-item.component.ts" />
     <TypeScriptCompile Include="src\app\blog\tag.model.ts" />
     <TypeScriptCompile Include="src\app\blog\tag.service.ts" />
+    <TypeScriptCompile Include="src\service-collection.ts" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Backlog\Backlog.csproj">

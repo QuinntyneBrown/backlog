@@ -37,7 +37,5 @@ namespace Backlog.Features.Brands
             private readonly IDataContext _dataContext;
             private readonly ICache _cache;
         }
-
     }
-
 }

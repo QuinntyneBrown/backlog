@@ -122,4 +122,3 @@ export class Router {
     private _callbacks: Array<any> = [];
     private static _instance;
 }
-

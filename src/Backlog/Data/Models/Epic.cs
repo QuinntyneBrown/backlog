@@ -1,10 +1,10 @@
-using System;
+using Backlog.Data.Helpers;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
 
 namespace Backlog.Data.Models
 {
+    [SoftDelete("IsDeleted")]
     public class Epic: PrioritizableEntity
     {
         public override int Id { get; set; }        
@@ -19,7 +19,7 @@ namespace Backlog.Data.Models
         public Product Project { get; set; }
         public ICollection<Story> Stories { get; set; } = new HashSet<Story>();
         public ICollection<EpicTheme> EpicThemes { get; set; } = new HashSet<EpicTheme>();
-        public bool IsTemplate { get; set; }
+        public bool IsTemplate { get; set; }        
         public bool IsDeleted { get; set; }        
     }
 }

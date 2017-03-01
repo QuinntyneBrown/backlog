@@ -35,7 +35,16 @@ namespace Backlog.Features.Epics
                     .SingleOrDefaultAsync(x => x.Id == request.Epic.Id && x.IsDeleted == false);
                 if (entity == null) _dataContext.Epics.Add(entity = new Epic());
                 entity.Name = request.Epic.Name;
+                entity.Description = request.Epic.Description;
+                entity.IsTemplate = request.Epic.IsTemplate;
                 entity.ProductId = request.Epic.ProductId;
+                entity.Product = await _dataContext.Products.Where(x=>x.Id == request.Epic.ProductId.Value)
+                    .SingleOrDefaultAsync();
+                entity.Slug = request.Epic.Name.GenerateSlug();
+
+                if (request.Epic.Priority.HasValue)
+                    entity.Priority = request.Epic.Priority.Value;
+                
                 await _dataContext.SaveChangesAsync();
 
                 return new AddOrUpdateEpicResponse()

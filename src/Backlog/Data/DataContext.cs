@@ -1,6 +1,8 @@
+using Backlog.Data.Helpers;
 using Backlog.Data.Models;
 using System;
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -95,6 +97,12 @@ namespace Backlog.Data
                         m.MapRightKey("Role_Id");
                         m.ToTable("UserRoles");
                     });
+
+            var conv = new AttributeToTableAnnotationConvention<SoftDeleteAttribute, string>(
+                "SoftDeleteColumnName",
+                (type, attributes) => attributes.Single().ColumnName);
+
+            modelBuilder.Conventions.Add(conv);
         } 
     }
 }

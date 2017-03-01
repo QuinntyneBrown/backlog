@@ -1,1 +1,2 @@
-﻿import "./app";
+﻿import "reflect-metadata";
+import "./app";

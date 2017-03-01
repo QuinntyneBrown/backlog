@@ -37,11 +37,8 @@ namespace Backlog.Features.Epics
                 await _dataContext.SaveChangesAsync();
                 return new DecrementEpicPriorityResponse();
             }
-
             private readonly IDataContext _dataContext;
             private readonly ICache _cache;
         }
-
     }
-
 }

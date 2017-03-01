@@ -20,8 +20,10 @@ namespace Backlog.UnitTests.Features.Epics
         public async System.Threading.Tasks.Task HandleGetEpicsQuery()
         {
             var epics = new List<Epic> {
-                new Epic() { },
-                new Epic() { IsDeleted = true }
+                new Epic() {
+                    Product = new Product(),
+                    Stories = new List<Story>()
+                }
             }.AsQueryable();
 
             var mockSet = new Mock<DbSet<Epic>>();

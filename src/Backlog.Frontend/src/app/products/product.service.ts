@@ -25,5 +25,4 @@ export class ProductService {
     public remove(options: { id : number }) {
         return fetch({ url: `/api/product/remove?id=${options.id}`, method: "DELETE", authRequired: true  });
     }
-    
 }
