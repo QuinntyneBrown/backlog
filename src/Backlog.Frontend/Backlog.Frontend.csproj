@@ -595,6 +595,8 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <TypeScriptCompile Include="container.ts" />
+    <TypeScriptCompile Include="service-collection.ts" />
     <TypeScriptCompile Include="src\app\app-router-outlet.component.ts" />
     <TypeScriptCompile Include="src\app\app.component.ts" />
     <TypeScriptCompile Include="src\app\digital-assets\digital-asset.model.ts" />

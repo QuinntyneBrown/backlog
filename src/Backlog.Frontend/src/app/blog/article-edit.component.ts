@@ -25,14 +25,14 @@ export class ArticleEditComponent extends HTMLElement {
     }
 
     private async _bind() {
-        this.titleElement.textContent = "Create Spec";
+        this.titleElement.textContent = "Create Article";
         this.htmlContentEditor = new EditorComponent(this.htmlContentElement);
         if (this.articleId) {
             const results = await this._articleService.getById(this.articleId) as string;
             const resultsJSON: Article = JSON.parse(results) as Article;
             this.articleTitleInputElement.value = resultsJSON.title;
             this.htmlContentEditor.setHTML(resultsJSON.htmlContent); 
-            this.titleElement.textContent = "Edit Spec";
+            this.titleElement.textContent = "Edit Article";
         } else {
             this.deleteButtonElement.style.display = "none";
         } 

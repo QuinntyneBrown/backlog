@@ -28,6 +28,6 @@ module.exports = {
         ]
     },
     plugins: [
-      new BabiliPlugin({ comments: false, sourceMap: false })
+      //new BabiliPlugin({ comments: false, sourceMap: false })
     ]
 };

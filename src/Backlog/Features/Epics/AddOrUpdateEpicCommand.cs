@@ -28,7 +28,7 @@ namespace Backlog.Features.Epics
             public async Task<AddOrUpdateEpicResponse> Handle(AddOrUpdateEpicRequest request)
             {
                 var entity = await _dataContext.Epics
-                    .SingleOrDefaultAsync(x => x.Id == request.Epic.Id && x.IsDeleted == false);
+                    .SingleOrDefaultAsync(x => x.Id == request.Epic.Id);
                 if (entity == null) _dataContext.Epics.Add(entity = new Epic());
                 entity.Name = request.Epic.Name;
                 entity.Description = request.Epic.Description;
