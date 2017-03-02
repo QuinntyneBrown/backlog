@@ -1,7 +1,9 @@
 using System;
+using Backlog.Data.Helpers;
 
 namespace Backlog.Data.Models
 {
+    [SoftDelete("IsDeleted")]
     public class DigitalAsset: ILoggable
     {
         public int Id { get; set; }

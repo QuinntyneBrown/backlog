@@ -76,13 +76,25 @@ namespace Backlog.Data
 
         public override int SaveChanges()
         {
+            UpdateLoggableEntries();
+            return base.SaveChanges();
+        }
+        
+        public override Task<int> SaveChangesAsync()
+        {
+            UpdateLoggableEntries();
+            return base.SaveChangesAsync();
+        }
+
+        public void UpdateLoggableEntries()
+        {
             foreach (var entity in ChangeTracker.Entries()
                 .Where(e => e.Entity is ILoggable && ((e.State == EntityState.Added || (e.State == EntityState.Modified))))
-                .Select(x=>x.Entity as ILoggable)) {
+                .Select(x => x.Entity as ILoggable))
+            {
                 entity.CreatedOn = entity.CreatedOn == default(DateTime) ? DateTime.UtcNow : entity.CreatedOn;
                 entity.LastModifiedOn = DateTime.UtcNow;
             }
-            return base.SaveChanges();
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

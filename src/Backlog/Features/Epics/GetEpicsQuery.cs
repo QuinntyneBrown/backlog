@@ -1,6 +1,6 @@
-using MediatR;
 using Backlog.Data;
 using Backlog.Features.Core;
+using MediatR;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
@@ -41,7 +41,5 @@ namespace Backlog.Features.Epics
             private readonly IDataContext _dataContext;
             private readonly ICache _cache;
         }
-
     }
-
 }

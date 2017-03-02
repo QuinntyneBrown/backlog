@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using Backlog.Data.Helpers;
 
 namespace Backlog.Data.Models
 {
+    [SoftDelete("IsDeleted")]
     public class Story: PrioritizableEntity
     {
         public override int Id { get; set; }

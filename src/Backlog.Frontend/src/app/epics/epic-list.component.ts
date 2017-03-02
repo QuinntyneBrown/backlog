@@ -19,16 +19,19 @@ export class EpicListComponent extends HTMLElement {
     }
 
     connectedCallback() {
-        this.innerHTML = `<style>${styles}</style> ${template}`;
+        this.innerHTML = `<style>${styles}</style> ${template}`;        
         this._bind();
         this._addEventListeners();
     } 
 
+    static get observedAttributes() {
+        return ["product-id"];
+    }
+
     private async _bind() {
         const resultsArray: Array<any> = await Promise.all([this._productService.get(), this._epicService.get()]);
         const products = (JSON.parse(resultsArray[0]) as { products: Array<any> }).products;
-
-
+        
         this._epics = (JSON.parse(resultsArray[1]) as { epics: Array<Epic> }).epics;
         
         for (let i = 0; i < products.length; i++) {
@@ -67,7 +70,6 @@ export class EpicListComponent extends HTMLElement {
     }
     
     private _epics: Array<Epic> = [];
-
     private _pageSize: number;
     private _pageNumber: number;
     private _pagedList: IPagedList<Epic>;
@@ -92,6 +94,19 @@ export class EpicListComponent extends HTMLElement {
             this._pageNumber = this._pageNumber - 1;
         }
         this._bind();
+    }
+
+    attributeChangedCallback(name, oldValue, newValue) {
+        switch (name) {
+            case "product-id":
+                this.productId = JSON.parse(newValue);
+
+                if (this.parentNode) {
+                    //TODO: Refresh the list insted of re-connecting
+                    this.connectedCallback();
+                }
+                break;
+        }
     }
 
     public productId: any;

@@ -1,5 +1,4 @@
 using System.Web.Http.Filters;
-using Backlog.Features.Core;
 
 namespace Backlog.Features.Core
 {

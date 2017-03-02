@@ -1,7 +1,9 @@
 using System;
+using Backlog.Data.Helpers;
 
 namespace Backlog.Data.Models
 {
+    [SoftDelete("IsDeleted")]
     public class Feedback
     {
         public int Id { get; set; }

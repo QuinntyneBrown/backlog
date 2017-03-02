@@ -184,7 +184,6 @@ export class StoryEditComponent extends HTMLElement {
 
     attributeChangedCallback(name, oldValue, newValue) {
         switch (name) {
-
             case "story-id":
                 this.storyId = newValue;
                 break;
@@ -199,7 +198,7 @@ export class StoryEditComponent extends HTMLElement {
         }        
     }
 
-    public storyId: number;
+    public storyId: number = 0;
     public epicId: number;
     public customTabIndex: any;
     public tasks: Array<Task> = [];

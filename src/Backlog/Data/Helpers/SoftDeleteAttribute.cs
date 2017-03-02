@@ -20,7 +20,6 @@ namespace Backlog.Data.Helpers
                 .SingleOrDefault();
 
             return annotation == null ? null : (string)annotation.Value;
-
         }
     }
 }

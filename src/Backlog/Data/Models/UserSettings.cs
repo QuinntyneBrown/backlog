@@ -1,9 +1,12 @@
 using System.ComponentModel.DataAnnotations.Schema;
+using Backlog.Data.Helpers;
 
 namespace Backlog.Data.Models
 {
+    [SoftDelete("IsDeleted")]
     public class UserSettings
     {
+        [SoftDelete("IsDeleted")]
         public int Id { get; set; }
         [ForeignKey("User")]
         public int? UserId { get; set; }

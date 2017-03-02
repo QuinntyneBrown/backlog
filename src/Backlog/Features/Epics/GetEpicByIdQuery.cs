@@ -31,7 +31,10 @@ namespace Backlog.Features.Epics
             {                
                 return new GetEpicByIdResponse()
                 {
-                    Epic = EpicApiModel.FromEpic(await _dataContext.Epics.FindAsync(request.Id))
+                    Epic = EpicApiModel.FromEpic(await _dataContext.Epics
+                    .Include(x => x.Stories)
+                    .Include(x => x.Product)
+                    .SingleAsync(x => x.Id == request.Id))
                 };
             }
 

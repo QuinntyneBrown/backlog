@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Backlog.Data.Helpers;
 
 namespace Backlog.Data.Models
 {

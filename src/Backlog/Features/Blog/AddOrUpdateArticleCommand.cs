@@ -35,7 +35,11 @@ namespace Backlog.Features.Blog
                 entity.Title = request.Article.Title;
                 entity.HtmlContent = request.Article.HtmlContent;
                 entity.Slug = request.Article.Title.GenerateSlug();
-                await _dataContext.SaveChangesAsync();
+                await _dataContext.SaveChangesAsync().ContinueWith(x =>
+                {
+
+                    var a = x;
+                });
                 return new AddOrUpdateArticleResponse();
             }
 

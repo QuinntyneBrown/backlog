@@ -1,5 +1,3 @@
-using Backlog.Data.Models;
-
 namespace Backlog.Features.Feedback
 {
     public class FeedbackApiModel
@@ -17,6 +15,5 @@ namespace Backlog.Features.Feedback
 
         public static FeedbackApiModel FromFeedback(Data.Models.Feedback feedback)
             => FromFeedback<FeedbackApiModel>(feedback);
-
     }
 }

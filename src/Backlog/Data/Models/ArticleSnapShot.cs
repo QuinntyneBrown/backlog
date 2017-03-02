@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using Backlog.Data.Helpers;
 
 namespace Backlog.Data.Models
 {
+    [SoftDelete("IsDeleted")]
     public class ArticleSnapShot
     {
         public int Id { get; set; }

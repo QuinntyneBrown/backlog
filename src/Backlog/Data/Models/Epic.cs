@@ -1,6 +1,7 @@
 using Backlog.Data.Helpers;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using Backlog.Data.Helpers;
 
 namespace Backlog.Data.Models
 {

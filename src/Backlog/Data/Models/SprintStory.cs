@@ -1,7 +1,9 @@
 using System.ComponentModel.DataAnnotations.Schema;
+using Backlog.Data.Helpers;
 
 namespace Backlog.Data.Models
 {
+    [SoftDelete("IsDeleted")]
     public class SprintStory
     {
         public int Id { get; set; }

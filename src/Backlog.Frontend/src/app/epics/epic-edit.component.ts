@@ -49,7 +49,7 @@ export class EpicEditComponent extends HTMLElement {
         }
 
         if (this.epicId) {            
-            this.entity = JSON.parse(results[1]) as Epic;
+            this.entity = (JSON.parse(results[1]) as { epic: Epic}).epic;
             this.nameInputElement.value = this.entity.name;
             this.priorityElement.value = this.entity.priority;
             this.selectElement.value = this.entity.productId;            

@@ -22,20 +22,22 @@ export class EpicViewComponent extends HTMLElement {
         this._addEventListeners();
     }
 
-    private _bind() {
-        this._epicService.getById(this.epicId).then((results:string) => {
-            this.entity = JSON.parse(results);
-            
-            this.titleElement.textContent = `Epic: ${this.entity.name}`;
-            var documentFragment = document.createDocumentFragment();
-            for (let i = 0; i < this.entity.stories.length; i++) {
-                var storyElement = document.createElement("ce-story");
-                storyElement.setAttribute("entity", JSON.stringify(this.entity.stories[i]));                
-                documentFragment.appendChild(storyElement);
-            }
-            this.appendChild(documentFragment);
-        });
-        
+    private async _bind() {
+        const results = await this._epicService.getById(this.epicId) as string;
+
+        this.entity = JSON.parse(results).epic;
+
+        this.titleElement.textContent = `Epic: ${this.entity.name}`;
+
+        var documentFragment = document.createDocumentFragment();
+
+        for (let i = 0; i < this.entity.stories.length; i++) {
+            var storyElement = document.createElement("ce-story");
+            storyElement.setAttribute("entity", JSON.stringify(this.entity.stories[i]));
+            documentFragment.appendChild(storyElement);
+        }
+
+        this.appendChild(documentFragment);        
     }
 
 

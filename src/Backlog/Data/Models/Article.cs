@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
+using Backlog.Data.Helpers;
 
 namespace Backlog.Data.Models
 {
-    public class Article
+    [SoftDelete("IsDeleted")]
+    public class Article: ILoggable
     {
         public int Id { get; set; }
         public string Title { get; set; }
@@ -19,5 +21,10 @@ namespace Backlog.Data.Models
 
         public ICollection<StoryArticle> StoryArticles { get; set; } = new HashSet<StoryArticle>();
         public ICollection<ArticleSnapShot> ArticleSnapShots { get; set; } = new HashSet<ArticleSnapShot>();
+
+        public DateTime CreatedOn { get; set; }
+        public DateTime LastModifiedOn { get; set; }
+        public string CreatedBy { get; set; }
+        public string LastModifiedBy { get; set; }
     }
 }
