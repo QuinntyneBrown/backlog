@@ -4,7 +4,7 @@ import { Http } from "./http";
 
 export var fetch = (options: { url: string, method?: string, data?: any, headers?: any, authRequired?: boolean, isObjectData?: boolean }) => {
     return new Promise(resolve => {
-        var xhr = new Http();
+        var xhr = new XMLHttpRequest();
         xhr.open(options.method || "GET", options.url, true);
 
         options.headers = options.headers || { "Content-Type": "application/json;charset=UTF-8" };

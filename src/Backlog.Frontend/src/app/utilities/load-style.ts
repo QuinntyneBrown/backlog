@@ -10,10 +10,12 @@
         addStyleTagToHead();
     }
     else {
-        function onDocumentLoad() {
-            addStyleTagToHead();
-            window.removeEventListener("DOMContentLoaded", onDocumentLoad);
-        }
+
         window.addEventListener("DOMContentLoaded", onDocumentLoad);
+    }
+
+    function onDocumentLoad() {
+        addStyleTagToHead();
+        window.removeEventListener("DOMContentLoaded", onDocumentLoad);
     }
 }

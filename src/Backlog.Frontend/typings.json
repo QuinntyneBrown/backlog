@@ -2,6 +2,7 @@
   "globalDependencies": {
     "moment": "registry:dt/moment#2.11.1+20161010105546",
     "reflect-metadata": "registry:dt/reflect-metadata#0.0.0+20160630155503",
-    "require": "registry:dt/require#2.1.20+20160316155526"
+    "core-js": "registry:dt/core-js#0.9.7+20161130133742",
+    "node": "registry:dt/node#7.0.0+20170124134802"
   }
 }

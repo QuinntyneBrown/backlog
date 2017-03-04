@@ -31,7 +31,7 @@ export class EpicListComponent extends HTMLElement {
 
     private async _bind() {
         const resultsArray: Array<any> = await Promise.all([this._productService.get(), this._epicService.get()]);
-        const products = (JSON.parse(resultsArray[0]) as { products: Array<any> }).products;
+        const products = resultsArray[0];
         
         this._epics = (JSON.parse(resultsArray[1]) as { epics: Array<Epic> }).epics;
         

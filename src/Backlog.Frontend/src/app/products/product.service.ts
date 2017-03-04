@@ -11,7 +11,8 @@ export class ProductService {
     }
 
     public get() {
-        return fetch({ url: "/api/product/get", authRequired: true });
+        return fetch({ url: "/api/product/get", authRequired: true })
+            .then((results: string) => (JSON.parse(results) as { products: Array<any> }).products);
     }
 
     public getById(id) {

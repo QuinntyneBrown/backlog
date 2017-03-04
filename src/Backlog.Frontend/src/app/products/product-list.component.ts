@@ -12,10 +12,9 @@ export class ProductListComponent extends HTMLElement {
 
     async connectedCallback() {        
         this.innerHTML = `<style>${styles}</style> ${template}`;
-        const results = await this._productService.get() as string;
-        var resultsJSON: Array<Product> = (JSON.parse(results) as { products: Array<Product>}).products;
-        for (var i = 0; i < resultsJSON.length; i++) {
-            this.appendChild(createElement(`<ce-product-item entity='${JSON.stringify(resultsJSON[i])}'></ce-product-item>`));
+        const products = await this._productService.get() as Array<Product>;        
+        for (var i = 0; i < products.length; i++) {
+            this.appendChild(createElement(`<ce-product-item entity='${JSON.stringify(products[i])}'></ce-product-item>`));
         }        
     }    
 }
