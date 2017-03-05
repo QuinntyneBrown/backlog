@@ -1,3 +1,4 @@
+using Backlog.Security;
 using MediatR;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -9,9 +10,10 @@ namespace Backlog.Features.Tasks
     [RoutePrefix("api/task")]
     public class TaskController : ApiController
     {
-        public TaskController(IMediator mediator)
+        public TaskController(IMediator mediator, IUserManager userManager)
         {
             _mediator = mediator;
+            _userManager = userManager;
         }
 
         [Route("add")]
@@ -58,6 +60,6 @@ namespace Backlog.Features.Tasks
             => Ok(await _mediator.Send(request));
 
         protected readonly IMediator _mediator;
-
+        protected readonly IUserManager _userManager;
     }
 }

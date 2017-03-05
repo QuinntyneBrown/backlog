@@ -1,3 +1,4 @@
+using Backlog.Security;
 using MediatR;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -46,5 +47,6 @@ namespace Backlog.Features.Feedback
             => Ok(await _mediator.Send(request));
 
         protected readonly IMediator _mediator;
+        protected readonly IUserManager _userManager;
     }
 }

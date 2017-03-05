@@ -1,3 +1,4 @@
+using Backlog.Security;
 using MediatR;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -8,10 +9,11 @@ namespace Backlog.Features.Epics
     [Authorize]
     [RoutePrefix("api/epic")]
     public class EpicController : ApiController
-    {
-        public EpicController(IMediator mediator)
+    {        
+        public EpicController(IMediator mediator, IUserManager userManager)
         {
             _mediator = mediator;
+            _userManager = userManager;
         }
 
         [Route("add")]
@@ -58,6 +60,6 @@ namespace Backlog.Features.Epics
             => Ok(await _mediator.Send(request));
 
         protected readonly IMediator _mediator;
-
+        protected readonly IUserManager _userManager;
     }
 }

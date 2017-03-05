@@ -1,4 +1,5 @@
 using Backlog.Features.Epics;
+using Backlog.Security;
 using MediatR;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -11,9 +12,10 @@ namespace Backlog.Features.Products
     [RoutePrefix("api/product")]
     public class ProductController : ApiController
     {
-        public ProductController(IMediator mediator)
+        public ProductController(IMediator mediator, UserManager userManager)
         {
             _mediator = mediator;
+            _userManager = userManager;
         }
 
         [Route("add")]
@@ -48,6 +50,7 @@ namespace Backlog.Features.Products
             => Ok(await _mediator.Send(request));
 
         protected readonly IMediator _mediator;
+        protected readonly UserManager _userManager;
 
     }
 }

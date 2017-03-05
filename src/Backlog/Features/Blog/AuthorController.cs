@@ -1,3 +1,4 @@
+using Backlog.Security;
 using MediatR;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -9,9 +10,12 @@ namespace Backlog.Features.Blog
     [RoutePrefix("api/author")]
     public class AuthorController : ApiController
     {
-        public AuthorController(IMediator mediator)
+        protected readonly IUserManager _userManager;
+
+        public AuthorController(IMediator mediator, IUserManager userManager)
         {
             _mediator = mediator;
+            _userManager = userManager;
         }
 
         [Route("add")]

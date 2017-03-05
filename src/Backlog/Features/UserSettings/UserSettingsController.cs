@@ -1,3 +1,4 @@
+using Backlog.Security;
 using MediatR;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -9,9 +10,10 @@ namespace Backlog.Features.UserSettings
     [RoutePrefix("api/userSettings")]
     public class UserSettingsController : ApiController
     {
-        public UserSettingsController(IMediator mediator)
+        public UserSettingsController(IMediator mediator, IUserManager userManager)
         {
             _mediator = mediator;
+            _userManager = userManager;
         }
 
         [Route("add")]
@@ -46,6 +48,6 @@ namespace Backlog.Features.UserSettings
             => Ok(await _mediator.Send(request));
 
         protected readonly IMediator _mediator;
-
+        protected readonly IUserManager _userManager;
     }
 }

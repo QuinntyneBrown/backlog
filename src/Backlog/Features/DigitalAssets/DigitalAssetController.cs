@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Backlog.Features.DigitalAssets.UploadHandlers;
+using Backlog.Security;
 
 namespace Backlog.Features.DigitalAssets
 {
@@ -12,9 +13,12 @@ namespace Backlog.Features.DigitalAssets
     [RoutePrefix("api/digitalAsset")]
     public class DigitalAssetController : ApiController
     {
-        public DigitalAssetController(IMediator mediator)
+        protected readonly IUserManager _userManager;
+
+        public DigitalAssetController(IMediator mediator, IUserManager userManager)
         {
             _mediator = mediator;
+            _userManager = userManager;
         }
 
         [Route("add")]

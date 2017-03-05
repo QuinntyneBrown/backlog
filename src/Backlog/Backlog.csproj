@@ -224,6 +224,7 @@
     <Compile Include="Features\Core\ICache.cs" />
     <Compile Include="Features\Core\ICacheProvider.cs" />
     <Compile Include="Features\Core\MemoryCache.cs" />
+    <Compile Include="Security\UserManager.cs" />
     <Compile Include="UnityConfiguration.cs" />
     <Compile Include="Features\Core\ILogger.cs" />
     <Compile Include="Features\Core\ILoggerFactory.cs" />
