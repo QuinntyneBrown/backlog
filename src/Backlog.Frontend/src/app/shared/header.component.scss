@@ -16,18 +16,21 @@ ce-header {
         max-width:1240px;
         margin:0 auto;
         padding: 0px 20px;
+        height:100%;
     }
 
 	display:block;
+
     h1 {
         cursor:pointer;
         display:inline-block;
         margin-right:20px;
         letter-spacing:1px;
         font-size:2em;
-        line-height:3em;
+        margin-top:0;
+        margin-bottom:0;
+        line-height:100px;
         font-weight:800;
-        vertical-align:middle;
     }
 
     
