@@ -68,4 +68,4 @@ export class AuthorItemComponent extends HTMLElement {
     public entity: Author;
 }
 
-document.addEventListener("DOMContentLoaded",() => window.customElements.define(`ce-author-item`,AuthorItemComponent));
+customElements.define(`ce-author-item`,AuthorItemComponent);

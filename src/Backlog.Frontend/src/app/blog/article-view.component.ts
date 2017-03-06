@@ -41,4 +41,4 @@ export class ArticleViewComponent extends HTMLElement {
     }
 }
 
-document.addEventListener("DOMContentLoaded",() => window.customElements.define(`ce-article-view`,ArticleViewComponent));
+customElements.define(`ce-article-view`, ArticleViewComponent);
