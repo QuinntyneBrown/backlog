@@ -8,6 +8,7 @@ namespace Backlog.Data.Models
     public class Article: ILoggable
     {
         public int Id { get; set; }
+        public int? TenantId { get; set; }
         public string Title { get; set; }
         public string Author { get; }
         public string Slug { get; set; } 

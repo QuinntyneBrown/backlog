@@ -1,3 +1,4 @@
+using Backlog.Security;
 using MediatR;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -9,9 +10,10 @@ namespace Backlog.Features.AgileTeams
     [RoutePrefix("api/agileTeam")]
     public class AgileTeamController : ApiController
     {
-        public AgileTeamController(IMediator mediator)
+        public AgileTeamController(IMediator mediator, IUserManager userManager)
         {
             _mediator = mediator;
+            _userManager = userManager;
         }
 
         [Route("add")]
@@ -46,6 +48,6 @@ namespace Backlog.Features.AgileTeams
             => Ok(await _mediator.Send(request));
 
         protected readonly IMediator _mediator;
-
+        protected readonly IUserManager _userManager;
     }
 }

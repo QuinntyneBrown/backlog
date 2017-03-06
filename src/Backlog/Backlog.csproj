@@ -180,7 +180,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
-    <Compile Include="Data\Migrations\DbConfiguration.cs" />
     <Compile Include="Data\Models\ILoggable.cs" />
     <Compile Include="Data\Models\Ip.cs" />
     <Compile Include="Data\Models\IPrioritizable.cs" />

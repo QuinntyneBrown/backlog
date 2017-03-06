@@ -1,12 +1,10 @@
 namespace Backlog.Migrations
 {
     using Data;
-    using System;
-    using System.Data.Entity;
+    using Data.Helpers;
     using System.Data.Entity.Migrations;
-    using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Backlog.Data.DataContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<DataContext>
     {
         public Configuration()
         {
@@ -17,6 +15,14 @@ namespace Backlog.Migrations
         {
             RoleConfiguration.Seed(context);
             UserConfiguration.Seed(context);
+        }
+    }
+
+    public class DbConfiguration : System.Data.Entity.DbConfiguration
+    {
+        public DbConfiguration()
+        {
+            AddInterceptor(new SoftDeleteInterceptor());
         }
     }
 }

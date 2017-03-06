@@ -5,6 +5,7 @@ using Microsoft.Practices.Unity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using static Microsoft.Practices.Unity.AllClasses;
 
 namespace Backlog
 {
@@ -24,12 +25,10 @@ namespace Backlog
 
         public static IUnityContainer AddMediator<T>(this IUnityContainer container)
         {
-            var classes = AllClasses.FromAssemblies(typeof(T).Assembly)
+            var classes = FromAssemblies(typeof(T).Assembly)
                 .Where(x => x.Name.Contains("Controller") == false
                 && x.Name.Contains("Attribute") == false
-                && x.FullName.Contains("Data.Models") == false
-                && x.FullName.Contains("Hubs") == false
-                && x.FullName.Contains("Exceptions") == false)
+                && x.FullName.Contains("Data.Models") == false)                
                 .ToList();
 
             return container.RegisterClassesTypesAndInstances(classes);
@@ -37,15 +36,13 @@ namespace Backlog
 
         public static IUnityContainer AddMediator<T1, T2>(this IUnityContainer container)
         {
-            var classes = AllClasses.FromAssemblies(typeof(T1).Assembly)
+            var classes = FromAssemblies(typeof(T1).Assembly)
                 .Where(x => x.Name.Contains("Controller") == false
                 && x.Name.Contains("Attribute") == false
-                && x.FullName.Contains("Data.Models") == false 
-                && x.FullName.Contains("Hubs") == false
-                && x.FullName.Contains("Exceptions") == false)
+                && x.FullName.Contains("Data.Models") == false)
                 .ToList();
 
-            classes.AddRange(AllClasses.FromAssemblies(typeof(T2).Assembly)
+            classes.AddRange(FromAssemblies(typeof(T2).Assembly)
                 .Where(x => x.Name.Contains("Controller") == false && x.FullName.Contains("Data.Models") == false)
                 .ToList());
 
