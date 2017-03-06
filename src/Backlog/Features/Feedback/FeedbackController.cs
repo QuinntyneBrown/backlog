@@ -10,9 +10,10 @@ namespace Backlog.Features.Feedback
     [RoutePrefix("api/feedback")]
     public class FeedbackController : ApiController
     {
-        public FeedbackController(IMediator mediator)
+        public FeedbackController(IMediator mediator, IUserManager userManager)
         {
             _mediator = mediator;
+            _userManager = userManager;
         }
 
         [Route("add")]
