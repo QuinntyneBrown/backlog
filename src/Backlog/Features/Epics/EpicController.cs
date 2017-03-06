@@ -27,13 +27,18 @@ namespace Backlog.Features.Epics
         [ResponseType(typeof(AddOrUpdateEpicCommand.AddOrUpdateEpicResponse))]
         public async Task<IHttpActionResult> Update(AddOrUpdateEpicCommand.AddOrUpdateEpicRequest request)
             => Ok(await _mediator.Send(request));
-        
+
         [Route("get")]
-        [AllowAnonymous]
         [HttpGet]
         [ResponseType(typeof(GetEpicsQuery.GetEpicsResponse))]
         public async Task<IHttpActionResult> Get()
-            => Ok(await _mediator.Send(new GetEpicsQuery.GetEpicsRequest()));
+        {
+            var tenantId = (await _userManager.GetUserAsync(User)).TenantId;
+            return Ok(await _mediator.Send(new GetEpicsQuery.GetEpicsRequest() {
+                TenantId = tenantId
+            }));
+        }
+
 
         [Route("getById")]
         [HttpGet]

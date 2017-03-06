@@ -35,7 +35,7 @@ namespace Backlog.Data
         DbSet<Feature> Features { get; set; }
         DbSet<Template> Templates { get; set; }
         DbSet<Ip> Ips { get; set; }
-
+        DbSet<Tenant> Tenants { get; set; }
         Task<int> SaveChangesAsync();
     }
 
@@ -73,6 +73,7 @@ namespace Backlog.Data
         public virtual DbSet<Feature> Features { get; set; }
         public virtual DbSet<Template> Templates { get; set; }
         public virtual DbSet<Ip> Ips { get; set; }
+        public virtual DbSet<Tenant> Tenants { get; set; }
 
         public override int SaveChanges()
         {

@@ -10,7 +10,9 @@ namespace Backlog.Features.Epics
 {
     public class GetEpicsQuery
     {
-        public class GetEpicsRequest : IRequest<GetEpicsResponse> { }
+        public class GetEpicsRequest : IRequest<GetEpicsResponse> {
+            public int? TenantId { get; set; }
+        }
 
         public class GetEpicsResponse
         {
@@ -30,6 +32,7 @@ namespace Backlog.Features.Epics
                 var epics = await _dataContext.Epics
                     .Include(x=>x.Stories)
                     .Include(x=>x.Product)
+                    .Where(x=>x.TenantId == request.TenantId)
                     .ToListAsync();
 
                 return new GetEpicsResponse()

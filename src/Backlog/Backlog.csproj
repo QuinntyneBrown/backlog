@@ -368,6 +368,7 @@
     <Compile Include="Features\UserSettings\RemoveUserSettingsCommand.cs" />
     <Compile Include="Features\UserSettings\UserSettingsApiModel.cs" />
     <Compile Include="Features\UserSettings\UserSettingsController.cs" />
+    <Compile Include="Data\Models\Tenant.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Backlog.Data.Helpers;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Backlog.Data.Models
 {
@@ -7,6 +8,8 @@ namespace Backlog.Data.Models
     public class User
     {
         public int Id { get; set; }
+        [ForeignKey("Tenant")]
+        public int? TenantId { get; set; }
         public string Name { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }
@@ -17,5 +20,6 @@ namespace Backlog.Data.Models
         public bool IsDeleted { get; set; }
 
         public ICollection<Role> Roles { get; set; } = new HashSet<Role>();
+        public virtual Tenant Tenant { get; set; }
     }
 }

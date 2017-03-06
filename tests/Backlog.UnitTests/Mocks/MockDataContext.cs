@@ -35,6 +35,7 @@ namespace Backlog.UnitTests.Mocks
         public DbSet<Feature> Features { get; set; }
         public DbSet<Template> Templates { get; set; }
         public DbSet<Ip> Ips { get; set; }
+        public DbSet<Tenant> Tenants { get; set; }
 
         public Task<int> SaveChangesAsync()
         {
