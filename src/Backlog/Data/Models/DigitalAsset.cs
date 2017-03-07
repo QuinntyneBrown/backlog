@@ -1,5 +1,6 @@
 using System;
 using Backlog.Data.Helpers;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Backlog.Data.Models
 {
@@ -7,6 +8,8 @@ namespace Backlog.Data.Models
     public class DigitalAsset: ILoggable
     {
         public int Id { get; set; }
+        [ForeignKey("Tenant")]
+        public int? TenantId { get; set; }
         public string Name { get; set; }
         public string FileName { get; set; }
         public string Description { get; set; }
@@ -23,5 +26,7 @@ namespace Backlog.Data.Models
         public bool IsDeleted { get; set; }
         public DateTime LastModifiedOn { get; set; }
         public string LastModifiedBy { get; set; }
+
+        public virtual Tenant Tenant { get; set; }
     }
 }

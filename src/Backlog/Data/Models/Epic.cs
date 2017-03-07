@@ -8,6 +8,7 @@ namespace Backlog.Data.Models
     public class Epic: PrioritizableEntity
     {
         public override int Id { get; set; }
+        [ForeignKey("Tenant")]
         public int? TenantId { get; set; }
         [ForeignKey("Product")]
         public int? ProductId { get; set; }
