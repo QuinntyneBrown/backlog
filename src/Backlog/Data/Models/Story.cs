@@ -9,6 +9,8 @@ namespace Backlog.Data.Models
     public class Story: PrioritizableEntity
     {
         public override int Id { get; set; }
+        [ForeignKey("Tenant")]
+        public int? TenantId { get; set; }
         [ForeignKey("Epic")]
         public int? EpicId { get; set; }
         public int? ReusableStoryGroupId { get; set; }
@@ -28,5 +30,6 @@ namespace Backlog.Data.Models
         public ICollection<StoryDigitalAsset> StoryDigitalAssets { get; set; } = new HashSet<StoryDigitalAsset>();
         public ICollection<StoryArticle> StoryArticles { get; set; } = new HashSet<StoryArticle>();
         public Epic Epic { get; set; }
+        public virtual Tenant Tenant { get; set; }
     }
 }
