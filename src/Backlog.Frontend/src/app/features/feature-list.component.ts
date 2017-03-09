@@ -16,16 +16,14 @@ export class FeatureListComponent extends HTMLElement {
 		this._bind();
     }
 
-	private _bind() {
-        this._featureService.get().then((results: string) => {
-            var resultsJSON: Array<Feature> = JSON.parse(results) as Array<Feature>;
-            for (var i = 0; i < resultsJSON.length; i++) {
-				let el = this._document.createElement(`ce-feature-item`);
-				el.setAttribute("entity", JSON.stringify(resultsJSON[i]));
-				this.appendChild(el);
-            }
-        });	
+	private async _bind() {
+        const features: Array<Feature> = await this._featureService.get() as Array<Feature>;
+        for (var i = 0; i < features.length; i++) {
+            let el = this._document.createElement(`ce-feature-item`);
+            el.setAttribute("entity", JSON.stringify(features[i]));
+            this.appendChild(el);
+        }
 	}
 }
 
-document.addEventListener("DOMContentLoaded", () => window.customElements.define("ce-feature-list", FeatureListComponent));
+customElements.define("ce-feature-list", FeatureListComponent);

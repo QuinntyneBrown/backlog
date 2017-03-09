@@ -30,8 +30,7 @@ export class FeatureEditComponent extends HTMLElement {
         this._titleElement.textContent = this.featureId ? "Edit Feature": "Create feature";
 
         if (this.featureId) {
-			const results = await this._featureService.getById(this.featureId) as string;
-            const resultsJSON: Feature = JSON.parse(results) as Feature;                
+            const resultsJSON: Feature = await this._featureService.getById(this.featureId) as Feature;                
 			this._nameInputElement.value = resultsJSON.name;  
         } else {
             this._deleteButtonElement.style.display = "none";

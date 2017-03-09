@@ -20,12 +20,10 @@ export class ArticleViewComponent extends HTMLElement {
         this._bind();
     }
 
-    private _bind() {        
-        this._articleService.getBySlug(this._slug).then((results:string) => {
-            const resultsJSON = JSON.parse(results) as Article;
-            this.titleElement.textContent = resultsJSON.title;
-            this.htmlContentElement.innerHTML = resultsJSON.htmlContent;
-        });
+    private async _bind() {        
+        const article = await this._articleService.getBySlug(this._slug) as Article;
+        this.titleElement.textContent = article.title;
+        this.htmlContentElement.innerHTML = article.htmlContent;
     }
 
     private _slug: string;

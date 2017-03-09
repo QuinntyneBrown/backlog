@@ -32,8 +32,8 @@ export class EpicListComponent extends HTMLElement {
     private async _bind() {
         const resultsArray: Array<any> = await Promise.all([this._productService.get(), this._epicService.get()]);
         const products = resultsArray[0];
-        
-        this._epics = (JSON.parse(resultsArray[1]) as { epics: Array<Epic> }).epics;
+
+        this._epics = resultsArray[1];
         
         for (let i = 0; i < products.length; i++) {
             let option = document.createElement("option");

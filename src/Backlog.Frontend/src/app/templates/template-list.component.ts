@@ -16,15 +16,13 @@ export class TemplateListComponent extends HTMLElement {
 		this._bind();
     }
 
-	private _bind() {
-        this._templateService.get().then((results: string) => {
-            var resultsJSON: Array<TemplateModel> = JSON.parse(results) as Array<TemplateModel>;
-            for (var i = 0; i < resultsJSON.length; i++) {
-				let el = this._document.createElement(`ce-template-item`);
-				el.setAttribute("entity", JSON.stringify(resultsJSON[i]));
-				this.appendChild(el);
-            }
-        });	
+	private async _bind() {
+        const templates: Array<TemplateModel> = await this._templateService.get() as Array<TemplateModel>;
+        for (var i = 0; i < templates.length; i++) {
+            let el = this._document.createElement(`ce-template-item`);
+            el.setAttribute("entity", JSON.stringify(templates[i]));
+            this.appendChild(el);
+        }
 	}
 }
 

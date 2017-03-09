@@ -2,7 +2,7 @@ import { Epic } from "./epic.model";
 import { EpicService } from "./epic.service";
 import { EditorComponent } from "../shared";
 import { Router } from "../router";
-import { ProductService } from "../products";
+import { ProductService, Product } from "../products";
 
 const template = require("./epic-edit.component.html");
 const styles = require("./epic-edit.component.scss");
@@ -33,13 +33,13 @@ export class EpicEditComponent extends HTMLElement {
         
         this.titleElement.textContent = this.epicId ? "Edit Epic" : "Create Epic";
 
-        let promises = [this._productService.get()];
+        let promises:Array<any> = [this._productService.get()];
 
         if (this.epicId)
             promises.push(this._epicService.getById(this.epicId));
 
-        const results: Array<any> = await Promise.all(promises);
-        const products = (JSON.parse(results[0]) as { products: Array<any>}).products;
+        const results: Array<Epic | Array<Product>> = await Promise.all(promises);
+        const products = results[0] as Array<Product>;
 
         for (let i = 0; i < products.length; i++) {
             let option = document.createElement("option");
@@ -49,7 +49,7 @@ export class EpicEditComponent extends HTMLElement {
         }
 
         if (this.epicId) {            
-            this.entity = (JSON.parse(results[1]) as { epic: Epic}).epic;
+            this.entity = results[1] as Epic;
             this.nameInputElement.value = this.entity.name;
             this.priorityElement.value = this.entity.priority;
             this.selectElement.value = this.entity.productId;            

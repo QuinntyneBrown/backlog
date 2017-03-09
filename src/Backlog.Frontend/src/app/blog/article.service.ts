@@ -2,7 +2,8 @@ import { fetch } from "../utilities";
 import { Article } from "./article.model";
 
 export class ArticleService {
-    
+    constructor(private _fetch = fetch) { }
+
     private static _instance: ArticleService;
 
     public static get Instance() {
@@ -10,24 +11,30 @@ export class ArticleService {
         return this._instance;
     }
 
-    public get() {
-        return fetch({ url: "/api/article/get", authRequired: true });
+    public get(): Promise<Array<Article>> {
+        return this._fetch({ url: "/api/article/get", authRequired: true }).then((results:string) => {
+            return (JSON.parse(results) as { articles: Array<Article> }).articles;
+        });
     }
 
-    public getById(id) {
-        return fetch({ url: `/api/article/getbyid?id=${id}`, authRequired: true });
+    public getById(id): Promise<Article> {
+        return this._fetch({ url: `/api/article/getbyid?id=${id}`, authRequired: true }).then((results:string) => {
+            return (JSON.parse(results) as { article: Article }).article;
+        });
     }
 
-    public getBySlug(slug) {
-        return fetch({ url: `/api/author/getbyslug?slug=${slug}`, authRequired: true });
+    public getBySlug(slug): Promise<Article> {
+        return this._fetch({ url: `/api/article/getbyslug?slug=${slug}`, authRequired: true }).then((results: string) => {
+            return (JSON.parse(results) as { article: Article }).article;
+        });
     }
-
+    
     public add(article) {
-        return fetch({ url: `/api/article/add`, method: "POST", data: { article }, authRequired: true  });
+        return this._fetch({ url: `/api/article/add`, method: "POST", data: { article }, authRequired: true  });
     }
 
     public remove(options: { id : number }) {
-        return fetch({ url: `/api/article/remove?id=${options.id}`, method: "DELETE", authRequired: true  });
+        return this._fetch({ url: `/api/article/remove?id=${options.id}`, method: "DELETE", authRequired: true  });
     }
     
 }

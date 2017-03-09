@@ -2,7 +2,8 @@ import { fetch } from "../utilities";
 import { Project } from "./project.model";
 
 export class ProjectService {
-    
+    constructor(private _fetch = fetch) { }
+
     private static _instance: ProjectService;
 
     public static get Instance() {
@@ -10,20 +11,24 @@ export class ProjectService {
         return this._instance;
     }
 
-    public get() {
-        return fetch({ url: "/api/project/get", authRequired: true });
+    public get(): Promise<Array<Project>> {
+        return this._fetch({ url: "/api/project/get", authRequired: true }).then((results:string) => {
+            return (JSON.parse(results) as { projects: Array<Project> }).projects;
+        });
     }
 
-    public getById(id) {
-        return fetch({ url: `/api/project/getbyid?id=${id}`, authRequired: true });
+    public getById(id): Promise<Project> {
+        return this._fetch({ url: `/api/project/getbyid?id=${id}`, authRequired: true }).then((results:string) => {
+            return (JSON.parse(results) as { project: Project }).project;
+        });
     }
 
     public add(project) {
-        return fetch({ url: `/api/project/add`, method: "POST", data: { project }, authRequired: true  });
+        return this._fetch({ url: `/api/project/add`, method: "POST", data: { project }, authRequired: true  });
     }
 
     public remove(options: { id : number }) {
-        return fetch({ url: `/api/project/remove?id=${options.id}`, method: "DELETE", authRequired: true  });
+        return this._fetch({ url: `/api/project/remove?id=${options.id}`, method: "DELETE", authRequired: true  });
     }
     
 }

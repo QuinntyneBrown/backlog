@@ -26,14 +26,11 @@ export class SprintEditComponent extends HTMLElement {
 		this._addEventListeners();
     }
     
-	private _bind() {
+	private async _bind() {
         this._titleElement.textContent = "Create sprint";
-
         if (this.sprintId) {
-            this._sprintService.getById(this.sprintId).then((results: string) => { 
-                var resultsJSON: Sprint = JSON.parse(results) as Sprint;                
-                this._nameInputElement.value = resultsJSON.name;              
-            });
+            var resultsJSON: Sprint = await this._sprintService.getById(this.sprintId) as Sprint;
+            this._nameInputElement.value = resultsJSON.name;  
             this._titleElement.textContent = "Edit Sprint";
         } else {
             this._deleteButtonElement.style.display = "none";

@@ -12,10 +12,9 @@ export class ArticleListComponent extends HTMLElement {
 
     async connectedCallback() {
         this.innerHTML = `<style>${styles}</style> ${template}`;
-        const results = await this._articleService.get() as string;
-        const resultsJSON: Array<Article> = (JSON.parse(results) as { articles: Array<Article> }).articles;
-        for (var i = 0; i < resultsJSON.length; i++) {
-            this.appendChild(createElement(`<ce-article-item entity='${JSON.stringify(resultsJSON[i])}'></ce-article-item>`));
+        const articles: Array<Article> = await this._articleService.get();
+        for (var i = 0; i < articles.length; i++) {
+            this.appendChild(createElement(`<ce-article-item entity='${JSON.stringify(articles[i])}'></ce-article-item>`));
         }
     }
 }

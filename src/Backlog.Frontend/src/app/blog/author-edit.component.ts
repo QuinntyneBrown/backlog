@@ -30,10 +30,9 @@ export class AuthorEditComponent extends HTMLElement {
 	private async _bind() {
         this._titleElement.textContent = this.authorId ? "Edit Author": "Create author";
 
-        if (this.authorId) {
-			const results = await this._authorService.getById(this.authorId) as string;
-            const resultsJSON: Author = JSON.parse(results) as Author;                
-			this._nameInputElement.value = resultsJSON.name;  
+        if (this.authorId) {			
+            const author: Author = await this._authorService.getById(this.authorId) as Author;                
+			this._nameInputElement.value = author.name;  
         } else {
             this._deleteButtonElement.style.display = "none";
         } 	

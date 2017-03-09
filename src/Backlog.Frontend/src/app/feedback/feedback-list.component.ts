@@ -19,8 +19,7 @@ export class FeedbackListComponent extends HTMLElement {
     }
 
 	private async _bind() {
-        const results = await this._feedbackService.get({ username: this._currentUser.username }) as string;
-		const feedbacks: Array<Feedback> = JSON.parse(results) as Array<Feedback>;
+        const feedbacks = await this._feedbackService.get({ username: this._currentUser.username }); 
         for (var i = 0; i < feedbacks.length; i++) {
 			let el = this._document.createElement(`ce-feedback-item`);
 			el.setAttribute("entity", JSON.stringify(feedbacks[i]));

@@ -2,28 +2,32 @@ import { fetch } from "../utilities";
 import { FeatureCategory } from "./feature-category.model";
 
 export class FeatureCategoryService {
-    
+    constructor(private _fetch = fetch) { }
+
     private static _instance: FeatureCategoryService;
 
     public static get Instance() {
-        this._instance = this._instance || new this();
+        this._instance = this._instance || new FeatureCategoryService();
         return this._instance;
     }
 
-    public get() {
-        return fetch({ url: "/api/feature-category/get", authRequired: true });
+    public get(): Promise<Array<FeatureCategory>> {
+        return this._fetch({ url: "/api/featurecategory/get", authRequired: true }).then((results:string) => {
+            return (JSON.parse(results) as { featureCategorys: Array<FeatureCategory> }).featureCategorys;
+        });
     }
 
-    public getById(id) {
-        return fetch({ url: `/api/feature-category/getbyid?id=${id}`, authRequired: true });
+    public getById(id): Promise<FeatureCategory> {
+        return this._fetch({ url: `/api/featurecategory/getbyid?id=${id}`, authRequired: true }).then((results:string) => {
+            return (JSON.parse(results) as { featureCategory: FeatureCategory }).featureCategory;
+        });
     }
 
-    public add(entity) {
-        return fetch({ url: `/api/feature-category/add`, method: "POST", data: entity, authRequired: true  });
+    public add(featureCategory) {
+        return this._fetch({ url: `/api/featurecategory/add`, method: "POST", data: { featureCategory }, authRequired: true  });
     }
 
     public remove(options: { id : number }) {
-        return fetch({ url: `/api/feature-category/remove?id=${options.id}`, method: "DELETE", authRequired: true  });
+        return this._fetch({ url: `/api/featurecategory/remove?id=${options.id}`, method: "DELETE", authRequired: true  });
     }
-    
 }

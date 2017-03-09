@@ -37,7 +37,7 @@ export class BrandEditComponent extends HTMLElement {
         this._titleElement.textContent = this.brandId ? "Edit Brand" : "Create Brand";
         this._deleteButtonElement.style.display = this.brandId ? this._deleteButtonElement.style.display : "none";
 
-        let promises = [this._templateService.get()];
+        let promises: Array<any> = [this._templateService.get()];
 
         if (this.brandId)
             promises.push(this._brandService.getById(this.brandId));
@@ -75,8 +75,7 @@ export class BrandEditComponent extends HTMLElement {
 
     public async onTemplateSaved() {
         await this._modal.closeAsync();
-        const results = await this._templateService.get() as string;
-        const templates = JSON.parse(results) as Array<TemplateModel>;
+        const templates = await this._templateService.get() as Array<TemplateModel>;
 
         this._selectElement.innerHTML = "";
 

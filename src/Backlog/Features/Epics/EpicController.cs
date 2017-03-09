@@ -33,12 +33,11 @@ namespace Backlog.Features.Epics
         [ResponseType(typeof(GetEpicsQuery.GetEpicsResponse))]
         public async Task<IHttpActionResult> Get()
         {
-            var tenantId = (await _userManager.GetUserAsync(User)).TenantId;
+            var tenantId = (await _userManager.GetUserAsync(User)).TenantId;            
             return Ok(await _mediator.Send(new GetEpicsQuery.GetEpicsRequest() {
                 TenantId = tenantId
             }));
         }
-
 
         [Route("getById")]
         [HttpGet]

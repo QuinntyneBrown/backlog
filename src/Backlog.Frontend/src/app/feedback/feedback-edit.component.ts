@@ -31,11 +31,11 @@ export class FeedbackEditComponent extends HTMLElement {
 
     public async bind() {
         if (this.feedbackId) {
-            var results = await this._feedbackService.getById(this.feedbackId) as string;
-            const feedback = JSON.parse(results);
+            const feedback = await this._feedbackService.getById(this.feedbackId);
             this.descriptionEditor.setHTML(feedback.description);
         }
     }
+
     public async onSave() {
         const feedback = {
             id: this.feedbackId,

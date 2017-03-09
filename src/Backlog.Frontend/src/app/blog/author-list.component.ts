@@ -17,8 +17,7 @@ export class AuthorListComponent extends HTMLElement {
     }
 
 	private async _bind() {
-		const results = await this._authorService.get() as string;
-		const authors: Array<Author> = JSON.parse(results) as Array<Author>;
+        const authors: Array<Author> = await this._authorService.get() as Array<Author>;
         for (var i = 0; i < authors.length; i++) {
 			let el = this._document.createElement(`ce-author-item`);
 			el.setAttribute("entity", JSON.stringify(authors[i]));

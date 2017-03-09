@@ -38,6 +38,7 @@
     "moment": "^2.16.0",
     "node-sass": "^3.10.1",
     "pikaday": "^1.5.1",
+    "quill": "^1.2.2",
     "ractive": "^0.8.3",
     "raw-loader": "^0.5.1",
     "rome": "^2.1.22",

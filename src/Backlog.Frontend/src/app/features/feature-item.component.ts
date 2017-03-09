@@ -68,4 +68,4 @@ export class FeatureItemComponent extends HTMLElement {
     public entity: Feature;
 }
 
-document.addEventListener("DOMContentLoaded",() => window.customElements.define(`ce-feature-item`,FeatureItemComponent));
+customElements.define(`ce-feature-item`,FeatureItemComponent);

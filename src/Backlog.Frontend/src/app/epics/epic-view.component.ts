@@ -22,10 +22,8 @@ export class EpicViewComponent extends HTMLElement {
         this._addEventListeners();
     }
 
-    private async _bind() {
-        const results = await this._epicService.getById(this.epicId) as string;
-
-        this.entity = JSON.parse(results).epic;
+    private async _bind() {        
+        this.entity = await this._epicService.getById(this.epicId);
 
         this.titleElement.textContent = `Epic: ${this.entity.name}`;
 

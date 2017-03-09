@@ -35,6 +35,5 @@ export class DigitalAssetService {
 
     public remove(options: { id : number }) {
         return fetch({ url: `/api/digitalasset/remove?id=${options.id}`, method: "DELETE", authRequired: true  });
-    }
-    
+    }  
 }

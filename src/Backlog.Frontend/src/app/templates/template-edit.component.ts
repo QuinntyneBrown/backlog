@@ -26,14 +26,11 @@ export class TemplateEditComponent extends HTMLElement {
 		this._addEventListeners();
     }
     
-	private _bind() {
-        this._titleElement.textContent = "Create template";
-
+	private async _bind() {
+        this._titleElement.textContent = "Create Template";
         if (this.templateId) {
-            this._templateService.getById(this.templateId).then((results: string) => { 
-                var resultsJSON: TemplateModel = JSON.parse(results) as TemplateModel;                
-                this._nameInputElement.value = resultsJSON.name;              
-            });
+            const template: TemplateModel = await this._templateService.getById(this.templateId) as TemplateModel;
+            this._nameInputElement.value = template.name;   
             this._titleElement.textContent = "Edit Template";
         } else {
             this._deleteButtonElement.style.display = "none";
@@ -56,15 +53,13 @@ export class TemplateEditComponent extends HTMLElement {
         });
     }
 
-    public onDelete() {        
-        this._templateService.remove({ id: this.templateId }).then((results) => {
-            this._router.navigate(["template","list"]);
-        });
+    public async onDelete() {  
+        await this._templateService.remove({ id: this.templateId });      
+        this._router.navigate(["template", "list"]);
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
         switch (name) {
-
             case "template-id":
                 this.templateId = newValue;
 				break;

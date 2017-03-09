@@ -2,7 +2,8 @@ import { fetch } from "../utilities";
 import { Brand } from "./brand.model";
 
 export class BrandService {
-    
+    constructor(private _fetch = fetch) { }
+
     private static _instance: BrandService;
 
     public static get Instance() {
@@ -10,20 +11,24 @@ export class BrandService {
         return this._instance;
     }
 
-    public get() {
-        return fetch({ url: "/api/brand/get", authRequired: true });
+    public get(): Promise<Array<Brand>> {
+        return this._fetch({ url: "/api/brand/get", authRequired: true }).then((results:string) => {
+            return (JSON.parse(results) as { brands: Array<Brand> }).brands;
+        });
     }
 
-    public getById(id) {
-        return fetch({ url: `/api/brand/getbyid?id=${id}`, authRequired: true });
+    public getById(id): Promise<Brand> {
+        return this._fetch({ url: `/api/brand/getbyid?id=${id}`, authRequired: true }).then((results:string) => {
+            return (JSON.parse(results) as { brand: Brand }).brand;
+        });
     }
 
     public add(brand) {
-        return fetch({ url: `/api/brand/add`, method: "POST", data: { brand }, authRequired: true  });
+        return this._fetch({ url: `/api/brand/add`, method: "POST", data: { brand }, authRequired: true  });
     }
 
     public remove(options: { id : number }) {
-        return fetch({ url: `/api/brand/remove?id=${options.id}`, method: "DELETE", authRequired: true  });
+        return this._fetch({ url: `/api/brand/remove?id=${options.id}`, method: "DELETE", authRequired: true  });
     }
     
 }

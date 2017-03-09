@@ -16,15 +16,13 @@ export class SprintListComponent extends HTMLElement {
 		this._bind();
     }
 
-	private _bind() {
-        this._sprintService.get().then((results: string) => {
-            var resultsJSON: Array<Sprint> = JSON.parse(results) as Array<Sprint>;
-            for (var i = 0; i < resultsJSON.length; i++) {
-				let el = this._document.createElement(`ce-sprint-item`);
-				el.setAttribute("entity", JSON.stringify(resultsJSON[i]));
-				this.appendChild(el);
-            }
-        });	
+    private async _bind() {
+        const sprints: Sprint[] = await this._sprintService.get();
+        for (let i = 0; i < sprints.length; i++) {
+            let el = this._document.createElement(`ce-sprint-item`);
+            el.setAttribute("entity", JSON.stringify(sprints[i]));
+            this.appendChild(el);
+        }
 	}
 }
 

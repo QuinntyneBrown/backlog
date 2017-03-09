@@ -32,8 +32,7 @@ export class ProductEditComponent extends HTMLElement {
         this.titleElement.textContent = this.productId ? "Edit Product" : "Create Product";        
         this.deleteButtonElement.style.display = this.productId ? this._window.getComputedStyle(this.deleteButtonElement).getPropertyValue("display"): "none";
         if (this.productId) {
-            const results = await this._productService.getById(this.productId) as string;
-            var product: Product = JSON.parse(results) as Product;
+            var product: Product = await this._productService.getById(this.productId) as Product;
             this.nameInputElement.value = product.name;
         }
     }
@@ -48,7 +47,7 @@ export class ProductEditComponent extends HTMLElement {
         const product = {
             id: this.productId,
             name: this.nameInputElement.value
-        } as Product;
+        } as any;
 
         await this._productService.add(product);
         this._router.navigate(["product", "list"]);
