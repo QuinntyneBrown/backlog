@@ -73,4 +73,4 @@ export class EpicItemComponent extends HTMLElement {
     public entity: Epic;
 }
 
-document.addEventListener("DOMContentLoaded",() => window.customElements.define(`ce-epic-item`,EpicItemComponent));
+customElements.define(`ce-epic-item`,EpicItemComponent);

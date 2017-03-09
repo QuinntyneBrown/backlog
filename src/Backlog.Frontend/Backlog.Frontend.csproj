@@ -595,7 +595,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="node_modules\" />
+  </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="container.ts" />
     <TypeScriptCompile Include="service-collection.ts" />
