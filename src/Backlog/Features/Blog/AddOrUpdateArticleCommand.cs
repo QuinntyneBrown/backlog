@@ -26,17 +26,11 @@ namespace Backlog.Features.Blog
 
             public async Task<AddOrUpdateArticleResponse> Handle(AddOrUpdateArticleRequest request)
             {
-                var entity = await _dataContext.Articles
-                    .FirstOrDefaultAsync(x => x.Id == request.Article.Id && x.IsDeleted == false);                
+                var entity = await _dataContext.Articles.FirstOrDefaultAsync(x => x.Id == request.Article.Id);
+                                
                 if (entity == null) _dataContext.Articles.Add(entity = new Article());
-
-                var slug = request.Article.Title.GenerateSlug();
-
-                var count = await _dataContext.Articles
-                    .CountAsync(x => x.Slug == slug 
-                    && x.Id != request.Article.Id);
-
-                if (count > 0)
+                
+                if (await ArticleSlugExists(request.Article.Title.GenerateSlug(), request.Article.Id))
                     throw new ArticleSlugExistsException();
 
                 entity.AuthorId = request.Article.AuthorId;
@@ -50,6 +44,11 @@ namespace Backlog.Features.Blog
 
                 return new AddOrUpdateArticleResponse();
             }
+
+            public async Task<bool> ArticleSlugExists(string slug, int articleId)
+                => (await _dataContext.Articles
+                    .CountAsync(x => x.Slug == slug
+                    && x.Id != articleId)) > 1;
 
             private readonly IDataContext _dataContext;
             private readonly ICache _cache;
