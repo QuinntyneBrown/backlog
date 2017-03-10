@@ -1,10 +1,6 @@
 using MediatR;
 using Backlog.Data;
-using Backlog.Data.Models;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Linq;
-using System.Data.Entity;
 using Backlog.Features.Core;
 
 namespace Backlog.Features.DigitalAssets

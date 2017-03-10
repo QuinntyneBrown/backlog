@@ -7,7 +7,7 @@ using System.Linq;
 using System.Data.Entity;
 using Task = System.Threading.Tasks.Task;
 using static System.Threading.Tasks.Task;
-using Backlog.Data.Models;
+using Backlog.Data.Model;
 
 namespace Backlog.Features.Tasks
 {

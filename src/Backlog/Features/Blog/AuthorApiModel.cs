@@ -1,4 +1,4 @@
-using Backlog.Data.Models;
+using Backlog.Data.Model;
 
 namespace Backlog.Features.Blog
 {
@@ -13,6 +13,9 @@ namespace Backlog.Features.Blog
             TModel : AuthorApiModel, new()
         {
             var model = new TModel();
+
+            if (author == null) return model;
+
             model.Id = author.Id;
             model.Firstname = author.Firstname;
             model.Lastname = author.Lastname;

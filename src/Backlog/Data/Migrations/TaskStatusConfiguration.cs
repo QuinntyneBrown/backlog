@@ -1,6 +1,6 @@
 using System.Data.Entity.Migrations;
 using Backlog.Data;
-using Backlog.Data.Models;
+using Backlog.Data.Model;
 using Backlog.Features.Tasks;
 
 namespace Backlog.Migrations

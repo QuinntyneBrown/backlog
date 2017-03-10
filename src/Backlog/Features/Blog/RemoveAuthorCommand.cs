@@ -1,11 +1,7 @@
 using MediatR;
 using Backlog.Data;
-using Backlog.Data.Models;
 using Backlog.Features.Core;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Linq;
-using System.Data.Entity;
 
 namespace Backlog.Features.Blog
 {

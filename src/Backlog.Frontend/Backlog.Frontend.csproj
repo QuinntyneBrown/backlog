@@ -6,8 +6,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>
-    </ProductVersion>
+    <ProductVersion></ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{94EAFF2E-6328-4353-B0EA-1FE5E09583C9}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -22,8 +21,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
+    <NuGetPackageImportStamp></NuGetPackageImportStamp>
     <TypeScriptToolsVersion>2.2</TypeScriptToolsVersion>
     <TypeScriptEmitDecoratorMetadata>true</TypeScriptEmitDecoratorMetadata>
     <TypeScriptModuleKind>commonjs</TypeScriptModuleKind>
@@ -259,6 +257,24 @@
     <Content Include="src\app\blog\author-list.component.scss">
       <DependentUpon>author-list.component.ts</DependentUpon>
     </Content>
+    <Content Include="src\app\blog\tag-edit.component.html">
+      <DependentUpon>tag-edit.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\blog\tag-edit.component.scss">
+      <DependentUpon>tag-edit.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\blog\tag-item.component.html">
+      <DependentUpon>tag-item.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\blog\tag-item.component.scss">
+      <DependentUpon>tag-item.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\blog\tag-list.component.html">
+      <DependentUpon>tag-list.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\blog\tag-list.component.scss">
+      <DependentUpon>tag-list.component.ts</DependentUpon>
+    </Content>
     <Content Include="src\app\brands\brand-edit.component.html">
       <DependentUpon>brand-edit.component.ts</DependentUpon>
     </Content>
@@ -276,6 +292,12 @@
     </Content>
     <Content Include="src\app\brands\brand-list.component.scss">
       <DependentUpon>brand-list.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\digital-assets\digital-asset-url-input.component.html">
+      <DependentUpon>digital-asset-url-input.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\digital-assets\digital-asset-url-input.component.scss">
+      <DependentUpon>digital-asset-url-input.component.ts</DependentUpon>
     </Content>
     <Content Include="src\app\epics\epic-edit.component.html">
       <DependentUpon>epic-edit.component.ts</DependentUpon>
@@ -595,9 +617,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="node_modules\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <TypeScriptCompile Include="container.ts" />
     <TypeScriptCompile Include="service-collection.ts" />
@@ -628,6 +648,10 @@
     <TypeScriptCompile Include="src\app\router\router-outlet.ts" />
     <TypeScriptCompile Include="src\app\router\router.ts" />
     <TypeScriptCompile Include="src\app\shared\backdrop.ts" />
+    <TypeScriptCompile Include="src\app\digital-assets\digital-asset-url-input.component.ts" />
+    <TypeScriptCompile Include="src\app\shared\drop-down-item.component.ts">
+      <DependentUpon>drop-down.component.ts</DependentUpon>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\app\shared\editor.component.ts" />
     <TypeScriptCompile Include="src\app\shared\header.component.ts" />
     <TypeScriptCompile Include="src\app\shared\index.ts" />
@@ -725,7 +749,6 @@
     <TypeScriptCompile Include="src\app\blog\article-edit.component.ts" />
     <TypeScriptCompile Include="src\app\users\register.component.ts" />
     <TypeScriptCompile Include="src\app\shared\drop-down.component.ts" />
-    <TypeScriptCompile Include="src\app\shared\drop-down-item.component.ts" />
     <TypeScriptCompile Include="src\app\tasks\task-item.component.ts" />
     <TypeScriptCompile Include="src\app\tasks\task-list.component.ts" />
     <TypeScriptCompile Include="src\app\tasks\task-edit.component.ts" />
@@ -788,6 +811,9 @@
     <TypeScriptCompile Include="src\app\blog\tag.model.ts" />
     <TypeScriptCompile Include="src\app\blog\tag.service.ts" />
     <TypeScriptCompile Include="src\service-collection.ts" />
+    <TypeScriptCompile Include="src\app\blog\tag-list.component.ts" />
+    <TypeScriptCompile Include="src\app\blog\tag-edit.component.ts" />
+    <TypeScriptCompile Include="src\app\blog\tag-item.component.ts" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Backlog\Backlog.csproj">
@@ -813,8 +839,7 @@
           <IISUrl>http://localhost:56620/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
+          <CustomServerUrl></CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>

@@ -30,5 +30,4 @@ export class TagService {
     public remove(options: { id : number }) {
         return this._fetch({ url: `/api/tag/remove?id=${options.id}`, method: "DELETE", authRequired: true  });
     }
-    
 }

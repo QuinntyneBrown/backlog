@@ -1,5 +1,5 @@
 using Backlog.Data;
-using Backlog.Data.Models;
+using Backlog.Data.Model;
 using Backlog.Features.Core;
 using MediatR;
 using System.Data.Entity;
@@ -34,10 +34,7 @@ namespace Backlog.Features.Products
 
                 await _dataContext.SaveChangesAsync();
 
-                return new AddOrUpdateProductResponse()
-                {
-
-                };
+                return new AddOrUpdateProductResponse() { };
             }
 
             private readonly IDataContext _dataContext;

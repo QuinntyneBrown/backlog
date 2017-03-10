@@ -28,7 +28,7 @@ export class ArticleViewComponent extends HTMLElement {
 
     private _slug: string;
     public get titleElement(): HTMLElement { return this.querySelector(".title") as HTMLElement; }
-    public get htmlContentElement(): HTMLElement { return this.querySelector(".html-content") as HTMLElement;}
+    public get htmlContentElement(): HTMLElement { return this.querySelector(".html-content") as HTMLElement; }
 
     attributeChangedCallback (name, oldValue, newValue) {
         switch (name) {

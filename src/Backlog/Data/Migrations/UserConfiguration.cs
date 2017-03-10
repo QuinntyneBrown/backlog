@@ -1,6 +1,6 @@
 using System.Data.Entity.Migrations;
 using Backlog.Data;
-using Backlog.Data.Models;
+using Backlog.Data.Model;
 using System.Linq;
 using System.Collections.Generic;
 using Backlog.Features.Users;

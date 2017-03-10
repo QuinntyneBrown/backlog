@@ -4,7 +4,7 @@ using static Backlog.Features.Epics.GetEpicsQuery;
 using Backlog.UnitTests.Mocks;
 using Backlog.Data;
 using Moq;
-using Backlog.Data.Models;
+using Backlog.Data.Model;
 using System.Collections.Generic;
 using System.Linq;
 using System.Data.Entity;

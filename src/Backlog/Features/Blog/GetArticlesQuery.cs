@@ -27,7 +27,10 @@ namespace Backlog.Features.Blog
 
             public async Task<GetArticlesResponse> Handle(GetArticlesRequest request)
             {
-                var articles = await _dataContext.Articles.ToListAsync();
+                var articles = await _dataContext.Articles
+                    .Include(x=>x.Author)
+                    .ToListAsync();
+
                 return new GetArticlesResponse()
                 {
                     Articles = articles.Select(x => ArticleApiModel.FromArticle(x)).ToList()

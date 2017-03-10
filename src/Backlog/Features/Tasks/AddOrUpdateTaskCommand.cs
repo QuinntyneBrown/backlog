@@ -1,12 +1,12 @@
 using MediatR;
 using Backlog.Data;
-using Backlog.Data.Models;
+using Backlog.Data.Model;
 using Backlog.Features.Core;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
 using System.Data.Entity;
-using Task = Backlog.Data.Models.Task;
+using Task = Backlog.Data.Model.Task;
 
 namespace Backlog.Features.Tasks
 {

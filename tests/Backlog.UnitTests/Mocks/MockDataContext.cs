@@ -1,10 +1,6 @@
 ﻿using Backlog.Data;
-using Backlog.Data.Models;
-using System;
-using System.Collections.Generic;
+using Backlog.Data.Model;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Backlog.UnitTests.Mocks
@@ -26,11 +22,11 @@ namespace Backlog.UnitTests.Mocks
         public DbSet<ReusableStoryGroup> ReusableStoryGroups { get; set; }
         public DbSet<Project> Projects { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<Data.Models.Task> Tasks { get; set; }
+        public DbSet<Data.Model.Task> Tasks { get; set; }
         public DbSet<AgileTeamMember> AgileTeamMembers { get; set; }
         public DbSet<Feedback> Feedbacks { get; set; }
         public DbSet<UserSettings> UserSettings { get; set; }
-        public DbSet<Data.Models.TaskStatus> TaskStatuses { get; set; }
+        public DbSet<Data.Model.TaskStatus> TaskStatuses { get; set; }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Feature> Features { get; set; }
         public DbSet<Template> Templates { get; set; }

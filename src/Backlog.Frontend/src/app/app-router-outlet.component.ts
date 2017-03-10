@@ -16,6 +16,14 @@ export class AppRouterOutletComponent extends RouterOutlet {
             { path: "/article/create", name: "article-edit", authRequired: true },
             { path: "/article/:slug", name: "article-view", authRequired: true },
 
+            { path: "/author/list", name: "author-list", authRequired: true },
+            { path: "/author/edit/:authorId", name: "author-edit", authRequired: true },
+            { path: "/author/create", name: "author-edit", authRequired: true },
+
+            { path: "/tag/list", name: "tag-list", authRequired: true },
+            { path: "/tag/edit/:tagId", name: "tag-edit", authRequired: true },
+            { path: "/tag/create", name: "tag-edit", authRequired: true },
+
             { path: "/brand/list", name: "brand-list", authRequired: true },
             { path: "/brand/create", name: "brand-edit", authRequired: true },
             { path: "/brand/edit/:brandId", name: "brand-edit", authRequired: true },

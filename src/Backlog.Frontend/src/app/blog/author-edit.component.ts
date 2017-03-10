@@ -28,11 +28,13 @@ export class AuthorEditComponent extends HTMLElement {
     }
     
 	private async _bind() {
-        this._titleElement.textContent = this.authorId ? "Edit Author": "Create author";
+        this._titleElement.textContent = this.authorId ? "Edit Author": "Create Author";
 
         if (this.authorId) {			
             const author: Author = await this._authorService.getById(this.authorId) as Author;                
-			this._nameInputElement.value = author.name;  
+            this._firstnameInputElement.value = author.firstname;  
+            this._lastnameInputElement.value = author.lastname;
+            this._avatarUrlInputElement.value = author.avatarUrl;
         } else {
             this._deleteButtonElement.style.display = "none";
         } 	
@@ -53,7 +55,9 @@ export class AuthorEditComponent extends HTMLElement {
     public async onSave() {
         var author = {
             id: this.authorId,
-            name: this._nameInputElement.value
+            firstname: this._firstnameInputElement.value,
+            lastname: this._lastnameInputElement.value,
+            avatarUrl: this._avatarUrlInputElement.value
         } as Author;
         
         await this._authorService.add(author);
@@ -82,7 +86,9 @@ export class AuthorEditComponent extends HTMLElement {
 	private get _titleElement(): HTMLElement { return this.querySelector("h2") as HTMLElement; }
     private get _saveButtonElement(): HTMLElement { return this.querySelector(".save-button") as HTMLElement };
     private get _deleteButtonElement(): HTMLElement { return this.querySelector(".delete-button") as HTMLElement };
-    private get _nameInputElement(): HTMLInputElement { return this.querySelector(".author-name") as HTMLInputElement;}
+    private get _firstnameInputElement(): HTMLInputElement { return this.querySelector(".author-firstname") as HTMLInputElement; }
+    private get _lastnameInputElement(): HTMLInputElement { return this.querySelector(".author-lastname") as HTMLInputElement; }
+    private get _avatarUrlInputElement(): HTMLInputElement { return this.querySelector(".author-avatar-url") as HTMLInputElement; }
 }
 
 customElements.define(`ce-author-edit`,AuthorEditComponent);

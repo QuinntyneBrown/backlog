@@ -1,4 +1,4 @@
-using Backlog.Data.Models;
+using Backlog.Data.Model;
 
 namespace Backlog.Features.UserSettings
 {
@@ -7,7 +7,7 @@ namespace Backlog.Features.UserSettings
         public int Id { get; set; }
         public string Name { get; set; }
 
-        public static TModel FromUserSettings<TModel>(Data.Models.UserSettings userSettings) where
+        public static TModel FromUserSettings<TModel>(Data.Model.UserSettings userSettings) where
             TModel : UserSettingsApiModel, new()
         {
             var model = new TModel();
@@ -15,7 +15,7 @@ namespace Backlog.Features.UserSettings
             return model;
         }
 
-        public static UserSettingsApiModel FromUserSettings(Data.Models.UserSettings userSettings)
+        public static UserSettingsApiModel FromUserSettings(Data.Model.UserSettings userSettings)
             => FromUserSettings<UserSettingsApiModel>(userSettings);
 
     }

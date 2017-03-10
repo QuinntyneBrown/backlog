@@ -1,9 +1,7 @@
 using MediatR;
 using Backlog.Data;
 using Backlog.Features.Core;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Linq;
 using System.Data.Entity;
 
 namespace Backlog.Features.Blog
@@ -31,7 +29,9 @@ namespace Backlog.Features.Blog
             {                
                 return new GetArticleByIdResponse()
                 {
-                    Article = ArticleApiModel.FromArticle(await _dataContext.Articles.FindAsync(request.Id))
+                    Article = ArticleApiModel.FromArticle(await _dataContext.Articles
+                    .Include(x=>x.Author)
+                    .SingleAsync(x=> x.Id == request.Id))
                 };
             }
 

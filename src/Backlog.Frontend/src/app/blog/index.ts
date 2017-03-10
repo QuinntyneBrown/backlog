@@ -9,3 +9,8 @@ export * from "./author-item.component";
 export * from "./author-list.component";
 export * from "./author.model";
 export * from "./author.service";
+export * from "./tag-edit.component";
+export * from "./tag-item.component";
+export * from "./tag-list.component";
+export * from "./tag.model";
+export * from "./tag.service";

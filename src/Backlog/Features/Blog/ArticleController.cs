@@ -41,6 +41,12 @@ namespace Backlog.Features.Blog
         public async Task<IHttpActionResult> GetById([FromUri]GetArticleByIdQuery.GetArticleByIdRequest request)
             => Ok(await _mediator.Send(request));
 
+        [Route("getBySlug")]
+        [HttpGet]
+        [ResponseType(typeof(GetArticleBySlugQuery.GetArticleBySlugResponse))]
+        public async Task<IHttpActionResult> GetBySlug([FromUri]GetArticleBySlugQuery.GetArticleBySlugRequest request)
+            => Ok(await _mediator.Send(request));
+
         [Route("remove")]
         [HttpDelete]
         [ResponseType(typeof(RemoveArticleCommand.RemoveArticleResponse))]

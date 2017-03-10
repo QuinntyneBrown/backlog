@@ -1,10 +1,8 @@
 using MediatR;
 using Backlog.Data;
-using Backlog.Data.Models;
+using Backlog.Data.Model;
 using Backlog.Features.Core;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Linq;
 using System.Data.Entity;
 
 namespace Backlog.Features.Brands
@@ -34,10 +32,7 @@ namespace Backlog.Features.Brands
                 entity.Name = request.Brand.Name;
                 await _dataContext.SaveChangesAsync();
 
-                return new AddOrUpdateBrandResponse()
-                {
-
-                };
+                return new AddOrUpdateBrandResponse() { };
             }
 
             private readonly IDataContext _dataContext;

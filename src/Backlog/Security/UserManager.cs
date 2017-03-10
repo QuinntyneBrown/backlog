@@ -1,4 +1,4 @@
-﻿using Backlog.Data.Models;
+﻿using Backlog.Data.Model;
 using System.Threading.Tasks;
 using System.Security.Principal;
 using Backlog.Data;

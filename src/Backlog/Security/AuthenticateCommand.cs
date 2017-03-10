@@ -2,7 +2,7 @@ using Backlog.Security;
 using System;
 using System.Linq;
 using System.Data.Entity;
-using Backlog.Data.Models;
+using Backlog.Data.Model;
 using System.Collections.Generic;
 using System.Security.Claims;
 using MediatR;

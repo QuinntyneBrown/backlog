@@ -1,5 +1,5 @@
 using System;
-using Backlog.Data.Models;
+using Backlog.Data.Model;
 
 namespace Backlog.Features.DigitalAssets
 {
@@ -25,6 +25,7 @@ namespace Backlog.Features.DigitalAssets
         {
             var model = new TModel();
             model.Id = digitalAsset.Id;
+            model.Bytes = digitalAsset.Bytes;
             model.Folder = digitalAsset.Folder;
             model.Name = digitalAsset.Name;
             model.FileName = digitalAsset.FileName;

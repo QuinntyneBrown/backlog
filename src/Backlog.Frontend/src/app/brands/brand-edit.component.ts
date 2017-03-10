@@ -99,6 +99,7 @@ export class BrandEditComponent extends HTMLElement {
         } as Brand;
 
         await this._brandService.add(brand);
+
         this._router.navigate(["brand", "list"]);
     }
 

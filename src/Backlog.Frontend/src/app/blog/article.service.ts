@@ -7,7 +7,7 @@ export class ArticleService {
     private static _instance: ArticleService;
 
     public static get Instance() {
-        this._instance = this._instance || new ArticleService();
+        this._instance = this._instance || new this();
         return this._instance;
     }
 
@@ -36,5 +36,4 @@ export class ArticleService {
     public remove(options: { id : number }) {
         return this._fetch({ url: `/api/article/remove?id=${options.id}`, method: "DELETE", authRequired: true  });
     }
-    
 }

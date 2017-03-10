@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
 using System.Data.Entity;
-using Backlog.Data.Models;
+using Backlog.Data.Model;
 
 namespace Backlog.Features.Blog
 {
@@ -16,10 +16,7 @@ namespace Backlog.Features.Blog
             public AuthorApiModel Author { get; set; }
         }
 
-        public class AddOrUpdateAuthorResponse
-        {
-
-        }
+        public class AddOrUpdateAuthorResponse { }
 
         public class AddOrUpdateAuthorHandler : IAsyncRequestHandler<AddOrUpdateAuthorRequest, AddOrUpdateAuthorResponse>
         {
@@ -34,19 +31,18 @@ namespace Backlog.Features.Blog
                 var entity = await _dataContext.Authors
                     .SingleOrDefaultAsync(x => x.Id == request.Author.Id && x.IsDeleted == false);
                 if (entity == null) _dataContext.Authors.Add(entity = new Author());
-                
+
+                entity.Firstname = request.Author.Firstname;
+                entity.Lastname = request.Author.Lastname;
+                entity.AvatarUrl = request.Author.AvatarUrl;
+
                 await _dataContext.SaveChangesAsync();
 
-                return new AddOrUpdateAuthorResponse()
-                {
-
-                };
+                return new AddOrUpdateAuthorResponse() { };
             }
 
             private readonly IDataContext _dataContext;
             private readonly ICache _cache;
         }
-
     }
-
 }

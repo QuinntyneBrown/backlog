@@ -1,9 +1,7 @@
 using MediatR;
 using Backlog.Data;
-using Backlog.Data.Models;
-using System.Collections.Generic;
+using Backlog.Data.Model;
 using System.Threading.Tasks;
-using System.Linq;
 using System.Data.Entity;
 using Backlog.Features.Core;
 
@@ -41,7 +39,5 @@ namespace Backlog.Features.DigitalAssets
             private readonly IDataContext _dataContext;
             private readonly ICache _cache;
         }
-
     }
-
 }

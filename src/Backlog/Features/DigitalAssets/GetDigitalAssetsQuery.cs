@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
 using System.Data.Entity;
-using Backlog.Data.Models;
+using Backlog.Data.Model;
 using static Backlog.Features.DigitalAssets.Constants;
 using Backlog.Features.Core;
 
@@ -40,7 +40,5 @@ namespace Backlog.Features.DigitalAssets
             private readonly IDataContext _dataContext;
             private readonly ICache _cache;
         }
-
     }
-
 }

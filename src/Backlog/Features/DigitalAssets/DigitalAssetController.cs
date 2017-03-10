@@ -1,20 +1,20 @@
+using Backlog.Features.DigitalAssets.UploadHandlers;
+using Backlog.Security;
 using MediatR;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Backlog.Features.DigitalAssets.UploadHandlers;
-using Backlog.Security;
+using System.Net.Http.Headers;
+using static Backlog.Features.DigitalAssets.GetDigitalAssetByUniqueIdQuery;
 
 namespace Backlog.Features.DigitalAssets
 {
-    [AllowAnonymous]
+    [Authorize]
     [RoutePrefix("api/digitalAsset")]
     public class DigitalAssetController : ApiController
-    {
-        protected readonly IUserManager _userManager;
-
+    {        
         public DigitalAssetController(IMediator mediator, IUserManager userManager)
         {
             _mediator = mediator;
@@ -52,7 +52,19 @@ namespace Backlog.Features.DigitalAssets
         public async Task<IHttpActionResult> Remove([FromUri]RemoveDigitalAssetCommand.RemoveDigitalAssetRequest request)
             => Ok(await _mediator.Send(request));
 
+        [Route("serve")]
+        [HttpGet]
+        [ResponseType(typeof(GetDigitalAssetByUniqueIdResponse))]
         [AllowAnonymous]
+        public async Task<HttpResponseMessage> Serve([FromUri]GetDigitalAssetByUniqueIdRequest request)
+        {
+            GetDigitalAssetByUniqueIdResponse response = await _mediator.Send(request);
+            HttpResponseMessage result = new HttpResponseMessage(HttpStatusCode.OK);
+            result.Content = new ByteArrayContent(response.DigitalAsset.Bytes);
+            result.Content.Headers.ContentType = new MediaTypeHeaderValue(response.DigitalAsset.ContentType);
+            return result;
+        }
+
         [Route("upload")]
         [HttpPost]
         public async Task<IHttpActionResult> Upload(HttpRequestMessage request)
@@ -64,5 +76,6 @@ namespace Backlog.Features.DigitalAssets
         }
 
         protected readonly IMediator _mediator;
+        protected readonly IUserManager _userManager;
     }
 }

@@ -1,4 +1,4 @@
-using Backlog.Data.Models;
+using Backlog.Data.Model;
 using Backlog.Features.Products;
 using Backlog.Features.Stories;
 using System.Collections.Generic;
