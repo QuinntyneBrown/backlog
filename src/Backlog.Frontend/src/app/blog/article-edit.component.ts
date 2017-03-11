@@ -1,7 +1,7 @@
 import { Article } from "./article.model";
 import { ArticleService } from "./article.service";
 import { AuthorService } from "./author.service";
-import { TagService } from "./tag.service";
+import { TagService } from "../tags";
 import { EditorComponent, Modal } from "../shared";
 import { Router } from "../router";
 

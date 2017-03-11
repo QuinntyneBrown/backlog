@@ -1,5 +1,6 @@
-import { Tag } from "./tag.model";
 import { Author } from "./author.model";
+import { Category } from "../categories";
+import { Tag } from "../tags";
 
 export class Article { 
     public id: number;
@@ -10,5 +11,7 @@ export class Article {
     public htmlContent: string;
     public isPublished: boolean;
     public published: string;
+
+    public categories: Array<Category> = [];
     public tags: Array<Tag> = [];
 }

@@ -259,29 +259,23 @@
     <Content Include="src\app\blog\author-list.component.scss">
       <DependentUpon>author-list.component.ts</DependentUpon>
     </Content>
-    <Content Include="src\app\blog\tag-edit.component.html">
-      <DependentUpon>tag-edit.component.ts</DependentUpon>
+    <Content Include="src\app\tags\tag-edit-embed.component.html">
+      <DependentUpon>tag-edit-embed.component.ts</DependentUpon>
     </Content>
-    <Content Include="src\app\blog\tag-edit.component.scss">
-      <DependentUpon>tag-edit.component.ts</DependentUpon>
+    <Content Include="src\app\tags\tag-edit-embed.component.scss">
+      <DependentUpon>tag-edit-embed.component.ts</DependentUpon>
     </Content>
-    <Content Include="src\app\blog\tag-item.component.html">
+    <Content Include="src\app\tags\tag-item.component.html">
       <DependentUpon>tag-item.component.ts</DependentUpon>
     </Content>
-    <Content Include="src\app\blog\tag-item.component.scss">
+    <Content Include="src\app\tags\tag-item.component.scss">
       <DependentUpon>tag-item.component.ts</DependentUpon>
     </Content>
-    <Content Include="src\app\blog\tag-list-embed.component.html">
+    <Content Include="src\app\tags\tag-list-embed.component.html">
       <DependentUpon>tag-list-embed.component.ts</DependentUpon>
     </Content>
-    <Content Include="src\app\blog\tag-list-embed.component.scss">
+    <Content Include="src\app\tags\tag-list-embed.component.scss">
       <DependentUpon>tag-list-embed.component.ts</DependentUpon>
-    </Content>
-    <Content Include="src\app\blog\tag-list.component.html">
-      <DependentUpon>tag-list.component.ts</DependentUpon>
-    </Content>
-    <Content Include="src\app\blog\tag-list.component.scss">
-      <DependentUpon>tag-list.component.ts</DependentUpon>
     </Content>
     <Content Include="src\app\brands\brand-edit.component.html">
       <DependentUpon>brand-edit.component.ts</DependentUpon>
@@ -541,6 +535,18 @@
     <Content Include="src\app\stories\story.component.scss">
       <DependentUpon>story.component.ts</DependentUpon>
     </Content>
+    <Content Include="src\app\tags\tag-edit.component.html">
+      <DependentUpon>tag-edit.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\tags\tag-edit.component.scss">
+      <DependentUpon>tag-edit.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\tags\tag-list.component.html">
+      <DependentUpon>tag-list.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\tags\tag-list.component.scss">
+      <DependentUpon>tag-list.component.ts</DependentUpon>
+    </Content>
     <Content Include="src\app\tasks\task-edit.component.html">
       <DependentUpon>task-edit.component.ts</DependentUpon>
     </Content>
@@ -628,8 +634,6 @@
     <Content Include="typedoc.json" />
     <Content Include="typings.json" />
     <Content Include="src\styles\base\_index.scss" />
-    <Content Include="src\app\blog\tag-edit-embed.component.scss" />
-    <Content Include="src\app\blog\tag-edit-embed.component.html" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="index.html" />
@@ -830,21 +834,21 @@
     <TypeScriptCompile Include="src\app\shared\checkbox-field.component.ts" />
     <TypeScriptCompile Include="src\app\feedback\feedback-list.component.ts" />
     <TypeScriptCompile Include="src\app\feedback\feedback-item.component.ts" />
-    <TypeScriptCompile Include="src\app\blog\tag.model.ts" />
-    <TypeScriptCompile Include="src\app\blog\tag.service.ts" />
+    <TypeScriptCompile Include="src\app\tags\tag.model.ts" />
+    <TypeScriptCompile Include="src\app\tags\tag.service.ts" />
     <TypeScriptCompile Include="src\service-collection.ts" />
-    <TypeScriptCompile Include="src\app\blog\tag-list.component.ts" />
-    <TypeScriptCompile Include="src\app\blog\tag-edit.component.ts" />
-    <TypeScriptCompile Include="src\app\blog\tag-item.component.ts" />
-    <TypeScriptCompile Include="src\app\blog\tag-list-embed.component.ts" />
-    <TypeScriptCompile Include="src\app\blog\tag-edit-embed.component.ts" />
-    <TypeScriptCompile Include="src\app\blog\tag.actions.ts" />
+    <TypeScriptCompile Include="src\app\tags\tag-item.component.ts" />
+    <TypeScriptCompile Include="src\app\tags\tag-list-embed.component.ts" />
+    <TypeScriptCompile Include="src\app\tags\tag-edit-embed.component.ts" />
+    <TypeScriptCompile Include="src\app\tags\tag.actions.ts" />
     <TypeScriptCompile Include="src\app\tags\index.ts" />
     <TypeScriptCompile Include="src\app\categories\index.ts" />
     <TypeScriptCompile Include="src\app\categories\category.model.ts" />
     <TypeScriptCompile Include="src\app\categories\category.service.ts" />
     <TypeScriptCompile Include="src\app\categories\category-list.component.ts" />
     <TypeScriptCompile Include="src\app\categories\category-edit.component.ts" />
+    <TypeScriptCompile Include="src\app\tags\tag-list.component.ts" />
+    <TypeScriptCompile Include="src\app\tags\tag-edit.component.ts" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Backlog\Backlog.csproj">
