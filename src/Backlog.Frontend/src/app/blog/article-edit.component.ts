@@ -2,7 +2,7 @@ import { Article } from "./article.model";
 import { ArticleService } from "./article.service";
 import { AuthorService } from "./author.service";
 import { TagService } from "./tag.service";
-import { EditorComponent } from "../shared";
+import { EditorComponent, Modal } from "../shared";
 import { Router } from "../router";
 
 const template = require("./article-edit.component.html");
@@ -12,6 +12,7 @@ export class ArticleEditComponent extends HTMLElement {
     constructor(
         private _articleService: ArticleService = ArticleService.Instance,
         private _authorService: AuthorService = AuthorService.Instance,
+        private _modal: Modal = Modal.Instance,
         private _tagService: TagService = TagService.Instance,
         private _router: Router = Router.Instance
     ) {
@@ -59,7 +60,7 @@ export class ArticleEditComponent extends HTMLElement {
             this.titleElement.textContent = "Edit Article";
         } else {
             this.deleteButtonElement.style.display = "none";
-        } 
+        }        
     }
 
     private _setEventListeners() {
