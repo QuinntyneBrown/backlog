@@ -16,7 +16,7 @@ namespace Backlog.Features.DigitalAssets
 
         public class RemoveDigitalAssetHandler : IAsyncRequestHandler<RemoveDigitalAssetRequest, RemoveDigitalAssetResponse>
         {
-            public RemoveDigitalAssetHandler(IDataContext dataContext, ICache cache)
+            public RemoveDigitalAssetHandler(IBacklogContext dataContext, ICache cache)
             {
                 _dataContext = dataContext;
                 _cache = cache;
@@ -30,7 +30,7 @@ namespace Backlog.Features.DigitalAssets
                 return new RemoveDigitalAssetResponse();
             }
 
-            private readonly IDataContext _dataContext;
+            private readonly IBacklogContext _dataContext;
             private readonly ICache _cache;
         }
     }

@@ -26,7 +26,7 @@ namespace Backlog.Security
 
         public class AuthenticateHandler : IAsyncRequestHandler<AuthenticateRequest, AuthenticateResponse>
         {
-            public AuthenticateHandler(IDataContext dataContext, IEncryptionService encryptionService)
+            public AuthenticateHandler(IBacklogContext dataContext, IEncryptionService encryptionService)
             {
                 _encryptionService = encryptionService;
                 _dataContext = dataContext;
@@ -51,7 +51,7 @@ namespace Backlog.Security
             }
 
 
-            protected readonly IDataContext _dataContext;
+            protected readonly IBacklogContext _dataContext;
             private IEncryptionService _encryptionService { get; set; }
         }
 

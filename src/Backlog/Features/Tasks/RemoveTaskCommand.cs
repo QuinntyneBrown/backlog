@@ -23,7 +23,7 @@ namespace Backlog.Features.Tasks
 
         public class RemoveTaskHandler : IAsyncRequestHandler<RemoveTaskRequest, RemoveTaskResponse>
         {
-            public RemoveTaskHandler(IDataContext dataContext, ICache cache)
+            public RemoveTaskHandler(IBacklogContext dataContext, ICache cache)
             {
                 _dataContext = dataContext;
                 _cache = cache;
@@ -37,7 +37,7 @@ namespace Backlog.Features.Tasks
                 return new RemoveTaskResponse();
             }
 
-            private readonly IDataContext _dataContext;
+            private readonly IBacklogContext _dataContext;
             private readonly ICache _cache;
         }
     }

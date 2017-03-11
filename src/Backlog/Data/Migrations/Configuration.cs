@@ -4,14 +4,14 @@ namespace Backlog.Migrations
     using Data.Helpers;
     using System.Data.Entity.Migrations;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<DataContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<BacklogContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(DataContext context)
+        protected override void Seed(BacklogContext context)
         {
             RoleConfiguration.Seed(context);
             UserConfiguration.Seed(context);

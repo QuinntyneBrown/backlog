@@ -41,7 +41,7 @@ namespace Backlog.UnitTests.Features.Epics
 
             mockSet.As<IQueryable<Epic>>().Setup(m => m.GetEnumerator()).Returns(epics.GetEnumerator());
             
-            Mock<IDataContext> mockContext = new Mock<IDataContext>();
+            Mock<IBacklogContext> mockContext = new Mock<IBacklogContext>();
 
             mockContext.Setup(c => c.Epics).Returns(mockSet.Object);
             

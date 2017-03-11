@@ -7,7 +7,7 @@ namespace Backlog.Migrations
 {
     public class TaskStatusConfiguration
     {
-        public static void Seed(DataContext context) {
+        public static void Seed(BacklogContext context) {
 
             context.TaskStatuses.AddOrUpdate(x => x.Name, new TaskStatus()
             {

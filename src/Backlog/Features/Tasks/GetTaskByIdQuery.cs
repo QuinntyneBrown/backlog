@@ -21,7 +21,7 @@ namespace Backlog.Features.Tasks
 
         public class GetTaskByIdHandler : IAsyncRequestHandler<GetTaskByIdRequest, GetTaskByIdResponse>
         {
-            public GetTaskByIdHandler(IDataContext dataContext, ICache cache)
+            public GetTaskByIdHandler(IBacklogContext dataContext, ICache cache)
             {
                 _dataContext = dataContext;
                 _cache = cache;
@@ -35,7 +35,7 @@ namespace Backlog.Features.Tasks
                 };
             }
 
-            private readonly IDataContext _dataContext;
+            private readonly IBacklogContext _dataContext;
             private readonly ICache _cache;
         }
 

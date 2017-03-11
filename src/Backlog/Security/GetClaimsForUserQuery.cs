@@ -22,7 +22,7 @@ namespace Backlog.Security
 
         public class GetClaimsForUserHandler : IAsyncRequestHandler<GetClaimsForUserRequest, GetClaimsForUserResponse>
         {
-            public GetClaimsForUserHandler(IDataContext dataContext)
+            public GetClaimsForUserHandler(IBacklogContext dataContext)
             {
                 _dataContext = dataContext;
             }
@@ -49,7 +49,7 @@ namespace Backlog.Security
                 };
             }
 
-            private readonly IDataContext _dataContext;
+            private readonly IBacklogContext _dataContext;
             
         }
     }

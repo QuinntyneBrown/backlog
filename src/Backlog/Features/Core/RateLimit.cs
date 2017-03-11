@@ -53,7 +53,7 @@ namespace Backlog.Features.Core
         }
 
         [Dependency]
-        public DataContext _dataContext { get; set; }
+        public BacklogContext _dataContext { get; set; }
 
         private int _maxRequestsHour;
     }

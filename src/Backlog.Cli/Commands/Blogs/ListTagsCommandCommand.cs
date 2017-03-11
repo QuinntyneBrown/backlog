@@ -28,7 +28,7 @@ namespace Backlog.Cli.Commands.Blogs
 
         public class ListTagsCommandHandler : IAsyncRequestHandler<ListTagsCommandRequest, ListTagsCommandResponse>
         {
-            public ListTagsCommandHandler(DataContext dataContext, ICache cache)
+            public ListTagsCommandHandler(BacklogContext dataContext, ICache cache)
             {
                 _dataContext = dataContext;
                 _cache = cache;
@@ -39,7 +39,7 @@ namespace Backlog.Cli.Commands.Blogs
 				throw new System.NotImplementedException();
             }
 
-            private readonly DataContext _dataContext;
+            private readonly BacklogContext _dataContext;
             private readonly ICache _cache;
         }
 

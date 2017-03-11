@@ -20,7 +20,7 @@ namespace Backlog.Features.AgileTeams
 
         public class RemoveAgileTeamMemberHandler : IAsyncRequestHandler<RemoveAgileTeamMemberRequest, RemoveAgileTeamMemberResponse>
         {
-            public RemoveAgileTeamMemberHandler(IDataContext dataContext, ICache cache)
+            public RemoveAgileTeamMemberHandler(IBacklogContext dataContext, ICache cache)
             {
                 _dataContext = dataContext;
                 _cache = cache;
@@ -34,7 +34,7 @@ namespace Backlog.Features.AgileTeams
                 return new RemoveAgileTeamMemberResponse();
             }
 
-            private readonly IDataContext _dataContext;
+            private readonly IBacklogContext _dataContext;
             private readonly ICache _cache;
         }
     }

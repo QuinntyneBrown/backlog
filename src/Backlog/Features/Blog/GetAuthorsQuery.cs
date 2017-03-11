@@ -19,7 +19,7 @@ namespace Backlog.Features.Blog
 
         public class GetAuthorsHandler : IAsyncRequestHandler<GetAuthorsRequest, GetAuthorsResponse>
         {
-            public GetAuthorsHandler(IDataContext dataContext, ICache cache)
+            public GetAuthorsHandler(IBacklogContext dataContext, ICache cache)
             {
                 _dataContext = dataContext;
                 _cache = cache;
@@ -34,7 +34,7 @@ namespace Backlog.Features.Blog
                 };
             }
 
-            private readonly IDataContext _dataContext;
+            private readonly IBacklogContext _dataContext;
             private readonly ICache _cache;
         }
 

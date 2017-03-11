@@ -20,7 +20,7 @@ namespace Backlog.Features.Stories
 
         public class AddOrUpdateStoryHandler : IAsyncRequestHandler<AddOrUpdateStoryRequest, AddOrUpdateStoryResponse>
         {
-            public AddOrUpdateStoryHandler(IDataContext dataContext, ICache cache)
+            public AddOrUpdateStoryHandler(IBacklogContext dataContext, ICache cache)
             {
                 _dataContext = dataContext;
                 _cache = cache;
@@ -56,7 +56,7 @@ namespace Backlog.Features.Stories
                 return new AddOrUpdateStoryResponse() { };
             }
 
-            private readonly IDataContext _dataContext;
+            private readonly IBacklogContext _dataContext;
             private readonly ICache _cache;
         }
 

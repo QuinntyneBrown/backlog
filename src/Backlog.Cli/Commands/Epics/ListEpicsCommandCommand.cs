@@ -13,7 +13,7 @@ namespace Backlog.Cli.Commands.Epics
 
         public class ListEpicsCommandHandler : IAsyncRequestHandler<ListEpicsCommandRequest, ListEpicsCommandResponse>
         {
-            public ListEpicsCommandHandler(DataContext dataContext, ICache cache)
+            public ListEpicsCommandHandler(BacklogContext dataContext, ICache cache)
             {
                 _dataContext = dataContext;
                 _cache = cache;
@@ -24,7 +24,7 @@ namespace Backlog.Cli.Commands.Epics
 				throw new System.NotImplementedException();
             }
 
-            private readonly DataContext _dataContext;
+            private readonly BacklogContext _dataContext;
             private readonly ICache _cache;
         }
 

@@ -10,7 +10,7 @@ namespace Backlog.Migrations
 {
     public class UserConfiguration
     {
-        public static void Seed(DataContext context) {
+        public static void Seed(BacklogContext context) {
 
             var systemRole = context.Roles.First(x => x.Name == Roles.SYSTEM);
             var roles = new List<Role>();

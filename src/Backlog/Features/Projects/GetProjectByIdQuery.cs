@@ -18,7 +18,7 @@ namespace Backlog.Features.Projects
 
         public class GetProjectByIdHandler : IAsyncRequestHandler<GetProjectByIdRequest, GetProjectByIdResponse>
         {
-            public GetProjectByIdHandler(IDataContext dataContext, ICache cache)
+            public GetProjectByIdHandler(IBacklogContext dataContext, ICache cache)
             {
                 _dataContext = dataContext;
                 _cache = cache;
@@ -32,7 +32,7 @@ namespace Backlog.Features.Projects
                 };
             }
 
-            private readonly IDataContext _dataContext;
+            private readonly IBacklogContext _dataContext;
             private readonly ICache _cache;
         }
     }

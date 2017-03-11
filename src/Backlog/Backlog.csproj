@@ -209,7 +209,7 @@
     <Compile Include="Security\OAuthProvider.cs" />
     <Compile Include="Security\AuthConfiguration.cs" />
     <Compile Include="Security\IAuthConfiguration.cs" />
-    <Compile Include="Data\DataContext.cs" />
+    <Compile Include="Data\BacklogContext.cs" />
     <Compile Include="Features\Core\RateLimit.cs" />
     <Compile Include="Features\Core\StringExtensions.cs" />
     <Compile Include="Features\Core\HandleError.cs" />

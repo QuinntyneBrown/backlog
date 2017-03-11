@@ -21,7 +21,7 @@ namespace Backlog.Features.DigitalAssets
 
         public class GetDigitalAssetsHandler : IAsyncRequestHandler<GetDigitalAssetsRequest, GetDigitalAssetsResponse>
         {
-            public GetDigitalAssetsHandler(IDataContext dataContext, ICache cache)
+            public GetDigitalAssetsHandler(IBacklogContext dataContext, ICache cache)
             {
                 _dataContext = dataContext;
                 _cache = cache;
@@ -37,7 +37,7 @@ namespace Backlog.Features.DigitalAssets
                 };
             }
 
-            private readonly IDataContext _dataContext;
+            private readonly IBacklogContext _dataContext;
             private readonly ICache _cache;
         }
     }

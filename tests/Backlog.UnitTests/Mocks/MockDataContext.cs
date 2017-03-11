@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Backlog.UnitTests.Mocks
 {
-    public class MockDataContext: IDataContext
+    public class MockDataContext: IBacklogContext
     {
         public DbSet<Epic> Epics { get; set; }
         public DbSet<Article> Articles { get; set; }

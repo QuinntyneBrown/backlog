@@ -20,7 +20,7 @@ namespace Backlog.Features.Blog
 
         public class RemoveTagHandler : IAsyncRequestHandler<RemoveTagRequest, RemoveTagResponse>
         {
-            public RemoveTagHandler(IDataContext dataContext, ICache cache)
+            public RemoveTagHandler(IBacklogContext dataContext, ICache cache)
             {
                 _dataContext = dataContext;
                 _cache = cache;
@@ -34,7 +34,7 @@ namespace Backlog.Features.Blog
                 return new RemoveTagResponse();
             }
 
-            private readonly IDataContext _dataContext;
+            private readonly IBacklogContext _dataContext;
             private readonly ICache _cache;
         }
     }

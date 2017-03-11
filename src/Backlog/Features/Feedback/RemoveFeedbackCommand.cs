@@ -20,7 +20,7 @@ namespace Backlog.Features.Feedback
 
         public class RemoveFeedbackHandler : IAsyncRequestHandler<RemoveFeedbackRequest, RemoveFeedbackResponse>
         {
-            public RemoveFeedbackHandler(IDataContext dataContext, ICache cache)
+            public RemoveFeedbackHandler(IBacklogContext dataContext, ICache cache)
             {
                 _dataContext = dataContext;
                 _cache = cache;
@@ -34,7 +34,7 @@ namespace Backlog.Features.Feedback
                 return new RemoveFeedbackResponse();
             }
 
-            private readonly IDataContext _dataContext;
+            private readonly IBacklogContext _dataContext;
             private readonly ICache _cache;
         }
     }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Backlog.Data
 {    
 
-    public interface IDataContext
+    public interface IBacklogContext
     {
         DbSet<AgileTeam> AgileTeams { get; set; }
         DbSet<AgileTeamMember> AgileTeamMembers { get; set; }
@@ -39,10 +39,10 @@ namespace Backlog.Data
         Task<int> SaveChangesAsync();
     }
 
-    public class DataContext: DbContext, IDataContext
+    public class BacklogContext: DbContext, IBacklogContext
     {
-        public DataContext()
-            : base(nameOrConnectionString: "DataContext")
+        public BacklogContext()
+            : base(nameOrConnectionString: "BacklogContext")
         {
             Configuration.ProxyCreationEnabled = false;
             Configuration.LazyLoadingEnabled = false;

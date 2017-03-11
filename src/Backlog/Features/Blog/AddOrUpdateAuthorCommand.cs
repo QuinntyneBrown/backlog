@@ -20,7 +20,7 @@ namespace Backlog.Features.Blog
 
         public class AddOrUpdateAuthorHandler : IAsyncRequestHandler<AddOrUpdateAuthorRequest, AddOrUpdateAuthorResponse>
         {
-            public AddOrUpdateAuthorHandler(IDataContext dataContext, ICache cache)
+            public AddOrUpdateAuthorHandler(IBacklogContext dataContext, ICache cache)
             {
                 _dataContext = dataContext;
                 _cache = cache;
@@ -41,7 +41,7 @@ namespace Backlog.Features.Blog
                 return new AddOrUpdateAuthorResponse() { };
             }
 
-            private readonly IDataContext _dataContext;
+            private readonly IBacklogContext _dataContext;
             private readonly ICache _cache;
         }
     }

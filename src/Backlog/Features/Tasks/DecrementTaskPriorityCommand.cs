@@ -21,7 +21,7 @@ namespace Backlog.Features.Tasks
 
         public class DecrementTaskPriorityHandler : IAsyncRequestHandler<DecrementTaskPriorityRequest, DecrementTaskPriorityResponse>
         {
-            public DecrementTaskPriorityHandler(IDataContext dataContext, ICache cache)
+            public DecrementTaskPriorityHandler(IBacklogContext dataContext, ICache cache)
             {
                 _dataContext = dataContext;
                 _cache = cache;
@@ -37,7 +37,7 @@ namespace Backlog.Features.Tasks
                 return new DecrementTaskPriorityResponse();
             }
 
-            private readonly IDataContext _dataContext;
+            private readonly IBacklogContext _dataContext;
             private readonly ICache _cache;
         }
     }

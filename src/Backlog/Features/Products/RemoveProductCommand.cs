@@ -20,7 +20,7 @@ namespace Backlog.Features.Products
 
         public class RemoveProductHandler : IAsyncRequestHandler<RemoveProductRequest, RemoveProductResponse>
         {
-            public RemoveProductHandler(IDataContext dataContext, ICache cache)
+            public RemoveProductHandler(IBacklogContext dataContext, ICache cache)
             {
                 _dataContext = dataContext;
                 _cache = cache;
@@ -34,7 +34,7 @@ namespace Backlog.Features.Products
                 return new RemoveProductResponse();
             }
 
-            private readonly IDataContext _dataContext;
+            private readonly IBacklogContext _dataContext;
             private readonly ICache _cache;
         }
     }
