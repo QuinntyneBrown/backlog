@@ -1,18 +1,15 @@
-using MediatR;
 using Backlog.Data;
 using Backlog.Features.Core;
-using System.Collections.Generic;
+using MediatR;
 using System.Threading.Tasks;
-using System.Linq;
-using System.Data.Entity;
 
 namespace Backlog.Features.Categories
 {
     public class GetCategoryByIdQuery
     {
-        public class GetCategoryByIdRequest : IRequest<GetCategoryByIdResponse> { 
-			public int Id { get; set; }
-		}
+        public class GetCategoryByIdRequest : IRequest<GetCategoryByIdResponse> {
+            public int Id { get; set; }
+        }
 
         public class GetCategoryByIdResponse
         {
