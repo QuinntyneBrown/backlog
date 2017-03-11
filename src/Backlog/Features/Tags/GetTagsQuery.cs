@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using System.Data.Entity;
 
-namespace Backlog.Features.Blog
+namespace Backlog.Features.Tags
 {
     public class GetTagsQuery
     {
@@ -27,7 +27,10 @@ namespace Backlog.Features.Blog
 
             public async Task<GetTagsResponse> Handle(GetTagsRequest request)
             {
-                var tags = await _dataContext.Tags.ToListAsync();
+                var tags = await _dataContext.Tags
+                    .Where(x=>x.IsDeleted == false)
+                    .ToListAsync();
+
                 return new GetTagsResponse()
                 {
                     Tags = tags.Select(x => TagApiModel.FromTag(x)).ToList()
@@ -37,5 +40,7 @@ namespace Backlog.Features.Blog
             private readonly IBacklogContext _dataContext;
             private readonly ICache _cache;
         }
+
     }
+
 }

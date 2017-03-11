@@ -1,9 +1,12 @@
 using MediatR;
 using Backlog.Data;
 using Backlog.Features.Core;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
+using System.Data.Entity;
 
-namespace Backlog.Features.Blog
+namespace Backlog.Features.Tags
 {
     public class GetTagByIdQuery
     {
@@ -35,5 +38,7 @@ namespace Backlog.Features.Blog
             private readonly IBacklogContext _dataContext;
             private readonly ICache _cache;
         }
+
     }
+
 }

@@ -1,19 +1,17 @@
-using Backlog.Security;
 using MediatR;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 
-namespace Backlog.Features.Blog
+namespace Backlog.Features.Tags
 {
     [Authorize]
     [RoutePrefix("api/tag")]
     public class TagController : ApiController
     {
-        public TagController(IMediator mediator, IUserManager userManager)
+        public TagController(IMediator mediator)
         {
             _mediator = mediator;
-            _userManager = userManager;
         }
 
         [Route("add")]
@@ -48,6 +46,6 @@ namespace Backlog.Features.Blog
             => Ok(await _mediator.Send(request));
 
         protected readonly IMediator _mediator;
-        protected readonly IUserManager _userManager;
+
     }
 }

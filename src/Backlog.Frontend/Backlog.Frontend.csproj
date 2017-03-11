@@ -271,11 +271,11 @@
     <Content Include="src\app\blog\tag-item.component.scss">
       <DependentUpon>tag-item.component.ts</DependentUpon>
     </Content>
-    <Content Include="src\app\blog\tag-list-overlay.component.html">
-      <DependentUpon>tag-list-overlay.component.ts</DependentUpon>
+    <Content Include="src\app\blog\tag-list-embed.component.html">
+      <DependentUpon>tag-list-embed.component.ts</DependentUpon>
     </Content>
-    <Content Include="src\app\blog\tag-list-overlay.component.scss">
-      <DependentUpon>tag-list-overlay.component.ts</DependentUpon>
+    <Content Include="src\app\blog\tag-list-embed.component.scss">
+      <DependentUpon>tag-list-embed.component.ts</DependentUpon>
     </Content>
     <Content Include="src\app\blog\tag-list.component.html">
       <DependentUpon>tag-list.component.ts</DependentUpon>
@@ -300,6 +300,18 @@
     </Content>
     <Content Include="src\app\brands\brand-list.component.scss">
       <DependentUpon>brand-list.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\categories\category-edit.component.html">
+      <DependentUpon>category-edit.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\categories\category-edit.component.scss">
+      <DependentUpon>category-edit.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\categories\category-list.component.html">
+      <DependentUpon>category-list.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\categories\category-list.component.scss">
+      <DependentUpon>category-list.component.ts</DependentUpon>
     </Content>
     <Content Include="src\app\digital-assets\digital-asset-url-input.component.html">
       <DependentUpon>digital-asset-url-input.component.ts</DependentUpon>
@@ -616,6 +628,8 @@
     <Content Include="typedoc.json" />
     <Content Include="typings.json" />
     <Content Include="src\styles\base\_index.scss" />
+    <Content Include="src\app\blog\tag-edit-embed.component.scss" />
+    <Content Include="src\app\blog\tag-edit-embed.component.html" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="index.html" />
@@ -628,7 +642,7 @@
   <ItemGroup />
   <ItemGroup>
     <TypeScriptCompile Include="container.ts" />
-    <TypeScriptCompile Include="service-collection.ts" />
+    <TypeScriptCompile Include="create-container.ts" />
     <TypeScriptCompile Include="src\app\app-router-outlet.component.ts" />
     <TypeScriptCompile Include="src\app\app.component.ts" />
     <TypeScriptCompile Include="src\app\digital-assets\digital-asset.model.ts" />
@@ -822,7 +836,15 @@
     <TypeScriptCompile Include="src\app\blog\tag-list.component.ts" />
     <TypeScriptCompile Include="src\app\blog\tag-edit.component.ts" />
     <TypeScriptCompile Include="src\app\blog\tag-item.component.ts" />
-    <TypeScriptCompile Include="src\app\blog\tag-list-overlay.component.ts" />
+    <TypeScriptCompile Include="src\app\blog\tag-list-embed.component.ts" />
+    <TypeScriptCompile Include="src\app\blog\tag-edit-embed.component.ts" />
+    <TypeScriptCompile Include="src\app\blog\tag.actions.ts" />
+    <TypeScriptCompile Include="src\app\tags\index.ts" />
+    <TypeScriptCompile Include="src\app\categories\index.ts" />
+    <TypeScriptCompile Include="src\app\categories\category.model.ts" />
+    <TypeScriptCompile Include="src\app\categories\category.service.ts" />
+    <TypeScriptCompile Include="src\app\categories\category-list.component.ts" />
+    <TypeScriptCompile Include="src\app\categories\category-edit.component.ts" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Backlog\Backlog.csproj">

@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace Backlog.Data
 {    
-
     public interface IBacklogContext
     {
         DbSet<AgileTeam> AgileTeams { get; set; }
@@ -16,6 +15,7 @@ namespace Backlog.Data
         DbSet<Article> Articles { get; set; }
         DbSet<Author> Authors { get; set; }
         DbSet<Brand> Brands { get; set; }
+        DbSet<Category> Categories { get; set; }
         DbSet<DigitalAsset> DigitalAssets { get; set; }
         DbSet<Epic> Epics { get; set; }
         DbSet<Feature> Features { get; set; }
@@ -54,6 +54,7 @@ namespace Backlog.Data
         public virtual DbSet<Article> Articles { get; set; }
         public virtual DbSet<Author> Authors { get; set; }
         public virtual DbSet<Brand> Brands { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<DigitalAsset> DigitalAssets { get; set; }        
         public virtual DbSet<Epic> Epics { get; set; }
         public virtual DbSet<Feature> Features { get; set; }
@@ -109,6 +110,17 @@ namespace Backlog.Data
                         m.MapLeftKey("Article_Id");
                         m.MapRightKey("Tag_Id");
                         m.ToTable("ArticleTags");
+                    });
+
+            modelBuilder.Entity<Article>().
+                HasMany(u => u.Categories).
+                WithMany(r => r.Articles).
+                Map(
+                    m =>
+                    {
+                        m.MapLeftKey("Article_Id");
+                        m.MapRightKey("Category_Id");
+                        m.ToTable("ArticleCategories");
                     });
 
             modelBuilder.Entity<User>().

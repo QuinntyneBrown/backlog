@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using System.Data.Entity;
 
-namespace Backlog.Features.Blog
+namespace Backlog.Features.Tags
 {
     public class RemoveTagCommand
     {

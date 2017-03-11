@@ -1,9 +1,9 @@
-﻿import { ServiceCollection } from "./service-collection";
+﻿import { createContainer } from "./create-container";
 import { ReflectiveInjector, OpaqueToken } from 'injection-js';
 
 export class Container {
     constructor() {
-        this._injector = ReflectiveInjector.resolveAndCreate(new ServiceCollection());
+        this._injector = ReflectiveInjector.resolveAndCreate(createContainer());
     }
 
     private static _instance: Container;

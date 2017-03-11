@@ -301,12 +301,6 @@
     <Compile Include="Features\Sprints\RemoveSprintCommand.cs" />
     <Compile Include="Features\Sprints\SprintApiModel.cs" />
     <Compile Include="Features\Sprints\SprintController.cs" />
-    <Compile Include="Features\Blog\AddOrUpdateTagCommand.cs" />
-    <Compile Include="Features\Blog\GetTagsQuery.cs" />
-    <Compile Include="Features\Blog\GetTagByIdQuery.cs" />
-    <Compile Include="Features\Blog\RemoveTagCommand.cs" />
-    <Compile Include="Features\Blog\TagApiModel.cs" />
-    <Compile Include="Features\Blog\TagController.cs" />
     <Compile Include="Features\Brands\AddOrUpdateBrandCommand.cs" />
     <Compile Include="Features\Brands\GetBrandsQuery.cs" />
     <Compile Include="Features\Brands\GetBrandByIdQuery.cs" />
@@ -371,6 +365,19 @@
     <Compile Include="Data\Model\Tenant.cs" />
     <Compile Include="Features\Blog\GetArticleBySlugQuery.cs" />
     <Compile Include="Features\DigitalAssets\GetDigitalAssetByUniqueIdQuery.cs" />
+    <Compile Include="Features\Tags\AddOrUpdateTagCommand.cs" />
+    <Compile Include="Features\Tags\GetTagsQuery.cs" />
+    <Compile Include="Features\Tags\GetTagByIdQuery.cs" />
+    <Compile Include="Features\Tags\RemoveTagCommand.cs" />
+    <Compile Include="Features\Tags\TagApiModel.cs" />
+    <Compile Include="Features\Tags\TagController.cs" />
+    <Compile Include="Data\Model\Category.cs" />
+    <Compile Include="Features\Categories\AddOrUpdateCategoryCommand.cs" />
+    <Compile Include="Features\Categories\GetCategoriesQuery.cs" />
+    <Compile Include="Features\Categories\GetCategoryByIdQuery.cs" />
+    <Compile Include="Features\Categories\RemoveCategoryCommand.cs" />
+    <Compile Include="Features\Categories\CategoryApiModel.cs" />
+    <Compile Include="Features\Categories\CategoryController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

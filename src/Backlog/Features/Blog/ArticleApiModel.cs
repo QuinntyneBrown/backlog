@@ -1,5 +1,8 @@
 using Backlog.Data.Model;
+using Backlog.Features.Tags;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Backlog.Features.Blog
 {
@@ -13,6 +16,7 @@ namespace Backlog.Features.Blog
         public bool IsPublished { get; set; }
         public DateTime? Published { get; set; }
         public AuthorApiModel Author { get; set; }
+        public ICollection<TagApiModel> Tags { get; set; } = new HashSet<TagApiModel>();
 
         public static TModel FromArticle<TModel>(Article article) where
             TModel : ArticleApiModel, new()
@@ -25,6 +29,7 @@ namespace Backlog.Features.Blog
             model.HtmlContent = article.HtmlContent;
             model.Published = article.Published;
             model.Author = AuthorApiModel.FromAuthor(article.Author);
+            model.Tags = article.Tags.Select(t => TagApiModel.FromTag(t)).ToList();
             return model;
         }
 

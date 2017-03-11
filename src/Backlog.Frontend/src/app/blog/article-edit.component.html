@@ -1,13 +1,23 @@
 <h2></h2>
 
-<h3>Title</h3>
-<input type="text" class="article-title" />
-<h3>Tags</h3>
-<div><a>Add Tags...</a></div>
-<h3>Author</h3>
-<select></select>
-<h3>Is Published</h3>
-<input type="checkbox" class="article-is-published"></input>
-<div class="article-html-content"></div>
-<ce-button class="save-button">Save</ce-button>
-<ce-button class="delete-button">Delete</ce-button>
+<ce-tabs>
+    <div class="tab-title"><h3>General</h3></div>
+    <div class="tab-title"><h3>Tags</h3></div>
+    <div class="tab-panel">
+        <h3>Title</h3>
+        <input type="text" class="article-title" />
+        <h3>Author</h3>
+        <select></select>
+        <div class="checkbox-field">
+            <input type="checkbox" class="article-is-published" />
+            <span>Is Published</span>
+        </div>
+        <div class="article-html-content"></div>
+        <ce-button class="save-button">Save</ce-button>
+        <ce-button class="delete-button">Delete</ce-button>
+    </div>
+    <div class="tab-panel">
+        <ce-tag-edit-embed></ce-tag-edit-embed>
+        <ce-tag-list-embed></ce-tag-list-embed>
+    </div>
+</ce-tabs>

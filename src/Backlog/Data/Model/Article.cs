@@ -26,6 +26,7 @@ namespace Backlog.Data.Model
         public ICollection<StoryArticle> StoryArticles { get; set; } = new HashSet<StoryArticle>();
         public ICollection<ArticleSnapShot> ArticleSnapShots { get; set; } = new HashSet<ArticleSnapShot>();
         public ICollection<Tag> Tags { get; set; } = new HashSet<Tag>();
+        public ICollection<Category> Categories { get; set; } = new HashSet<Category>();
 
         public DateTime CreatedOn { get; set; }
         public DateTime LastModifiedOn { get; set; }
