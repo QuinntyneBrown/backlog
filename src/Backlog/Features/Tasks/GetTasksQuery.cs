@@ -19,22 +19,22 @@ namespace Backlog.Features.Tasks
 
         public class GetTasksHandler : IAsyncRequestHandler<GetTasksRequest, GetTasksResponse>
         {
-            public GetTasksHandler(IBacklogContext dataContext, ICache cache)
+            public GetTasksHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
             public async Task<GetTasksResponse> Handle(GetTasksRequest request)
             {
-                var tasks = await _dataContext.Tasks.ToListAsync();
+                var tasks = await _context.Tasks.ToListAsync();
                 return new GetTasksResponse()
                 {
                     Tasks = tasks.Select(x => TaskApiModel.FromTask(x)).ToList()
                 };
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
 

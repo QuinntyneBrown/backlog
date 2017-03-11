@@ -21,15 +21,15 @@ namespace Backlog.Features.DigitalAssets
 
         public class GetDigitalAssetsHandler : IAsyncRequestHandler<GetDigitalAssetsRequest, GetDigitalAssetsResponse>
         {
-            public GetDigitalAssetsHandler(IBacklogContext dataContext, ICache cache)
+            public GetDigitalAssetsHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
             public async Task<GetDigitalAssetsResponse> Handle(GetDigitalAssetsRequest request)
             {
-                var digitalAssets = await _cache.FromCacheOrServiceAsync<List<DigitalAsset>>(() => _dataContext.DigitalAssets.ToListAsync(), DigitalAssetCacheKeys.DigitalAssets);
+                var digitalAssets = await _cache.FromCacheOrServiceAsync<List<DigitalAsset>>(() => _context.DigitalAssets.ToListAsync(), DigitalAssetCacheKeys.DigitalAssets);
 
                 return new GetDigitalAssetsResponse()
                 {
@@ -37,7 +37,7 @@ namespace Backlog.Features.DigitalAssets
                 };
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
     }

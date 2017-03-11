@@ -19,22 +19,22 @@ namespace Backlog.Features.Brands
 
         public class GetBrandsHandler : IAsyncRequestHandler<GetBrandsRequest, GetBrandsResponse>
         {
-            public GetBrandsHandler(IBacklogContext dataContext, ICache cache)
+            public GetBrandsHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
             public async Task<GetBrandsResponse> Handle(GetBrandsRequest request)
             {
-                var brands = await _dataContext.Brands.ToListAsync();
+                var brands = await _context.Brands.ToListAsync();
                 return new GetBrandsResponse()
                 {
                     Brands = brands.Select(x => BrandApiModel.FromBrand(x)).ToList()
                 };
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
     }

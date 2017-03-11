@@ -14,13 +14,13 @@ namespace Backlog.Security
 
     public class UserManager : IUserManager
     {
-        public UserManager(IBacklogContext dataContext)
+        public UserManager(IBacklogContext context)
         {
-            _dataContext = dataContext;
+            _context = context;
         }
 
-        public async Task<User> GetUserAsync(IPrincipal user) => await _dataContext.Users.SingleAsync(x => x.Username == user.Identity.Name);
+        public async Task<User> GetUserAsync(IPrincipal user) => await _context.Users.SingleAsync(x => x.Username == user.Identity.Name);
 
-        protected readonly IBacklogContext _dataContext;
+        protected readonly IBacklogContext _context;
     }
 }

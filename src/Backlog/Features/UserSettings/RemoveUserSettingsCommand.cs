@@ -20,21 +20,21 @@ namespace Backlog.Features.UserSettings
 
         public class RemoveUserSettingsHandler : IAsyncRequestHandler<RemoveUserSettingsRequest, RemoveUserSettingsResponse>
         {
-            public RemoveUserSettingsHandler(IBacklogContext dataContext, ICache cache)
+            public RemoveUserSettingsHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
             public async Task<RemoveUserSettingsResponse> Handle(RemoveUserSettingsRequest request)
             {
-                var userSettings = await _dataContext.UserSettings.FindAsync(request.Id);
+                var userSettings = await _context.UserSettings.FindAsync(request.Id);
                 userSettings.IsDeleted = true;
-                await _dataContext.SaveChangesAsync();
+                await _context.SaveChangesAsync();
                 return new RemoveUserSettingsResponse();
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
     }

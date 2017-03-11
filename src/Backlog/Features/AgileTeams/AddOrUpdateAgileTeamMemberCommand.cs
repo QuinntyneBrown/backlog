@@ -20,19 +20,19 @@ namespace Backlog.Features.AgileTeams
 
         public class AddOrUpdateAgileTeamMemberHandler : IAsyncRequestHandler<AddOrUpdateAgileTeamMemberRequest, AddOrUpdateAgileTeamMemberResponse>
         {
-            public AddOrUpdateAgileTeamMemberHandler(IBacklogContext dataContext, ICache cache)
+            public AddOrUpdateAgileTeamMemberHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
             public async Task<AddOrUpdateAgileTeamMemberResponse> Handle(AddOrUpdateAgileTeamMemberRequest request)
             {
-                var entity = await _dataContext.AgileTeamMembers
+                var entity = await _context.AgileTeamMembers
                     .SingleOrDefaultAsync(x => x.Id == request.AgileTeamMember.Id && x.IsDeleted == false);
-                if (entity == null) _dataContext.AgileTeamMembers.Add(entity = new AgileTeamMember());
+                if (entity == null) _context.AgileTeamMembers.Add(entity = new AgileTeamMember());
                 entity.Name = request.AgileTeamMember.Name;
-                await _dataContext.SaveChangesAsync();
+                await _context.SaveChangesAsync();
 
                 return new AddOrUpdateAgileTeamMemberResponse()
                 {
@@ -40,7 +40,7 @@ namespace Backlog.Features.AgileTeams
                 };
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
 

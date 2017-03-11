@@ -21,9 +21,9 @@ namespace Backlog.Features.Epics
 
         public class GetEpicByIdHandler : IAsyncRequestHandler<GetEpicByIdRequest, GetEpicByIdResponse>
         {
-            public GetEpicByIdHandler(IBacklogContext dataContext, ICache cache)
+            public GetEpicByIdHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
@@ -31,14 +31,14 @@ namespace Backlog.Features.Epics
             {                
                 return new GetEpicByIdResponse()
                 {
-                    Epic = EpicApiModel.FromEpic(await _dataContext.Epics
+                    Epic = EpicApiModel.FromEpic(await _context.Epics
                     .Include(x => x.Stories)
                     .Include(x => x.Product)
                     .SingleAsync(x => x.Id == request.Id))
                 };
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
 

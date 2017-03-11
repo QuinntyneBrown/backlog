@@ -19,22 +19,22 @@ namespace Backlog.Features.Blog
 
         public class GetAuthorsHandler : IAsyncRequestHandler<GetAuthorsRequest, GetAuthorsResponse>
         {
-            public GetAuthorsHandler(IBacklogContext dataContext, ICache cache)
+            public GetAuthorsHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
             public async Task<GetAuthorsResponse> Handle(GetAuthorsRequest request)
             {
-                var authors = await _dataContext.Authors.ToListAsync();
+                var authors = await _context.Authors.ToListAsync();
                 return new GetAuthorsResponse()
                 {
                     Authors = authors.Select(x => AuthorApiModel.FromAuthor(x)).ToList()
                 };
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
 

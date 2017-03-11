@@ -21,9 +21,9 @@ namespace Backlog.Features.Brands
 
         public class GetBrandByIdHandler : IAsyncRequestHandler<GetBrandByIdRequest, GetBrandByIdResponse>
         {
-            public GetBrandByIdHandler(IBacklogContext dataContext, ICache cache)
+            public GetBrandByIdHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
@@ -31,11 +31,11 @@ namespace Backlog.Features.Brands
             {                
                 return new GetBrandByIdResponse()
                 {
-                    Brand = BrandApiModel.FromBrand(await _dataContext.Brands.FindAsync(request.Id))
+                    Brand = BrandApiModel.FromBrand(await _context.Brands.FindAsync(request.Id))
                 };
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
 

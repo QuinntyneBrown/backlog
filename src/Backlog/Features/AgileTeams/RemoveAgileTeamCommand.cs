@@ -20,21 +20,21 @@ namespace Backlog.Features.AgileTeams
 
         public class RemoveAgileTeamHandler : IAsyncRequestHandler<RemoveAgileTeamRequest, RemoveAgileTeamResponse>
         {
-            public RemoveAgileTeamHandler(IBacklogContext dataContext, ICache cache)
+            public RemoveAgileTeamHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
             public async Task<RemoveAgileTeamResponse> Handle(RemoveAgileTeamRequest request)
             {
-                var agileTeam = await _dataContext.AgileTeams.FindAsync(request.Id);
+                var agileTeam = await _context.AgileTeams.FindAsync(request.Id);
                 agileTeam.IsDeleted = true;
-                await _dataContext.SaveChangesAsync();
+                await _context.SaveChangesAsync();
                 return new RemoveAgileTeamResponse();
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
     }

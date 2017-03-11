@@ -20,21 +20,21 @@ namespace Backlog.Features.Epics
 
         public class RemoveEpicHandler : IAsyncRequestHandler<RemoveEpicRequest, RemoveEpicResponse>
         {
-            public RemoveEpicHandler(IBacklogContext dataContext, ICache cache)
+            public RemoveEpicHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
             public async Task<RemoveEpicResponse> Handle(RemoveEpicRequest request)
             {
-                var epic = await _dataContext.Epics.FindAsync(request.Id);
+                var epic = await _context.Epics.FindAsync(request.Id);
                 epic.IsDeleted = true;
-                await _dataContext.SaveChangesAsync();
+                await _context.SaveChangesAsync();
                 return new RemoveEpicResponse();
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
     }

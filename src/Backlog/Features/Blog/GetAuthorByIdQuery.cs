@@ -21,9 +21,9 @@ namespace Backlog.Features.Blog
 
         public class GetAuthorByIdHandler : IAsyncRequestHandler<GetAuthorByIdRequest, GetAuthorByIdResponse>
         {
-            public GetAuthorByIdHandler(IBacklogContext dataContext, ICache cache)
+            public GetAuthorByIdHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
@@ -31,11 +31,11 @@ namespace Backlog.Features.Blog
             {                
                 return new GetAuthorByIdResponse()
                 {
-                    Author = AuthorApiModel.FromAuthor(await _dataContext.Authors.FindAsync(request.Id))
+                    Author = AuthorApiModel.FromAuthor(await _context.Authors.FindAsync(request.Id))
                 };
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
 

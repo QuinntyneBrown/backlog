@@ -22,23 +22,23 @@ namespace Backlog.Features.Epics
 
         public class IncrementEpicPriorityHandler : IAsyncRequestHandler<IncrementEpicPriorityRequest, IncrementEpicPriorityResponse>
         {
-            public IncrementEpicPriorityHandler(IBacklogContext dataContext, ICache cache)
+            public IncrementEpicPriorityHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
             public async Task<IncrementEpicPriorityResponse> Handle(IncrementEpicPriorityRequest request)
             {
-                var epicTask = _dataContext.Epics.FindAsync(request.Id);
-                var epicsTasks = _dataContext.Epics.Where(x => x.IsDeleted == false).ToListAsync();
+                var epicTask = _context.Epics.FindAsync(request.Id);
+                var epicsTasks = _context.Epics.Where(x => x.IsDeleted == false).ToListAsync();
                 WaitAll(new Task[] { epicTask, epicsTasks });
                 epicTask.Result.IncrementPriority(new List<IPrioritizable>(epicsTasks.Result.Cast<IPrioritizable>()));
-                await _dataContext.SaveChangesAsync();
+                await _context.SaveChangesAsync();
                 return new IncrementEpicPriorityResponse();
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
     }

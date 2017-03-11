@@ -20,21 +20,21 @@ namespace Backlog.Features.Categories
 
         public class RemoveCategoryHandler : IAsyncRequestHandler<RemoveCategoryRequest, RemoveCategoryResponse>
         {
-            public RemoveCategoryHandler(IBacklogContext dataContext, ICache cache)
+            public RemoveCategoryHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
             public async Task<RemoveCategoryResponse> Handle(RemoveCategoryRequest request)
             {
-                var category = await _dataContext.Categories.FindAsync(request.Id);
+                var category = await _context.Categories.FindAsync(request.Id);
                 category.IsDeleted = true;
-                await _dataContext.SaveChangesAsync();
+                await _context.SaveChangesAsync();
                 return new RemoveCategoryResponse();
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
     }

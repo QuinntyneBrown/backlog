@@ -16,21 +16,21 @@ namespace Backlog.Features.Blog
 
         public class RemoveAuthorHandler : IAsyncRequestHandler<RemoveAuthorRequest, RemoveAuthorResponse>
         {
-            public RemoveAuthorHandler(IBacklogContext dataContext, ICache cache)
+            public RemoveAuthorHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
             public async Task<RemoveAuthorResponse> Handle(RemoveAuthorRequest request)
             {
-                var author = await _dataContext.Authors.FindAsync(request.Id);
+                var author = await _context.Authors.FindAsync(request.Id);
                 author.IsDeleted = true;
-                await _dataContext.SaveChangesAsync();
+                await _context.SaveChangesAsync();
                 return new RemoveAuthorResponse();
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
     }

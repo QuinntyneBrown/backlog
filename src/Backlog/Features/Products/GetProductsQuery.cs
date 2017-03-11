@@ -19,22 +19,22 @@ namespace Backlog.Features.Products
 
         public class GetProductsHandler : IAsyncRequestHandler<GetProductsRequest, GetProductsResponse>
         {
-            public GetProductsHandler(IBacklogContext dataContext, ICache cache)
+            public GetProductsHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
             public async Task<GetProductsResponse> Handle(GetProductsRequest request)
             {
-                var products = await _dataContext.Products.ToListAsync();
+                var products = await _context.Products.ToListAsync();
                 return new GetProductsResponse()
                 {
                     Products = products.Select(x => ProductApiModel.FromProduct(x)).ToList()
                 };
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
 

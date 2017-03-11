@@ -21,9 +21,9 @@ namespace Backlog.Features.Users
 
         public class GetUserByIdHandler : IAsyncRequestHandler<GetUserByIdRequest, GetUserByIdResponse>
         {
-            public GetUserByIdHandler(IBacklogContext dataContext, ICache cache)
+            public GetUserByIdHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
@@ -31,11 +31,11 @@ namespace Backlog.Features.Users
             {                
                 return new GetUserByIdResponse()
                 {
-                    User = UserApiModel.FromUser(await _dataContext.Users.FindAsync(request.Id))
+                    User = UserApiModel.FromUser(await _context.Users.FindAsync(request.Id))
                 };
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
 

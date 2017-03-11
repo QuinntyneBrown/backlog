@@ -20,21 +20,21 @@ namespace Backlog.Features.Tags
 
         public class RemoveTagHandler : IAsyncRequestHandler<RemoveTagRequest, RemoveTagResponse>
         {
-            public RemoveTagHandler(IBacklogContext dataContext, ICache cache)
+            public RemoveTagHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
             public async Task<RemoveTagResponse> Handle(RemoveTagRequest request)
             {
-                var tag = await _dataContext.Tags.FindAsync(request.Id);
+                var tag = await _context.Tags.FindAsync(request.Id);
                 tag.IsDeleted = true;
-                await _dataContext.SaveChangesAsync();
+                await _context.SaveChangesAsync();
                 return new RemoveTagResponse();
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
     }

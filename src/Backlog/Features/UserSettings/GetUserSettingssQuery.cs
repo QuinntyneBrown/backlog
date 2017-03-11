@@ -19,22 +19,22 @@ namespace Backlog.Features.UserSettings
 
         public class GetUserSettingssHandler : IAsyncRequestHandler<GetUserSettingssRequest, GetUserSettingssResponse>
         {
-            public GetUserSettingssHandler(IBacklogContext dataContext, ICache cache)
+            public GetUserSettingssHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
             public async Task<GetUserSettingssResponse> Handle(GetUserSettingssRequest request)
             {
-                var userSettingss = await _dataContext.UserSettings.ToListAsync();
+                var userSettingss = await _context.UserSettings.ToListAsync();
                 return new GetUserSettingssResponse()
                 {
                     UserSettingss = userSettingss.Select(x => UserSettingsApiModel.FromUserSettings(x)).ToList()
                 };
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
 

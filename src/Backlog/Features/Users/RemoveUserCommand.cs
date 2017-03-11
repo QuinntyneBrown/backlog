@@ -20,21 +20,21 @@ namespace Backlog.Features.Users
 
         public class RemoveUserHandler : IAsyncRequestHandler<RemoveUserRequest, RemoveUserResponse>
         {
-            public RemoveUserHandler(IBacklogContext dataContext, ICache cache)
+            public RemoveUserHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
             public async Task<RemoveUserResponse> Handle(RemoveUserRequest request)
             {
-                var user = await _dataContext.Users.FindAsync(request.Id);
+                var user = await _context.Users.FindAsync(request.Id);
                 user.IsDeleted = true;
-                await _dataContext.SaveChangesAsync();
+                await _context.SaveChangesAsync();
                 return new RemoveUserResponse();
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
     }

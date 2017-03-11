@@ -23,19 +23,19 @@ namespace Backlog.Features.Projects
 
         public class AddOrUpdateProjectHandler : IAsyncRequestHandler<AddOrUpdateProjectRequest, AddOrUpdateProjectResponse>
         {
-            public AddOrUpdateProjectHandler(IBacklogContext dataContext, ICache cache)
+            public AddOrUpdateProjectHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
             public async Task<AddOrUpdateProjectResponse> Handle(AddOrUpdateProjectRequest request)
             {
-                var entity = await _dataContext.Projects
+                var entity = await _context.Projects
                     .SingleOrDefaultAsync(x => x.Id == request.Project.Id && x.IsDeleted == false);
-                if (entity == null) _dataContext.Projects.Add(entity = new Project());
+                if (entity == null) _context.Projects.Add(entity = new Project());
                 entity.Name = request.Project.Name;
-                await _dataContext.SaveChangesAsync();
+                await _context.SaveChangesAsync();
 
                 return new AddOrUpdateProjectResponse()
                 {
@@ -43,7 +43,7 @@ namespace Backlog.Features.Projects
                 };
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
 

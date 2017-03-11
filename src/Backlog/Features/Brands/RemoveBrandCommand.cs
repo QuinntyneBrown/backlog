@@ -20,21 +20,21 @@ namespace Backlog.Features.Brands
 
         public class RemoveBrandHandler : IAsyncRequestHandler<RemoveBrandRequest, RemoveBrandResponse>
         {
-            public RemoveBrandHandler(IBacklogContext dataContext, ICache cache)
+            public RemoveBrandHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
             public async Task<RemoveBrandResponse> Handle(RemoveBrandRequest request)
             {
-                var brand = await _dataContext.Brands.FindAsync(request.Id);
+                var brand = await _context.Brands.FindAsync(request.Id);
                 brand.IsDeleted = true;
-                await _dataContext.SaveChangesAsync();
+                await _context.SaveChangesAsync();
                 return new RemoveBrandResponse();
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
     }

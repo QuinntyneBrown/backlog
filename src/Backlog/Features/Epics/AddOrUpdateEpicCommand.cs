@@ -19,29 +19,29 @@ namespace Backlog.Features.Epics
 
         public class AddOrUpdateEpicHandler : IAsyncRequestHandler<AddOrUpdateEpicRequest, AddOrUpdateEpicResponse>
         {
-            public AddOrUpdateEpicHandler(IBacklogContext dataContext, ICache cache)
+            public AddOrUpdateEpicHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
             public async Task<AddOrUpdateEpicResponse> Handle(AddOrUpdateEpicRequest request)
             {
-                var entity = await _dataContext.Epics
+                var entity = await _context.Epics
                     .SingleOrDefaultAsync(x => x.Id == request.Epic.Id);
-                if (entity == null) _dataContext.Epics.Add(entity = new Epic());
+                if (entity == null) _context.Epics.Add(entity = new Epic());
                 entity.Name = request.Epic.Name;
                 entity.Description = request.Epic.Description;
                 entity.IsTemplate = request.Epic.IsTemplate;
                 entity.ProductId = request.Epic.ProductId;
-                entity.Product = await _dataContext.Products.Where(x=>x.Id == request.Epic.ProductId.Value)
+                entity.Product = await _context.Products.Where(x=>x.Id == request.Epic.ProductId.Value)
                     .SingleOrDefaultAsync();
                 entity.Slug = request.Epic.Name.GenerateSlug();
 
                 if (request.Epic.Priority.HasValue)
                     entity.Priority = request.Epic.Priority.Value;
                 
-                await _dataContext.SaveChangesAsync();
+                await _context.SaveChangesAsync();
 
                 return new AddOrUpdateEpicResponse()
                 {
@@ -49,7 +49,7 @@ namespace Backlog.Features.Epics
                 };
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
     }

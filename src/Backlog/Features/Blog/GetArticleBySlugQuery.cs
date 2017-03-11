@@ -20,9 +20,9 @@ namespace Backlog.Features.Blog
 
         public class GetArticleBySlugHandler : IAsyncRequestHandler<GetArticleBySlugRequest, GetArticleBySlugResponse>
         {
-            public GetArticleBySlugHandler(BacklogContext dataContext, ICache cache)
+            public GetArticleBySlugHandler(BacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
@@ -30,11 +30,11 @@ namespace Backlog.Features.Blog
             {
                 return new GetArticleBySlugResponse()
                 {
-                    Article = ArticleApiModel.FromArticle(await _dataContext.Articles.SingleAsync(a => a.Slug == request.Slug))
+                    Article = ArticleApiModel.FromArticle(await _context.Articles.SingleAsync(a => a.Slug == request.Slug))
                 };
             }
 
-            private readonly BacklogContext _dataContext;
+            private readonly BacklogContext _context;
             private readonly ICache _cache;
         }
 

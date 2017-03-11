@@ -21,9 +21,9 @@ namespace Backlog.Features.Feedback
 
         public class GetFeedbackByIdHandler : IAsyncRequestHandler<GetFeedbackByIdRequest, GetFeedbackByIdResponse>
         {
-            public GetFeedbackByIdHandler(IBacklogContext dataContext, ICache cache)
+            public GetFeedbackByIdHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
@@ -31,11 +31,11 @@ namespace Backlog.Features.Feedback
             {                
                 return new GetFeedbackByIdResponse()
                 {
-                    Feedback = FeedbackApiModel.FromFeedback(await _dataContext.Feedbacks.FindAsync(request.Id))
+                    Feedback = FeedbackApiModel.FromFeedback(await _context.Feedbacks.FindAsync(request.Id))
                 };
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
 

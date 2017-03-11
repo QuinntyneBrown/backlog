@@ -18,9 +18,9 @@ namespace Backlog.Features.Sprints
 
         public class GetSprintByIdHandler : IAsyncRequestHandler<GetSprintByIdRequest, GetSprintByIdResponse>
         {
-            public GetSprintByIdHandler(IBacklogContext dataContext, ICache cache)
+            public GetSprintByIdHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
@@ -28,11 +28,11 @@ namespace Backlog.Features.Sprints
             {                
                 return new GetSprintByIdResponse()
                 {
-                    Sprint = SprintApiModel.FromSprint(await _dataContext.Sprints.FindAsync(request.Id))
+                    Sprint = SprintApiModel.FromSprint(await _context.Sprints.FindAsync(request.Id))
                 };
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
     }

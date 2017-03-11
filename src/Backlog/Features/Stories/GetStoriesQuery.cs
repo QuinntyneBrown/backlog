@@ -19,22 +19,22 @@ namespace Backlog.Features.Stories
 
         public class GetStoriesHandler : IAsyncRequestHandler<GetStoriesRequest, GetStoriesResponse>
         {
-            public GetStoriesHandler(IBacklogContext dataContext, ICache cache)
+            public GetStoriesHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
             public async Task<GetStoriesResponse> Handle(GetStoriesRequest request)
             {
-                var stories = await _dataContext.Stories.ToListAsync();
+                var stories = await _context.Stories.ToListAsync();
                 return new GetStoriesResponse()
                 {
                     Stories = stories.Select(x => StoryApiModel.FromStory(x)).ToList()
                 };
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
 

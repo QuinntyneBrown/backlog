@@ -21,9 +21,9 @@ namespace Backlog.Features.Stories
 
         public class GetStoryByIdHandler : IAsyncRequestHandler<GetStoryByIdRequest, GetStoryByIdResponse>
         {
-            public GetStoryByIdHandler(IBacklogContext dataContext, ICache cache)
+            public GetStoryByIdHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
@@ -31,11 +31,11 @@ namespace Backlog.Features.Stories
             {                
                 return new GetStoryByIdResponse()
                 {
-                    Story = StoryApiModel.FromStory(await _dataContext.Stories.FindAsync(request.Id))
+                    Story = StoryApiModel.FromStory(await _context.Stories.FindAsync(request.Id))
                 };
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
 

@@ -19,22 +19,22 @@ namespace Backlog.Features.Users
 
         public class GetUsersHandler : IAsyncRequestHandler<GetUsersRequest, GetUsersResponse>
         {
-            public GetUsersHandler(IBacklogContext dataContext, ICache cache)
+            public GetUsersHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
             public async Task<GetUsersResponse> Handle(GetUsersRequest request)
             {
-                var users = await _dataContext.Users.ToListAsync();
+                var users = await _context.Users.ToListAsync();
                 return new GetUsersResponse()
                 {
                     Users = users.Select(x => UserApiModel.FromUser(x)).ToList()
                 };
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
 

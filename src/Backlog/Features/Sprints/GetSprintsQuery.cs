@@ -19,22 +19,22 @@ namespace Backlog.Features.Sprints
 
         public class GetSprintsHandler : IAsyncRequestHandler<GetSprintsRequest, GetSprintsResponse>
         {
-            public GetSprintsHandler(IBacklogContext dataContext, ICache cache)
+            public GetSprintsHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
             public async Task<GetSprintsResponse> Handle(GetSprintsRequest request)
             {
-                var sprints = await _dataContext.Sprints.ToListAsync();
+                var sprints = await _context.Sprints.ToListAsync();
                 return new GetSprintsResponse()
                 {
                     Sprints = sprints.Select(x => SprintApiModel.FromSprint(x)).ToList()
                 };
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
 

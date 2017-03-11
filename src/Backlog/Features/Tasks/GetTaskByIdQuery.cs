@@ -21,9 +21,9 @@ namespace Backlog.Features.Tasks
 
         public class GetTaskByIdHandler : IAsyncRequestHandler<GetTaskByIdRequest, GetTaskByIdResponse>
         {
-            public GetTaskByIdHandler(IBacklogContext dataContext, ICache cache)
+            public GetTaskByIdHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
@@ -31,11 +31,11 @@ namespace Backlog.Features.Tasks
             {                
                 return new GetTaskByIdResponse()
                 {
-                    Task = TaskApiModel.FromTask(await _dataContext.Tasks.FindAsync(request.Id))
+                    Task = TaskApiModel.FromTask(await _context.Tasks.FindAsync(request.Id))
                 };
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
 

@@ -18,26 +18,26 @@ namespace Backlog.Features.Products
 
         public class AddOrUpdateProductHandler : IAsyncRequestHandler<AddOrUpdateProductRequest, AddOrUpdateProductResponse>
         {
-            public AddOrUpdateProductHandler(IBacklogContext dataContext, ICache cache)
+            public AddOrUpdateProductHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
             public async Task<AddOrUpdateProductResponse> Handle(AddOrUpdateProductRequest request)
             {
-                var entity = await _dataContext.Products
+                var entity = await _context.Products
                     .SingleOrDefaultAsync(x => x.Id == request.Product.Id && x.IsDeleted == false);
-                if (entity == null) _dataContext.Products.Add(entity = new Product());
+                if (entity == null) _context.Products.Add(entity = new Product());
                 entity.Name = request.Product.Name;
                 entity.Slug = request.Product.Name.GenerateSlug();
 
-                await _dataContext.SaveChangesAsync();
+                await _context.SaveChangesAsync();
 
                 return new AddOrUpdateProductResponse() { };
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
     }

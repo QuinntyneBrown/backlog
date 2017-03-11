@@ -19,15 +19,15 @@ namespace Backlog.Features.Blog
 
         public class GetArticlesHandler : IAsyncRequestHandler<GetArticlesRequest, GetArticlesResponse>
         {
-            public GetArticlesHandler(IBacklogContext dataContext, ICache cache)
+            public GetArticlesHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
             public async Task<GetArticlesResponse> Handle(GetArticlesRequest request)
             {
-                var articles = await _dataContext.Articles
+                var articles = await _context.Articles
                     .Include(x=>x.Author)
                     .ToListAsync();
 
@@ -37,7 +37,7 @@ namespace Backlog.Features.Blog
                 };
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
 

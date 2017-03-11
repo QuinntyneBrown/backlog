@@ -20,21 +20,21 @@ namespace Backlog.Features.Feedback
 
         public class RemoveFeedbackHandler : IAsyncRequestHandler<RemoveFeedbackRequest, RemoveFeedbackResponse>
         {
-            public RemoveFeedbackHandler(IBacklogContext dataContext, ICache cache)
+            public RemoveFeedbackHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
             public async Task<RemoveFeedbackResponse> Handle(RemoveFeedbackRequest request)
             {
-                var feedback = await _dataContext.Feedbacks.FindAsync(request.Id);
+                var feedback = await _context.Feedbacks.FindAsync(request.Id);
                 feedback.IsDeleted = true;
-                await _dataContext.SaveChangesAsync();
+                await _context.SaveChangesAsync();
                 return new RemoveFeedbackResponse();
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
     }

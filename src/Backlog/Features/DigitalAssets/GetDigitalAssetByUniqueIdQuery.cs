@@ -21,9 +21,9 @@ namespace Backlog.Features.DigitalAssets
 
         public class GetDigitalAssetByUniqueIdHandler : IAsyncRequestHandler<GetDigitalAssetByUniqueIdRequest, GetDigitalAssetByUniqueIdResponse>
         {
-            public GetDigitalAssetByUniqueIdHandler(BacklogContext dataContext, ICache cache)
+            public GetDigitalAssetByUniqueIdHandler(BacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
@@ -31,11 +31,11 @@ namespace Backlog.Features.DigitalAssets
             {
                 return new GetDigitalAssetByUniqueIdResponse()
                 {
-                    DigitalAsset = DigitalAssetApiModel.FromDigitalAsset(await _dataContext.DigitalAssets.SingleAsync(x=>x.UniqueId.ToString() == request.UniqueId))
+                    DigitalAsset = DigitalAssetApiModel.FromDigitalAsset(await _context.DigitalAssets.SingleAsync(x=>x.UniqueId.ToString() == request.UniqueId))
                 };
             }
 
-            private readonly BacklogContext _dataContext;
+            private readonly BacklogContext _context;
             private readonly ICache _cache;
         }
 

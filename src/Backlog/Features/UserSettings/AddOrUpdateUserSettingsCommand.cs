@@ -23,19 +23,19 @@ namespace Backlog.Features.UserSettings
 
         public class AddOrUpdateUserSettingsHandler : IAsyncRequestHandler<AddOrUpdateUserSettingsRequest, AddOrUpdateUserSettingsResponse>
         {
-            public AddOrUpdateUserSettingsHandler(IBacklogContext dataContext, ICache cache)
+            public AddOrUpdateUserSettingsHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
             public async Task<AddOrUpdateUserSettingsResponse> Handle(AddOrUpdateUserSettingsRequest request)
             {
-                var entity = await _dataContext.UserSettings
+                var entity = await _context.UserSettings
                     .SingleOrDefaultAsync(x => x.Id == request.UserSettings.Id && x.IsDeleted == false);
-                if (entity == null) _dataContext.UserSettings.Add(entity = new Data.Model.UserSettings());
+                if (entity == null) _context.UserSettings.Add(entity = new Data.Model.UserSettings());
                 entity.Name = request.UserSettings.Name;
-                await _dataContext.SaveChangesAsync();
+                await _context.SaveChangesAsync();
 
                 return new AddOrUpdateUserSettingsResponse()
                 {
@@ -43,7 +43,7 @@ namespace Backlog.Features.UserSettings
                 };
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
 

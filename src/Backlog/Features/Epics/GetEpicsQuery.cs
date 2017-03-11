@@ -21,15 +21,15 @@ namespace Backlog.Features.Epics
 
         public class GetEpicsHandler : IAsyncRequestHandler<GetEpicsRequest, GetEpicsResponse>
         {
-            public GetEpicsHandler(IBacklogContext dataContext, ICache cache)
+            public GetEpicsHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
             public async Task<GetEpicsResponse> Handle(GetEpicsRequest request)
             {
-                var epics = await _dataContext.Epics
+                var epics = await _context.Epics
                     .Include(x=>x.Stories)
                     .Include(x=>x.Product)
                     .Where(x=>x.TenantId == request.TenantId)
@@ -41,7 +41,7 @@ namespace Backlog.Features.Epics
                 };
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
     }

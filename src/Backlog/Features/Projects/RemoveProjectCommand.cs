@@ -20,21 +20,21 @@ namespace Backlog.Features.Projects
 
         public class RemoveProjectHandler : IAsyncRequestHandler<RemoveProjectRequest, RemoveProjectResponse>
         {
-            public RemoveProjectHandler(IBacklogContext dataContext, ICache cache)
+            public RemoveProjectHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
             public async Task<RemoveProjectResponse> Handle(RemoveProjectRequest request)
             {
-                var project = await _dataContext.Projects.FindAsync(request.Id);
+                var project = await _context.Projects.FindAsync(request.Id);
                 project.IsDeleted = true;
-                await _dataContext.SaveChangesAsync();
+                await _context.SaveChangesAsync();
                 return new RemoveProjectResponse();
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
     }

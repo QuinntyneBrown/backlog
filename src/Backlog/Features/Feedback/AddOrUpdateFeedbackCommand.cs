@@ -17,19 +17,19 @@ namespace Backlog.Features.Feedback
 
         public class AddOrUpdateFeedbackHandler : IAsyncRequestHandler<AddOrUpdateFeedbackRequest, AddOrUpdateFeedbackResponse>
         {
-            public AddOrUpdateFeedbackHandler(IBacklogContext dataContext, ICache cache)
+            public AddOrUpdateFeedbackHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
             public async Task<AddOrUpdateFeedbackResponse> Handle(AddOrUpdateFeedbackRequest request)
             {
-                var entity = await _dataContext.Feedbacks
+                var entity = await _context.Feedbacks
                     .SingleOrDefaultAsync(x => x.Id == request.Feedback.Id && x.IsDeleted == false);
-                if (entity == null) _dataContext.Feedbacks.Add(entity = new Data.Model.Feedback());
+                if (entity == null) _context.Feedbacks.Add(entity = new Data.Model.Feedback());
                 entity.Name = request.Feedback.Name;
-                await _dataContext.SaveChangesAsync();
+                await _context.SaveChangesAsync();
 
                 return new AddOrUpdateFeedbackResponse()
                 {
@@ -37,7 +37,7 @@ namespace Backlog.Features.Feedback
                 };
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
 

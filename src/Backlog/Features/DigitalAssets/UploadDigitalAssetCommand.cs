@@ -27,9 +27,9 @@ namespace Backlog.Features.DigitalAssets
 
         public class UploadDigitalAssetHandler : IAsyncRequestHandler<UploadDigitalAssetRequest, UploadDigitalAssetResponse>
         {
-            public UploadDigitalAssetHandler(IBacklogContext dataContext, ICache cache)
+            public UploadDigitalAssetHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
@@ -48,11 +48,11 @@ namespace Backlog.Features.DigitalAssets
                     digitalAsset.FileName = filename;
                     digitalAsset.Bytes = bytes;
                     digitalAsset.ContentType = System.Convert.ToString(file.Headers.ContentType);
-                    _dataContext.DigitalAssets.Add(digitalAsset);
+                    _context.DigitalAssets.Add(digitalAsset);
                     digitalAssets.Add(digitalAsset);
                 }
 
-                await _dataContext.SaveChangesAsync();
+                await _context.SaveChangesAsync();
 
                 _cache.Add(null, DigitalAssetCacheKeys.DigitalAssets);
 
@@ -62,7 +62,7 @@ namespace Backlog.Features.DigitalAssets
                 };
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
             
         }

@@ -19,15 +19,15 @@ namespace Backlog.Features.Categories
 
         public class GetCategoriesHandler : IAsyncRequestHandler<GetCategoriesRequest, GetCategoriesResponse>
         {
-            public GetCategoriesHandler(IBacklogContext dataContext, ICache cache)
+            public GetCategoriesHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
             public async Task<GetCategoriesResponse> Handle(GetCategoriesRequest request)
             {
-                var categories = await _dataContext.Categories
+                var categories = await _context.Categories
                     .Where(x=>x.IsDeleted == false)
                     .ToListAsync();
 
@@ -37,7 +37,7 @@ namespace Backlog.Features.Categories
                 };
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
 

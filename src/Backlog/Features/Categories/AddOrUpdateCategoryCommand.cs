@@ -1,10 +1,8 @@
-using MediatR;
 using Backlog.Data;
 using Backlog.Data.Model;
 using Backlog.Features.Core;
-using System.Collections.Generic;
+using MediatR;
 using System.Threading.Tasks;
-using System.Linq;
 using System.Data.Entity;
 
 namespace Backlog.Features.Categories
@@ -16,37 +14,29 @@ namespace Backlog.Features.Categories
             public CategoryApiModel Category { get; set; }
         }
 
-        public class AddOrUpdateCategoryResponse
-        {
-
-        }
+        public class AddOrUpdateCategoryResponse { }
 
         public class AddOrUpdateCategoryHandler : IAsyncRequestHandler<AddOrUpdateCategoryRequest, AddOrUpdateCategoryResponse>
         {
-            public AddOrUpdateCategoryHandler(IBacklogContext dataContext, ICache cache)
+            public AddOrUpdateCategoryHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
             public async Task<AddOrUpdateCategoryResponse> Handle(AddOrUpdateCategoryRequest request)
             {
-                var entity = await _dataContext.Categories
+                var entity = await _context.Categories
                     .SingleOrDefaultAsync(x => x.Id == request.Category.Id && x.IsDeleted == false);
-                if (entity == null) _dataContext.Categories.Add(entity = new Category());
+                if (entity == null) _context.Categories.Add(entity = new Category());
                 entity.Name = request.Category.Name;
-                await _dataContext.SaveChangesAsync();
+                await _context.SaveChangesAsync();
 
-                return new AddOrUpdateCategoryResponse()
-                {
-
-                };
+                return new AddOrUpdateCategoryResponse();
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
-
     }
-
 }

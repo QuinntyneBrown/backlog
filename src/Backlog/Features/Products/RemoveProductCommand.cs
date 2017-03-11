@@ -20,21 +20,21 @@ namespace Backlog.Features.Products
 
         public class RemoveProductHandler : IAsyncRequestHandler<RemoveProductRequest, RemoveProductResponse>
         {
-            public RemoveProductHandler(IBacklogContext dataContext, ICache cache)
+            public RemoveProductHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
             public async Task<RemoveProductResponse> Handle(RemoveProductRequest request)
             {
-                var product = await _dataContext.Products.FindAsync(request.Id);
+                var product = await _context.Products.FindAsync(request.Id);
                 product.IsDeleted = true;
-                await _dataContext.SaveChangesAsync();
+                await _context.SaveChangesAsync();
                 return new RemoveProductResponse();
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
     }

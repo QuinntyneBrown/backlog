@@ -19,22 +19,22 @@ namespace Backlog.Features.Projects
 
         public class GetProjectsHandler : IAsyncRequestHandler<GetProjectsRequest, GetProjectsResponse>
         {
-            public GetProjectsHandler(IBacklogContext dataContext, ICache cache)
+            public GetProjectsHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
             public async Task<GetProjectsResponse> Handle(GetProjectsRequest request)
             {
-                var projects = await _dataContext.Projects.ToListAsync();
+                var projects = await _context.Projects.ToListAsync();
                 return new GetProjectsResponse()
                 {
                     Projects = projects.Select(x => ProjectApiModel.FromProject(x)).ToList()
                 };
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
 

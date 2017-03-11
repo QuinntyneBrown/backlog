@@ -22,23 +22,23 @@ namespace Backlog.Features.Tasks
 
         public class IncrementTaskPriorityHandler : IAsyncRequestHandler<IncrementTaskPriorityRequest, IncrementTaskPriorityResponse>
         {
-            public IncrementTaskPriorityHandler(IBacklogContext dataContext, ICache cache)
+            public IncrementTaskPriorityHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
             public async Task<IncrementTaskPriorityResponse> Handle(IncrementTaskPriorityRequest request)
             {
-                var taskTask = _dataContext.Tasks.FindAsync(request.Id);
-                var taskTasks = _dataContext.Tasks.Where(x => x.IsDeleted == false).ToListAsync();
+                var taskTask = _context.Tasks.FindAsync(request.Id);
+                var taskTasks = _context.Tasks.Where(x => x.IsDeleted == false).ToListAsync();
                 WaitAll(new Task[] { taskTask, taskTasks });
                 taskTask.Result.IncrementPriority(new List<IPrioritizable>(taskTasks.Result.Cast<IPrioritizable>()));
-                await _dataContext.SaveChangesAsync();
+                await _context.SaveChangesAsync();
                 return new IncrementTaskPriorityResponse();
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
 

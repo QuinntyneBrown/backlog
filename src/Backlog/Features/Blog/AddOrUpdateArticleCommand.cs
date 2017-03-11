@@ -18,19 +18,19 @@ namespace Backlog.Features.Blog
 
         public class AddOrUpdateArticleHandler : IAsyncRequestHandler<AddOrUpdateArticleRequest, AddOrUpdateArticleResponse>
         {
-            public AddOrUpdateArticleHandler(IBacklogContext dataContext, ICache cache)
+            public AddOrUpdateArticleHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
             public async Task<AddOrUpdateArticleResponse> Handle(AddOrUpdateArticleRequest request)
             {
-                var entity = await _dataContext.Articles
+                var entity = await _context.Articles
                     .Include(x=>x.Tags)
                     .FirstOrDefaultAsync(x => x.Id == request.Article.Id);
                                 
-                if (entity == null) _dataContext.Articles.Add(entity = new Article());
+                if (entity == null) _context.Articles.Add(entity = new Article());
                 
                 if (await ArticleSlugExists(request.Article.Title.GenerateSlug(), request.Article.Id))
                     throw new ArticleSlugExistsException();
@@ -39,7 +39,7 @@ namespace Backlog.Features.Blog
 
                 foreach(var tag in request.Article.Tags)
                 {
-                    entity.Tags.Add(await _dataContext.Tags.FindAsync(tag.Id));
+                    entity.Tags.Add(await _context.Tags.FindAsync(tag.Id));
                 }
 
                 entity.AuthorId = request.Article.AuthorId;
@@ -49,17 +49,17 @@ namespace Backlog.Features.Blog
                 entity.IsPublished = request.Article.IsPublished;
                 entity.Published = request.Article.Published;
                 
-                await _dataContext.SaveChangesAsync();
+                await _context.SaveChangesAsync();
 
                 return new AddOrUpdateArticleResponse();
             }
 
             public async Task<bool> ArticleSlugExists(string slug, int articleId)
-                => (await _dataContext.Articles
+                => (await _context.Articles
                     .CountAsync(x => x.Slug == slug
                     && x.Id != articleId)) > 0;
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
     }

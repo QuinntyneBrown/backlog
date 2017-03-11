@@ -23,19 +23,19 @@ namespace Backlog.Features.Users
 
         public class AddOrUpdateUserHandler : IAsyncRequestHandler<AddOrUpdateUserRequest, AddOrUpdateUserResponse>
         {
-            public AddOrUpdateUserHandler(IBacklogContext dataContext, ICache cache)
+            public AddOrUpdateUserHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
             public async Task<AddOrUpdateUserResponse> Handle(AddOrUpdateUserRequest request)
             {
-                var entity = await _dataContext.Users
+                var entity = await _context.Users
                     .SingleOrDefaultAsync(x => x.Id == request.User.Id && x.IsDeleted == false);
-                if (entity == null) _dataContext.Users.Add(entity = new User());
+                if (entity == null) _context.Users.Add(entity = new User());
                 entity.Name = request.User.Name;
-                await _dataContext.SaveChangesAsync();
+                await _context.SaveChangesAsync();
 
                 return new AddOrUpdateUserResponse()
                 {
@@ -43,7 +43,7 @@ namespace Backlog.Features.Users
                 };
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
 

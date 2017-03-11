@@ -18,9 +18,9 @@ namespace Backlog.Features.Projects
 
         public class GetProjectByIdHandler : IAsyncRequestHandler<GetProjectByIdRequest, GetProjectByIdResponse>
         {
-            public GetProjectByIdHandler(IBacklogContext dataContext, ICache cache)
+            public GetProjectByIdHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
@@ -28,11 +28,11 @@ namespace Backlog.Features.Projects
             {                
                 return new GetProjectByIdResponse()
                 {
-                    Project = ProjectApiModel.FromProject(await _dataContext.Projects.FindAsync(request.Id))
+                    Project = ProjectApiModel.FromProject(await _context.Projects.FindAsync(request.Id))
                 };
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
     }

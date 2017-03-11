@@ -18,24 +18,24 @@ namespace Backlog.Features.Brands
 
         public class AddOrUpdateBrandHandler : IAsyncRequestHandler<AddOrUpdateBrandRequest, AddOrUpdateBrandResponse>
         {
-            public AddOrUpdateBrandHandler(IBacklogContext dataContext, ICache cache)
+            public AddOrUpdateBrandHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
             public async Task<AddOrUpdateBrandResponse> Handle(AddOrUpdateBrandRequest request)
             {
-                var entity = await _dataContext.Brands
+                var entity = await _context.Brands
                     .SingleOrDefaultAsync(x => x.Id == request.Brand.Id && x.IsDeleted == false);
-                if (entity == null) _dataContext.Brands.Add(entity = new Brand());
+                if (entity == null) _context.Brands.Add(entity = new Brand());
                 entity.Name = request.Brand.Name;
-                await _dataContext.SaveChangesAsync();
+                await _context.SaveChangesAsync();
 
                 return new AddOrUpdateBrandResponse() { };
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
     }

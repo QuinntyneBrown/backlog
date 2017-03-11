@@ -23,19 +23,19 @@ namespace Backlog.Features.Sprints
 
         public class AddOrUpdateSprintHandler : IAsyncRequestHandler<AddOrUpdateSprintRequest, AddOrUpdateSprintResponse>
         {
-            public AddOrUpdateSprintHandler(IBacklogContext dataContext, ICache cache)
+            public AddOrUpdateSprintHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
             public async Task<AddOrUpdateSprintResponse> Handle(AddOrUpdateSprintRequest request)
             {
-                var entity = await _dataContext.Sprints
+                var entity = await _context.Sprints
                     .SingleOrDefaultAsync(x => x.Id == request.Sprint.Id && x.IsDeleted == false);
-                if (entity == null) _dataContext.Sprints.Add(entity = new Sprint());
+                if (entity == null) _context.Sprints.Add(entity = new Sprint());
                 entity.Name = request.Sprint.Name;
-                await _dataContext.SaveChangesAsync();
+                await _context.SaveChangesAsync();
 
                 return new AddOrUpdateSprintResponse()
                 {
@@ -43,7 +43,7 @@ namespace Backlog.Features.Sprints
                 };
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
 

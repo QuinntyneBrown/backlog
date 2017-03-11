@@ -18,25 +18,25 @@ namespace Backlog.Features.DigitalAssets
 
         public class AddOrUpdateDigitalAssetHandler : IAsyncRequestHandler<AddOrUpdateDigitalAssetRequest, AddOrUpdateDigitalAssetResponse>
         {
-            public AddOrUpdateDigitalAssetHandler(IBacklogContext dataContext, ICache cache)
+            public AddOrUpdateDigitalAssetHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
             public async Task<AddOrUpdateDigitalAssetResponse> Handle(AddOrUpdateDigitalAssetRequest request)
             {
-                var entity = await _dataContext.DigitalAssets
+                var entity = await _context.DigitalAssets
                     .SingleOrDefaultAsync(x => x.Id == request.DigitalAsset.Id && x.IsDeleted == false);
-                if (entity == null) _dataContext.DigitalAssets.Add(entity = new DigitalAsset());
+                if (entity == null) _context.DigitalAssets.Add(entity = new DigitalAsset());
                 entity.Name = request.DigitalAsset.Name;
                 entity.Folder = request.DigitalAsset.Folder;
-                await _dataContext.SaveChangesAsync();
+                await _context.SaveChangesAsync();
 
                 return new AddOrUpdateDigitalAssetResponse() { };
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
     }

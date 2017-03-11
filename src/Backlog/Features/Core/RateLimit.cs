@@ -25,13 +25,13 @@ namespace Backlog.Features.Core
             //if (ip == null)
             //    actionContext.Response = actionContext.Request.CreateResponse(Forbidden, "The client ip couldn't be found");
 
-            //var requests = _dataContext.Ips.GetRequestsByIpAndHourQuery(DateTime.Now, ip);
+            //var requests = _context.Ips.GetRequestsByIpAndHourQuery(DateTime.Now, ip);
 
             //if (requests >= _maxRequestsHour)
             //    actionContext.Response = actionContext.Request.CreateResponse(Forbidden, "Quota Exceeded");
 
             //if (requests < _maxRequestsHour)
-            //    _dataContext.Ips.Increment(DateTime.Now, ip);
+            //    _context.Ips.Increment(DateTime.Now, ip);
         }
 
         private string GetClientIp(HttpRequestMessage request)
@@ -53,7 +53,7 @@ namespace Backlog.Features.Core
         }
 
         [Dependency]
-        public BacklogContext _dataContext { get; set; }
+        public BacklogContext _context { get; set; }
 
         private int _maxRequestsHour;
     }

@@ -26,10 +26,10 @@ namespace Backlog.Security
 
         public class AuthenticateHandler : IAsyncRequestHandler<AuthenticateRequest, AuthenticateResponse>
         {
-            public AuthenticateHandler(IBacklogContext dataContext, IEncryptionService encryptionService)
+            public AuthenticateHandler(IBacklogContext context, IEncryptionService encryptionService)
             {
                 _encryptionService = encryptionService;
-                _dataContext = dataContext;
+                _context = context;
             }
 
             public bool ValidateUser(User user, string transformedPassword)
@@ -42,7 +42,7 @@ namespace Backlog.Security
 
             public async Task<AuthenticateResponse> Handle(AuthenticateRequest message)
             {
-                var user = await _dataContext.Users.SingleOrDefaultAsync(x => x.Username.ToLower() == message.Username.ToLower() && !x.IsDeleted);
+                var user = await _context.Users.SingleOrDefaultAsync(x => x.Username.ToLower() == message.Username.ToLower() && !x.IsDeleted);
 
                 return new AuthenticateResponse()
                 {
@@ -51,7 +51,7 @@ namespace Backlog.Security
             }
 
 
-            protected readonly IBacklogContext _dataContext;
+            protected readonly IBacklogContext _context;
             private IEncryptionService _encryptionService { get; set; }
         }
 

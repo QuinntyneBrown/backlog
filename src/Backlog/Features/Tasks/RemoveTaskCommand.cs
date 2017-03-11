@@ -23,21 +23,21 @@ namespace Backlog.Features.Tasks
 
         public class RemoveTaskHandler : IAsyncRequestHandler<RemoveTaskRequest, RemoveTaskResponse>
         {
-            public RemoveTaskHandler(IBacklogContext dataContext, ICache cache)
+            public RemoveTaskHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
             public async Task<RemoveTaskResponse> Handle(RemoveTaskRequest request)
             {
-                var task = await _dataContext.Tasks.FindAsync(request.Id);
+                var task = await _context.Tasks.FindAsync(request.Id);
                 task.IsDeleted = true;
-                await _dataContext.SaveChangesAsync();
+                await _context.SaveChangesAsync();
                 return new RemoveTaskResponse();
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
     }

@@ -21,9 +21,9 @@ namespace Backlog.Features.Categories
 
         public class GetCategoryByIdHandler : IAsyncRequestHandler<GetCategoryByIdRequest, GetCategoryByIdResponse>
         {
-            public GetCategoryByIdHandler(IBacklogContext dataContext, ICache cache)
+            public GetCategoryByIdHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
@@ -31,11 +31,11 @@ namespace Backlog.Features.Categories
             {                
                 return new GetCategoryByIdResponse()
                 {
-                    Category = CategoryApiModel.FromCategory(await _dataContext.Categories.FindAsync(request.Id))
+                    Category = CategoryApiModel.FromCategory(await _context.Categories.FindAsync(request.Id))
                 };
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
 

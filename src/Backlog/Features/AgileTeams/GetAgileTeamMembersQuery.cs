@@ -19,22 +19,22 @@ namespace Backlog.Features.AgileTeams
 
         public class GetAgileTeamMembersHandler : IAsyncRequestHandler<GetAgileTeamMembersRequest, GetAgileTeamMembersResponse>
         {
-            public GetAgileTeamMembersHandler(IBacklogContext dataContext, ICache cache)
+            public GetAgileTeamMembersHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
             public async Task<GetAgileTeamMembersResponse> Handle(GetAgileTeamMembersRequest request)
             {
-                var agileTeamMembers = await _dataContext.AgileTeamMembers.ToListAsync();
+                var agileTeamMembers = await _context.AgileTeamMembers.ToListAsync();
                 return new GetAgileTeamMembersResponse()
                 {
                     AgileTeamMembers = agileTeamMembers.Select(x => AgileTeamMemberApiModel.FromAgileTeamMember(x)).ToList()
                 };
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
 

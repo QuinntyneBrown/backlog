@@ -22,9 +22,9 @@ namespace Backlog.Security
 
         public class GetClaimsForUserHandler : IAsyncRequestHandler<GetClaimsForUserRequest, GetClaimsForUserResponse>
         {
-            public GetClaimsForUserHandler(IBacklogContext dataContext)
+            public GetClaimsForUserHandler(IBacklogContext context)
             {
-                _dataContext = dataContext;
+                _context = context;
             }
 
             public async Task<GetClaimsForUserResponse> Handle(GetClaimsForUserRequest message)
@@ -32,7 +32,7 @@ namespace Backlog.Security
 
                 var claims = new List<System.Security.Claims.Claim>();
 
-                var user = await _dataContext.Users
+                var user = await _context.Users
                     .Include(x => x.Roles)
                     .SingleAsync(x => x.Username == message.Username);
 
@@ -49,7 +49,7 @@ namespace Backlog.Security
                 };
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             
         }
     }

@@ -19,9 +19,9 @@ namespace Backlog.Features.Blog
 
         public class GetArticleByIdHandler : IAsyncRequestHandler<GetArticleByIdRequest, GetArticleByIdResponse>
         {
-            public GetArticleByIdHandler(IBacklogContext dataContext, ICache cache)
+            public GetArticleByIdHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
@@ -29,13 +29,13 @@ namespace Backlog.Features.Blog
             {                
                 return new GetArticleByIdResponse()
                 {
-                    Article = ArticleApiModel.FromArticle(await _dataContext.Articles
+                    Article = ArticleApiModel.FromArticle(await _context.Articles
                     .Include(x=>x.Author)
                     .SingleAsync(x=> x.Id == request.Id))
                 };
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
     }

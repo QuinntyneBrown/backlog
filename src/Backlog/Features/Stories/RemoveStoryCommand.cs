@@ -20,21 +20,21 @@ namespace Backlog.Features.Stories
 
         public class RemoveStoryHandler : IAsyncRequestHandler<RemoveStoryRequest, RemoveStoryResponse>
         {
-            public RemoveStoryHandler(IBacklogContext dataContext, ICache cache)
+            public RemoveStoryHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
             public async Task<RemoveStoryResponse> Handle(RemoveStoryRequest request)
             {
-                var story = await _dataContext.Stories.FindAsync(request.Id);
+                var story = await _context.Stories.FindAsync(request.Id);
                 story.IsDeleted = true;
-                await _dataContext.SaveChangesAsync();
+                await _context.SaveChangesAsync();
                 return new RemoveStoryResponse();
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
     }

@@ -19,22 +19,22 @@ namespace Backlog.Features.Feedback
 
         public class GetFeedbacksHandler : IAsyncRequestHandler<GetFeedbacksRequest, GetFeedbacksResponse>
         {
-            public GetFeedbacksHandler(IBacklogContext dataContext, ICache cache)
+            public GetFeedbacksHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
             public async Task<GetFeedbacksResponse> Handle(GetFeedbacksRequest request)
             {
-                var feedbacks = await _dataContext.Feedbacks.ToListAsync();
+                var feedbacks = await _context.Feedbacks.ToListAsync();
                 return new GetFeedbacksResponse()
                 {
                     Feedbacks = feedbacks.Select(x => FeedbackApiModel.FromFeedback(x)).ToList()
                 };
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
 

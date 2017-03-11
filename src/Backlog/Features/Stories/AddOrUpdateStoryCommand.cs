@@ -20,24 +20,24 @@ namespace Backlog.Features.Stories
 
         public class AddOrUpdateStoryHandler : IAsyncRequestHandler<AddOrUpdateStoryRequest, AddOrUpdateStoryResponse>
         {
-            public AddOrUpdateStoryHandler(IBacklogContext dataContext, ICache cache)
+            public AddOrUpdateStoryHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
             public async Task<AddOrUpdateStoryResponse> Handle(AddOrUpdateStoryRequest request)
             {
-                var entity = await _dataContext.Stories
+                var entity = await _context.Stories
                     .Include(x=>x.Epic)
                     .SingleOrDefaultAsync(x => x.Id == request.Story.Id);
 
-                if (entity == null) _dataContext.Stories.Add(entity = new Story());
+                if (entity == null) _context.Stories.Add(entity = new Story());
 
                 if (request.Story.EpicId.HasValue)
                 {
                     entity.EpicId = request.Story.EpicId.Value;
-                    entity.Epic = _dataContext.Epics.Where(e=>e.Id == request.Story.EpicId.Value).Single();
+                    entity.Epic = _context.Epics.Where(e=>e.Id == request.Story.EpicId.Value).Single();
                 }
 
                 if (request.Story.Priority.HasValue)
@@ -51,12 +51,12 @@ namespace Backlog.Features.Stories
                 entity.Points = request.Story.Points;
                 entity.ArchitecturePoints = request.Story.ArchitecturePoints;
                 entity.CompletedDate = request.Story.CompletedDate;
-                await _dataContext.SaveChangesAsync();
+                await _context.SaveChangesAsync();
 
                 return new AddOrUpdateStoryResponse() { };
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
 

@@ -16,21 +16,21 @@ namespace Backlog.Features.DigitalAssets
 
         public class RemoveDigitalAssetHandler : IAsyncRequestHandler<RemoveDigitalAssetRequest, RemoveDigitalAssetResponse>
         {
-            public RemoveDigitalAssetHandler(IBacklogContext dataContext, ICache cache)
+            public RemoveDigitalAssetHandler(IBacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
             public async Task<RemoveDigitalAssetResponse> Handle(RemoveDigitalAssetRequest request)
             {
-                var digitalAsset = await _dataContext.DigitalAssets.FindAsync(request.Id);
+                var digitalAsset = await _context.DigitalAssets.FindAsync(request.Id);
                 digitalAsset.IsDeleted = true;
-                await _dataContext.SaveChangesAsync();
+                await _context.SaveChangesAsync();
                 return new RemoveDigitalAssetResponse();
             }
 
-            private readonly IBacklogContext _dataContext;
+            private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
     }
