@@ -1,11 +1,9 @@
-using MediatR;
 using Backlog.Data;
 using Backlog.Data.Model;
 using Backlog.Features.Core;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Linq;
+using MediatR;
 using System.Data.Entity;
+using System.Threading.Tasks;
 
 namespace Backlog.Features.Blog
 {
@@ -16,10 +14,7 @@ namespace Backlog.Features.Blog
             public TagApiModel Tag { get; set; }
         }
 
-        public class AddOrUpdateTagResponse
-        {
-
-        }
+        public class AddOrUpdateTagResponse { }
 
         public class AddOrUpdateTagHandler : IAsyncRequestHandler<AddOrUpdateTagRequest, AddOrUpdateTagResponse>
         {
@@ -37,16 +32,11 @@ namespace Backlog.Features.Blog
                 entity.Name = request.Tag.Name;
                 await _dataContext.SaveChangesAsync();
 
-                return new AddOrUpdateTagResponse()
-                {
-
-                };
+                return new AddOrUpdateTagResponse() { };
             }
 
             private readonly IDataContext _dataContext;
             private readonly ICache _cache;
         }
-
     }
-
 }

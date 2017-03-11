@@ -13,6 +13,8 @@ namespace Backlog.Data.Model
         public string Name { get; set; }
         public bool IsDeleted { get; set; }
 
+        public ICollection<Article> Articles { get; set; } = new HashSet<Article>();
+
         public virtual Tenant Tenant { get; set; }
     }
 }
