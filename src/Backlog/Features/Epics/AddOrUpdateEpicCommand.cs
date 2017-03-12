@@ -1,7 +1,7 @@
-using MediatR;
 using Backlog.Data;
 using Backlog.Data.Model;
 using Backlog.Features.Core;
+using MediatR;
 using System.Threading.Tasks;
 using System.Linq;
 using System.Data.Entity;
@@ -43,10 +43,7 @@ namespace Backlog.Features.Epics
                 
                 await _context.SaveChangesAsync();
 
-                return new AddOrUpdateEpicResponse()
-                {
-
-                };
+                return new AddOrUpdateEpicResponse();
             }
 
             private readonly IBacklogContext _context;

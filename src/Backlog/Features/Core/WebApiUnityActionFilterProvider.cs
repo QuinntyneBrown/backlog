@@ -23,6 +23,7 @@ namespace Backlog.Features.Core {
 
             foreach (var filter in filters)
             {
+                var s = filter.Instance.GetType();
                 _container.BuildUp(filter.Instance.GetType(), filter.Instance);
             }
 

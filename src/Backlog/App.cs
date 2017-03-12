@@ -1,3 +1,4 @@
+using Backlog.Features.Blog;
 using Backlog.Features.Core;
 using Backlog.Security;
 using MediatR;
@@ -44,6 +45,7 @@ namespace Backlog
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
 
             config.Filters.Add(new AuthorizeAttribute());
+
 
             var jSettings = new JsonSerializerSettings();
             jSettings.Formatting = Formatting.Indented;

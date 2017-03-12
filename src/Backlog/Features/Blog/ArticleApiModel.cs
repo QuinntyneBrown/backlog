@@ -1,4 +1,5 @@
 using Backlog.Data.Model;
+using Backlog.Features.Categories;
 using Backlog.Features.Tags;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ namespace Backlog.Features.Blog
         public DateTime? Published { get; set; }
         public AuthorApiModel Author { get; set; }
         public ICollection<TagApiModel> Tags { get; set; } = new HashSet<TagApiModel>();
+        public ICollection<CategoryApiModel> MyProperty { get; set; }
 
         public static TModel FromArticle<TModel>(Article article) where
             TModel : ArticleApiModel, new()

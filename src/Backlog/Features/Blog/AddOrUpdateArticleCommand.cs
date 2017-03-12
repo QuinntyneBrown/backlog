@@ -31,8 +31,8 @@ namespace Backlog.Features.Blog
                     .FirstOrDefaultAsync(x => x.Id == request.Article.Id);
                                 
                 if (entity == null) _context.Articles.Add(entity = new Article());
-                
-                if (await ArticleSlugExists(request.Article.Title.GenerateSlug(), request.Article.Id))
+
+                if (await ArticleSlugExists(request.Article.Title.GenerateSlug(),request.Article.Id))
                     throw new ArticleSlugExistsException();
 
                 entity.Tags.Clear();

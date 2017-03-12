@@ -3,6 +3,7 @@ using MediatR;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
+using static Backlog.Features.Blog.AddOrUpdateArticleCommand;
 
 namespace Backlog.Features.Blog
 {
@@ -18,14 +19,26 @@ namespace Backlog.Features.Blog
 
         [Route("add")]
         [HttpPost]
-        [ResponseType(typeof(AddOrUpdateArticleCommand.AddOrUpdateArticleResponse))]
-        public async Task<IHttpActionResult> Add(AddOrUpdateArticleCommand.AddOrUpdateArticleRequest request)
-            => Ok(await _mediator.Send(request));
+        [ResponseType(typeof(AddOrUpdateArticleResponse))]
+        public async Task<IHttpActionResult> Add(AddOrUpdateArticleRequest request)
+        {
+            try
+            {                
+                await _mediator.Send(request);
+
+                return Ok();
+            }
+            catch(ArticleSlugExistsException)
+            {
+                return Conflict();
+            }            
+        }
+            
 
         [Route("update")]
         [HttpPut]
-        [ResponseType(typeof(AddOrUpdateArticleCommand.AddOrUpdateArticleResponse))]
-        public async Task<IHttpActionResult> Update(AddOrUpdateArticleCommand.AddOrUpdateArticleRequest request)
+        [ResponseType(typeof(AddOrUpdateArticleResponse))]
+        public async Task<IHttpActionResult> Update(AddOrUpdateArticleRequest request)
             => Ok(await _mediator.Send(request));
         
         [Route("get")]

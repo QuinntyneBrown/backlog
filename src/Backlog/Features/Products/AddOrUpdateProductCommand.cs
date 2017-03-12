@@ -34,7 +34,7 @@ namespace Backlog.Features.Products
 
                 await _context.SaveChangesAsync();
 
-                return new AddOrUpdateProductResponse() { };
+                return new AddOrUpdateProductResponse();
             }
 
             private readonly IBacklogContext _context;

@@ -25,7 +25,7 @@ namespace Backlog.Features.Categories
             }
 
             public async Task<GetCategoryByIdResponse> Handle(GetCategoryByIdRequest request)
-            {                
+            {
                 return new GetCategoryByIdResponse()
                 {
                     Category = CategoryApiModel.FromCategory(await _context.Categories.FindAsync(request.Id))
@@ -35,7 +35,5 @@ namespace Backlog.Features.Categories
             private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
-
     }
-
 }

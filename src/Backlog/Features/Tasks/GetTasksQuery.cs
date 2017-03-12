@@ -37,7 +37,5 @@ namespace Backlog.Features.Tasks
             private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
-
     }
-
 }
