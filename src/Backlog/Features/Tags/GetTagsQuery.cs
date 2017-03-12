@@ -19,15 +19,15 @@ namespace Backlog.Features.Tags
 
         public class GetTagsHandler : IAsyncRequestHandler<GetTagsRequest, GetTagsResponse>
         {
-            public GetTagsHandler(IBacklogContext context, ICache cache)
+            public GetTagsHandler(DataContext dataContext, ICache cache)
             {
-                _context = context;
+                _dataContext = dataContext;
                 _cache = cache;
             }
 
             public async Task<GetTagsResponse> Handle(GetTagsRequest request)
             {
-                var tags = await _context.Tags
+                var tags = await _dataContext.Tags
                     .Where(x=>x.IsDeleted == false)
                     .ToListAsync();
 
@@ -37,7 +37,7 @@ namespace Backlog.Features.Tags
                 };
             }
 
-            private readonly IBacklogContext _context;
+            private readonly DataContext _dataContext;
             private readonly ICache _cache;
         }
 

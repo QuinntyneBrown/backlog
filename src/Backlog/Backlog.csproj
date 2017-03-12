@@ -365,12 +365,6 @@
     <Compile Include="Data\Model\Tenant.cs" />
     <Compile Include="Features\Blog\GetArticleBySlugQuery.cs" />
     <Compile Include="Features\DigitalAssets\GetDigitalAssetByUniqueIdQuery.cs" />
-    <Compile Include="Features\Tags\AddOrUpdateTagCommand.cs" />
-    <Compile Include="Features\Tags\GetTagsQuery.cs" />
-    <Compile Include="Features\Tags\GetTagByIdQuery.cs" />
-    <Compile Include="Features\Tags\RemoveTagCommand.cs" />
-    <Compile Include="Features\Tags\TagApiModel.cs" />
-    <Compile Include="Features\Tags\TagController.cs" />
     <Compile Include="Data\Model\Category.cs" />
     <Compile Include="Features\Categories\AddOrUpdateCategoryCommand.cs" />
     <Compile Include="Features\Categories\GetCategoriesQuery.cs" />
@@ -378,12 +372,20 @@
     <Compile Include="Features\Categories\RemoveCategoryCommand.cs" />
     <Compile Include="Features\Categories\CategoryApiModel.cs" />
     <Compile Include="Features\Categories\CategoryController.cs" />
+    <Compile Include="Features\Tags\AddOrUpdateTagCommand.cs" />
+    <Compile Include="Features\Tags\GetTagsQuery.cs" />
+    <Compile Include="Features\Tags\GetTagByIdQuery.cs" />
+    <Compile Include="Features\Tags\RemoveTagCommand.cs" />
+    <Compile Include="Features\Tags\TagApiModel.cs" />
+    <Compile Include="Features\Tags\TagController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Features\Tags\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

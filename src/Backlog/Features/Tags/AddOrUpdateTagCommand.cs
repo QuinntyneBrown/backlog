@@ -23,19 +23,19 @@ namespace Backlog.Features.Tags
 
         public class AddOrUpdateTagHandler : IAsyncRequestHandler<AddOrUpdateTagRequest, AddOrUpdateTagResponse>
         {
-            public AddOrUpdateTagHandler(IBacklogContext context, ICache cache)
+            public AddOrUpdateTagHandler(DataContext dataContext, ICache cache)
             {
-                _context = context;
+                _dataContext = dataContext;
                 _cache = cache;
             }
 
             public async Task<AddOrUpdateTagResponse> Handle(AddOrUpdateTagRequest request)
             {
-                var entity = await _context.Tags
+                var entity = await _dataContext.Tags
                     .SingleOrDefaultAsync(x => x.Id == request.Tag.Id && x.IsDeleted == false);
-                if (entity == null) _context.Tags.Add(entity = new Tag());
+                if (entity == null) _dataContext.Tags.Add(entity = new Tag());
                 entity.Name = request.Tag.Name;
-                await _context.SaveChangesAsync();
+                await _dataContext.SaveChangesAsync();
 
                 return new AddOrUpdateTagResponse()
                 {
@@ -43,7 +43,7 @@ namespace Backlog.Features.Tags
                 };
             }
 
-            private readonly IBacklogContext _context;
+            private readonly DataContext _dataContext;
             private readonly ICache _cache;
         }
 

@@ -3,6 +3,10 @@ using MediatR;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
+using static Backlog.Features.Tags.AddOrUpdateTagCommand;
+using static Backlog.Features.Tags.GetTagsQuery;
+using static Backlog.Features.Tags.GetTagByIdQuery;
+using static Backlog.Features.Tags.RemoveTagCommand;
 
 namespace Backlog.Features.Tags
 {
@@ -18,33 +22,33 @@ namespace Backlog.Features.Tags
 
         [Route("add")]
         [HttpPost]
-        [ResponseType(typeof(AddOrUpdateTagCommand.AddOrUpdateTagResponse))]
-        public async Task<IHttpActionResult> Add(AddOrUpdateTagCommand.AddOrUpdateTagRequest request)
+        [ResponseType(typeof(AddOrUpdateTagResponse))]
+        public async Task<IHttpActionResult> Add(AddOrUpdateTagRequest request)
             => Ok(await _mediator.Send(request));
 
         [Route("update")]
         [HttpPut]
-        [ResponseType(typeof(AddOrUpdateTagCommand.AddOrUpdateTagResponse))]
-        public async Task<IHttpActionResult> Update(AddOrUpdateTagCommand.AddOrUpdateTagRequest request)
+        [ResponseType(typeof(AddOrUpdateTagResponse))]
+        public async Task<IHttpActionResult> Update(AddOrUpdateTagRequest request)
             => Ok(await _mediator.Send(request));
         
         [Route("get")]
         [AllowAnonymous]
         [HttpGet]
-        [ResponseType(typeof(GetTagsQuery.GetTagsResponse))]
+        [ResponseType(typeof(GetTagsResponse))]
         public async Task<IHttpActionResult> Get()
-            => Ok(await _mediator.Send(new GetTagsQuery.GetTagsRequest()));
+            => Ok(await _mediator.Send(new GetTagsRequest()));
 
         [Route("getById")]
         [HttpGet]
-        [ResponseType(typeof(GetTagByIdQuery.GetTagByIdResponse))]
-        public async Task<IHttpActionResult> GetById([FromUri]GetTagByIdQuery.GetTagByIdRequest request)
+        [ResponseType(typeof(GetTagByIdResponse))]
+        public async Task<IHttpActionResult> GetById([FromUri]GetTagByIdRequest request)
             => Ok(await _mediator.Send(request));
 
         [Route("remove")]
         [HttpDelete]
-        [ResponseType(typeof(RemoveTagCommand.RemoveTagResponse))]
-        public async Task<IHttpActionResult> Remove([FromUri]RemoveTagCommand.RemoveTagRequest request)
+        [ResponseType(typeof(RemoveTagResponse))]
+        public async Task<IHttpActionResult> Remove([FromUri]RemoveTagRequest request)
             => Ok(await _mediator.Send(request));
 
         protected readonly IMediator _mediator;
