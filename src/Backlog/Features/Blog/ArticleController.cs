@@ -11,7 +11,6 @@ using static Backlog.Features.Blog.RemoveArticleCommand;
 
 namespace Backlog.Features.Blog
 {
-    [Authorize]
     [RoutePrefix("api/article")]
     public class ArticleController : ApiController
     {

@@ -4,7 +4,6 @@ using System.Web.Http;
 
 namespace Backlog.Features.Kanban
 {
-    [Authorize]
     [RoutePrefix("api/kanban")]
     public class KanbanController : ApiController
     {

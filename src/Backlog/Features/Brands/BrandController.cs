@@ -3,6 +3,10 @@ using MediatR;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
+using static Backlog.Features.Brands.AddOrUpdateBrandCommand;
+using static Backlog.Features.Brands.GetBrandsQuery;
+using static Backlog.Features.Brands.GetBrandByIdQuery;
+using static Backlog.Features.Brands.RemoveBrandCommand;
 
 namespace Backlog.Features.Brands
 {
@@ -18,37 +22,36 @@ namespace Backlog.Features.Brands
 
         [Route("add")]
         [HttpPost]
-        [ResponseType(typeof(AddOrUpdateBrandCommand.AddOrUpdateBrandResponse))]
-        public async Task<IHttpActionResult> Add(AddOrUpdateBrandCommand.AddOrUpdateBrandRequest request)
+        [ResponseType(typeof(AddOrUpdateBrandResponse))]
+        public async Task<IHttpActionResult> Add(AddOrUpdateBrandRequest request)
             => Ok(await _mediator.Send(request));
 
         [Route("update")]
         [HttpPut]
-        [ResponseType(typeof(AddOrUpdateBrandCommand.AddOrUpdateBrandResponse))]
-        public async Task<IHttpActionResult> Update(AddOrUpdateBrandCommand.AddOrUpdateBrandRequest request)
+        [ResponseType(typeof(AddOrUpdateBrandResponse))]
+        public async Task<IHttpActionResult> Update(AddOrUpdateBrandRequest request)
             => Ok(await _mediator.Send(request));
         
         [Route("get")]
         [AllowAnonymous]
         [HttpGet]
-        [ResponseType(typeof(GetBrandsQuery.GetBrandsResponse))]
+        [ResponseType(typeof(GetBrandsResponse))]
         public async Task<IHttpActionResult> Get()
-            => Ok(await _mediator.Send(new GetBrandsQuery.GetBrandsRequest()));
+            => Ok(await _mediator.Send(new GetBrandsRequest()));
 
         [Route("getById")]
         [HttpGet]
-        [ResponseType(typeof(GetBrandByIdQuery.GetBrandByIdResponse))]
-        public async Task<IHttpActionResult> GetById([FromUri]GetBrandByIdQuery.GetBrandByIdRequest request)
+        [ResponseType(typeof(GetBrandByIdResponse))]
+        public async Task<IHttpActionResult> GetById([FromUri]GetBrandByIdRequest request)
             => Ok(await _mediator.Send(request));
 
         [Route("remove")]
         [HttpDelete]
-        [ResponseType(typeof(RemoveBrandCommand.RemoveBrandResponse))]
-        public async Task<IHttpActionResult> Remove([FromUri]RemoveBrandCommand.RemoveBrandRequest request)
+        [ResponseType(typeof(RemoveBrandResponse))]
+        public async Task<IHttpActionResult> Remove([FromUri]RemoveBrandRequest request)
             => Ok(await _mediator.Send(request));
 
         protected readonly IMediator _mediator;
         protected readonly IUserManager _userManager;
-
     }
 }

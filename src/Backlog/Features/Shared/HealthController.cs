@@ -2,6 +2,7 @@ using System.Web.Http;
 
 namespace Backlog.Features.Shared
 {
+    [AllowAnonymous]
     [RoutePrefix("api/health")]
     public class HealthController: ApiController
     {

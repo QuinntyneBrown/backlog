@@ -20,7 +20,7 @@ namespace Backlog.Features.Brands
 
         public class RemoveBrandHandler : IAsyncRequestHandler<RemoveBrandRequest, RemoveBrandResponse>
         {
-            public RemoveBrandHandler(IBacklogContext context, ICache cache)
+            public RemoveBrandHandler(BacklogContext context, ICache cache)
             {
                 _context = context;
                 _cache = cache;
@@ -34,7 +34,7 @@ namespace Backlog.Features.Brands
                 return new RemoveBrandResponse();
             }
 
-            private readonly IBacklogContext _context;
+            private readonly BacklogContext _context;
             private readonly ICache _cache;
         }
     }

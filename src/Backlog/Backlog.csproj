@@ -224,6 +224,7 @@
     <Compile Include="Features\Core\ICache.cs" />
     <Compile Include="Features\Core\ICacheProvider.cs" />
     <Compile Include="Features\Core\MemoryCache.cs" />
+    <Compile Include="Security\TenantMiddleware.cs" />
     <Compile Include="Security\UserManager.cs" />
     <Compile Include="UnityConfiguration.cs" />
     <Compile Include="Features\Core\ILogger.cs" />
@@ -383,9 +384,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Features\Tags\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

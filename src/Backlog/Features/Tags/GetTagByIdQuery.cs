@@ -21,9 +21,9 @@ namespace Backlog.Features.Tags
 
         public class GetTagByIdHandler : IAsyncRequestHandler<GetTagByIdRequest, GetTagByIdResponse>
         {
-            public GetTagByIdHandler(DataContext dataContext, ICache cache)
+            public GetTagByIdHandler(BacklogContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
@@ -31,11 +31,11 @@ namespace Backlog.Features.Tags
             {                
                 return new GetTagByIdResponse()
                 {
-                    Tag = TagApiModel.FromTag(await _dataContext.Tags.FindAsync(request.Id))
+                    Tag = TagApiModel.FromTag(await _context.Tags.FindAsync(request.Id))
                 };
             }
 
-            private readonly DataContext _dataContext;
+            private readonly BacklogContext _context;
             private readonly ICache _cache;
         }
 

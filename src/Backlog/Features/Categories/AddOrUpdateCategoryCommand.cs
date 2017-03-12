@@ -27,7 +27,7 @@ namespace Backlog.Features.Categories
             public async Task<AddOrUpdateCategoryResponse> Handle(AddOrUpdateCategoryRequest request)
             {
                 var entity = await _context.Categories
-                    .SingleOrDefaultAsync(x => x.Id == request.Category.Id && x.IsDeleted == false);
+                    .SingleOrDefaultAsync(x => x.Id == request.Category.Id);
                 if (entity == null) _context.Categories.Add(entity = new Category());
                 entity.Name = request.Category.Name;
                 await _context.SaveChangesAsync();

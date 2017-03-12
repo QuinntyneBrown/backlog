@@ -1,10 +1,13 @@
 using Backlog.Data;
+using Backlog.Features.Core;
 using Backlog.Security;
 using MediatR;
+using Microsoft.Owin;
 using Microsoft.Practices.Unity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using static Microsoft.Practices.Unity.AllClasses;
 
 namespace Backlog
@@ -15,7 +18,7 @@ namespace Backlog
         {
             var container = new UnityContainer();            
             container.AddMediator<UnityConfiguration>();
-            container.RegisterInstance(AuthConfiguration.LazyConfig);            
+            container.RegisterInstance(AuthConfiguration.LazyConfig);
             return container;
         }
     }
@@ -30,7 +33,7 @@ namespace Backlog
                 && x.Name.Contains("Attribute") == false
                 && x.FullName.Contains("Data.Model") == false)                
                 .ToList();
-
+            
             return container.RegisterClassesTypesAndInstances(classes);
         }
 

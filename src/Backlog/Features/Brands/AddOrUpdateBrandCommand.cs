@@ -2,7 +2,9 @@ using MediatR;
 using Backlog.Data;
 using Backlog.Data.Model;
 using Backlog.Features.Core;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
 using System.Data.Entity;
 
 namespace Backlog.Features.Brands
@@ -14,11 +16,14 @@ namespace Backlog.Features.Brands
             public BrandApiModel Brand { get; set; }
         }
 
-        public class AddOrUpdateBrandResponse { }
+        public class AddOrUpdateBrandResponse
+        {
+
+        }
 
         public class AddOrUpdateBrandHandler : IAsyncRequestHandler<AddOrUpdateBrandRequest, AddOrUpdateBrandResponse>
         {
-            public AddOrUpdateBrandHandler(IBacklogContext context, ICache cache)
+            public AddOrUpdateBrandHandler(BacklogContext context, ICache cache)
             {
                 _context = context;
                 _cache = cache;
@@ -27,16 +32,21 @@ namespace Backlog.Features.Brands
             public async Task<AddOrUpdateBrandResponse> Handle(AddOrUpdateBrandRequest request)
             {
                 var entity = await _context.Brands
-                    .SingleOrDefaultAsync(x => x.Id == request.Brand.Id && x.IsDeleted == false);
+                    .SingleOrDefaultAsync(x => x.Id == request.Brand.Id);
                 if (entity == null) _context.Brands.Add(entity = new Brand());
                 entity.Name = request.Brand.Name;
                 await _context.SaveChangesAsync();
 
-                return new AddOrUpdateBrandResponse() { };
+                return new AddOrUpdateBrandResponse()
+                {
+
+                };
             }
 
-            private readonly IBacklogContext _context;
+            private readonly BacklogContext _context;
             private readonly ICache _cache;
         }
+
     }
+
 }
