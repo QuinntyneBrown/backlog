@@ -619,12 +619,6 @@
     <None Include="src\styles\base\entity-item.scss" />
     <Content Include="src\styles\_base.scss" />
     <Content Include="src\styles\base\view-card.scss" />
-    <None Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
-    <None Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
     <Content Include="src\app\users\users.component.scss">
       <DependentUpon>users.component.ts</DependentUpon>
     </Content>
@@ -640,7 +634,6 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup />

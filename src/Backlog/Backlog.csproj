@@ -379,6 +379,7 @@
     <Compile Include="Features\Tags\RemoveTagCommand.cs" />
     <Compile Include="Features\Tags\TagApiModel.cs" />
     <Compile Include="Features\Tags\TagController.cs" />
+    <Compile Include="Features\Stories\ExportStoriesToExcelByEpicIdCommand.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

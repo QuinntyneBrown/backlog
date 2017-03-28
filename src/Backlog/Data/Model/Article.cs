@@ -14,13 +14,13 @@ namespace Backlog.Data.Model
         public int? TenantId { get; set; }
         [ForeignKey("Author")]
         public int? AuthorId { get; set; }
-        [Index("TitleIndex", IsUnique = true)]
+        [Index("TitleIndex", IsUnique = false)]
         [Column(TypeName = "VARCHAR")]
-        [StringLength(100)]
+        [StringLength(255)]
         public string Title { get; set; }
-        [Index("SlugIndex", IsUnique = true)]
+        [Index("SlugIndex", IsUnique = false)]
         [Column(TypeName = "VARCHAR")]
-        [StringLength(100)]
+        [StringLength(255)]
         public string Slug { get; set; } 
         public string HtmlContent { get; set; }
         public string HtmlExcerpt { get; set; }
