@@ -42,7 +42,7 @@ namespace Backlog.Security
 
             public async Task<AuthenticateResponse> Handle(AuthenticateRequest message)
             {
-                var user = await _context.Users.SingleOrDefaultAsync(x => x.Username.ToLower() == message.Username.ToLower() && !x.IsDeleted);
+                var user = await _context.Users.SingleOrDefaultAsync(x => x.Username.ToLower() == message.Username.ToLower());
 
                 return new AuthenticateResponse()
                 {

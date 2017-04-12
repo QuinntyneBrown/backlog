@@ -188,6 +188,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="Features\Epics\GetEpicsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -197,12 +198,20 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="Scripts\jquery-2.2.3.min.map" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Backlog\Backlog.csproj">
       <Project>{ba3a0650-a18b-4731-8eaa-f73868320ef7}</Project>
       <Name>Backlog</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\jquery-2.2.3.intellisense.js" />
+    <Content Include="Scripts\jquery-2.2.3.js" />
+    <Content Include="Scripts\jquery-2.2.3.min.js" />
+    <Content Include="Scripts\jquery.signalR-2.2.0.js" />
+    <Content Include="Scripts\jquery.signalR-2.2.0.min.js" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

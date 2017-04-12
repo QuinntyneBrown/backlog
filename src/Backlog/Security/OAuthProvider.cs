@@ -1,8 +1,11 @@
+using MediatR;
 using Microsoft.Owin.Security.OAuth;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System;
-using MediatR;
+
+using static Backlog.Security.AuthenticateCommand;
+using static Backlog.Security.GetClaimsForUserQuery;
 
 namespace Backlog.Security
 {
@@ -18,7 +21,7 @@ namespace Backlog.Security
         {
             var identity = new ClaimsIdentity(_authConfiguration.AuthType);
             var username = context.OwinContext.Get<string>($"{_authConfiguration.AuthType}:username");
-            var response = await _mediator.Send(new GetClaimsForUserQuery.GetClaimsForUserRequest() { Username = username });
+            var response = await _mediator.Send(new GetClaimsForUserRequest() { Username = username });
 
             foreach (var claim in response.Claims)
             {
@@ -33,7 +36,7 @@ namespace Backlog.Security
             {
                 var username = context.Parameters["username"];
                 var password = context.Parameters["password"];
-                var response = await _mediator.Send(new AuthenticateCommand.AuthenticateRequest() { Username = username, Password = password });
+                var response = await _mediator.Send(new AuthenticateRequest() { Username = username, Password = password });
                 if (response.IsAuthenticated)
                 {
                     context.OwinContext.Set($"{_authConfiguration.AuthType}:username", username);
