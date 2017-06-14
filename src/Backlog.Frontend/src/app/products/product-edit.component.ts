@@ -23,7 +23,7 @@ export class ProductEditComponent extends HTMLElement {
     }
     
     connectedCallback() {        
-        this.innerHTML = `<style>${styles}</style> ${template}`;     
+        this.innerHTML = `<style>${styles}</style>${template}`;     
         this._bind();
         this._setEventListeners();   
     }
