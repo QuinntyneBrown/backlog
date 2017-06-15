@@ -12,10 +12,12 @@
     "@angular/common": "4.2.0",
     "@angular/compiler": "4.2.0",
     "@angular/core": "4.2.0",
-    "@angular/platform-browser": "4.2.0",
     "@angular/forms": "4.2.0",
+    "@angular/platform-browser": "4.2.0",
     "@angular/router": "4.2.0",
     "core-js": "^2.4.1",
+    "gulp": "^3.9.1",
+    "gulp-ngc": "^0.3.0",
     "rxjs": "5.4.0",
     "zone.js": "^0.8.12"
   },
