@@ -17,7 +17,9 @@
     "@angular/router": "4.2.0",
     "core-js": "^2.4.1",
     "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
     "gulp-ngc": "^0.3.0",
+    "gulp-watch": "^4.3.11",
     "rxjs": "5.4.0",
     "zone.js": "^0.8.12"
   },
