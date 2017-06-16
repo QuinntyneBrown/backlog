@@ -1,11 +1,11 @@
 ﻿import { Routes, RouterModule } from '@angular/router';
-import { LeadComponent } from "./leads";
+import { HomePageComponent } from "./home";
 
 export const routes: Routes = [
     {
         path: '',
         pathMatch: 'full',
-        component: LeadComponent,
+        component: HomePageComponent
     }
 ];
 

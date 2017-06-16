@@ -73,6 +73,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include=".gitignore" />
     <Content Include="gulpfile.js" />
     <Content Include="packages.config" />
     <Content Include="src\login.component.css">

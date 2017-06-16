@@ -7,12 +7,15 @@ import {FormsModule} from '@angular/forms';
 
 import "./rxjs-extensions";
 
-import {AppComponent} from './app.component';
+import { AppComponent } from './app.component';
+import { HomePageComponent } from "./home";
+
 import {routing} from "./app.routing";
 
 
 const declarables = [
-    AppComponent
+    AppComponent,
+    HomePageComponent
 ];
 
 const providers = [

@@ -2,7 +2,7 @@ import { Component, NgModule } from '@angular/core';
 
 @Component({
     selector: 'ce-login',
-    templateUrl: ".\login.component.html"
+    template:'<h1>Login</h1>'
 })
 export class LoginComponent { }
 
@@ -10,5 +10,4 @@ export class LoginComponent { }
     declarations: [LoginComponent],
     exports: [LoginComponent]
 })
-export class LoginModule {
-}
+export class LoginModule {}
