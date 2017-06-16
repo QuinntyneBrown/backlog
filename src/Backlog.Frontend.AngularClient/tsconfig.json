@@ -13,6 +13,13 @@
     "lib": [
       "es2016",
       "dom"
-    ]
+    ],
+    "skipLibCheck": true,
+    "rootDir": ".",
+    "baseUrl": ".",
+    "suppressImplicitAnyIndexErrors": true,
+    "paths": {
+      "backlogFrontendAngularLibrary": [ "../Backlog.Frontend.AngularLibrary/dist/backlogFrontendAngularLibrary.d.ts" ]
+    }
   }
 }

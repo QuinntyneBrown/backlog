@@ -14,7 +14,10 @@ module.exports = {
         publicPath: "dist/"
     },
     resolve: {
-        extensions: ['.ts', '.js', '.jpg', '.jpeg', '.gif', '.png', '.css', '.html']
+        extensions: ['.ts', '.js', '.jpg', '.jpeg', '.gif', '.png', '.css', '.html'],
+        alias: {
+            'backlogFrontendAngularLibrary': '../Backlog.Frontend.AngularLibrary/dist/backlogFrontendAngularLibrary.js'
+        }
     },
     module: {
         loaders: [
