@@ -26,7 +26,7 @@ module.exports = {
             { test: /\.(eof|woff|woff2|svg)$/, loader: 'file-loader?name=img/[path][name].[ext]' },
             { test: /\.css$/, loader: 'raw-loader' },
             { test: /\.html$/, loaders: ['html-loader'] },
-            { test: /\.ts$/, loaders: ['angular2-template-loader','awesome-typescript-loader'], exclude: /node_modules/ }
+            { test: /\.ts$/, loaders: ['@ngtools/webpack'], exclude: /node_modules/ }
         ]
     },
     plugins: [

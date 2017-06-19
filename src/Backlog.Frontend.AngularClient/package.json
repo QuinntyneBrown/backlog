@@ -18,6 +18,7 @@
     "@angular/platform-browser-dynamic": "4.2.0",
     "@angular/platform-server": "4.2.0",
     "@angular/router": "4.2.0",
+    "@ngtools/webpack": "^1.4.1",
     "@types/node": "~6.0.60",
     "angular2-template-loader": "^0.6.2",
     "awesome-typescript-loader": "^3.1.3",

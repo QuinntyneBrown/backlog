@@ -19,7 +19,8 @@
     "baseUrl": ".",
     "suppressImplicitAnyIndexErrors": true,
     "paths": {
-      "backlogFrontendAngularLibrary": [ "../Backlog.Frontend.AngularLibrary/dist/backlogFrontendAngularLibrary.d.ts" ]
+      "backlogFrontendAngularLibrary": 
+      [ "../Backlog.Frontend.AngularLibrary/dist/backlogFrontendAngularLibrary.d.ts" ]
     }
   }
 }
