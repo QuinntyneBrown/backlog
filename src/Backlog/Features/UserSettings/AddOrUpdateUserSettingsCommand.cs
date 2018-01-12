@@ -1,6 +1,6 @@
 using MediatR;
 using Backlog.Data;
-using Backlog.Data.Model;
+using Backlog.Model;
 using Backlog.Features.Core;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -33,7 +33,7 @@ namespace Backlog.Features.UserSettings
             {
                 var entity = await _context.UserSettings
                     .SingleOrDefaultAsync(x => x.Id == request.UserSettings.Id && x.IsDeleted == false);
-                if (entity == null) _context.UserSettings.Add(entity = new Data.Model.UserSettings());
+                if (entity == null) _context.UserSettings.Add(entity = new Model.UserSettings());
                 entity.Name = request.UserSettings.Name;
                 await _context.SaveChangesAsync();
 

@@ -1,7 +1,7 @@
 using System.Data.Entity.Migrations;
 using Backlog.Data;
 using Backlog.Features.Users;
-using Backlog.Data.Model;
+using Backlog.Model;
 
 namespace Backlog.Migrations
 {

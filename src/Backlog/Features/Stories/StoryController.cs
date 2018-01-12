@@ -1,4 +1,4 @@
-using Backlog.Security;
+using Backlog.Features.Core;
 using MediatR;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -7,59 +7,54 @@ using System.Web.Http.Description;
 namespace Backlog.Features.Stories
 {
     [Authorize]
-    [RoutePrefix("api/story")]
-    public class StoryController : ApiController
+    [RoutePrefix("api/stories")]
+    public class StoryController : BaseApiController
     {
-        public StoryController(IMediator mediator, IUserManager userManager)
-        {
-            _mediator = mediator;
-            _userManager = userManager;
-        }
+        public StoryController(IMediator mediator)
+            :base(mediator) { }
 
         [Route("add")]
         [HttpPost]
-        [ResponseType(typeof(AddOrUpdateStoryCommand.AddOrUpdateStoryResponse))]
-        public async Task<IHttpActionResult> Add(AddOrUpdateStoryCommand.AddOrUpdateStoryRequest request)
-            => Ok(await _mediator.Send(request));
+        [ResponseType(typeof(AddOrUpdateStoryCommand.Response))]
+        public async Task<IHttpActionResult> Add(AddOrUpdateStoryCommand.Request request)
+            => Ok(await Send(request));
 
         [Route("update")]
         [HttpPut]
-        [ResponseType(typeof(AddOrUpdateStoryCommand.AddOrUpdateStoryResponse))]
-        public async Task<IHttpActionResult> Update(AddOrUpdateStoryCommand.AddOrUpdateStoryRequest request)
-            => Ok(await _mediator.Send(request));
+        [ResponseType(typeof(AddOrUpdateStoryCommand.Response))]
+        public async Task<IHttpActionResult> Update(AddOrUpdateStoryCommand.Request request)
+            => Ok(await Send(request));
         
         [Route("get")]
-        [AllowAnonymous]
         [HttpGet]
-        [ResponseType(typeof(GetStoriesQuery.GetStoriesResponse))]
+        [ResponseType(typeof(GetStoriesQuery.Response))]
         public async Task<IHttpActionResult> Get()
-            => Ok(await _mediator.Send(new GetStoriesQuery.GetStoriesRequest()));
+            => Ok(await Send(new GetStoriesQuery.Request()));
 
         [Route("getById")]
         [HttpGet]
-        [ResponseType(typeof(GetStoryByIdQuery.GetStoryByIdResponse))]
-        public async Task<IHttpActionResult> GetById([FromUri]GetStoryByIdQuery.GetStoryByIdRequest request)
-            => Ok(await _mediator.Send(request));
+        [ResponseType(typeof(GetStoryByIdQuery.Response))]
+        public async Task<IHttpActionResult> GetById([FromUri]GetStoryByIdQuery.Request request)
+            => Ok(await Send(request));
 
         [Route("remove")]
         [HttpDelete]
-        [ResponseType(typeof(RemoveStoryCommand.RemoveStoryResponse))]
-        public async Task<IHttpActionResult> Remove([FromUri]RemoveStoryCommand.RemoveStoryRequest request)
-            => Ok(await _mediator.Send(request));
+        [ResponseType(typeof(RemoveStoryCommand.Response))]
+        public async Task<IHttpActionResult> Remove([FromUri]RemoveStoryCommand.Request request)
+            => Ok(await Send(request));
 
         [Route("incrementPriority")]
         [HttpGet]
-        [ResponseType(typeof(IncrementStoryPriorityCommand.IncrementStoryPriorityResponse))]
-        public async Task<IHttpActionResult> IncrementPriority([FromUri]IncrementStoryPriorityCommand.IncrementStoryPriorityRequest request)
-            => Ok(await _mediator.Send(request));
+        [ResponseType(typeof(IncrementStoryPriorityCommand.Response))]
+        public async Task<IHttpActionResult> IncrementPriority([FromUri]IncrementStoryPriorityCommand.Request request)
+            => Ok(await Send(request));
 
         [Route("decrementPriority")]
         [HttpGet]
-        [ResponseType(typeof(DecrementStoryPriorityCommand.DecrementStoryPriorityResponse))]
-        public async Task<IHttpActionResult> DecrementPriority([FromUri]IncrementStoryPriorityCommand.IncrementStoryPriorityRequest request)
-            => Ok(await _mediator.Send(request));
+        [ResponseType(typeof(DecrementStoryPriorityCommand.Response))]
+        public async Task<IHttpActionResult> DecrementPriority([FromUri]IncrementStoryPriorityCommand.Request request)
+            => Ok(await Send(request));
 
         protected readonly IMediator _mediator;
-        protected readonly IUserManager _userManager;
     }
 }

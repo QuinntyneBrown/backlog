@@ -1,5 +1,5 @@
 using Backlog.Data.Helpers;
-using Backlog.Data.Model;
+using Backlog.Model;
 using System;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
@@ -29,8 +29,8 @@ namespace Backlog.Data
         DbSet<Sprint> Sprints { get; set; }
         DbSet<Story> Stories { get; set; }
         DbSet<Tag> Tags { get; set; }
-        DbSet<Data.Model.Task> Tasks { get; set; }
-        DbSet<Data.Model.TaskStatus> TaskStatuses { get; set; }
+        DbSet<Model.Task> Tasks { get; set; }
+        DbSet<Model.TaskStatus> TaskStatuses { get; set; }
         DbSet<Template> Templates { get; set; }
         DbSet<Tenant> Tenants { get; set; }
         DbSet<Theme> Themes { get; set; }
@@ -68,8 +68,8 @@ namespace Backlog.Data
         public virtual DbSet<Sprint> Sprints { get; set; }
         public virtual DbSet<Story> Stories { get; set; }
         public virtual DbSet<Tag> Tags { get; set; }
-        public virtual DbSet<Data.Model.Task> Tasks { get; set; }
-        public virtual DbSet<Data.Model.TaskStatus> TaskStatuses { get; set; }
+        public virtual DbSet<Model.Task> Tasks { get; set; }
+        public virtual DbSet<Model.TaskStatus> TaskStatuses { get; set; }
         public virtual DbSet<Template> Templates { get; set; }
         public virtual DbSet<Tenant> Tenants { get; set; }
         public virtual DbSet<Theme> Themes { get; set; }

@@ -10,14 +10,14 @@ namespace Backlog.Features.Tasks
 {
     public class GetTasksQuery
     {
-        public class GetTasksRequest : IRequest<GetTasksResponse> { }
+        public class Request : BaseAuthenticatedRequest, IRequest<Response> { }
 
-        public class GetTasksResponse
+        public class Response
         {
             public ICollection<TaskApiModel> Tasks { get; set; } = new HashSet<TaskApiModel>();
         }
 
-        public class GetTasksHandler : IAsyncRequestHandler<GetTasksRequest, GetTasksResponse>
+        public class GetTasksHandler : IAsyncRequestHandler<Request, Response>
         {
             public GetTasksHandler(IBacklogContext context, ICache cache)
             {
@@ -25,10 +25,14 @@ namespace Backlog.Features.Tasks
                 _cache = cache;
             }
 
-            public async Task<GetTasksResponse> Handle(GetTasksRequest request)
+            public async Task<Response> Handle(Request request)
             {
-                var tasks = await _context.Tasks.ToListAsync();
-                return new GetTasksResponse()
+                var tasks = await _context.Tasks
+                    .Include(x => x.Tenant)
+                    .Where(x =>x.Tenant.UniqueId == request.TenantUniqueId)
+                    .ToListAsync();
+
+                return new Response()
                 {
                     Tasks = tasks.Select(x => TaskApiModel.FromTask(x)).ToList()
                 };

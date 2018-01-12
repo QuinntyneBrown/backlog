@@ -2,21 +2,23 @@ using MediatR;
 using Backlog.Data;
 using Backlog.Features.Core;
 using System.Threading.Tasks;
+using System.Linq;
+using System.Data.Entity;
 
 namespace Backlog.Features.Tasks
 {
     public class GetTaskByIdQuery
     {
-        public class GetTaskByIdRequest : IRequest<GetTaskByIdResponse> { 
+        public class Request : BaseAuthenticatedRequest, IRequest<Response> { 
 			public int Id { get; set; }
 		}
 
-        public class GetTaskByIdResponse
+        public class Response
         {
             public TaskApiModel Task { get; set; } 
 		}
 
-        public class GetTaskByIdHandler : IAsyncRequestHandler<GetTaskByIdRequest, GetTaskByIdResponse>
+        public class GetTaskByIdHandler : IAsyncRequestHandler<Request, Response>
         {
             public GetTaskByIdHandler(IBacklogContext context, ICache cache)
             {
@@ -24,11 +26,16 @@ namespace Backlog.Features.Tasks
                 _cache = cache;
             }
 
-            public async Task<GetTaskByIdResponse> Handle(GetTaskByIdRequest request)
-            {                
-                return new GetTaskByIdResponse()
+            public async Task<Response> Handle(Request request)
+            {
+                var task = await _context.Tasks
+                                    .Include(x => x.Tenant)
+                                    .Where(x => x.Tenant.UniqueId == request.TenantUniqueId)
+                                    .SingleAsync(x => x.Id == request.Id);
+
+                return new Response()
                 {
-                    Task = TaskApiModel.FromTask(await _context.Tasks.FindAsync(request.Id))
+                    Task = TaskApiModel.FromTask(task)
                 };
             }
 

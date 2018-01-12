@@ -10,14 +10,14 @@ namespace Backlog.Features.Stories
 {
     public class GetStoriesQuery
     {
-        public class GetStoriesRequest : IRequest<GetStoriesResponse> { }
+        public class Request : BaseAuthenticatedRequest, IRequest<Response> { }
 
-        public class GetStoriesResponse
+        public class Response
         {
             public ICollection<StoryApiModel> Stories { get; set; } = new HashSet<StoryApiModel>();
         }
 
-        public class GetStoriesHandler : IAsyncRequestHandler<GetStoriesRequest, GetStoriesResponse>
+        public class GetStoriesHandler : IAsyncRequestHandler<Request, Response>
         {
             public GetStoriesHandler(IBacklogContext context, ICache cache)
             {
@@ -25,10 +25,14 @@ namespace Backlog.Features.Stories
                 _cache = cache;
             }
 
-            public async Task<GetStoriesResponse> Handle(GetStoriesRequest request)
+            public async Task<Response> Handle(Request request)
             {
-                var stories = await _context.Stories.ToListAsync();
-                return new GetStoriesResponse()
+                var stories = await _context.Stories
+                    .Include(x =>x.Tenant)
+                    .Where(x => x.Tenant.UniqueId == request.TenantUniqueId)
+                    .ToListAsync();
+
+                return new Response()
                 {
                     Stories = stories.Select(x => StoryApiModel.FromStory(x)).ToList()
                 };

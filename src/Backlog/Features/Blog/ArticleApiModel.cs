@@ -1,4 +1,4 @@
-using Backlog.Data.Model;
+using Backlog.Model;
 using Backlog.Features.Categories;
 using Backlog.Features.Tags;
 using System;

@@ -6,7 +6,7 @@ using System.Web.Http.Description;
 namespace Backlog.Features.Users
 {
     [Authorize]
-    [RoutePrefix("api/user")]
+    [RoutePrefix("api/users")]
     public class UserController : ApiController
     {
         public UserController(IMediator mediator)

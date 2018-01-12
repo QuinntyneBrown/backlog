@@ -1,5 +1,6 @@
 namespace Backlog.Migrations
 {
+    using Backlog.Data.Migrations;
     using Data;
     using Data.Helpers;
     using System.Data.Entity.Migrations;
@@ -13,8 +14,10 @@ namespace Backlog.Migrations
 
         protected override void Seed(BacklogContext context)
         {
+            TenantConfiguration.Seed(context);
             RoleConfiguration.Seed(context);
             UserConfiguration.Seed(context);
+            TaskStatusConfiguration.Seed(context);
         }
     }
 

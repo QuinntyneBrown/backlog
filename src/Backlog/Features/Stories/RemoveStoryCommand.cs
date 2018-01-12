@@ -1,6 +1,6 @@
 using MediatR;
 using Backlog.Data;
-using Backlog.Data.Model;
+using Backlog.Model;
 using Backlog.Features.Core;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -11,14 +11,14 @@ namespace Backlog.Features.Stories
 {
     public class RemoveStoryCommand
     {
-        public class RemoveStoryRequest : IRequest<RemoveStoryResponse>
+        public class Request : BaseAuthenticatedRequest, IRequest<Response>
         {
             public int Id { get; set; }
         }
 
-        public class RemoveStoryResponse { }
+        public class Response { }
 
-        public class RemoveStoryHandler : IAsyncRequestHandler<RemoveStoryRequest, RemoveStoryResponse>
+        public class RemoveStoryHandler : IAsyncRequestHandler<Request, Response>
         {
             public RemoveStoryHandler(IBacklogContext context, ICache cache)
             {
@@ -26,12 +26,16 @@ namespace Backlog.Features.Stories
                 _cache = cache;
             }
 
-            public async Task<RemoveStoryResponse> Handle(RemoveStoryRequest request)
+            public async Task<Response> Handle(Request request)
             {
-                var story = await _context.Stories.FindAsync(request.Id);
+                var story = await _context.Stories
+                    .Include(x => x.Tenant)
+                    .Where(x => x.Tenant.UniqueId == request.TenantUniqueId)
+                    .SingleAsync(x =>x.Id == request.Id);
+
                 story.IsDeleted = true;
                 await _context.SaveChangesAsync();
-                return new RemoveStoryResponse();
+                return new Response();
             }
 
             private readonly IBacklogContext _context;

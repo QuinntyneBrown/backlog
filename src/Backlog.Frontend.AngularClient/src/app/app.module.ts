@@ -4,19 +4,21 @@ import {BrowserModule} from '@angular/platform-browser';
 import {RouterModule} from '@angular/router';
 import {HttpModule} from '@angular/http';
 import {FormsModule} from '@angular/forms';
-import { LoginModule } from "backlogFrontendAngularLibrary";
+import {TenantsModule} from "./tenants/tenants.module";
+import {SharedModule} from "./shared/shared.module";
+import { LoginModule } from "./login/login.module";
 
 import "./rxjs-extensions";
 
 import { AppComponent } from './app.component';
-import { HomePageComponent } from "./home";
+import { AppShellComponent } from "./app-shell.component";
 
-import {routing} from "./app.routing";
+import {routing} from "./app-routing.module";
 
 
 const declarables = [
     AppComponent,
-    HomePageComponent
+    AppShellComponent
 ];
 
 const providers = [
@@ -26,12 +28,13 @@ const providers = [
 @NgModule({
     imports: [
         routing,
-        LoginModule,
         BrowserModule,
         HttpModule,
         CommonModule,
         FormsModule,
-        RouterModule
+        RouterModule,
+        TenantsModule,
+        SharedModule        
     ],
     providers: providers,
     declarations: [declarables],

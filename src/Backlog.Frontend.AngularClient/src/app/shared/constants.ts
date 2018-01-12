@@ -1,0 +1,6 @@
+﻿export const constants = {
+    ACCESS_TOKEN_KEY: "ACCESS_TOKEN_KEY",
+    STORAGE_KEY: "[Backlog] STORAGE_KEY",
+    TENANT_KEY: "TENANT_KEY",
+    LOGIN_CREDENTIALS_KEY: "LOGIN CREDENTIALS KEY"
+};

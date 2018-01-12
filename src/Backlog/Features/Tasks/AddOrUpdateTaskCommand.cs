@@ -1,28 +1,22 @@
 using MediatR;
 using Backlog.Data;
-using Backlog.Data.Model;
 using Backlog.Features.Core;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Linq;
 using System.Data.Entity;
-using Task = Backlog.Data.Model.Task;
+using Task = Backlog.Model.Task;
 
 namespace Backlog.Features.Tasks
 {
     public class AddOrUpdateTaskCommand
     {
-        public class AddOrUpdateTaskRequest : IRequest<AddOrUpdateTaskResponse>
+        public class Request : BaseAuthenticatedRequest, IRequest<Response>
         {
             public TaskApiModel Task { get; set; }
         }
 
-        public class AddOrUpdateTaskResponse
-        {
+        public class Response { }
 
-        }
-
-        public class AddOrUpdateTaskHandler : IAsyncRequestHandler<AddOrUpdateTaskRequest, AddOrUpdateTaskResponse>
+        public class AddOrUpdateTaskHandler : IAsyncRequestHandler<Request, Response>
         {
             public AddOrUpdateTaskHandler(IBacklogContext context, ICache cache)
             {
@@ -30,24 +24,29 @@ namespace Backlog.Features.Tasks
                 _cache = cache;
             }
 
-            public async Task<AddOrUpdateTaskResponse> Handle(AddOrUpdateTaskRequest request)
+            public async Task<Response> Handle(Request request)
             {
                 var entity = await _context.Tasks
-                    .SingleOrDefaultAsync(x => x.Id == request.Task.Id && x.IsDeleted == false);
-                if (entity == null) _context.Tasks.Add(entity = new Task());
+                    .SingleOrDefaultAsync(x => x.Id == request.Task.Id && x.Tenant.UniqueId == request.TenantUniqueId);
+
+                if (entity == null)
+                {
+                    var tenant = await _context.Tenants.SingleAsync(x => x.UniqueId == request.TenantUniqueId);
+                    _context.Tasks.Add(entity = new Task()
+                    {
+                        TenantId = tenant.Id
+                    });
+                }
+
                 entity.Name = request.Task.Name;
+
                 await _context.SaveChangesAsync();
 
-                return new AddOrUpdateTaskResponse()
-                {
-
-                };
+                return new Response() {};
             }
 
-            private readonly IBacklogContext _context;
-            private readonly ICache _cache;
+            protected readonly IBacklogContext _context;
+            protected readonly ICache _cache;
         }
-
     }
-
 }

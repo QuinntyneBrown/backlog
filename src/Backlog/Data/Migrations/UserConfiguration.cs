@@ -1,10 +1,10 @@
-using System.Data.Entity.Migrations;
 using Backlog.Data;
-using Backlog.Data.Model;
+using Backlog.Features.Users;
+using Backlog.Model;
+using Backlog.Security;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Collections.Generic;
-using Backlog.Features.Users;
-using Backlog.Security;
 
 namespace Backlog.Migrations
 {
@@ -12,15 +12,18 @@ namespace Backlog.Migrations
     {
         public static void Seed(BacklogContext context) {
 
+            var tenant = context.Tenants.Single(x => x.Name == "Default");
             var systemRole = context.Roles.First(x => x.Name == Roles.SYSTEM);
-            var roles = new List<Role>();
-            roles.Add(systemRole);
+            var roles = new List<Role>() { systemRole };
+            
             context.Users.AddOrUpdate(x => x.Username, new User()
             {
-                Username = "system",
-                Password = new EncryptionService().TransformPassword("system"),
-                Roles = roles
+                Username = "",
+                Password = new EncryptionService().TransformPassword(""),
+                Roles = roles,
+                TenantId  = tenant.Id
             });
+
             context.SaveChanges();
         }
     }

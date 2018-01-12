@@ -1,6 +1,6 @@
 using System.Data.Entity.Migrations;
 using Backlog.Data;
-using Backlog.Data.Model;
+using Backlog.Model;
 using Backlog.Features.Tasks;
 
 namespace Backlog.Migrations
@@ -11,19 +11,21 @@ namespace Backlog.Migrations
 
             context.TaskStatuses.AddOrUpdate(x => x.Name, new TaskStatus()
             {
-                Name = TaskStatuses.NOT_STARTED
+                Name = "[Task Status] Not Started"
             });
 
             context.TaskStatuses.AddOrUpdate(x => x.Name, new TaskStatus()
             {
-                Name = TaskStatuses.IN_PROGRESS
+                Name = "[Task Status] In Progress"
             });
 
-            context.TaskStatuses.AddOrUpdate(x => x.Name, new TaskStatus() { Name = TaskStatuses.QA });
+            context.TaskStatuses.AddOrUpdate(x => x.Name, new TaskStatus() {
+                Name = "[Task Status] QA"
+            });
 
             context.TaskStatuses.AddOrUpdate(x => x.Name, new TaskStatus()
             {
-                Name = TaskStatuses.COMPLETE
+                Name = "[Task Status] Complete"
             });
 
             context.SaveChanges();

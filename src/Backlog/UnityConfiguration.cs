@@ -31,7 +31,7 @@ namespace Backlog
             var classes = FromAssemblies(typeof(T).Assembly)
                 .Where(x => x.Name.Contains("Controller") == false
                 && x.Name.Contains("Attribute") == false
-                && x.FullName.Contains("Data.Model") == false)                
+                && x.FullName.Contains("Model") == false)                
                 .ToList();
             
             return container.RegisterClassesTypesAndInstances(classes);
@@ -42,11 +42,11 @@ namespace Backlog
             var classes = FromAssemblies(typeof(T1).Assembly)
                 .Where(x => x.Name.Contains("Controller") == false
                 && x.Name.Contains("Attribute") == false
-                && x.FullName.Contains("Data.Model") == false)
+                && x.FullName.Contains("Model") == false)
                 .ToList();
 
             classes.AddRange(FromAssemblies(typeof(T2).Assembly)
-                .Where(x => x.Name.Contains("Controller") == false && x.FullName.Contains("Data.Model") == false)
+                .Where(x => x.Name.Contains("Controller") == false && x.FullName.Contains("Model") == false)
                 .ToList());
 
             return container.RegisterClassesTypesAndInstances(classes);

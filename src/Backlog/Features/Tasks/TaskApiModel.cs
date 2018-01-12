@@ -1,4 +1,4 @@
-using Backlog.Data.Model;
+using Backlog.Model;
 using System;
 
 namespace Backlog.Features.Tasks

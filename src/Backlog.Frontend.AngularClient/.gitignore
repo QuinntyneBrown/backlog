@@ -26,8 +26,7 @@ bld/
 
 src/**/*.js
 src/**/*.js.map
-src/**/*.css
-src/**/*.css.map
+aot
 
 dist
 tests

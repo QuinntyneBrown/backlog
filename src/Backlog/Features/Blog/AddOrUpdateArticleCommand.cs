@@ -3,7 +3,7 @@ using Backlog.Data;
 using Backlog.Features.Core;
 using System.Threading.Tasks;
 using System.Data.Entity;
-using Backlog.Data.Model;
+using Backlog.Model;
 
 namespace Backlog.Features.Blog
 {

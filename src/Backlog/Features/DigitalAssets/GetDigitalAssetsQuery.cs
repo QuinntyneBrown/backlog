@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
 using System.Data.Entity;
-using Backlog.Data.Model;
+using Backlog.Model;
 using static Backlog.Features.DigitalAssets.Constants;
 using Backlog.Features.Core;
 

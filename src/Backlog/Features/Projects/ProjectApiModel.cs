@@ -1,4 +1,4 @@
-using Backlog.Data.Model;
+using Backlog.Model;
 
 namespace Backlog.Features.Projects
 {

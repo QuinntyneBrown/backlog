@@ -1,4 +1,4 @@
-using Backlog.Data.Model;
+using Backlog.Model;
 using Backlog.Features.Epics;
 using System.Collections.Generic;
 using System.Linq;

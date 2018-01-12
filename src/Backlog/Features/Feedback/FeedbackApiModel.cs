@@ -5,7 +5,7 @@ namespace Backlog.Features.Feedback
         public int Id { get; set; }
         public string Name { get; set; }
 
-        public static TModel FromFeedback<TModel>(Data.Model.Feedback feedback) where
+        public static TModel FromFeedback<TModel>(Model.Feedback feedback) where
             TModel : FeedbackApiModel, new()
         {
             var model = new TModel();
@@ -13,7 +13,7 @@ namespace Backlog.Features.Feedback
             return model;
         }
 
-        public static FeedbackApiModel FromFeedback(Data.Model.Feedback feedback)
+        public static FeedbackApiModel FromFeedback(Model.Feedback feedback)
             => FromFeedback<FeedbackApiModel>(feedback);
     }
 }

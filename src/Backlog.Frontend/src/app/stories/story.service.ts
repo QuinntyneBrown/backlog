@@ -12,26 +12,26 @@ export class StoryService {
     }
 
     public get(): Promise<Array<Story>> {
-        return this._fetch({ url: "/api/story/get", authRequired: true }).then((results:string) => {
+        return this._fetch({ url: "/api/stories/get", authRequired: true }).then((results:string) => {
             return (JSON.parse(results) as { stories: Array<Story> }).stories;
         });
     }
 
     public getById(id): Promise<Story> {
-        return this._fetch({ url: `/api/story/getbyid?id=${id}`, authRequired: true }).then((results:string) => {
+        return this._fetch({ url: `/api/stories/getbyid?id=${id}`, authRequired: true }).then((results:string) => {
             return (JSON.parse(results) as { story: Story }).story;
         });
     }
 
     public add(story) {
-        return this._fetch({ url: `/api/story/add`, method: "POST", data: { story }, authRequired: true  });
+        return this._fetch({ url: `/api/stories/add`, method: "POST", data: { story }, authRequired: true  });
     }
 
     public remove(options: { id : number }) {
-        return this._fetch({ url: `/api/story/remove?id=${options.id}`, method: "DELETE", authRequired: true  });
+        return this._fetch({ url: `/api/stories/remove?id=${options.id}`, method: "DELETE", authRequired: true  });
     }
 
     public removeDigitalAsset(options: { id: number }) {
-        return this._fetch({ url: `/api/digitalasset/remove?id=${options.id}`, method: "DELETE", authRequired: true });
+        return this._fetch({ url: `/api/digitalassets/remove?id=${options.id}`, method: "DELETE", authRequired: true });
     }
 }

@@ -10,7 +10,7 @@ namespace Backlog.Features.Stories
 {
     public class ExportStoriesToExcelByEpicIdCommand
     {
-        public class ExportStoriesToExcelByEpicIdRequest : IRequest<ExportStoriesToExcelByEpicIdResponse>
+        public class ExportStoriesToExcelByEpicIdRequest : BaseAuthenticatedRequest, IRequest<ExportStoriesToExcelByEpicIdResponse>
         {
             public int? EpicId { get; set; }
             public int? ProductId { get; set; }

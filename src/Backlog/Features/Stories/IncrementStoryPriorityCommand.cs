@@ -1,32 +1,17 @@
 using MediatR;
 using Backlog.Data;
 using Backlog.Features.Core;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Linq;
-using System.Data.Entity;
 
 namespace Backlog.Features.Stories
 {
     public class IncrementStoryPriorityCommand
     {
-        public class IncrementStoryPriorityRequest : IRequest<IncrementStoryPriorityResponse>
-        {
-            public IncrementStoryPriorityRequest()
-            {
+        public class Request : BaseAuthenticatedRequest, IRequest<Response> { }
 
-            }
-        }
+        public class Response { }
 
-        public class IncrementStoryPriorityResponse
-        {
-            public IncrementStoryPriorityResponse()
-            {
-
-            }
-        }
-
-        public class IncrementStoryPriorityHandler : IAsyncRequestHandler<IncrementStoryPriorityRequest, IncrementStoryPriorityResponse>
+        public class IncrementStoryPriorityHandler : IAsyncRequestHandler<Request, Response>
         {
             public IncrementStoryPriorityHandler(IBacklogContext context, ICache cache)
             {
@@ -34,15 +19,13 @@ namespace Backlog.Features.Stories
                 _cache = cache;
             }
 
-            public async Task<IncrementStoryPriorityResponse> Handle(IncrementStoryPriorityRequest request)
+            public async Task<Response> Handle(Request request)
             {
 				throw new System.NotImplementedException();
             }
 
-            private readonly IBacklogContext _context;
-            private readonly ICache _cache;
+            protected readonly IBacklogContext _context;
+            protected readonly ICache _cache;
         }
-
     }
-
 }

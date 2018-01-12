@@ -27,7 +27,7 @@ namespace Backlog.Features.Feedback
             {
                 var entity = await _context.Feedbacks
                     .SingleOrDefaultAsync(x => x.Id == request.Feedback.Id && x.IsDeleted == false);
-                if (entity == null) _context.Feedbacks.Add(entity = new Data.Model.Feedback());
+                if (entity == null) _context.Feedbacks.Add(entity = new Model.Feedback());
                 entity.Name = request.Feedback.Name;
                 await _context.SaveChangesAsync();
 

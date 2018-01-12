@@ -1,6 +1,6 @@
 using MediatR;
 using Backlog.Data;
-using Backlog.Data.Model;
+using Backlog.Model;
 using Backlog.Features.Core;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -11,14 +11,14 @@ namespace Backlog.Features.Stories
 {
     public class AddOrUpdateStoryCommand
     {
-        public class AddOrUpdateStoryRequest : IRequest<AddOrUpdateStoryResponse>
+        public class Request : BaseAuthenticatedRequest, IRequest<Response>
         {
             public StoryApiModel Story { get; set; }
         }
 
-        public class AddOrUpdateStoryResponse { }
+        public class Response { }
 
-        public class AddOrUpdateStoryHandler : IAsyncRequestHandler<AddOrUpdateStoryRequest, AddOrUpdateStoryResponse>
+        public class AddOrUpdateStoryHandler : IAsyncRequestHandler<Request, Response>
         {
             public AddOrUpdateStoryHandler(IBacklogContext context, ICache cache)
             {
@@ -26,13 +26,19 @@ namespace Backlog.Features.Stories
                 _cache = cache;
             }
 
-            public async Task<AddOrUpdateStoryResponse> Handle(AddOrUpdateStoryRequest request)
+            public async Task<Response> Handle(Request request)
             {
                 var entity = await _context.Stories
                     .Include(x=>x.Epic)
-                    .SingleOrDefaultAsync(x => x.Id == request.Story.Id);
+                    .Include(x =>x.Tenant)
+                    .SingleOrDefaultAsync(x => x.Id == request.Story.Id && request.TenantUniqueId == x.Tenant.UniqueId);
 
-                if (entity == null) _context.Stories.Add(entity = new Story());
+                if (entity == null) {
+                    var tenant = await _context.Tenants.SingleAsync(x => x.UniqueId == request.TenantUniqueId);
+                    _context.Stories.Add(entity = new Story() {
+                        TenantId = tenant.Id
+                    });
+                }
 
                 if (request.Story.EpicId.HasValue)
                 {
@@ -53,7 +59,7 @@ namespace Backlog.Features.Stories
                 entity.CompletedDate = request.Story.CompletedDate;
                 await _context.SaveChangesAsync();
 
-                return new AddOrUpdateStoryResponse() { };
+                return new Response() { };
             }
 
             private readonly IBacklogContext _context;

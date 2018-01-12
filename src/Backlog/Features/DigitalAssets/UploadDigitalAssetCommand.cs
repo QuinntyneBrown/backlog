@@ -7,7 +7,7 @@ using Backlog.Features.DigitalAssets.UploadHandlers;
 using System.Collections.Specialized;
 using System.Net.Http;
 using System.IO;
-using Backlog.Data.Model;
+using Backlog.Model;
 using Backlog.Features.Core;
 using static Backlog.Features.DigitalAssets.Constants;
 

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
 using System.Data.Entity;
-using Backlog.Data.Model;
+using Backlog.Model;
 using Task = System.Threading.Tasks.Task;
 using static System.Threading.Tasks.Task;
 

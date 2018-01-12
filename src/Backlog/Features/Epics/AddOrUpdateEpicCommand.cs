@@ -1,5 +1,5 @@
 using Backlog.Data;
-using Backlog.Data.Model;
+using Backlog.Model;
 using Backlog.Features.Core;
 using MediatR;
 using System.Threading.Tasks;
