@@ -1,2 +1,2 @@
 # backlog
-Backlog Api and Web Frontend using Angular and Custom Elements v1, TypeScript 2.x and ASP.NET Web API 2
+Backlog Api and Web Frontend using Custom Elements v1, Angular, TypeScript 2.x, Lit-HTML and ASP.NET Web API 2
