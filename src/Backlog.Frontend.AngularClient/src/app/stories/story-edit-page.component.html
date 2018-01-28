@@ -1,0 +1,13 @@
+<section>
+    <h2 *ngIf="story.id">Edit Story: {{ story.name }}</h2>
+    <h2 *ngIf="!story.id">Create Story</h2>
+
+    <h3>Name</h3>
+    <input [formControl]="nameFormControl" />
+
+    <h3>Description</h3>
+    <ce-quill-text-editor [formControl]="descriptionFormControl"></ce-quill-text-editor>
+
+    <button (click)="tryToSave()">Save</button>
+    <button (click)="tryToDelete()" *ngIf="story.id">Delete</button>
+</section>

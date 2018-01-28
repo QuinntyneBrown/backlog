@@ -33,8 +33,12 @@ namespace Backlog.UnitTests.Mocks
         public DbSet<Ip> Ips { get; set; }
         public DbSet<Tenant> Tenants { get; set; }
         public DbSet<Category> Categories { get; set; }
-
-        public Task<int> SaveChangesAsync()
+        public DbSet<Profile> Profiles { get; set; }
+        public virtual DbSet<HomePage> HomePages { get; set; }
+        public virtual DbSet<Tile> Tiles { get; set; }
+        public virtual DbSet<Dashboard> Dashboards { get; set; }
+        public virtual DbSet<DashboardTile> DashboardTiles { get; set; }
+        public Task<int> SaveChangesAsync(string username = null)
         {
             throw new System.NotImplementedException();
         }

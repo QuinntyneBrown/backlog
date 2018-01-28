@@ -1,4 +1,5 @@
 export * from "./auth-guard.service";
+export * from "./modal.service";
 export * from "./popover.service";
 export * from "./position";
 export * from "./rectangle";

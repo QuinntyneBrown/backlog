@@ -1,0 +1,19 @@
+:host {
+    display:block;
+    content:contain;
+}
+
+a {
+    text-decoration: none;
+    color:#000;
+}
+
+h2 {
+    margin:0;
+    padding:0;
+    line-height:1.5em;
+}
+
+.header {
+    margin: 20px 0px;
+}

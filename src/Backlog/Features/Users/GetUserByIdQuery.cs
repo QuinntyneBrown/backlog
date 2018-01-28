@@ -10,16 +10,16 @@ namespace Backlog.Features.Users
 {
     public class GetUserByIdQuery
     {
-        public class GetUserByIdRequest : IRequest<GetUserByIdResponse> { 
+        public class Request : IRequest<Response> { 
 			public int Id { get; set; }
 		}
 
-        public class GetUserByIdResponse
+        public class Response
         {
             public UserApiModel User { get; set; } 
 		}
 
-        public class GetUserByIdHandler : IAsyncRequestHandler<GetUserByIdRequest, GetUserByIdResponse>
+        public class GetUserByIdHandler : IAsyncRequestHandler<Request, Response>
         {
             public GetUserByIdHandler(IBacklogContext context, ICache cache)
             {
@@ -27,11 +27,13 @@ namespace Backlog.Features.Users
                 _cache = cache;
             }
 
-            public async Task<GetUserByIdResponse> Handle(GetUserByIdRequest request)
+            public async Task<Response> Handle(Request request)
             {                
-                return new GetUserByIdResponse()
+                return new Response()
                 {
-                    User = UserApiModel.FromUser(await _context.Users.FindAsync(request.Id))
+                    User = UserApiModel.FromUser(await _context.Users
+                    .Include(x => x.Profile)
+                    .SingleAsync(x => x.Id == request.Id))
                 };
             }
 

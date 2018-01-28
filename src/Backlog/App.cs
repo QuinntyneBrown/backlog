@@ -1,5 +1,5 @@
 using Backlog.Features.Core;
-using Backlog.Security;
+using Backlog.Features.Security;
 using MediatR;
 using Microsoft.AspNet.SignalR.Infrastructure;
 using Microsoft.Owin.Cors;
@@ -33,10 +33,12 @@ namespace Backlog
 
             var mediator = container.Resolve<IMediator>();
             Lazy<IAuthConfiguration> lazyAuthConfiguration = UnityConfiguration.GetContainer().Resolve<Lazy<IAuthConfiguration>>();
-
-            config
-                .EnableSwagger(c => c.SingleApiVersion("v1", "Backlog"))
-                .EnableSwaggerUi();
+            
+            config.EnableSwagger(c => {
+                c.UseFullTypeNameInSchemaIds();
+                c.SingleApiVersion("v1", "Backlog");
+            })
+            .EnableSwaggerUi();
 
             app.UseOAuthAuthorizationServer(new OAuthOptions(lazyAuthConfiguration, mediator));
 
@@ -89,5 +91,7 @@ namespace Backlog
         public static string VERSION = "1.0.0-alpha.0";
         public const int CacheOutputClientTimeSpan = 3600;
         public const int CacheOutputServerTimeSpan = 3600;
+        public const int MaxStringLength = 255;
+        public const string DefaultUsername = "quinntyne.brown@comsenseinc.com";
     }
 }

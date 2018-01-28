@@ -1,5 +1,8 @@
-export class DigitalAsset { 
-	public id:number;
-    public name: string;
-    public relativeUrl: string;
-}
+export type DigitalAsset = {
+    id: number;
+    name: string;
+    relativeUrl: string;
+    size: string;
+    uploadedOn: string;
+    uploadedBy: string;
+};

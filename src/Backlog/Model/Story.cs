@@ -6,7 +6,7 @@ using Backlog.Data.Helpers;
 namespace Backlog.Model
 {
     [SoftDelete("IsDeleted")]
-    public class Story: PrioritizableEntity
+    public class Story: PrioritizableEntity, ILoggable
     {
         public override int Id { get; set; }
         [ForeignKey("Tenant")]
@@ -23,6 +23,7 @@ namespace Backlog.Model
         public int? ArchitecturePoints { get; set; }
         public bool IsReusable { get; set; }
         public bool IsDeleted { get; set; }
+        public DateTime? StartDate { get; set; }
         public DateTime? CompletedDate { get; set; }
         public ICollection<Task> Tasks { get; set; } = new HashSet<Task>();
         public ReusableStoryGroup ReusableStoryGroup { get; set; }
@@ -31,5 +32,9 @@ namespace Backlog.Model
         public ICollection<StoryArticle> StoryArticles { get; set; } = new HashSet<StoryArticle>();
         public Epic Epic { get; set; }
         public virtual Tenant Tenant { get; set; }
+        public DateTime CreatedOn { get; set; }
+        public DateTime LastModifiedOn { get; set; }
+        public string CreatedBy { get; set; }
+        public string LastModifiedBy { get; set; }
     }
 }

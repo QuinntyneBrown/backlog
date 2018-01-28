@@ -1,0 +1,12 @@
+<ul>
+    <li *ngFor="let dashboard of dashboards">
+        <a routerLink="/dashboard/{{ dashboard.id }}">{{ dashboard.name }}</a>
+    </li>
+    <li *ngIf="!createMode">
+        <a (click)="tryToCreateDashboard()">+</a>
+    </li>
+    <li *ngIf="createMode">        
+        <input type="text" id="name" [(ngModel)]="currentDashboard.name" autocomplete="off" spellcheck="false" />
+        <button (click)="tryToSaveDashboard()">Save</button>
+    </li>
+</ul>

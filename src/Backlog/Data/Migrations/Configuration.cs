@@ -18,6 +18,8 @@ namespace Backlog.Migrations
             RoleConfiguration.Seed(context);
             UserConfiguration.Seed(context);
             TaskStatusConfiguration.Seed(context);
+            ProfileConfiguration.Seed(context);
+            TileConfiguration.Seed(context);
         }
     }
 

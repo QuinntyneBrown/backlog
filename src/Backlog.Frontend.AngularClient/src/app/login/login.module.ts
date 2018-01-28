@@ -3,13 +3,13 @@ import { CommonModule } from "@angular/common";
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule, Routes } from "@angular/router";
-
+import { SharedModule } from "../shared/shared.module";
 import { LoginComponent } from "./login.component";
-import { LoginShellComponent } from "./login-shell.component";
+import { LoginMasterPageComponent } from "./login-master-page.component";
 
 const declarables = [
     LoginComponent,
-    LoginShellComponent
+    LoginMasterPageComponent
 ];
 
 const providers = [];
@@ -17,7 +17,7 @@ const providers = [];
 const ROUTES: Array<any> = [
     {
         path: '',
-        component: LoginShellComponent
+        component: LoginMasterPageComponent
     }
 ];
 
@@ -27,7 +27,8 @@ const ROUTES: Array<any> = [
         FormsModule,
         HttpClientModule,
         ReactiveFormsModule,
-        RouterModule.forChild(ROUTES)
+        RouterModule.forChild(ROUTES),
+        SharedModule
     ],
     exports: [declarables],
     declarations: [declarables],

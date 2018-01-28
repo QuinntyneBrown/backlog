@@ -1,0 +1,11 @@
+<section>
+    <h1>Edit User: {{ user.name }}</h1>
+
+    <form novalidate [formGroup]="form">
+
+        <label>Image Url</label>
+        <ce-digital-asset-input-url formControlName="imageUrl"></ce-digital-asset-input-url>
+
+        <button type="submit" (click)="tryToSave()">Save</button>
+    </form>
+</section>

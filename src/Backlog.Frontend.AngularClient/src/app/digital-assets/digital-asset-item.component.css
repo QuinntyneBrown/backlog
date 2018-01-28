@@ -1,0 +1,38 @@
+:host {
+    display: grid;
+    content: contain;
+    width:100%;
+    grid-template-columns: 4fr 1fr;
+    margin:15px 0px;
+
+}
+
+p {
+    min-width: 300px;
+    display: block;
+    color: #000;
+    font-size: 1em;
+    line-height:1.25em;
+    margin:0;
+    padding:0;
+    font-weight:600;
+
+}
+
+a {
+    cursor: pointer;
+}
+
+div {
+    display:inline-block;
+}
+
+.actions {
+    display:inline-block;
+    text-align:right;
+}
+
+span {
+    font-size:0.85em;
+    color:rgb(100,100,100);
+}

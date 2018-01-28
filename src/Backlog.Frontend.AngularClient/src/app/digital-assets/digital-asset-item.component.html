@@ -1,0 +1,9 @@
+<div>
+    <p>{{ digitalAsset.fileName }}</p>
+    <span>Uploaded {{ uploadedOn }} by {{ digitalAsset.uploadedBy }}&nbsp;&nbsp;&nbsp;{{ digitalAsset.size }}</span>
+</div>
+<div class="actions">
+    <a (click)="onEditClick.emit({ digitalAsset: digitalAsset })">Edit</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+    <a (click)="onDeleteClick.emit({ digitalAsset: digitalAsset })">Delete</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+    <a (click)="onViewClick.emit({ digitalAsset: digitalAsset })">View</a>
+</div>

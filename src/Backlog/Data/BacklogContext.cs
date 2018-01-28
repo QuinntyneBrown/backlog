@@ -36,7 +36,12 @@ namespace Backlog.Data
         DbSet<Theme> Themes { get; set; }
         DbSet<UserSettings> UserSettings { get; set; }
         DbSet<User> Users { get; set; }
-        Task<int> SaveChangesAsync();
+        DbSet<Profile> Profiles { get; set; }
+        DbSet<HomePage> HomePages { get; set; }
+        DbSet<Tile> Tiles { get; set; }
+        DbSet<Dashboard> Dashboards { get; set; }
+        DbSet<DashboardTile> DashboardTiles { get; set; }
+        Task<int> SaveChangesAsync(string username = null);
     }
 
     public class BacklogContext: DbContext, IBacklogContext
@@ -75,27 +80,34 @@ namespace Backlog.Data
         public virtual DbSet<Theme> Themes { get; set; }
         public virtual DbSet<UserSettings> UserSettings { get; set; }
         public virtual DbSet<User> Users { get; set; }
-        
-        public override int SaveChanges()
+        public virtual DbSet<Profile> Profiles { get; set; }
+        public virtual DbSet<HomePage> HomePages { get; set; }
+        public virtual DbSet<Tile> Tiles { get; set; }
+        public virtual DbSet<Dashboard> Dashboards { get; set; }
+        public virtual DbSet<DashboardTile> DashboardTiles { get; set; }
+        public int SaveChanges(string username)
         {
-            UpdateLoggableEntries();
+            UpdateLoggableEntries(username);
             return base.SaveChanges();
         }
-        
-        public override Task<int> SaveChangesAsync()
+
+        public Task<int> SaveChangesAsync(string username)
         {
-            UpdateLoggableEntries();
+            UpdateLoggableEntries(username);
             return base.SaveChangesAsync();
         }
 
-        public void UpdateLoggableEntries()
+        public void UpdateLoggableEntries(string username = null)
         {
             foreach (var entity in ChangeTracker.Entries()
                 .Where(e => e.Entity is ILoggable && ((e.State == EntityState.Added || (e.State == EntityState.Modified))))
                 .Select(x => x.Entity as ILoggable))
             {
-                entity.CreatedOn = entity.CreatedOn == default(DateTime) ? DateTime.UtcNow : entity.CreatedOn;
+                var isNew = entity.CreatedOn == default(DateTime);
+                entity.CreatedOn = isNew ? DateTime.UtcNow : entity.CreatedOn;
                 entity.LastModifiedOn = DateTime.UtcNow;
+                entity.CreatedBy = isNew ? username : entity.CreatedBy;
+                entity.LastModifiedBy = username;
             }
         }
 
@@ -134,6 +146,10 @@ namespace Backlog.Data
                         m.ToTable("UserRoles");
                     });
 
+            modelBuilder.Entity<User>()
+                .HasOptional(u => u.Profile) 
+                .WithRequired(p => p.User); 
+            
             var convention = new AttributeToTableAnnotationConvention<SoftDeleteAttribute, string>(
                 "SoftDeleteColumnName",
                 (type, attributes) => attributes.Single().ColumnName);

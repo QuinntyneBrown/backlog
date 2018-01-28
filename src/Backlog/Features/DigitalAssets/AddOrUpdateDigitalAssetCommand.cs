@@ -9,14 +9,14 @@ namespace Backlog.Features.DigitalAssets
 {
     public class AddOrUpdateDigitalAssetCommand
     {
-        public class AddOrUpdateDigitalAssetRequest : IRequest<AddOrUpdateDigitalAssetResponse>
+        public class Request : IRequest<Response>
         {
             public DigitalAssetApiModel DigitalAsset { get; set; }
         }
 
-        public class AddOrUpdateDigitalAssetResponse { }
+        public class Response { }
 
-        public class AddOrUpdateDigitalAssetHandler : IAsyncRequestHandler<AddOrUpdateDigitalAssetRequest, AddOrUpdateDigitalAssetResponse>
+        public class AddOrUpdateDigitalAssetHandler : IAsyncRequestHandler<Request, Response>
         {
             public AddOrUpdateDigitalAssetHandler(IBacklogContext context, ICache cache)
             {
@@ -24,7 +24,7 @@ namespace Backlog.Features.DigitalAssets
                 _cache = cache;
             }
 
-            public async Task<AddOrUpdateDigitalAssetResponse> Handle(AddOrUpdateDigitalAssetRequest request)
+            public async Task<Response> Handle(Request request)
             {
                 var entity = await _context.DigitalAssets
                     .SingleOrDefaultAsync(x => x.Id == request.DigitalAsset.Id && x.IsDeleted == false);
@@ -33,7 +33,7 @@ namespace Backlog.Features.DigitalAssets
                 entity.Folder = request.DigitalAsset.Folder;
                 await _context.SaveChangesAsync();
 
-                return new AddOrUpdateDigitalAssetResponse() { };
+                return new Response() { };
             }
 
             private readonly IBacklogContext _context;

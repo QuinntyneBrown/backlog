@@ -4,6 +4,7 @@ using Backlog.Features.Core;
 using MediatR;
 using System.Data.Entity;
 using System.Threading.Tasks;
+using System.Net.Http;
 
 namespace Backlog.Features.Products
 {
@@ -25,7 +26,7 @@ namespace Backlog.Features.Products
             }
 
             public async Task<AddOrUpdateProductResponse> Handle(AddOrUpdateProductRequest request)
-            {
+            {                
                 var entity = await _context.Products
                     .SingleOrDefaultAsync(x => x.Id == request.Product.Id && x.IsDeleted == false);
                 if (entity == null) _context.Products.Add(entity = new Product());

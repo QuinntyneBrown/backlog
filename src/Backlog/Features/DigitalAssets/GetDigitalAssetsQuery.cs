@@ -12,14 +12,14 @@ namespace Backlog.Features.DigitalAssets
 {
     public class GetDigitalAssetsQuery
     {
-        public class GetDigitalAssetsRequest : IRequest<GetDigitalAssetsResponse> { }
+        public class Request : BaseAuthenticatedRequest, IRequest<Response> { }
 
-        public class GetDigitalAssetsResponse
+        public class Response
         {
             public ICollection<DigitalAssetApiModel> DigitalAssets { get; set; } = new HashSet<DigitalAssetApiModel>();
         }
 
-        public class GetDigitalAssetsHandler : IAsyncRequestHandler<GetDigitalAssetsRequest, GetDigitalAssetsResponse>
+        public class GetDigitalAssetsHandler : IAsyncRequestHandler<Request, Response>
         {
             public GetDigitalAssetsHandler(IBacklogContext context, ICache cache)
             {
@@ -27,11 +27,15 @@ namespace Backlog.Features.DigitalAssets
                 _cache = cache;
             }
 
-            public async Task<GetDigitalAssetsResponse> Handle(GetDigitalAssetsRequest request)
+            public async Task<Response> Handle(Request request)
             {
-                var digitalAssets = await _cache.FromCacheOrServiceAsync<List<DigitalAsset>>(() => _context.DigitalAssets.ToListAsync(), DigitalAssetCacheKeys.DigitalAssets);
+                var digitalAssets = await _cache.FromCacheOrServiceAsync<List<DigitalAsset>>(() => _context
+                .DigitalAssets
+                .Include(x => x.Tenant)
+                .Where(x => x.Tenant.UniqueId == request.TenantUniqueId)
+                .ToListAsync(), DigitalAssetsCacheKeyFactory.Get(request.TenantUniqueId));
 
-                return new GetDigitalAssetsResponse()
+                return new Response()
                 {
                     DigitalAssets = digitalAssets.Select(x => DigitalAssetApiModel.FromDigitalAsset(x)).ToList()
                 };

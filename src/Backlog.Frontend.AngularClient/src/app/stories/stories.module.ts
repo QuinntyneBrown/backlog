@@ -8,10 +8,10 @@ import { SharedModule } from "../shared/shared.module";
 import { StoriesService } from "./stories.service";
 import { StoryEditPageComponent } from "./story-edit-page.component";
 import { StoryListPageComponent } from "./story-list-page.component";
-import { StoryComponent } from "./story.component";
+import { StoryItemComponent } from "./story-item.component";
 
 const declarables = [
-    StoryComponent,
+    StoryItemComponent,
     StoryEditPageComponent,
     StoryListPageComponent
 ];

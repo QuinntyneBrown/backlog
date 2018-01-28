@@ -1,0 +1,8 @@
+:host {
+    display: block;
+    content: contain;
+    height: calc(100vh - 99.92px);
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}

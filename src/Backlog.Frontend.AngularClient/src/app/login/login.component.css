@@ -2,24 +2,33 @@
     display: block;
     content: contain;
     width: 100%;
-    max-width: calc(500px);    
-    background-color:#fff;
-    color:#333;
+    max-width: calc(500px);
+    background-color: #fff;
+    color: #333;
+    text-align: center;
+    user-select: none;
 }
 
 span {
     display: block;
     margin-bottom:10px;
+    text-align:left;
 }
 
 h1 {
-    margin:0px 0px 0px 20px;
-    line-height:2em;
-    padding:0;
+    margin: 30px 0px 15px 0px;
+    line-height: 2em;
+    padding: 0px 0px 0px 0px;    
 }
 
 input {
     margin:0px 20px 10px;
     max-width:calc(100% - 61px);
     border-color:rgb(221,221,221);
+}
+
+button {
+    width: 100%;
+    margin: 0px 20px 20px 20px;
+    max-width: calc(100% - 40px);
 }

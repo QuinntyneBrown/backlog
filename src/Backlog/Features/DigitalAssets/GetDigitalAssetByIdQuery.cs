@@ -7,16 +7,16 @@ namespace Backlog.Features.DigitalAssets
 {
     public class GetDigitalAssetByIdQuery
     {
-        public class GetDigitalAssetByIdRequest : IRequest<GetDigitalAssetByIdResponse> { 
+        public class Request : IRequest<Response> { 
 			public int Id { get; set; }
 		}
 
-        public class GetDigitalAssetByIdResponse
+        public class Response
         {
             public DigitalAssetApiModel DigitalAsset { get; set; } 
 		}
 
-        public class GetDigitalAssetByIdHandler : IAsyncRequestHandler<GetDigitalAssetByIdRequest, GetDigitalAssetByIdResponse>
+        public class GetDigitalAssetByIdHandler : IAsyncRequestHandler<Request, Response>
         {
             public GetDigitalAssetByIdHandler(IBacklogContext context, ICache cache)
             {
@@ -24,9 +24,9 @@ namespace Backlog.Features.DigitalAssets
                 _cache = cache;
             }
 
-            public async Task<GetDigitalAssetByIdResponse> Handle(GetDigitalAssetByIdRequest request)
+            public async Task<Response> Handle(Request request)
             {                
-                return new GetDigitalAssetByIdResponse()
+                return new Response()
                 {
                     DigitalAsset = DigitalAssetApiModel.FromDigitalAsset(await _context.DigitalAssets.FindAsync(request.Id))
                 };

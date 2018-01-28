@@ -1,1 +1,10 @@
-<h2>Story List</h2>
+<section>
+    <h2>Story List</h2>
+
+    <a routerLink="/stories/create">CREATE STORY</a>
+    <ce-story-item *ngFor="let story of stories" 
+                   [story]="story"
+                   (onEditClick)="handleEditClick($event)"
+                   (onDeleteClick)="handleDeleteClick($event)">
+    </ce-story-item>
+</section>

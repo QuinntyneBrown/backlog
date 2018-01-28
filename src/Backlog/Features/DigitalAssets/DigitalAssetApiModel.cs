@@ -12,14 +12,17 @@ namespace Backlog.Features.DigitalAssets
         public string Description { get; set; }
         public DateTime? Created { get; set; }
         public DateTime? FileModified { get; set; }
-        public long? Size { get; set; }
+        public string Size { get; set; }
         public string ContentType { get; set; }
-        public string RelativePath { get { return $"api/digitalasset/serve?uniqueid={UniqueId}"; } }
+        public bool? IsSecure { get; set; }
+        public string RelativeUrl { get { return $"api/digitalassets/serve?uniqueid={UniqueId}"; } }
+        public string Url { get { return $"http://localhost:6608/{RelativeUrl}";  } }
         public byte[] Bytes { get; set; } = new byte[0];
         public Guid? UniqueId { get; set; } = Guid.NewGuid();
         public DateTime CreatedOn { get; set; }
         public string CreatedBy { get; set; }
-
+        public string UploadedOn { get; set; }
+        public string UploadedBy { get; set; }
         public static TModel FromDigitalAsset<TModel>(DigitalAsset digitalAsset) where
             TModel : DigitalAssetApiModel, new()
         {
@@ -27,21 +30,23 @@ namespace Backlog.Features.DigitalAssets
             model.Id = digitalAsset.Id;
             model.Bytes = digitalAsset.Bytes;
             model.Folder = digitalAsset.Folder;
-            model.Name = digitalAsset.Name;
+            model.Name = digitalAsset.Name;            
             model.FileName = digitalAsset.FileName;
             model.Description = digitalAsset.Description;
             model.Created = digitalAsset.Created;
             model.FileModified = digitalAsset.FileModified;
             model.Size = digitalAsset.Size;
             model.ContentType = digitalAsset.ContentType;
+            model.IsSecure = digitalAsset.IsSecure;
             model.UniqueId = digitalAsset.UniqueId;
             model.CreatedOn = digitalAsset.CreatedOn;
             model.CreatedBy = digitalAsset.CreatedBy;
+            model.UploadedOn = string.Format("{0:yyyy-MM-dd HH:mm}", digitalAsset.UploadedOn);
+            model.UploadedBy = digitalAsset.UploadedBy;
             return model;
         }
 
         public static DigitalAssetApiModel FromDigitalAsset(DigitalAsset digitalAsset)
             => FromDigitalAsset<DigitalAssetApiModel>(digitalAsset);
-
     }
 }

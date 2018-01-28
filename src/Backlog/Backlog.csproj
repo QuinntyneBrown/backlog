@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ByteSize, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ByteSize.1.3.0\lib\net45\ByteSize.dll</HintPath>
+    </Reference>
     <Reference Include="container, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\container.1.1.1\lib\net40\container.dll</HintPath>
     </Reference>
@@ -48,6 +51,9 @@
     </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.2.0\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Logging, Version=1.1.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.IdentityModel.Logging.1.1.5\lib\net451\Microsoft.IdentityModel.Logging.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
@@ -88,8 +94,8 @@
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
@@ -150,6 +156,9 @@
     <Compile Include="App.cs" />
     <Compile Include="Features\Core\BaseAuthenticatedRequest.cs" />
     <Compile Include="Features\Core\BaseRequest.cs" />
+    <Compile Include="Features\DigitalAssets\DigitalAssetsCacheKeyFactory.cs" />
+    <Compile Include="Model\Dashboard.cs" />
+    <Compile Include="Model\DashboardTile.cs" />
     <Compile Include="Model\ILoggable.cs" />
     <Compile Include="Model\Ip.cs" />
     <Compile Include="Model\IPrioritizable.cs" />
@@ -171,15 +180,15 @@
     <Compile Include="Features\DigitalAssets\UploadDigitalAssetCommand.cs" />
     <Compile Include="Features\Users\Constants.cs" />
     <Compile Include="Features\Users\GetUserByUsernameQuery.cs" />
-    <Compile Include="Security\AuthenticateCommand.cs" />
-    <Compile Include="Security\GetClaimsForUserQuery.cs" />
+    <Compile Include="Features\Security\AuthenticateCommand.cs" />
+    <Compile Include="Features\Security\GetClaimsForUserQuery.cs" />
     <Compile Include="Features\Core\WebApiUnityActionFilterProvider.cs" />
-    <Compile Include="Security\JwtOptions.cs" />
-    <Compile Include="Security\JwtWriterFormat.cs" />
-    <Compile Include="Security\OAuthOptions.cs" />
-    <Compile Include="Security\OAuthProvider.cs" />
-    <Compile Include="Security\AuthConfiguration.cs" />
-    <Compile Include="Security\IAuthConfiguration.cs" />
+    <Compile Include="Features\Security\JwtOptions.cs" />
+    <Compile Include="Features\Security\JwtWriterFormat.cs" />
+    <Compile Include="Features\Security\OAuthOptions.cs" />
+    <Compile Include="Features\Security\OAuthProvider.cs" />
+    <Compile Include="Features\Security\AuthConfiguration.cs" />
+    <Compile Include="Features\Security\IAuthConfiguration.cs" />
     <Compile Include="Data\BacklogContext.cs" />
     <Compile Include="Features\Core\RateLimit.cs" />
     <Compile Include="Features\Core\StringExtensions.cs" />
@@ -188,15 +197,16 @@
     <Compile Include="Model\Epic.cs" />
     <Compile Include="Model\EpicTheme.cs" />
     <Compile Include="Model\StoryDigitalAsset.cs" />
+    <Compile Include="Model\Tile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Features\Core\Cache.cs" />
     <Compile Include="Features\Core\CacheProvider.cs" />
-    <Compile Include="Security\EncryptionService.cs" />
+    <Compile Include="Features\Security\EncryptionService.cs" />
     <Compile Include="Features\Core\ICache.cs" />
     <Compile Include="Features\Core\ICacheProvider.cs" />
     <Compile Include="Features\Core\MemoryCache.cs" />
-    <Compile Include="Security\TenantMiddleware.cs" />
-    <Compile Include="Security\UserManager.cs" />
+    <Compile Include="Features\Security\TenantMiddleware.cs" />
+    <Compile Include="Features\Security\UserManager.cs" />
     <Compile Include="UnityConfiguration.cs" />
     <Compile Include="Features\Core\ILogger.cs" />
     <Compile Include="Features\Core\ILoggerFactory.cs" />
@@ -352,13 +362,60 @@
     <Compile Include="Features\Tags\TagController.cs" />
     <Compile Include="Features\Stories\ExportStoriesToExcelByEpicIdCommand.cs" />
     <Compile Include="Data\Migrations\TenantConfiguration.cs" />
+    <Compile Include="Features\Users\SignUpUserCommand.cs" />
+    <Compile Include="Features\Tenants\TenantsController.cs" />
+    <Compile Include="Features\Tenants\VerifyTenantCommand.cs" />
+    <Compile Include="Model\SocialMediaAccount.cs" />
+    <Compile Include="Model\Profile.cs" />
+    <Compile Include="Features\Profiles\AddOrUpdateProfileCommand.cs" />
+    <Compile Include="Features\Profiles\GetProfilesQuery.cs" />
+    <Compile Include="Features\Profiles\GetProfileByIdQuery.cs" />
+    <Compile Include="Features\Profiles\RemoveProfileCommand.cs" />
+    <Compile Include="Features\Profiles\ProfileApiModel.cs" />
+    <Compile Include="Features\Profiles\ProfilesController.cs" />
+    <Compile Include="Data\Migrations\ProfileConfiguration.cs" />
+    <Compile Include="Features\Security\IsAuthenticatedQuery.cs" />
+    <Compile Include="Features\SocialMediaAccounts\SocialMediaAccountApiModel.cs" />
+    <Compile Include="Model\HomePage.cs" />
+    <Compile Include="Model\Link.cs" />
+    <Compile Include="Features\HomePages\AddOrUpdateHomePageCommand.cs" />
+    <Compile Include="Features\HomePages\GetHomePagesQuery.cs" />
+    <Compile Include="Features\HomePages\GetHomePageByIdQuery.cs" />
+    <Compile Include="Features\HomePages\RemoveHomePageCommand.cs" />
+    <Compile Include="Features\HomePages\HomePageApiModel.cs" />
+    <Compile Include="Features\HomePages\HomePagesController.cs" />
+    <Compile Include="Features\HomePages\LinkApiModel.cs" />
+    <Compile Include="Features\Dashboards\AddOrUpdateDashboardCommand.cs" />
+    <Compile Include="Features\Dashboards\GetDashboardsQuery.cs" />
+    <Compile Include="Features\Dashboards\GetDashboardByIdQuery.cs" />
+    <Compile Include="Features\Dashboards\RemoveDashboardCommand.cs" />
+    <Compile Include="Features\Dashboards\DashboardApiModel.cs" />
+    <Compile Include="Features\Dashboards\DashboardsController.cs" />
+    <Compile Include="Features\DashboardTiles\AddOrUpdateDashboardTileCommand.cs" />
+    <Compile Include="Features\DashboardTiles\GetDashboardTilesQuery.cs" />
+    <Compile Include="Features\DashboardTiles\GetDashboardTileByIdQuery.cs" />
+    <Compile Include="Features\DashboardTiles\RemoveDashboardTileCommand.cs" />
+    <Compile Include="Features\DashboardTiles\DashboardTileApiModel.cs" />
+    <Compile Include="Features\DashboardTiles\DashboardTilesController.cs" />
+    <Compile Include="Features\Tiles\AddOrUpdateTileCommand.cs" />
+    <Compile Include="Features\Tiles\GetTilesQuery.cs" />
+    <Compile Include="Features\Tiles\GetTileByIdQuery.cs" />
+    <Compile Include="Features\Tiles\RemoveTileCommand.cs" />
+    <Compile Include="Features\Tiles\TileApiModel.cs" />
+    <Compile Include="Features\Tiles\TilesController.cs" />
+    <Compile Include="Features\Dashboards\GetDefaultDashboardQuery.cs" />
+    <Compile Include="Data\Migrations\TileConfiguration.cs" />
+    <Compile Include="Features\DigitalAssets\GetMostRecentDigitalAssetsQuery.cs" />
+    <Compile Include="Features\HomePages\GetHomePageQuery.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="leora.json" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

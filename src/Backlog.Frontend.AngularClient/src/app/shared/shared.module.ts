@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule, Routes } from "@angular/router";
 
 import { HeaderComponent } from "./components";
+import { QuillTextEditorComponent } from "./components/quill-text-editor.component";
 
 import { Storage, StorageFactory } from "./services";
 import { RedirectService } from "./services/redirect.service";
@@ -15,9 +16,25 @@ import { PopoverService, PopoverServiceFactory } from "./services/popover.servic
 import { Position } from "./services/position";
 import { Ruler } from "./services/ruler";
 import { Space } from "./services/space";
+import { ModalService, ModalServiceFactory } from "./services/modal.service";
+
+import { DropDownMenuItemComponent } from "./components";
+import { DropDownMenuComponent } from "./components";
+import { CircularButtonComponent } from "./components";
+import { BackdropComponent } from "./components";
+import { DigitalAssetInputUrlComponent } from "./components/digital-asset-input-url.component";
+
+const customElements = [
+    DropDownMenuComponent,
+    DropDownMenuItemComponent,
+    BackdropComponent
+];
 
 const declarables = [
-    HeaderComponent
+    HeaderComponent,
+    QuillTextEditorComponent,
+    CircularButtonComponent,
+    DigitalAssetInputUrlComponent
 ];
 
 const providers = [
@@ -26,6 +43,10 @@ const providers = [
     {
         provide: Storage,
         useFactory: StorageFactory
+    },
+    {
+        provide: ModalService,
+        useFactory: ModalServiceFactory
     },
     RedirectService,
     AuthGuardService,

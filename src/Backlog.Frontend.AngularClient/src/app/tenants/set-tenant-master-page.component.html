@@ -1,0 +1,8 @@
+<section>
+    <h1>Tenant Information</h1>
+    <form novalidate [formGroup]="form" autocomplete="off" spellcheck="false">
+        <input type="text" placeholder="Tenant Id" id="id" formControlName="id" />
+        <button type="submit" (click)="tryToSubmit({ detail:{ tenant: form.value } })">Save</button>
+    </form>
+</section>
+ 

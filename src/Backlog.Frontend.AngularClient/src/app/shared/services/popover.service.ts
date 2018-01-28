@@ -28,15 +28,18 @@ export class PopoverService implements IPopoverService {
 
     public async show(options: { target: HTMLElement, html: string }): Promise<any> {
 
-        if (this._nativeElement)
+        if (this._nativeElement && this._targetElement == options.target) {
+            await this.hide();
             return new Promise(resolve => resolve());
+        }
+
+        this._targetElement = options.target;
 
         const containerElement = document.querySelector('body');
 
         this._nativeElement = createElement({ html: options.html });
 
-        this._nativeElementsDictionary.push({ target: options.target, nativeElement: this._nativeElement });
-
+        
         this.setInitialCss();
 
         await this._position.bottomLeft({
@@ -81,8 +84,8 @@ export class PopoverService implements IPopoverService {
 
     private _nativeElement: HTMLElement;
 
-    private _nativeElementsDictionary: Array<{ target: HTMLElement, nativeElement: HTMLElement }> = [];
-
+    private _targetElement: HTMLElement;
+    
     public get nativeElement(): HTMLElement {
         return this._nativeElement;
     }

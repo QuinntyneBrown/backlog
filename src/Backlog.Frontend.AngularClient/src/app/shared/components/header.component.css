@@ -7,28 +7,43 @@
 
 h1 {
     padding:0;
-    margin:0;
+    margin:20px 0px;
     font-weight:200;
-    line-height:80px;
+    line-height:40px;
     font-size:1.25em;
+    cursor:pointer;
 }
 
-ul {
-    grid-column: 2;
-    text-align: right;
-    margin: 0px 20px;
+.current-user {
+    height:32px;
+    margin:24px 0px 0px 0px;
+    text-align:right;
+    cursor:pointer;
 }
 
-ul li {
-    list-style: none;
-    display: inline-block;
+a {    
+    font-size: 0.875em;
+    line-height:34px;
+    display:inline-block;
 }
 
-a {
-    color: #333;
-    text-decoration: none;
-    padding: 8px 12px;
-    font-size: 1.2em;
-    line-height: 3em;
-    border-radius: 3px;
+section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 80px;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+}
+
+img {
+    border-radius: 50%;
+    position: relative;
+    height: 32px;
+    width: 32px;
+    display: inline;
+    border:0;
+    vertical-align:middle;
+    margin:0px 5px;
 }

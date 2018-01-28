@@ -1,0 +1,9 @@
+:host {
+    display: block;
+    background-color: #fff;
+}
+
+:host .editor {
+    height:150px;
+}
+

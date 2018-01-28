@@ -8,17 +8,14 @@ namespace Backlog.Features.Users
 {
     public class GetUserByUsernameQuery
     {
-        public class GetUserByUsernameRequest : IRequest<GetUserByUsernameResponse>
-        {
-            public string Username { get; set; }
-        }
+        public class Request : BaseAuthenticatedRequest, IRequest<Response> { }
 
-        public class GetUserByUsernameResponse
+        public class Response
         {
             public UserApiModel User { get; set; }
         }
 
-        public class GetUserByUsernameHandler : IAsyncRequestHandler<GetUserByUsernameRequest, GetUserByUsernameResponse>
+        public class GetUserByUsernameHandler : IAsyncRequestHandler<Request, Response>
         {
             public GetUserByUsernameHandler(IBacklogContext context, ICache cache)
             {
@@ -26,11 +23,15 @@ namespace Backlog.Features.Users
                 _cache = cache;
             }
 
-            public async Task<GetUserByUsernameResponse> Handle(GetUserByUsernameRequest request)
+            public async Task<Response> Handle(Request request)
             {
-                return new GetUserByUsernameResponse()
+                return new Response()
                 {
-                    User = UserApiModel.FromUser(await _context.Users.SingleAsync(x=>x.Username == request.Username))
+                    User = UserApiModel.FromUser(await _context.Users
+                    .Include(x => x.Tenant)
+                    .Include(x => x.Profile)
+                    .SingleAsync(x=>x.Username == request.Username 
+                    && x.Tenant.UniqueId == request.TenantUniqueId))
                 };
             }
 

@@ -1,3 +1,4 @@
+using Backlog.Features.Core;
 using MediatR;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -7,59 +8,61 @@ namespace Backlog.Features.Users
 {
     [Authorize]
     [RoutePrefix("api/users")]
-    public class UserController : ApiController
+    public class UserController : BaseApiController
     {
         public UserController(IMediator mediator)
-        {
-            _mediator = mediator;
-        }
+            :base(mediator) { }
 
         [Route("add")]
         [HttpPost]
-        [ResponseType(typeof(AddOrUpdateUserCommand.AddOrUpdateUserResponse))]
-        public async Task<IHttpActionResult> Add(AddOrUpdateUserCommand.AddOrUpdateUserRequest request)
-            => Ok(await _mediator.Send(request));
+        [ResponseType(typeof(AddOrUpdateUserCommand.Response))]
+        public async Task<IHttpActionResult> Add(AddOrUpdateUserCommand.Request request)
+            => Ok(await Send(request));
 
         [Route("update")]
         [HttpPut]
-        [ResponseType(typeof(AddOrUpdateUserCommand.AddOrUpdateUserResponse))]
-        public async Task<IHttpActionResult> Update(AddOrUpdateUserCommand.AddOrUpdateUserRequest request)
-            => Ok(await _mediator.Send(request));
+        [ResponseType(typeof(AddOrUpdateUserCommand.Response))]
+        public async Task<IHttpActionResult> Update(AddOrUpdateUserCommand.Request request)
+            => Ok(await Send(request));
         
         [Route("get")]
         [AllowAnonymous]
         [HttpGet]
         [ResponseType(typeof(GetUsersQuery.GetUsersResponse))]
         public async Task<IHttpActionResult> Get()
-            => Ok(await _mediator.Send(new GetUsersQuery.GetUsersRequest()));
+            => Ok(await Send(new GetUsersQuery.GetUsersRequest()));
 
         [Route("getById")]
         [HttpGet]
-        [ResponseType(typeof(GetUserByIdQuery.GetUserByIdResponse))]
-        public async Task<IHttpActionResult> GetById([FromUri]GetUserByIdQuery.GetUserByIdRequest request)
-            => Ok(await _mediator.Send(request));
+        [ResponseType(typeof(GetUserByIdQuery.Response))]
+        public async Task<IHttpActionResult> GetById([FromUri]GetUserByIdQuery.Request request)
+            => Ok(await Send(request));
 
         [Route("remove")]
         [HttpDelete]
-        [ResponseType(typeof(RemoveUserCommand.RemoveUserResponse))]
-        public async Task<IHttpActionResult> Remove([FromUri]RemoveUserCommand.RemoveUserRequest request)
-            => Ok(await _mediator.Send(request));
+        [ResponseType(typeof(RemoveUserCommand.Response))]
+        public async Task<IHttpActionResult> Remove([FromUri]RemoveUserCommand.Request request)
+            => Ok(await Send(request));
+        
+        [Route("signup")]
+        [HttpPost]
+        [AllowAnonymous]
+        [ResponseType(typeof(SignUpUserCommand.Response))]
+        public async Task<IHttpActionResult> Current(SignUpUserCommand.Request request)
+            => Ok(await Send(request));
 
         [Route("current")]
         [HttpGet]
         [AllowAnonymous]
-        [ResponseType(typeof(GetUserByUsernameQuery.GetUserByUsernameResponse))]
-        public async Task<IHttpActionResult> Current()
+        [ResponseType(typeof(GetUserByUsernameQuery.Response))]
+        public async Task<IHttpActionResult> Current() 
         {
             if (!User.Identity.IsAuthenticated)
                 return Ok();
-
-            var request = new GetUserByUsernameQuery.GetUserByUsernameRequest() { Username = User.Identity.Name };
-            return Ok(await _mediator.Send(request));
+            
+            return Ok(await Send(new GetUserByUsernameQuery.Request()));
         }
 
-        protected readonly IMediator _mediator;
-
-
+        protected readonly IMediator _mediator;        
     }
 }

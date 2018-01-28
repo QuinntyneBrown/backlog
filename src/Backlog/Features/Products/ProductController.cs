@@ -1,5 +1,5 @@
 using Backlog.Features.Epics;
-using Backlog.Security;
+using Backlog.Features.Security;
 using MediatR;
 using System.Collections.Generic;
 using System.Threading.Tasks;

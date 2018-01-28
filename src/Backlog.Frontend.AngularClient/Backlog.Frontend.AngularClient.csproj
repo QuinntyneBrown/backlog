@@ -109,8 +109,8 @@
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
@@ -189,29 +189,78 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
-    <Content Include="dist\0.js" />
-    <Content Include="dist\1.js" />
-    <Content Include="dist\2.js" />
-    <Content Include="dist\3.js" />
-    <Content Include="dist\4.js" />
-    <Content Include="dist\5.js" />
-    <Content Include="dist\6.js" />
-    <Content Include="dist\7.js" />
-    <Content Include="dist\8.js" />
-    <Content Include="dist\app.js" />
-    <Content Include="dist\vendor.js" />
+    <Content Include="libs\moment.min.js" />
+    <Content Include="libs\quill.core.css" />
+    <Content Include="libs\quill.min.js" />
+    <Content Include="libs\quill.snow.css" />
+    <Content Include="libs\rome.min.css" />
+    <Content Include="libs\rome.min.js" />
     <Content Include="package.json" />
-    <Content Include="src\app\app-shell.component.css">
-      <DependentUpon>app-shell.component.html</DependentUpon>
+    <Content Include="src\app\app-master-page.component.css">
+      <DependentUpon>app-master-page.component.html</DependentUpon>
     </Content>
     <Content Include="src\app\app.component.css">
       <DependentUpon>app.component.html</DependentUpon>
     </Content>
-    <Content Include="src\app\login\login-shell.component.css">
-      <DependentUpon>login-shell.component.html</DependentUpon>
+    <Content Include="src\app\dashboard-tiles\digital-assets-dashboard-tile.component.css">
+      <DependentUpon>digital-assets-dashboard-tile.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\dashboard-tiles\home-page-dashboard-tile.component.css">
+      <DependentUpon>home-page-dashboard-tile.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\dashboard\dashboard-header.component.css">
+      <DependentUpon>dashboard-header.component.html</DependentUpon>
+    </Content>
+    <Content Include="src\app\dashboard\dashboard-master-page.component.css">
+      <DependentUpon>dashboard-master-page.component.html</DependentUpon>
+    </Content>
+    <Content Include="src\app\dashboard\dashboard-page.component.css">
+      <DependentUpon>dashboard-page.component.html</DependentUpon>
+    </Content>
+    <Content Include="src\app\digital-assets\digital-asset-edit-page.component.css">
+      <DependentUpon>digital-asset-edit-page.component.html</DependentUpon>
+    </Content>
+    <Content Include="src\app\page-not-found.component.css">
+      <DependentUpon>page-not-found.component.html</DependentUpon>
+    </Content>
+    <Content Include="src\app\shared\components\digital-asset-input-url.component.css">
+      <DependentUpon>digital-asset-input-url.component.html</DependentUpon>
+    </Content>
+    <Content Include="src\app\shared\components\digital-asset-input-url.component.html" />
+    <Content Include="src\app\digital-assets\digital-asset-item.component.css">
+      <DependentUpon>digital-asset-item.component.html</DependentUpon>
+    </Content>
+    <Content Include="src\app\digital-assets\digital-asset-list-page.component.css">
+      <DependentUpon>digital-asset-list-page.component.html</DependentUpon>
+    </Content>
+    <Content Include="src\app\digital-assets\digital-asset-list-page.component.html" />
+    <Content Include="src\app\digital-assets\digital-asset-upload-page.component.css">
+      <DependentUpon>digital-asset-upload-page.component.html</DependentUpon>
+    </Content>
+    <Content Include="src\app\home-pages\home-page-edit-page.component.css">
+      <DependentUpon>home-page-edit-page.component.html</DependentUpon>
+    </Content>
+    <Content Include="src\app\login\login-master-page.component.css">
+      <DependentUpon>login-master-page.component.html</DependentUpon>
     </Content>
     <Content Include="src\app\login\login.component.css">
       <DependentUpon>login.component.html</DependentUpon>
+    </Content>
+    <Content Include="src\app\public\home-page.component.css">
+      <DependentUpon>home-page.component.html</DependentUpon>
+    </Content>
+    <Content Include="src\app\public\public-header.component.css">
+      <DependentUpon>public-header.component.html</DependentUpon>
+    </Content>
+    <Content Include="src\app\public\public-master-page.component.css">
+      <DependentUpon>public-master-page.component.html</DependentUpon>
+    </Content>
+    <Content Include="src\app\shared\components\backdrop.component.css">
+      <DependentUpon>backdrop.component.html</DependentUpon>
+    </Content>
+    <Content Include="src\app\shared\components\backdrop.component.html" />
+    <Content Include="src\app\shared\components\circular-button.component.css">
+      <DependentUpon>circular-button.component.html</DependentUpon>
     </Content>
     <Content Include="src\app\shared\components\forms.css" />
     <Content Include="src\app\shared\components\header.component.css">
@@ -220,19 +269,37 @@
     <Content Include="src\app\shared\components\header.component.html" />
     <Content Include="src\app\login\login.component.html" />
     <Content Include="src\app\shared\components\page.css" />
+    <Content Include="src\app\shared\components\quill-text-editor.component.css">
+      <DependentUpon>quill-text-editor.component.html</DependentUpon>
+    </Content>
+    <Content Include="src\app\sign-up\sign-up-master-page.component.css">
+      <DependentUpon>sign-up-master-page.component.html</DependentUpon>
+    </Content>
+    <Content Include="src\app\sign-up\sign-up.component.css">
+      <DependentUpon>sign-up.component.html</DependentUpon>
+    </Content>
     <Content Include="src\app\stories\story-edit-page.component.css">
       <DependentUpon>story-edit-page.component.html</DependentUpon>
+    </Content>
+    <Content Include="src\app\stories\story-item.component.css">
+      <DependentUpon>story-item.component.html</DependentUpon>
     </Content>
     <Content Include="src\app\stories\story-list-page.component.css">
       <DependentUpon>story-list-page.component.html</DependentUpon>
     </Content>
-    <Content Include="src\app\stories\story.component.css">
-      <DependentUpon>story.component.html</DependentUpon>
+    <Content Include="src\app\tenants\set-tenant-master-page.component.css">
+      <DependentUpon>set-tenant-master-page.component.html</DependentUpon>
     </Content>
-    <Content Include="src\app\tenants\set-tenant-shell.component.css">
-      <DependentUpon>set-tenant-shell.component.html</DependentUpon>
+    <Content Include="src\app\tenants\set-tenant-master-page.component.html" />
+    <Content Include="src\app\tiles\tile-selection-item.component.css">
+      <DependentUpon>tile-selection-item.component.ts</DependentUpon>
     </Content>
-    <Content Include="src\app\tenants\set-tenant-shell.component.html" />
+    <Content Include="src\app\tiles\tile-selection-modal.component.css">
+      <DependentUpon>tile-selection-modal.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\users\user-edit-page.component.css">
+      <DependentUpon>user-edit-page.component.html</DependentUpon>
+    </Content>
     <Content Include="tsconfig.json" />
     <Content Include="leora.json" />
     <None Include="packages.config" />
@@ -246,11 +313,27 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-    <Content Include="src\app\login\login-shell.component.html" />
-    <Content Include="src\app\app-shell.component.html" />
+    <Content Include="src\app\login\login-master-page.component.html" />
+    <Content Include="src\app\app-master-page.component.html" />
     <Content Include="src\app\stories\story-list-page.component.html" />
     <Content Include="src\app\stories\story-edit-page.component.html" />
-    <Content Include="src\app\stories\story.component.html" />
+    <Content Include="src\app\stories\story-item.component.html" />
+    <Content Include="src\app\shared\components\quill-text-editor.component.html" />
+    <Content Include="src\app\sign-up\sign-up-master-page.component.html" />
+    <Content Include="src\app\sign-up\sign-up.component.html" />
+    <Content Include="src\app\digital-assets\digital-asset-item.component.html" />
+    <Content Include="src\app\digital-assets\digital-asset-upload-page.component.html" />
+    <Content Include="src\app\digital-assets\digital-asset-edit-page.component.html" />
+    <Content Include="src\app\users\user-edit-page.component.html" />
+    <Content Include="src\app\dashboard\dashboard-page.component.html" />
+    <Content Include="src\app\public\home-page.component.html" />
+    <Content Include="src\app\public\public-master-page.component.html" />
+    <Content Include="src\app\public\public-header.component.html" />
+    <Content Include="src\app\dashboard\dashboard-master-page.component.html" />
+    <Content Include="src\app\dashboard\dashboard-header.component.html" />
+    <Content Include="src\app\shared\components\circular-button.component.html" />
+    <Content Include="src\app\home-pages\home-page-edit-page.component.html" />
+    <Content Include="src\app\page-not-found.component.html" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="index.html" />
@@ -264,27 +347,86 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <TypeScriptCompile Include="src\app\app-shell.component.ts">
-      <DependentUpon>app-shell.component.html</DependentUpon>
+    <TypeScriptCompile Include="src\app\app-master-page.component.ts">
+      <DependentUpon>app-master-page.component.html</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="src\app\app.component.ts">
       <DependentUpon>app.component.html</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="src\app\app.module.ts" />
     <TypeScriptCompile Include="src\app\app-routing.module.ts" />
+    <TypeScriptCompile Include="src\app\dashboard-tiles\constants.ts" />
+    <TypeScriptCompile Include="src\app\dashboard-tiles\dashboard-tile-element-factory.ts" />
+    <TypeScriptCompile Include="src\app\dashboard-tiles\dashboard-tiles.module.ts" />
+    <TypeScriptCompile Include="src\app\dashboard\constants.ts" />
+    <TypeScriptCompile Include="src\app\dashboard\dashboard-header.component.ts">
+      <DependentUpon>dashboard-header.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\app\dashboard\dashboard-master-page.component.ts">
+      <DependentUpon>dashboard-master-page.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\app\dashboard\dashboard-page.component.ts">
+      <DependentUpon>dashboard-page.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\app\dashboard\dashboard.events.ts" />
+    <TypeScriptCompile Include="src\app\dashboard\dashboard.module.ts" />
+    <TypeScriptCompile Include="src\app\digital-assets\digital-asset-edit-page.component.ts">
+      <DependentUpon>digital-asset-edit-page.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\app\page-not-found.component.ts">
+      <DependentUpon>page-not-found.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\app\shared\components\digital-asset-input-url.component.ts">
+      <DependentUpon>digital-asset-input-url.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\app\digital-assets\digital-asset-item.component.ts">
+      <DependentUpon>digital-asset-item.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\app\digital-assets\digital-asset-list-page.component.ts">
+      <DependentUpon>digital-asset-list-page.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\app\digital-assets\digital-asset-upload-page.component.ts">
+      <DependentUpon>digital-asset-upload-page.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\app\digital-assets\digital-assets.module.ts" />
     <TypeScriptCompile Include="src\app\environment.ts" />
-    <TypeScriptCompile Include="src\app\login\login-shell.component.ts">
-      <DependentUpon>login-shell.component.html</DependentUpon>
+    <TypeScriptCompile Include="src\app\home-pages\home-page-edit-page.component.ts">
+      <DependentUpon>home-page-edit-page.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\app\home-pages\home-pages.module.ts" />
+    <TypeScriptCompile Include="src\app\login\login-master-page.component.ts">
+      <DependentUpon>login-master-page.component.html</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="src\app\login\login.component.ts">
       <DependentUpon>login.component.html</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="src\app\login\login.module.ts" />
+    <TypeScriptCompile Include="src\app\public\api.service.ts" />
+    <TypeScriptCompile Include="src\app\public\home-page.component.ts">
+      <DependentUpon>home-page.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\app\public\public-header.component.ts">
+      <DependentUpon>public-header.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\app\public\public-master-page.component.ts">
+      <DependentUpon>public-master-page.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\app\public\public.module.ts" />
     <TypeScriptCompile Include="src\app\rxjs-extensions.ts" />
+    <TypeScriptCompile Include="src\app\shared\components\backdrop.component.ts">
+      <DependentUpon>backdrop.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\app\shared\components\circular-button.component.ts">
+      <DependentUpon>circular-button.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\app\shared\components\drop-down-menu.component.ts" />
     <TypeScriptCompile Include="src\app\shared\components\header.component.ts">
       <DependentUpon>header.component.html</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="src\app\shared\components\index.ts" />
+    <TypeScriptCompile Include="src\app\shared\components\quill-text-editor.component.ts">
+      <DependentUpon>quill-text-editor.component.html</DependentUpon>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\app\shared\constants.ts" />
     <TypeScriptCompile Include="src\app\shared\index.ts" />
     <TypeScriptCompile Include="src\app\shared\interceptors\auth.interceptor.ts" />
@@ -296,6 +438,7 @@
     <TypeScriptCompile Include="src\app\shared\models\professional-service.model.ts" />
     <TypeScriptCompile Include="src\app\shared\services\auth-guard.service.ts" />
     <TypeScriptCompile Include="src\app\shared\services\index.ts" />
+    <TypeScriptCompile Include="src\app\shared\services\modal.service.ts" />
     <TypeScriptCompile Include="src\app\shared\services\redirect.service.ts" />
     <TypeScriptCompile Include="src\app\shared\services\popover.service.ts" />
     <TypeScriptCompile Include="src\app\shared\services\position.ts" />
@@ -305,22 +448,36 @@
     <TypeScriptCompile Include="src\app\shared\services\storage.service.ts" />
     <TypeScriptCompile Include="src\app\shared\shared.module.ts" />
     <TypeScriptCompile Include="src\app\shared\utilities\create-element.ts" />
+    <TypeScriptCompile Include="src\app\shared\utilities\pluck-out.ts" />
     <TypeScriptCompile Include="src\app\shared\utilities\translate-xy.ts" />
+    <TypeScriptCompile Include="src\app\sign-up\sign-up-master-page.component.ts">
+      <DependentUpon>sign-up-master-page.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\app\sign-up\sign-up.component.ts">
+      <DependentUpon>sign-up.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\app\sign-up\sign-up.module.ts" />
     <TypeScriptCompile Include="src\app\stories\story-edit-page.component.ts">
       <DependentUpon>story-edit-page.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\app\stories\story-item.component.ts">
+      <DependentUpon>story-item.component.html</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="src\app\stories\story-list-page.component.ts">
       <DependentUpon>story-list-page.component.html</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="src\app\stories\story.component.ts">
-      <DependentUpon>story.component.html</DependentUpon>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="src\app\tenants\set-tenant-shell.component.ts">
-      <DependentUpon>set-tenant-shell.component.html</DependentUpon>
+    <TypeScriptCompile Include="src\app\tenants\set-tenant-master-page.component.ts">
+      <DependentUpon>set-tenant-master-page.component.html</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="src\app\tenants\tenant-guard.service.ts" />
     <TypeScriptCompile Include="src\app\tenants\tenants.module.ts" />
     <TypeScriptCompile Include="src\app\tenants\tenants.service.ts" />
+    <TypeScriptCompile Include="src\app\tiles\constants.ts" />
+    <TypeScriptCompile Include="src\app\tiles\tiles.events.ts" />
+    <TypeScriptCompile Include="src\app\tiles\tiles.module.ts" />
+    <TypeScriptCompile Include="src\app\users\user-edit-page.component.ts">
+      <DependentUpon>user-edit-page.component.html</DependentUpon>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\main.ts" />
     <TypeScriptCompile Include="src\polyfills.ts" />
     <TypeScriptCompile Include="src\app\tasks\tasks.module.ts" />
@@ -328,6 +485,34 @@
     <TypeScriptCompile Include="src\app\stories\stories.service.ts" />
     <TypeScriptCompile Include="src\app\stories\index.ts" />
     <TypeScriptCompile Include="src\app\stories\story.model.ts" />
+    <TypeScriptCompile Include="src\app\tasks\index.ts" />
+    <TypeScriptCompile Include="src\app\tasks\task.model.ts" />
+    <TypeScriptCompile Include="src\app\digital-assets\digital-assets.service.ts" />
+    <TypeScriptCompile Include="src\app\digital-assets\index.ts" />
+    <TypeScriptCompile Include="src\app\digital-assets\digital-asset.model.ts" />
+    <TypeScriptCompile Include="src\app\users\users.module.ts" />
+    <TypeScriptCompile Include="src\app\users\users.service.ts" />
+    <TypeScriptCompile Include="src\app\users\index.ts" />
+    <TypeScriptCompile Include="src\app\users\user.model.ts" />
+    <TypeScriptCompile Include="src\app\dashboard\dashboards.service.ts" />
+    <TypeScriptCompile Include="src\app\dashboard\index.ts" />
+    <TypeScriptCompile Include="src\app\dashboard\dashboard.model.ts" />
+    <TypeScriptCompile Include="src\app\users\profile.model.ts" />
+    <TypeScriptCompile Include="src\app\public\index.ts" />
+    <TypeScriptCompile Include="src\app\public\home-page.model.ts" />
+    <TypeScriptCompile Include="src\app\dashboard-tiles\dashboard-tiles.service.ts" />
+    <TypeScriptCompile Include="src\app\tiles\tiles.service.ts" />
+    <TypeScriptCompile Include="src\app\tiles\index.ts" />
+    <TypeScriptCompile Include="src\app\tiles\tile.model.ts" />
+    <TypeScriptCompile Include="src\app\dashboard-tiles\index.ts" />
+    <TypeScriptCompile Include="src\app\dashboard-tiles\dashboard-tile.model.ts" />
+    <TypeScriptCompile Include="src\app\tiles\tile-selection-modal.component.ts" />
+    <TypeScriptCompile Include="src\app\tiles\tile-selection-item.component.ts" />
+    <TypeScriptCompile Include="src\app\dashboard-tiles\digital-assets-dashboard-tile.component.ts" />
+    <TypeScriptCompile Include="src\app\dashboard-tiles\home-page-dashboard-tile.component.ts" />
+    <TypeScriptCompile Include="src\app\home-pages\home-pages.service.ts" />
+    <TypeScriptCompile Include="src\app\home-pages\index.ts" />
+    <TypeScriptCompile Include="src\app\home-pages\home-page.model.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

@@ -2,3 +2,8 @@
     display:block;
     content:contain;
 }
+
+a {
+    text-decoration: none;
+    color:#000;
+}

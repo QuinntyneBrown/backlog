@@ -1,0 +1,13 @@
+<section>
+    <div class="header">
+        <h2>Files</h2>
+        <a routerLink="/digitalassets/upload">UPLOAD FILE</a>
+    </div>
+
+    <ce-digital-asset-item *ngFor="let digitalAsset of digitalAssets" 
+                           [digitalAsset]="digitalAsset"
+                           (onEditClick)="handleEditClick($event)"
+                           (onDeleteClick)="handleDeleteClick($event)"
+                           (onViewClick)="handleViewClick($event)">
+    </ce-digital-asset-item>
+</section>

@@ -1,4 +1,4 @@
-using Backlog.Security;
+using Backlog.Features.Security;
 using MediatR;
 using System.Net.Http;
 using System.Threading.Tasks;

@@ -1,6 +1,6 @@
 using Backlog.Data;
 using Backlog.Features.Core;
-using Backlog.Security;
+using Backlog.Features.Security;
 using MediatR;
 using Microsoft.Owin;
 using Microsoft.Practices.Unity;

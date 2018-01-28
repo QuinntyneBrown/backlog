@@ -1,0 +1,14 @@
+<section>
+    <h1>Home Page</h1>
+
+    <label>Avatar Image Url</label>
+    <ce-digital-asset-input-url [(ngModel)]="homePage.avatarImageUrl"></ce-digital-asset-input-url>
+
+    <label>Name</label>
+    <input [(ngModel)]="homePage.name" type="text" placeholder="Name" />
+
+    <label>Title</label>
+    <input [(ngModel)]="homePage.title" type="text" placeholder="Title" />
+
+    <button (click)="tryToSave($event)">Save</button>
+</section>

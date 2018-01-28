@@ -7,14 +7,14 @@ namespace Backlog.Features.DigitalAssets
 {
     public class RemoveDigitalAssetCommand
     {
-        public class RemoveDigitalAssetRequest : IRequest<RemoveDigitalAssetResponse>
+        public class Request : BaseAuthenticatedRequest, IRequest<Response>
         {
             public int Id { get; set; }
         }
 
-        public class RemoveDigitalAssetResponse { }
+        public class Response { }
 
-        public class RemoveDigitalAssetHandler : IAsyncRequestHandler<RemoveDigitalAssetRequest, RemoveDigitalAssetResponse>
+        public class RemoveDigitalAssetHandler : IAsyncRequestHandler<Request, Response>
         {
             public RemoveDigitalAssetHandler(IBacklogContext context, ICache cache)
             {
@@ -22,12 +22,14 @@ namespace Backlog.Features.DigitalAssets
                 _cache = cache;
             }
 
-            public async Task<RemoveDigitalAssetResponse> Handle(RemoveDigitalAssetRequest request)
+            public async Task<Response> Handle(Request request)
             {
                 var digitalAsset = await _context.DigitalAssets.FindAsync(request.Id);
                 digitalAsset.IsDeleted = true;
-                await _context.SaveChangesAsync();
-                return new RemoveDigitalAssetResponse();
+                await _context.SaveChangesAsync(request.Username);
+                _cache.Remove(DigitalAssetsCacheKeyFactory.Get(request.TenantUniqueId));
+                _cache.Remove(DigitalAssetsCacheKeyFactory.GetByUniqueId(request.TenantUniqueId, $"{digitalAsset.UniqueId}"));
+                return new Response();
             }
 
             private readonly IBacklogContext _context;

@@ -1,18 +1,17 @@
-import { Injectable } from "@angular/core";
+import { Injectable, Inject } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
+import { constants } from "../shared/constants";
 
 @Injectable()
 export class TenantsService {
-    constructor(private _httpClient: HttpClient)
-    {
+    constructor(
+        private _httpClient: HttpClient,
+        @Inject(constants.BASE_URL) private _baseUrl:string
+    ) { }
 
-    }
-
-    public set(options: { uniqueId: string }) {
+    public verify(options: { uniqueId: string }) {
         return this._httpClient
-            .post(`${this._baseUrl}/api/tenants/set`, options);
+            .post(`${this._baseUrl}/api/tenants/verify`, options);
     }
-
-    public get _baseUrl() { return window["__BASE_URL__"]; }
 }
