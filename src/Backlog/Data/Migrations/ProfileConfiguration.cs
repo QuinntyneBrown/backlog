@@ -14,8 +14,8 @@ namespace Backlog.Data.Migrations
 
             context.Profiles.AddOrUpdate(x => x.Name, new Profile()
             {
-                Name = "Quinntyne Brown",
-                AvatarImageUrl = "https://avatars0.githubusercontent.com/u/1749159?s=400&u=b36e138431ef4f0a383e51eef90248ad07066b28&v=4",
+                Name = "Kirk Brown",
+                AvatarImageUrl = "https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAIABADGAAAAAQAAAAAAAA1IAAAAJGRmMzVhMjBjLTcxYjQtNGYwNy1hZWI3LWY5MWE3ZGE4NTdmOQ.jpg",
                 TenantId = tenant.Id,
                 User = user
             });

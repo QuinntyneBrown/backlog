@@ -12,7 +12,7 @@ namespace Backlog.Data.Migrations
             context.Tenants.AddOrUpdate(x => x.Name, new Tenant()
             {
                 Name = "Default",
-                UniqueId = new Guid("196ce9e2-3107-475f-9c1c-7fa13b534eb1")
+                UniqueId = new Guid("bad9a182-ede0-418d-9588-2d89cfd555bd")
             });
 
             context.SaveChanges();

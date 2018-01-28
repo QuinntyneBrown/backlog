@@ -19,9 +19,9 @@ namespace Backlog.Migrations
             context.Users.AddOrUpdate(x => x.Username, new User()
             {
                 Username = Constants.DefaultUsername,
-                Firstname = "Quinntyne",
+                Firstname = "Kirk",
                 Lastname = "Brown",
-                Name = "Quinntyne Brown",
+                Name = "Kirk Brown",
                 Password = new EncryptionService().TransformPassword("P@ssw0rd"),
                 Roles = roles,
                 TenantId  = tenant.Id

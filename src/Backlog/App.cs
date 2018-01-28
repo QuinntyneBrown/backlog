@@ -92,6 +92,6 @@ namespace Backlog
         public const int CacheOutputClientTimeSpan = 3600;
         public const int CacheOutputServerTimeSpan = 3600;
         public const int MaxStringLength = 255;
-        public const string DefaultUsername = "quinntyne.brown@comsenseinc.com";
+        public const string DefaultUsername = "kirkabrown@ymail.com";
     }
 }

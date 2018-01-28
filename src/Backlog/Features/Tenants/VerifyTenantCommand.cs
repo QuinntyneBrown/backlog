@@ -25,7 +25,7 @@ namespace Backlog.Features.Tenants
 
             public async Task<Response> Handle(Request request)
             {
-                if (request.UniqueId != new Guid("196ce9e2-3107-475f-9c1c-7fa13b534eb1"))
+                if (request.UniqueId != new Guid("bad9a182-ede0-418d-9588-2d89cfd555bd"))
                     throw new Exception("Invalid Request");
                 
                 return await Task.FromResult(new Response());
