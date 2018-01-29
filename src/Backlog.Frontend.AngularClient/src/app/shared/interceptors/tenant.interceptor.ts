@@ -9,7 +9,7 @@ export class TenantInterceptor implements HttpInterceptor {
     constructor(private _storage: Storage) { }
     intercept(httpRequest: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(httpRequest.clone({
-            headers: httpRequest.headers.set('Tenant', `${this._storage.get({ name: constants.TENANT_KEY })}`)
+            headers: httpRequest.headers.set('Tenant', `${this._storage.get({ name: constants.TENANT_KEY }) || window["__TENANT__"]}`)
         }));
     }
 }

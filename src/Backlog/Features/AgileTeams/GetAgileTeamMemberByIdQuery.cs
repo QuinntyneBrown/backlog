@@ -10,16 +10,16 @@ namespace Backlog.Features.AgileTeams
 {
     public class GetAgileTeamMemberByIdQuery
     {
-        public class GetAgileTeamMemberByIdRequest : IRequest<GetAgileTeamMemberByIdResponse> { 
+        public class Request : IRequest<Response> { 
 			public int Id { get; set; }
 		}
 
-        public class GetAgileTeamMemberByIdResponse
+        public class Response
         {
             public AgileTeamMemberApiModel AgileTeamMember { get; set; } 
 		}
 
-        public class GetAgileTeamMemberByIdHandler : IAsyncRequestHandler<GetAgileTeamMemberByIdRequest, GetAgileTeamMemberByIdResponse>
+        public class GetAgileTeamMemberByIdHandler : IAsyncRequestHandler<Request, Response>
         {
             public GetAgileTeamMemberByIdHandler(IBacklogContext context, ICache cache)
             {
@@ -27,9 +27,9 @@ namespace Backlog.Features.AgileTeams
                 _cache = cache;
             }
 
-            public async Task<GetAgileTeamMemberByIdResponse> Handle(GetAgileTeamMemberByIdRequest request)
+            public async Task<Response> Handle(Request request)
             {                
-                return new GetAgileTeamMemberByIdResponse()
+                return new Response()
                 {
                     AgileTeamMember = AgileTeamMemberApiModel.FromAgileTeamMember(await _context.AgileTeamMembers.FindAsync(request.Id))
                 };

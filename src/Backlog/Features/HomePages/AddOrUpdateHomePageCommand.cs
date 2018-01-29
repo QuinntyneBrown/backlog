@@ -21,9 +21,10 @@ namespace Backlog.Features.HomePages
 
         public class Handler : IAsyncRequestHandler<Request, Response>
         {
-            public Handler(IBacklogContext context)
+            public Handler(IBacklogContext context, ICache cache)
             {
                 _context = context;
+                _cache = cache;
             }
 
             public async Task<Response> Handle(Request request)
@@ -42,10 +43,13 @@ namespace Backlog.Features.HomePages
                 entity.Title = request.HomePage.Title;
                 await _context.SaveChangesAsync(request.Username);
 
+                _cache.Remove(HomePagesCacheKeyFactory.Get(request.TenantUniqueId));
+
                 return new Response();
             }
 
             private readonly IBacklogContext _context;
+            private readonly ICache _cache;
         }
     }
 }

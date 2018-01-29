@@ -3,6 +3,7 @@
     content: contain;
     text-align: center;
     padding: 80px 0px 0px 0px;
+    margin:0px 20px;
 }
 
 h1 {
@@ -22,4 +23,10 @@ h2 {
 img {
     border-radius: 50%;
     height: 200px;
+}
+
+@media only screen and (min-width : 751px) {
+    :host {
+        margin:0;
+    }
 }

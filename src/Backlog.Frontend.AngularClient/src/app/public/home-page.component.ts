@@ -8,22 +8,19 @@ import { ApiService } from "./api.service";
     selector: "ce-home-page"
 })
 export class HomePageComponent { 
-    constructor(private _apiService: ApiService) {
+    constructor(private _apiService: ApiService) { }
 
-    }
     ngOnInit() {
         this._apiService
             .getHomePage()
             .takeUntil(this._ngUnsubscribe)
             .map(x => this.homePage = x.homePage)
             .subscribe();
-
     }
+
     private _ngUnsubscribe: Subject<void> = new Subject<void>();
 
-    ngOnDestroy() {
-         this._ngUnsubscribe.next();	
-    }
+    ngOnDestroy() { this._ngUnsubscribe.next();	}
 
     public homePage: any = {};
 }

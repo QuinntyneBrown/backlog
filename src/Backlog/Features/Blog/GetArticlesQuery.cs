@@ -10,14 +10,14 @@ namespace Backlog.Features.Blog
 {
     public class GetArticlesQuery
     {
-        public class GetArticlesRequest : IRequest<GetArticlesResponse> { }
+        public class Request : IRequest<Response> { }
 
-        public class GetArticlesResponse
+        public class Response
         {
             public ICollection<ArticleApiModel> Articles { get; set; } = new HashSet<ArticleApiModel>();
         }
 
-        public class GetArticlesHandler : IAsyncRequestHandler<GetArticlesRequest, GetArticlesResponse>
+        public class GetArticlesHandler : IAsyncRequestHandler<Request, Response>
         {
             public GetArticlesHandler(IBacklogContext context, ICache cache)
             {
@@ -25,13 +25,13 @@ namespace Backlog.Features.Blog
                 _cache = cache;
             }
 
-            public async Task<GetArticlesResponse> Handle(GetArticlesRequest request)
+            public async Task<Response> Handle(Request request)
             {
                 var articles = await _context.Articles
                     .Include(x=>x.Author)
                     .ToListAsync();
 
-                return new GetArticlesResponse()
+                return new Response()
                 {
                     Articles = articles.Select(x => ArticleApiModel.FromArticle(x)).ToList()
                 };

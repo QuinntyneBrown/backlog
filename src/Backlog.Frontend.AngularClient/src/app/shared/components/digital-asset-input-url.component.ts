@@ -2,6 +2,7 @@ import { Component, ElementRef, AfterViewInit, Input, forwardRef, Inject} from "
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { constants } from "../constants";
+import { Subject } from "rxjs/Subject";
 
 @Component({
     templateUrl: "./digital-asset-input-url.component.html",
@@ -26,7 +27,10 @@ export class DigitalAssetInputUrlComponent implements ControlValueAccessor {
     ) {
         this.onDragOver = this.onDragOver.bind(this);
         this.onDrop = this.onDrop.bind(this);
+        this.handleKeyUp = this.handleKeyUp.bind(this);
     }
+
+    public handleKeyUp() { this.onChangeCallback(this.inputElement.value); }
 
     public get value() { return this.inputElement.value; }
     
@@ -45,11 +49,14 @@ export class DigitalAssetInputUrlComponent implements ControlValueAccessor {
     public ngAfterViewInit() {        
         this._elementRef.nativeElement.addEventListener("dragover", this.onDragOver);
         this._elementRef.nativeElement.addEventListener("drop", this.onDrop, false);
+        this.inputElement.addEventListener("keyup", this.handleKeyUp);
     }
 
     public ngOnDestroy() {
         this._elementRef.nativeElement.removeEventListener("dragover", this.onDragOver);
         this._elementRef.nativeElement.removeEventListener("drop", this.onDrop, false);
+        this.inputElement.removeEventListener("keyup", this.handleKeyUp);
+        this._ngUnsubscribe.next();
     }
 
     public onDragOver(e: DragEvent) {
@@ -57,14 +64,14 @@ export class DigitalAssetInputUrlComponent implements ControlValueAccessor {
         e.preventDefault();
     }
 
-    public async onDrop(e: DragEvent) {
+    public onDrop(e: DragEvent) {
         e.stopPropagation();
         e.preventDefault();
 
         if (e.dataTransfer && e.dataTransfer.files) {
             const packageFiles = function (fileList: FileList) {
                 let formData = new FormData();
-                for (var i = 0; i < fileList.length; i++) {
+                for (let i = 0; i < fileList.length; i++) {
                     formData.append(fileList[i].name, fileList[i]);
                 }
                 return formData;
@@ -72,13 +79,17 @@ export class DigitalAssetInputUrlComponent implements ControlValueAccessor {
 
             const data = packageFiles(e.dataTransfer.files);
             
-            this._client.post<{ digitalAssets: Array<any> }>(`${this._baseUrl}/api/digitalassets/upload`, data, { headers: new HttpHeaders().set("IsSecure", "false") }).subscribe(x => {                
-                this.inputElement.value = x.digitalAssets[0].url;                
-                this.onChangeCallback(this.inputElement.value);
-            });
-            
+            this._client.post<{ digitalAssets: Array<{ url: string }> }>(`${this._baseUrl}/api/digitalassets/upload`, data, { headers: new HttpHeaders().set("IsSecure", "false") })
+                .takeUntil(this._ngUnsubscribe)
+                .map((x: { digitalAssets: Array<{ url: string }> }) => {
+                    this.inputElement.value = x.digitalAssets[0].url;
+                    this.onChangeCallback(this.inputElement.value);
+                })
+                .subscribe();            
         }
     }
     
     public get inputElement(): HTMLInputElement { return this._elementRef.nativeElement.querySelector("input"); }
+
+    private _ngUnsubscribe: Subject<void> = new Subject();    
 }

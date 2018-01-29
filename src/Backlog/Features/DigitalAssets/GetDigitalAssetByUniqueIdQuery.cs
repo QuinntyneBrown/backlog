@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System;
 using System.IdentityModel.Tokens;
 using Backlog.Features.Security;
+using Backlog.Model;
 
 namespace Backlog.Features.DigitalAssets
 {
@@ -37,10 +38,10 @@ namespace Backlog.Features.DigitalAssets
                 if(string.IsNullOrEmpty(request.OAuthToken))
                     return new Response()
                     {
-                        DigitalAsset = DigitalAssetApiModel.FromDigitalAsset(await _context
+                        DigitalAsset = DigitalAssetApiModel.FromDigitalAsset(await _cache.FromCacheOrServiceAsync<DigitalAsset>(() => _context
                         .DigitalAssets
-                        .Include(x => x.Tenant)                        
-                        .SingleAsync(x => x.UniqueId.ToString() == request.UniqueId && x.IsSecure == false))
+                        .Include(x => x.Tenant)
+                        .SingleAsync(x => x.UniqueId.ToString() == request.UniqueId && x.IsSecure == false),DigitalAssetsCacheKeyFactory.GetByUniqueId(request.TenantUniqueId,request.UniqueId)))
                     };
 
                 return new Response()

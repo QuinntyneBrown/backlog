@@ -7,14 +7,14 @@ namespace Backlog.Features.Blog
 {
     public class RemoveArticleCommand
     {
-        public class RemoveArticleRequest : IRequest<RemoveArticleResponse>
+        public class Request : IRequest<Response>
         {
             public int Id { get; set; }
         }
 
-        public class RemoveArticleResponse { }
+        public class Response { }
 
-        public class RemoveArticleHandler : IAsyncRequestHandler<RemoveArticleRequest, RemoveArticleResponse>
+        public class RemoveArticleHandler : IAsyncRequestHandler<Request, Response>
         {
             public RemoveArticleHandler(IBacklogContext context, ICache cache)
             {
@@ -22,12 +22,12 @@ namespace Backlog.Features.Blog
                 _cache = cache;
             }
 
-            public async Task<RemoveArticleResponse> Handle(RemoveArticleRequest request)
+            public async Task<Response> Handle(Request request)
             {
                 var article = await _context.Articles.FindAsync(request.Id);
                 article.IsDeleted = true;
                 await _context.SaveChangesAsync();
-                return new RemoveArticleResponse();
+                return new Response();
             }
 
             private readonly IBacklogContext _context;

@@ -9,14 +9,14 @@ namespace Backlog.Features.Blog
 {
     public class AddOrUpdateArticleCommand
     {
-        public class AddOrUpdateArticleRequest : IRequest<AddOrUpdateArticleResponse>
+        public class Request : IRequest<Response>
         {
             public ArticleApiModel Article { get; set; }
         }
 
-        public class AddOrUpdateArticleResponse { }
+        public class Response { }
 
-        public class AddOrUpdateArticleHandler : IAsyncRequestHandler<AddOrUpdateArticleRequest, AddOrUpdateArticleResponse>
+        public class AddOrUpdateArticleHandler : IAsyncRequestHandler<Request, Response>
         {
             public AddOrUpdateArticleHandler(IBacklogContext context, ICache cache)
             {
@@ -24,7 +24,7 @@ namespace Backlog.Features.Blog
                 _cache = cache;
             }
 
-            public async Task<AddOrUpdateArticleResponse> Handle(AddOrUpdateArticleRequest request)
+            public async Task<Response> Handle(Request request)
             {
                 var entity = await _context.Articles
                     .Include(x=>x.Tags)
@@ -51,7 +51,7 @@ namespace Backlog.Features.Blog
                 
                 await _context.SaveChangesAsync();
 
-                return new AddOrUpdateArticleResponse();
+                return new Response();
             }
 
             public async Task<bool> ArticleSlugExists(string slug, int articleId)

@@ -10,14 +10,14 @@ namespace Backlog.Features.AgileTeams
 {
     public class GetAgileTeamMembersQuery
     {
-        public class GetAgileTeamMembersRequest : IRequest<GetAgileTeamMembersResponse> { }
+        public class Request : IRequest<Response> { }
 
-        public class GetAgileTeamMembersResponse
+        public class Response
         {
             public ICollection<AgileTeamMemberApiModel> AgileTeamMembers { get; set; } = new HashSet<AgileTeamMemberApiModel>();
         }
 
-        public class GetAgileTeamMembersHandler : IAsyncRequestHandler<GetAgileTeamMembersRequest, GetAgileTeamMembersResponse>
+        public class GetAgileTeamMembersHandler : IAsyncRequestHandler<Request, Response>
         {
             public GetAgileTeamMembersHandler(IBacklogContext context, ICache cache)
             {
@@ -25,10 +25,10 @@ namespace Backlog.Features.AgileTeams
                 _cache = cache;
             }
 
-            public async Task<GetAgileTeamMembersResponse> Handle(GetAgileTeamMembersRequest request)
+            public async Task<Response> Handle(Request request)
             {
                 var agileTeamMembers = await _context.AgileTeamMembers.ToListAsync();
-                return new GetAgileTeamMembersResponse()
+                return new Response()
                 {
                     AgileTeamMembers = agileTeamMembers.Select(x => AgileTeamMemberApiModel.FromAgileTeamMember(x)).ToList()
                 };

@@ -1,75 +1,63 @@
-using Backlog.Features.Security;
+using Backlog.Features.Core;
 using MediatR;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
-using static Backlog.Features.Blog.AddOrUpdateArticleCommand;
-using static Backlog.Features.Blog.GetArticlesQuery;
-using static Backlog.Features.Blog.GetArticleByIdQuery;
-using static Backlog.Features.Blog.GetArticleBySlugQuery;
-using static Backlog.Features.Blog.RemoveArticleCommand;
 
 namespace Backlog.Features.Blog
 {
-    [RoutePrefix("api/article")]
-    public class ArticleController : ApiController
+    [RoutePrefix("api/articles")]
+    public class ArticleController : BaseApiController
     {
-        public ArticleController(IMediator mediator, IUserManager userManager)
-        {
-            _mediator = mediator;
-            _userManager = userManager;
-        }
+        public ArticleController(IMediator mediator)
+            :base(mediator)
+        { }
 
         [Route("add")]
         [HttpPost]
-        [ResponseType(typeof(AddOrUpdateArticleResponse))]
-        public async Task<IHttpActionResult> Add(AddOrUpdateArticleRequest request)
+        [ResponseType(typeof(AddOrUpdateArticleCommand.Response))]
+        public async Task<IHttpActionResult> Add(AddOrUpdateArticleCommand.Request request)
         {
             try
-            {                
-                await _mediator.Send(request);
-
-                return Ok();
+            {                                
+                return Ok(await Send(request));
             }
             catch(ArticleSlugExistsException)
             {
-                return Conflict();
+                return NotFound();
             }            
         }
             
 
         [Route("update")]
         [HttpPut]
-        [ResponseType(typeof(AddOrUpdateArticleResponse))]
-        public async Task<IHttpActionResult> Update(AddOrUpdateArticleRequest request)
-            => Ok(await _mediator.Send(request));
+        [ResponseType(typeof(AddOrUpdateArticleCommand.Response))]
+        public async Task<IHttpActionResult> Update(AddOrUpdateArticleCommand.Request request)
+            => Ok(await Send(request));
         
         [Route("get")]
         [AllowAnonymous]
         [HttpGet]
-        [ResponseType(typeof(GetArticlesResponse))]
+        [ResponseType(typeof(GetArticlesQuery.Response))]
         public async Task<IHttpActionResult> Get()
-            => Ok(await _mediator.Send(new GetArticlesRequest()));
+            => Ok(await Send(new GetArticlesQuery.Request()));
 
         [Route("getById")]
         [HttpGet]
-        [ResponseType(typeof(GetArticleByIdResponse))]
-        public async Task<IHttpActionResult> GetById([FromUri]GetArticleByIdRequest request)
-            => Ok(await _mediator.Send(request));
+        [ResponseType(typeof(GetArticleByIdQuery.Response))]
+        public async Task<IHttpActionResult> GetById([FromUri]GetArticleByIdQuery.Request request)
+            => Ok(await Send(request));
 
         [Route("getBySlug")]
         [HttpGet]
-        [ResponseType(typeof(GetArticleBySlugResponse))]
-        public async Task<IHttpActionResult> GetBySlug([FromUri]GetArticleBySlugRequest request)
-            => Ok(await _mediator.Send(request));
+        [ResponseType(typeof(GetArticleBySlugQuery.Response))]
+        public async Task<IHttpActionResult> GetBySlug([FromUri]GetArticleBySlugQuery.Request request)
+            => Ok(await Send(request));
 
         [Route("remove")]
         [HttpDelete]
-        [ResponseType(typeof(RemoveArticleResponse))]
-        public async Task<IHttpActionResult> Remove([FromUri]RemoveArticleRequest request)
-            => Ok(await _mediator.Send(request));
-
-        protected readonly IMediator _mediator;
-        protected readonly IUserManager _userManager;
+        [ResponseType(typeof(RemoveArticleCommand.Response))]
+        public async Task<IHttpActionResult> Remove([FromUri]RemoveArticleCommand.Request request)
+            => Ok(await Send(request));
     }
 }

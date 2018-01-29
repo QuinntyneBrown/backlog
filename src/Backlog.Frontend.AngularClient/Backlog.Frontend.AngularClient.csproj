@@ -189,6 +189,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <Content Include="dist\0.js" />
+    <Content Include="dist\1.js" />
+    <Content Include="dist\2.js" />
+    <Content Include="dist\3.js" />
+    <Content Include="dist\4.js" />
+    <Content Include="dist\5.js" />
+    <Content Include="dist\6.js" />
+    <Content Include="dist\7.js" />
+    <Content Include="dist\8.js" />
+    <Content Include="dist\app.js" />
+    <Content Include="dist\vendor.js" />
     <Content Include="libs\moment.min.js" />
     <Content Include="libs\quill.core.css" />
     <Content Include="libs\quill.min.js" />
@@ -307,6 +318,8 @@
     <None Include="Properties\PublishProfiles\backlog-api - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\backlog-app - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\backlog-app - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\kirkbrown - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\kirkbrown - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

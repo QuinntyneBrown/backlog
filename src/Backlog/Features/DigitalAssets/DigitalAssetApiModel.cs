@@ -16,7 +16,7 @@ namespace Backlog.Features.DigitalAssets
         public string ContentType { get; set; }
         public bool? IsSecure { get; set; }
         public string RelativeUrl { get { return $"api/digitalassets/serve?uniqueid={UniqueId}"; } }
-        public string Url { get { return $"http://localhost:6608/{RelativeUrl}";  } }
+        public string Url { get { return $"http://kirkbrown.azurewebsites.net/{RelativeUrl}";  } }
         public byte[] Bytes { get; set; } = new byte[0];
         public Guid? UniqueId { get; set; } = Guid.NewGuid();
         public DateTime CreatedOn { get; set; }

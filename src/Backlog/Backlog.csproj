@@ -407,6 +407,7 @@
     <Compile Include="Data\Migrations\TileConfiguration.cs" />
     <Compile Include="Features\DigitalAssets\GetMostRecentDigitalAssetsQuery.cs" />
     <Compile Include="Features\HomePages\GetHomePageQuery.cs" />
+    <Compile Include="Features\HomePages\HomePagesCacheKeyFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

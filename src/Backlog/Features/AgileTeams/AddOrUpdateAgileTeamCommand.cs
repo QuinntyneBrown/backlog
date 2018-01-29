@@ -34,10 +34,7 @@ namespace Backlog.Features.AgileTeams
                 entity.Name = request.AgileTeam.Name;
                 await _context.SaveChangesAsync();
 
-                return new AddOrUpdateAgileTeamResponse()
-                {
-
-                };
+                return new AddOrUpdateAgileTeamResponse();
             }
 
             private readonly IBacklogContext _context;

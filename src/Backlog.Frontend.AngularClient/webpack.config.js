@@ -1,6 +1,6 @@
 ﻿const webpack = require('webpack');
 const CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
-const UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -33,16 +33,17 @@ module.exports = {
         ]
     },
     plugins: [
-        //new UglifyJsPlugin({
-        //    beautify: false,
-        //    comments: false,
-        //    mangle: {
-        //        screw_ie8: true,
-        //        keep_fnames: true
-        //    },
-        //    compress: {
-        //        screw_ie8: true
-        //    }
-        //})
+        new UglifyJsPlugin({
+            uglifyOptions: {
+                ie8: false,
+                ecma: 8,
+                output: {
+                    comments: false,
+                    beautify: false
+                },
+                compress: { },
+                warnings: false
+            }
+        })
     ]
 };

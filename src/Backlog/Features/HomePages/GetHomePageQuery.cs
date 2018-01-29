@@ -29,9 +29,10 @@ namespace Backlog.Features.HomePages
 
             public async Task<Response> Handle(Request request)
             {
-                var homePage = await _context.HomePages
+                var homePage = await _cache.FromCacheOrServiceAsync(() => _context.HomePages
                     .Include(x => x.Tenant)
-                    .SingleOrDefaultAsync(x => x.Tenant.UniqueId == request.TenantUniqueId);
+                    .SingleOrDefaultAsync(x => x.Tenant.UniqueId == request.TenantUniqueId), 
+                    HomePagesCacheKeyFactory.Get(request.TenantUniqueId));
 
                 return new Response()
                 {
