@@ -10,14 +10,14 @@ namespace Backlog.Features.Projects
 {
     public class GetProjectsQuery
     {
-        public class GetProjectsRequest : IRequest<GetProjectsResponse> { }
+        public class Request : IRequest<Response> { }
 
-        public class GetProjectsResponse
+        public class Response
         {
             public ICollection<ProjectApiModel> Projects { get; set; } = new HashSet<ProjectApiModel>();
         }
 
-        public class GetProjectsHandler : IAsyncRequestHandler<GetProjectsRequest, GetProjectsResponse>
+        public class GetProjectsHandler : IAsyncRequestHandler<Request, Response>
         {
             public GetProjectsHandler(IBacklogContext context, ICache cache)
             {
@@ -25,10 +25,10 @@ namespace Backlog.Features.Projects
                 _cache = cache;
             }
 
-            public async Task<GetProjectsResponse> Handle(GetProjectsRequest request)
+            public async Task<Response> Handle(Request request)
             {
                 var projects = await _context.Projects.ToListAsync();
-                return new GetProjectsResponse()
+                return new Response()
                 {
                     Projects = projects.Select(x => ProjectApiModel.FromProject(x)).ToList()
                 };

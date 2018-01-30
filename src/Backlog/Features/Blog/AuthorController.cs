@@ -1,6 +1,5 @@
-using Backlog.Features.Security;
+using Backlog.Features.Core;
 using MediatR;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
@@ -8,50 +7,41 @@ using System.Web.Http.Description;
 namespace Backlog.Features.Blog
 {
     [Authorize]
-    [RoutePrefix("api/author")]
-    public class AuthorController : ApiController
+    [RoutePrefix("api/authors")]
+    public class AuthorController : BaseApiController
     {
-        protected readonly IUserManager _userManager;
-
-        public AuthorController(IMediator mediator, IUserManager userManager)
-        {
-            var context = Request.GetOwinContext();
-            _mediator = mediator;
-            _userManager = userManager;
-        }
+        public AuthorController(IMediator mediator)
+            :base(mediator) { }
 
         [Route("add")]
         [HttpPost]
-        [ResponseType(typeof(AddOrUpdateAuthorCommand.AddOrUpdateAuthorResponse))]
-        public async Task<IHttpActionResult> Add(AddOrUpdateAuthorCommand.AddOrUpdateAuthorRequest request)
-            => Ok(await _mediator.Send(request));
+        [ResponseType(typeof(AddOrUpdateAuthorCommand.Response))]
+        public async Task<IHttpActionResult> Add(AddOrUpdateAuthorCommand.Request request)
+            => Ok(await Send(request));
 
         [Route("update")]
         [HttpPut]
-        [ResponseType(typeof(AddOrUpdateAuthorCommand.AddOrUpdateAuthorResponse))]
-        public async Task<IHttpActionResult> Update(AddOrUpdateAuthorCommand.AddOrUpdateAuthorRequest request)
-            => Ok(await _mediator.Send(request));
+        [ResponseType(typeof(AddOrUpdateAuthorCommand.Response))]
+        public async Task<IHttpActionResult> Update(AddOrUpdateAuthorCommand.Request request)
+            => Ok(await Send(request));
         
         [Route("get")]
         [AllowAnonymous]
         [HttpGet]
-        [ResponseType(typeof(GetAuthorsQuery.GetAuthorsResponse))]
+        [ResponseType(typeof(GetAuthorsQuery.Response))]
         public async Task<IHttpActionResult> Get()
-            => Ok(await _mediator.Send(new GetAuthorsQuery.GetAuthorsRequest()));
+            => Ok(await Send(new GetAuthorsQuery.GetAuthorsRequest()));
 
         [Route("getById")]
         [HttpGet]
-        [ResponseType(typeof(GetAuthorByIdQuery.GetAuthorByIdResponse))]
-        public async Task<IHttpActionResult> GetById([FromUri]GetAuthorByIdQuery.GetAuthorByIdRequest request)
-            => Ok(await _mediator.Send(request));
+        [ResponseType(typeof(GetAuthorByIdQuery.Response))]
+        public async Task<IHttpActionResult> GetById([FromUri]GetAuthorByIdQuery.Request request)
+            => Ok(await Send(request));
 
         [Route("remove")]
         [HttpDelete]
-        [ResponseType(typeof(RemoveAuthorCommand.RemoveAuthorResponse))]
-        public async Task<IHttpActionResult> Remove([FromUri]RemoveAuthorCommand.RemoveAuthorRequest request)
-            => Ok(await _mediator.Send(request));
-
-        protected readonly IMediator _mediator;
-
+        [ResponseType(typeof(RemoveAuthorCommand.Response))]
+        public async Task<IHttpActionResult> Remove([FromUri]RemoveAuthorCommand.Request request)
+            => Ok(await Send(request));
     }
 }

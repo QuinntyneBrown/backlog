@@ -11,14 +11,14 @@ namespace Backlog.Features.Sprints
 {
     public class RemoveSprintCommand
     {
-        public class RemoveSprintRequest : IRequest<RemoveSprintResponse>
+        public class Request : IRequest<Response>
         {
             public int Id { get; set; }
         }
 
-        public class RemoveSprintResponse { }
+        public class Response { }
 
-        public class RemoveSprintHandler : IAsyncRequestHandler<RemoveSprintRequest, RemoveSprintResponse>
+        public class RemoveSprintHandler : IAsyncRequestHandler<Request, Response>
         {
             public RemoveSprintHandler(IBacklogContext context, ICache cache)
             {
@@ -26,12 +26,12 @@ namespace Backlog.Features.Sprints
                 _cache = cache;
             }
 
-            public async Task<RemoveSprintResponse> Handle(RemoveSprintRequest request)
+            public async Task<Response> Handle(Request request)
             {
                 var sprint = await _context.Sprints.FindAsync(request.Id);
                 sprint.IsDeleted = true;
                 await _context.SaveChangesAsync();
-                return new RemoveSprintResponse();
+                return new Response();
             }
 
             private readonly IBacklogContext _context;

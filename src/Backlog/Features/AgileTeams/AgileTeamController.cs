@@ -1,4 +1,4 @@
-using Backlog.Features.Security;
+using Backlog.Features.Core;
 using MediatR;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -8,46 +8,40 @@ namespace Backlog.Features.AgileTeams
 {
     [Authorize]
     [RoutePrefix("api/agileTeam")]
-    public class AgileTeamController : ApiController
+    public class AgileTeamController : BaseApiController
     {
-        public AgileTeamController(IMediator mediator, IUserManager userManager)
-        {
-            _mediator = mediator;
-            _userManager = userManager;
-        }
+        public AgileTeamController(IMediator mediator)
+            :base(mediator) { }
 
         [Route("add")]
         [HttpPost]
-        [ResponseType(typeof(AddOrUpdateAgileTeamCommand.AddOrUpdateAgileTeamResponse))]
-        public async Task<IHttpActionResult> Add(AddOrUpdateAgileTeamCommand.AddOrUpdateAgileTeamRequest request)
-            => Ok(await _mediator.Send(request));
+        [ResponseType(typeof(AddOrUpdateAgileTeamCommand.Response))]
+        public async Task<IHttpActionResult> Add(AddOrUpdateAgileTeamCommand.Request request)
+            => Ok(await Send(request));
 
         [Route("update")]
         [HttpPut]
-        [ResponseType(typeof(AddOrUpdateAgileTeamCommand.AddOrUpdateAgileTeamResponse))]
-        public async Task<IHttpActionResult> Update(AddOrUpdateAgileTeamCommand.AddOrUpdateAgileTeamRequest request)
-            => Ok(await _mediator.Send(request));
+        [ResponseType(typeof(AddOrUpdateAgileTeamCommand.Response))]
+        public async Task<IHttpActionResult> Update(AddOrUpdateAgileTeamCommand.Request request)
+            => Ok(await Send(request));
         
         [Route("get")]
         [AllowAnonymous]
         [HttpGet]
-        [ResponseType(typeof(GetAgileTeamsQuery.GetAgileTeamsResponse))]
+        [ResponseType(typeof(GetAgileTeamsQuery.Response))]
         public async Task<IHttpActionResult> Get()
-            => Ok(await _mediator.Send(new GetAgileTeamsQuery.GetAgileTeamsRequest()));
+            => Ok(await Send(new GetAgileTeamsQuery.Request()));
 
         [Route("getById")]
         [HttpGet]
-        [ResponseType(typeof(GetAgileTeamByIdQuery.GetAgileTeamByIdResponse))]
-        public async Task<IHttpActionResult> GetById([FromUri]GetAgileTeamByIdQuery.GetAgileTeamByIdRequest request)
-            => Ok(await _mediator.Send(request));
+        [ResponseType(typeof(GetAgileTeamByIdQuery.Response))]
+        public async Task<IHttpActionResult> GetById([FromUri]GetAgileTeamByIdQuery.Request request)
+            => Ok(await Send(request));
 
         [Route("remove")]
         [HttpDelete]
-        [ResponseType(typeof(RemoveAgileTeamCommand.RemoveAgileTeamResponse))]
-        public async Task<IHttpActionResult> Remove([FromUri]RemoveAgileTeamCommand.RemoveAgileTeamRequest request)
-            => Ok(await _mediator.Send(request));
-
-        protected readonly IMediator _mediator;
-        protected readonly IUserManager _userManager;
+        [ResponseType(typeof(RemoveAgileTeamCommand.Response))]
+        public async Task<IHttpActionResult> Remove([FromUri]RemoveAgileTeamCommand.Request request)
+            => Ok(await Send(request));
     }
 }

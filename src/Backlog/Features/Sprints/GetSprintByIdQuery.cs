@@ -7,16 +7,16 @@ namespace Backlog.Features.Sprints
 {
     public class GetSprintByIdQuery
     {
-        public class GetSprintByIdRequest : IRequest<GetSprintByIdResponse> { 
+        public class Request : IRequest<Response> { 
 			public int Id { get; set; }
 		}
 
-        public class GetSprintByIdResponse
+        public class Response
         {
             public SprintApiModel Sprint { get; set; } 
 		}
 
-        public class GetSprintByIdHandler : IAsyncRequestHandler<GetSprintByIdRequest, GetSprintByIdResponse>
+        public class GetSprintByIdHandler : IAsyncRequestHandler<Request, Response>
         {
             public GetSprintByIdHandler(IBacklogContext context, ICache cache)
             {
@@ -24,9 +24,9 @@ namespace Backlog.Features.Sprints
                 _cache = cache;
             }
 
-            public async Task<GetSprintByIdResponse> Handle(GetSprintByIdRequest request)
+            public async Task<Response> Handle(Request request)
             {                
-                return new GetSprintByIdResponse()
+                return new Response()
                 {
                     Sprint = SprintApiModel.FromSprint(await _context.Sprints.FindAsync(request.Id))
                 };

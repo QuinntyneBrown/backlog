@@ -11,14 +11,14 @@ namespace Backlog.Features.AgileTeams
 {
     public class RemoveAgileTeamCommand
     {
-        public class RemoveAgileTeamRequest : IRequest<RemoveAgileTeamResponse>
+        public class Request : IRequest<Response>
         {
             public int Id { get; set; }
         }
 
-        public class RemoveAgileTeamResponse { }
+        public class Response { }
 
-        public class RemoveAgileTeamHandler : IAsyncRequestHandler<RemoveAgileTeamRequest, RemoveAgileTeamResponse>
+        public class RemoveAgileTeamHandler : IAsyncRequestHandler<Request, Response>
         {
             public RemoveAgileTeamHandler(IBacklogContext context, ICache cache)
             {
@@ -26,12 +26,12 @@ namespace Backlog.Features.AgileTeams
                 _cache = cache;
             }
 
-            public async Task<RemoveAgileTeamResponse> Handle(RemoveAgileTeamRequest request)
+            public async Task<Response> Handle(Request request)
             {
                 var agileTeam = await _context.AgileTeams.FindAsync(request.Id);
                 agileTeam.IsDeleted = true;
                 await _context.SaveChangesAsync();
-                return new RemoveAgileTeamResponse();
+                return new Response();
             }
 
             private readonly IBacklogContext _context;

@@ -7,16 +7,16 @@ namespace Backlog.Features.Projects
 {
     public class GetProjectByIdQuery
     {
-        public class GetProjectByIdRequest : IRequest<GetProjectByIdResponse> { 
+        public class Request : IRequest<Response> { 
 			public int Id { get; set; }
 		}
 
-        public class GetProjectByIdResponse
+        public class Response
         {
             public ProjectApiModel Project { get; set; } 
 		}
 
-        public class GetProjectByIdHandler : IAsyncRequestHandler<GetProjectByIdRequest, GetProjectByIdResponse>
+        public class GetProjectByIdHandler : IAsyncRequestHandler<Request, Response>
         {
             public GetProjectByIdHandler(IBacklogContext context, ICache cache)
             {
@@ -24,9 +24,9 @@ namespace Backlog.Features.Projects
                 _cache = cache;
             }
 
-            public async Task<GetProjectByIdResponse> Handle(GetProjectByIdRequest request)
+            public async Task<Response> Handle(Request request)
             {                
-                return new GetProjectByIdResponse()
+                return new Response()
                 {
                     Project = ProjectApiModel.FromProject(await _context.Projects.FindAsync(request.Id))
                 };

@@ -10,14 +10,14 @@ namespace Backlog.Features.Blog
 {
     public class GetAuthorsQuery
     {
-        public class GetAuthorsRequest : IRequest<GetAuthorsResponse> { }
+        public class GetAuthorsRequest : IRequest<Response> { }
 
-        public class GetAuthorsResponse
+        public class Response
         {
             public ICollection<AuthorApiModel> Authors { get; set; } = new HashSet<AuthorApiModel>();
         }
 
-        public class GetAuthorsHandler : IAsyncRequestHandler<GetAuthorsRequest, GetAuthorsResponse>
+        public class GetAuthorsHandler : IAsyncRequestHandler<GetAuthorsRequest, Response>
         {
             public GetAuthorsHandler(IBacklogContext context, ICache cache)
             {
@@ -25,10 +25,10 @@ namespace Backlog.Features.Blog
                 _cache = cache;
             }
 
-            public async Task<GetAuthorsResponse> Handle(GetAuthorsRequest request)
+            public async Task<Response> Handle(GetAuthorsRequest request)
             {
                 var authors = await _context.Authors.ToListAsync();
-                return new GetAuthorsResponse()
+                return new Response()
                 {
                     Authors = authors.Select(x => AuthorApiModel.FromAuthor(x)).ToList()
                 };

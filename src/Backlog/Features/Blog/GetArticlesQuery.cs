@@ -10,7 +10,7 @@ namespace Backlog.Features.Blog
 {
     public class GetArticlesQuery
     {
-        public class Request : IRequest<Response> { }
+        public class Request : BaseAuthenticatedRequest, IRequest<Response> { }
 
         public class Response
         {
@@ -28,7 +28,9 @@ namespace Backlog.Features.Blog
             public async Task<Response> Handle(Request request)
             {
                 var articles = await _context.Articles
-                    .Include(x=>x.Author)
+                    .Include(x => x.Author)
+                    .Include(x => x.Tenant)
+                    .Where(x => x.Tenant.UniqueId == request.TenantUniqueId)
                     .ToListAsync();
 
                 return new Response()
@@ -40,7 +42,5 @@ namespace Backlog.Features.Blog
             private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
-
     }
-
 }

@@ -10,16 +10,16 @@ namespace Backlog.Features.Blog
 {
     public class GetAuthorByIdQuery
     {
-        public class GetAuthorByIdRequest : IRequest<GetAuthorByIdResponse> { 
+        public class Request : IRequest<Response> { 
 			public int Id { get; set; }
 		}
 
-        public class GetAuthorByIdResponse
+        public class Response
         {
             public AuthorApiModel Author { get; set; } 
 		}
 
-        public class GetAuthorByIdHandler : IAsyncRequestHandler<GetAuthorByIdRequest, GetAuthorByIdResponse>
+        public class GetAuthorByIdHandler : IAsyncRequestHandler<Request, Response>
         {
             public GetAuthorByIdHandler(IBacklogContext context, ICache cache)
             {
@@ -27,9 +27,9 @@ namespace Backlog.Features.Blog
                 _cache = cache;
             }
 
-            public async Task<GetAuthorByIdResponse> Handle(GetAuthorByIdRequest request)
+            public async Task<Response> Handle(Request request)
             {                
-                return new GetAuthorByIdResponse()
+                return new Response()
                 {
                     Author = AuthorApiModel.FromAuthor(await _context.Authors.FindAsync(request.Id))
                 };

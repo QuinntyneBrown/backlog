@@ -11,17 +11,17 @@ namespace Backlog.Features.Projects
 {
     public class AddOrUpdateProjectCommand
     {
-        public class AddOrUpdateProjectRequest : IRequest<AddOrUpdateProjectResponse>
+        public class Request : IRequest<Response>
         {
             public ProjectApiModel Project { get; set; }
         }
 
-        public class AddOrUpdateProjectResponse
+        public class Response
         {
 
         }
 
-        public class AddOrUpdateProjectHandler : IAsyncRequestHandler<AddOrUpdateProjectRequest, AddOrUpdateProjectResponse>
+        public class AddOrUpdateProjectHandler : IAsyncRequestHandler<Request, Response>
         {
             public AddOrUpdateProjectHandler(IBacklogContext context, ICache cache)
             {
@@ -29,7 +29,7 @@ namespace Backlog.Features.Projects
                 _cache = cache;
             }
 
-            public async Task<AddOrUpdateProjectResponse> Handle(AddOrUpdateProjectRequest request)
+            public async Task<Response> Handle(Request request)
             {
                 var entity = await _context.Projects
                     .SingleOrDefaultAsync(x => x.Id == request.Project.Id && x.IsDeleted == false);
@@ -37,7 +37,7 @@ namespace Backlog.Features.Projects
                 entity.Name = request.Project.Name;
                 await _context.SaveChangesAsync();
 
-                return new AddOrUpdateProjectResponse()
+                return new Response()
                 {
 
                 };

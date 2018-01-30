@@ -29,6 +29,10 @@ export class DashboardTileMenuComponent extends HTMLElement {
     get template(): TemplateResult {
         return html`
             ${styles}
+            <ul>
+                <li><a class="configure">Configure</a></li>
+                <li><a class="remove">Remove</a></li>
+            </ul>
         `;
     }
 

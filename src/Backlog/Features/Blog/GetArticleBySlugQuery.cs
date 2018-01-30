@@ -3,12 +3,13 @@ using Backlog.Data;
 using Backlog.Features.Core;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using System.Linq;
 
 namespace Backlog.Features.Blog
 {
     public class GetArticleBySlugQuery
     {
-        public class Request : IRequest<Response>
+        public class Request : BaseRequest, IRequest<Response>
         {
             public string Slug { get; set; }
         }
@@ -30,14 +31,15 @@ namespace Backlog.Features.Blog
             {
                 return new Response()
                 {
-                    Article = ArticleApiModel.FromArticle(await _context.Articles.SingleAsync(a => a.Slug == request.Slug))
+                    Article = ArticleApiModel.FromArticle(await _context.Articles
+                    .Include(x => x.Tenant)
+                    .Where(x => x.Tenant.UniqueId == request.TenantUniqueId)
+                    .SingleAsync(a => a.Slug == request.Slug))
                 };
             }
 
             private readonly BacklogContext _context;
             private readonly ICache _cache;
         }
-
     }
-
 }

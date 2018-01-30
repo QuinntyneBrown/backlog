@@ -1,4 +1,4 @@
-using Backlog.Features.Security;
+using Backlog.Features.Core;
 using MediatR;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -7,48 +7,42 @@ using System.Web.Http.Description;
 namespace Backlog.Features.Sprints
 {
     [Authorize]
-    [RoutePrefix("api/sprint")]
-    public class SprintController : ApiController
+    [RoutePrefix("api/sprints")]
+    public class SprintController : BaseApiController
     {
-        public SprintController(IMediator mediator, IUserManager userManager)
-        {
-            _mediator = mediator;
-            _userManager = userManager;
-        }
+        public SprintController(IMediator mediator)
+            :base(mediator)
+        { }
 
         [Route("add")]
         [HttpPost]
-        [ResponseType(typeof(AddOrUpdateSprintCommand.AddOrUpdateSprintResponse))]
-        public async Task<IHttpActionResult> Add(AddOrUpdateSprintCommand.AddOrUpdateSprintRequest request)
-            => Ok(await _mediator.Send(request));
+        [ResponseType(typeof(AddOrUpdateSprintCommand.Response))]
+        public async Task<IHttpActionResult> Add(AddOrUpdateSprintCommand.Request request)
+            => Ok(await Send(request));
 
         [Route("update")]
         [HttpPut]
-        [ResponseType(typeof(AddOrUpdateSprintCommand.AddOrUpdateSprintResponse))]
-        public async Task<IHttpActionResult> Update(AddOrUpdateSprintCommand.AddOrUpdateSprintRequest request)
-            => Ok(await _mediator.Send(request));
+        [ResponseType(typeof(AddOrUpdateSprintCommand.Response))]
+        public async Task<IHttpActionResult> Update(AddOrUpdateSprintCommand.Request request)
+            => Ok(await Send(request));
         
         [Route("get")]
         [AllowAnonymous]
         [HttpGet]
-        [ResponseType(typeof(GetSprintsQuery.GetSprintsResponse))]
+        [ResponseType(typeof(GetSprintsQuery.Response))]
         public async Task<IHttpActionResult> Get()
-            => Ok(await _mediator.Send(new GetSprintsQuery.GetSprintsRequest()));
+            => Ok(await Send(new GetSprintsQuery.Request()));
 
         [Route("getById")]
         [HttpGet]
-        [ResponseType(typeof(GetSprintByIdQuery.GetSprintByIdResponse))]
-        public async Task<IHttpActionResult> GetById([FromUri]GetSprintByIdQuery.GetSprintByIdRequest request)
-            => Ok(await _mediator.Send(request));
+        [ResponseType(typeof(GetSprintByIdQuery.Response))]
+        public async Task<IHttpActionResult> GetById([FromUri]GetSprintByIdQuery.Request request)
+            => Ok(await Send(request));
 
         [Route("remove")]
         [HttpDelete]
-        [ResponseType(typeof(RemoveSprintCommand.RemoveSprintResponse))]
-        public async Task<IHttpActionResult> Remove([FromUri]RemoveSprintCommand.RemoveSprintRequest request)
-            => Ok(await _mediator.Send(request));
-
-        protected readonly IMediator _mediator;
-        protected readonly IUserManager _userManager;
-
+        [ResponseType(typeof(RemoveSprintCommand.Response))]
+        public async Task<IHttpActionResult> Remove([FromUri]RemoveSprintCommand.Request request)
+            => Ok(await Send(request));
     }
 }

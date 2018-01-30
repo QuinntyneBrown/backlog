@@ -12,6 +12,7 @@ export interface IPopoverService { }
 
 export function PopoverServiceFactory(_position: Position) {
     PopoverService.instance = PopoverService.instance || new PopoverService(_position);
+    PopoverService.create = function () { return new PopoverService(_position); }.bind(this);
     return PopoverService.instance;
 }
 
@@ -25,6 +26,9 @@ export class PopoverService implements IPopoverService {
     }
 
     public static instance: PopoverService;
+    
+    public static create(): PopoverService { throw new Error("");}
+     
 
     public async show(options: { target: HTMLElement, html: string }): Promise<any> {
 

@@ -11,14 +11,14 @@ namespace Backlog.Features.Blog
 {
     public class AddOrUpdateAuthorCommand
     {
-        public class AddOrUpdateAuthorRequest : IRequest<AddOrUpdateAuthorResponse>
+        public class Request : IRequest<Response>
         {
             public AuthorApiModel Author { get; set; }
         }
 
-        public class AddOrUpdateAuthorResponse { }
+        public class Response { }
 
-        public class AddOrUpdateAuthorHandler : IAsyncRequestHandler<AddOrUpdateAuthorRequest, AddOrUpdateAuthorResponse>
+        public class AddOrUpdateAuthorHandler : IAsyncRequestHandler<Request, Response>
         {
             public AddOrUpdateAuthorHandler(IBacklogContext context, ICache cache)
             {
@@ -26,7 +26,7 @@ namespace Backlog.Features.Blog
                 _cache = cache;
             }
 
-            public async Task<AddOrUpdateAuthorResponse> Handle(AddOrUpdateAuthorRequest request)
+            public async Task<Response> Handle(Request request)
             {
                 var entity = await _context.Authors
                     .SingleOrDefaultAsync(x => x.Id == request.Author.Id && x.IsDeleted == false);
@@ -38,7 +38,7 @@ namespace Backlog.Features.Blog
 
                 await _context.SaveChangesAsync();
 
-                return new AddOrUpdateAuthorResponse() { };
+                return new Response() { };
             }
 
             private readonly IBacklogContext _context;

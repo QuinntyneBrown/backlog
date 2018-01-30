@@ -11,14 +11,14 @@ namespace Backlog.Features.Projects
 {
     public class RemoveProjectCommand
     {
-        public class RemoveProjectRequest : IRequest<RemoveProjectResponse>
+        public class Request : IRequest<Response>
         {
             public int Id { get; set; }
         }
 
-        public class RemoveProjectResponse { }
+        public class Response { }
 
-        public class RemoveProjectHandler : IAsyncRequestHandler<RemoveProjectRequest, RemoveProjectResponse>
+        public class RemoveProjectHandler : IAsyncRequestHandler<Request, Response>
         {
             public RemoveProjectHandler(IBacklogContext context, ICache cache)
             {
@@ -26,12 +26,12 @@ namespace Backlog.Features.Projects
                 _cache = cache;
             }
 
-            public async Task<RemoveProjectResponse> Handle(RemoveProjectRequest request)
+            public async Task<Response> Handle(Request request)
             {
                 var project = await _context.Projects.FindAsync(request.Id);
                 project.IsDeleted = true;
                 await _context.SaveChangesAsync();
-                return new RemoveProjectResponse();
+                return new Response();
             }
 
             private readonly IBacklogContext _context;

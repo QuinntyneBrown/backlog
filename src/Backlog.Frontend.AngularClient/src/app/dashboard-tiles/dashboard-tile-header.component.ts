@@ -1,11 +1,12 @@
 import { html, TemplateResult, render } from "lit-html";
 import { repeat } from "lit-html/lib/repeat";
 import { unsafeHTML } from "../../../node_modules/lit-html/lib/unsafe-html.js";
+import { PopoverService } from "../shared/services/popover.service";
 
 const styles = unsafeHTML(`<style>${require("./dashboard-tile-header.component.css")}<style>`);
 
 export class DashboardTileHeaderComponent extends HTMLElement {
-    constructor() {
+    constructor(private _popoverService: PopoverService = PopoverService.create()) {
         super();
     }
 
@@ -34,6 +35,12 @@ export class DashboardTileHeaderComponent extends HTMLElement {
             <h1>${this.dashboardTileHeading}</h1><ce-dots-button></ce-dots-button>
         `;
     }
+
+    public handleMenuClick() {
+
+    }
+
+    public popoverInstance: PopoverService;
 
     private async _bind() {
 

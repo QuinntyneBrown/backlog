@@ -1,19 +1,14 @@
-using Backlog.Features.Security;
+using Backlog.Features.Core;
 using MediatR;
 using System.Web.Http;
 
 namespace Backlog.Features.Kanban
 {
-    [RoutePrefix("api/kanban")]
-    public class KanbanController : ApiController
+    [RoutePrefix("api/kanbans")]
+    public class KanbanController : BaseApiController
     {
-        public KanbanController(IMediator mediator, IUserManager userManager)
-        {
-            _mediator = mediator;
-            _userManager = userManager;
-        }
+        public KanbanController(IMediator mediator)
+            :base(mediator){ }
         
-        protected readonly IMediator _mediator;
-        protected readonly IUserManager _userManager;
     }
 }

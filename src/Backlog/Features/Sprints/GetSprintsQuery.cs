@@ -10,14 +10,14 @@ namespace Backlog.Features.Sprints
 {
     public class GetSprintsQuery
     {
-        public class GetSprintsRequest : IRequest<GetSprintsResponse> { }
+        public class Request : IRequest<Response> { }
 
-        public class GetSprintsResponse
+        public class Response
         {
             public ICollection<SprintApiModel> Sprints { get; set; } = new HashSet<SprintApiModel>();
         }
 
-        public class GetSprintsHandler : IAsyncRequestHandler<GetSprintsRequest, GetSprintsResponse>
+        public class GetSprintsHandler : IAsyncRequestHandler<Request, Response>
         {
             public GetSprintsHandler(IBacklogContext context, ICache cache)
             {
@@ -25,10 +25,10 @@ namespace Backlog.Features.Sprints
                 _cache = cache;
             }
 
-            public async Task<GetSprintsResponse> Handle(GetSprintsRequest request)
+            public async Task<Response> Handle(Request request)
             {
                 var sprints = await _context.Sprints.ToListAsync();
-                return new GetSprintsResponse()
+                return new Response()
                 {
                     Sprints = sprints.Select(x => SprintApiModel.FromSprint(x)).ToList()
                 };
