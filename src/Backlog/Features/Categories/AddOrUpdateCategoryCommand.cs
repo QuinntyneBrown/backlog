@@ -9,14 +9,14 @@ namespace Backlog.Features.Categories
 {
     public class AddOrUpdateCategoryCommand
     {
-        public class AddOrUpdateCategoryRequest : IRequest<AddOrUpdateCategoryResponse>
+        public class Request : IRequest<Response>
         {
             public CategoryApiModel Category { get; set; }
         }
 
-        public class AddOrUpdateCategoryResponse { }
+        public class Response { }
 
-        public class AddOrUpdateCategoryHandler : IAsyncRequestHandler<AddOrUpdateCategoryRequest, AddOrUpdateCategoryResponse>
+        public class AddOrUpdateCategoryHandler : IAsyncRequestHandler<Request, Response>
         {
             public AddOrUpdateCategoryHandler(IBacklogContext context, ICache cache)
             {
@@ -24,7 +24,7 @@ namespace Backlog.Features.Categories
                 _cache = cache;
             }
 
-            public async Task<AddOrUpdateCategoryResponse> Handle(AddOrUpdateCategoryRequest request)
+            public async Task<Response> Handle(Request request)
             {
                 var entity = await _context.Categories
                     .SingleOrDefaultAsync(x => x.Id == request.Category.Id);
@@ -32,7 +32,7 @@ namespace Backlog.Features.Categories
                 entity.Name = request.Category.Name;
                 await _context.SaveChangesAsync();
 
-                return new AddOrUpdateCategoryResponse();
+                return new Response();
             }
 
             private readonly IBacklogContext _context;

@@ -2,6 +2,7 @@
 import { HttpClient } from "@angular/common/http";
 import { HomePage } from "./home-page.model";
 import { constants } from "../shared/constants";
+import { catchError } from "rxjs/operators";
 
 @Injectable()
 export class ApiService {

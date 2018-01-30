@@ -10,16 +10,16 @@ namespace Backlog.Features.Feedback
 {
     public class GetFeedbackByIdQuery
     {
-        public class GetFeedbackByIdRequest : IRequest<GetFeedbackByIdResponse> { 
+        public class Request : IRequest<Response> { 
 			public int Id { get; set; }
 		}
 
-        public class GetFeedbackByIdResponse
+        public class Response
         {
             public FeedbackApiModel Feedback { get; set; } 
 		}
 
-        public class GetFeedbackByIdHandler : IAsyncRequestHandler<GetFeedbackByIdRequest, GetFeedbackByIdResponse>
+        public class GetFeedbackByIdHandler : IAsyncRequestHandler<Request, Response>
         {
             public GetFeedbackByIdHandler(IBacklogContext context, ICache cache)
             {
@@ -27,9 +27,9 @@ namespace Backlog.Features.Feedback
                 _cache = cache;
             }
 
-            public async Task<GetFeedbackByIdResponse> Handle(GetFeedbackByIdRequest request)
+            public async Task<Response> Handle(Request request)
             {                
-                return new GetFeedbackByIdResponse()
+                return new Response()
                 {
                     Feedback = FeedbackApiModel.FromFeedback(await _context.Feedbacks.FindAsync(request.Id))
                 };

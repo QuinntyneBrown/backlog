@@ -8,14 +8,14 @@ namespace Backlog.Features.Feedback
 {
     public class AddOrUpdateFeedbackCommand
     {
-        public class AddOrUpdateFeedbackRequest : IRequest<AddOrUpdateFeedbackResponse>
+        public class Request : IRequest<Response>
         {
             public FeedbackApiModel Feedback { get; set; }
         }
 
-        public class AddOrUpdateFeedbackResponse { }
+        public class Response { }
 
-        public class AddOrUpdateFeedbackHandler : IAsyncRequestHandler<AddOrUpdateFeedbackRequest, AddOrUpdateFeedbackResponse>
+        public class AddOrUpdateFeedbackHandler : IAsyncRequestHandler<Request, Response>
         {
             public AddOrUpdateFeedbackHandler(IBacklogContext context, ICache cache)
             {
@@ -23,7 +23,7 @@ namespace Backlog.Features.Feedback
                 _cache = cache;
             }
 
-            public async Task<AddOrUpdateFeedbackResponse> Handle(AddOrUpdateFeedbackRequest request)
+            public async Task<Response> Handle(Request request)
             {
                 var entity = await _context.Feedbacks
                     .SingleOrDefaultAsync(x => x.Id == request.Feedback.Id && x.IsDeleted == false);
@@ -31,7 +31,7 @@ namespace Backlog.Features.Feedback
                 entity.Name = request.Feedback.Name;
                 await _context.SaveChangesAsync();
 
-                return new AddOrUpdateFeedbackResponse()
+                return new Response()
                 {
 
                 };

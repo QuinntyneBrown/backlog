@@ -1,4 +1,4 @@
-using Backlog.Features.Security;
+using Backlog.Features.Core;
 using MediatR;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -7,48 +7,41 @@ using System.Web.Http.Description;
 namespace Backlog.Features.Categories
 {
     [Authorize]
-    [RoutePrefix("api/category")]
-    public class CategoryController : ApiController
+    [RoutePrefix("api/categories")]
+    public class CategoryController : BaseApiController
     {
-        public CategoryController(IMediator mediator, IUserManager userManager)
-        {
-            _mediator = mediator;
-            _userManager = userManager;
-        }
+        public CategoryController(IMediator mediator)
+            :base(mediator) { }
 
         [Route("add")]
         [HttpPost]
-        [ResponseType(typeof(AddOrUpdateCategoryCommand.AddOrUpdateCategoryResponse))]
-        public async Task<IHttpActionResult> Add(AddOrUpdateCategoryCommand.AddOrUpdateCategoryRequest request)
-            => Ok(await _mediator.Send(request));
+        [ResponseType(typeof(AddOrUpdateCategoryCommand.Response))]
+        public async Task<IHttpActionResult> Add(AddOrUpdateCategoryCommand.Request request)
+            => Ok(await Send(request));
 
         [Route("update")]
         [HttpPut]
-        [ResponseType(typeof(AddOrUpdateCategoryCommand.AddOrUpdateCategoryResponse))]
-        public async Task<IHttpActionResult> Update(AddOrUpdateCategoryCommand.AddOrUpdateCategoryRequest request)
-            => Ok(await _mediator.Send(request));
+        [ResponseType(typeof(AddOrUpdateCategoryCommand.Response))]
+        public async Task<IHttpActionResult> Update(AddOrUpdateCategoryCommand.Request request)
+            => Ok(await Send(request));
         
         [Route("get")]
         [AllowAnonymous]
         [HttpGet]
-        [ResponseType(typeof(GetCategoriesQuery.GetCategoriesResponse))]
+        [ResponseType(typeof(GetCategoriesQuery.Response))]
         public async Task<IHttpActionResult> Get()
-            => Ok(await _mediator.Send(new GetCategoriesQuery.GetCategoriesRequest()));
+            => Ok(await Send(new GetCategoriesQuery.Request()));
 
         [Route("getById")]
         [HttpGet]
-        [ResponseType(typeof(GetCategoryByIdQuery.GetCategoryByIdResponse))]
-        public async Task<IHttpActionResult> GetById([FromUri]GetCategoryByIdQuery.GetCategoryByIdRequest request)
-            => Ok(await _mediator.Send(request));
+        [ResponseType(typeof(GetCategoryByIdQuery.Response))]
+        public async Task<IHttpActionResult> GetById([FromUri]GetCategoryByIdQuery.Request request)
+            => Ok(await Send(request));
 
         [Route("remove")]
         [HttpDelete]
-        [ResponseType(typeof(RemoveCategoryCommand.RemoveCategoryResponse))]
-        public async Task<IHttpActionResult> Remove([FromUri]RemoveCategoryCommand.RemoveCategoryRequest request)
-            => Ok(await _mediator.Send(request));
-
-        protected readonly IMediator _mediator;
-        protected readonly IUserManager _userManager;
-
+        [ResponseType(typeof(RemoveCategoryCommand.Response))]
+        public async Task<IHttpActionResult> Remove([FromUri]RemoveCategoryCommand.Request request)
+            => Ok(await Send(request));        
     }
 }

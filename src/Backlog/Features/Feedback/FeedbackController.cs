@@ -1,4 +1,4 @@
-using Backlog.Features.Security;
+using Backlog.Features.Core;
 using MediatR;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -7,47 +7,41 @@ using System.Web.Http.Description;
 namespace Backlog.Features.Feedback
 {
     [Authorize]
-    [RoutePrefix("api/feedback")]
-    public class FeedbackController : ApiController
+    [RoutePrefix("api/feedbacks")]
+    public class FeedbackController : BaseApiController
     {
-        public FeedbackController(IMediator mediator, IUserManager userManager)
-        {
-            _mediator = mediator;
-            _userManager = userManager;
-        }
+        public FeedbackController(IMediator mediator)
+            :base(mediator){ }
 
         [Route("add")]
         [HttpPost]
-        [ResponseType(typeof(AddOrUpdateFeedbackCommand.AddOrUpdateFeedbackResponse))]
-        public async Task<IHttpActionResult> Add(AddOrUpdateFeedbackCommand.AddOrUpdateFeedbackRequest request)
-            => Ok(await _mediator.Send(request));
+        [ResponseType(typeof(AddOrUpdateFeedbackCommand.Response))]
+        public async Task<IHttpActionResult> Add(AddOrUpdateFeedbackCommand.Request request)
+            => Ok(await Send(request));
 
         [Route("update")]
         [HttpPut]
-        [ResponseType(typeof(AddOrUpdateFeedbackCommand.AddOrUpdateFeedbackResponse))]
-        public async Task<IHttpActionResult> Update(AddOrUpdateFeedbackCommand.AddOrUpdateFeedbackRequest request)
-            => Ok(await _mediator.Send(request));
+        [ResponseType(typeof(AddOrUpdateFeedbackCommand.Response))]
+        public async Task<IHttpActionResult> Update(AddOrUpdateFeedbackCommand.Request request)
+            => Ok(await Send(request));
         
         [Route("get")]
         [AllowAnonymous]
         [HttpGet]
-        [ResponseType(typeof(GetFeedbacksQuery.GetFeedbacksResponse))]
+        [ResponseType(typeof(GetFeedbacksQuery.Response))]
         public async Task<IHttpActionResult> Get()
-            => Ok(await _mediator.Send(new GetFeedbacksQuery.GetFeedbacksRequest()));
+            => Ok(await Send(new GetFeedbacksQuery.Request()));
 
         [Route("getById")]
         [HttpGet]
-        [ResponseType(typeof(GetFeedbackByIdQuery.GetFeedbackByIdResponse))]
-        public async Task<IHttpActionResult> GetById([FromUri]GetFeedbackByIdQuery.GetFeedbackByIdRequest request)
-            => Ok(await _mediator.Send(request));
+        [ResponseType(typeof(GetFeedbackByIdQuery.Response))]
+        public async Task<IHttpActionResult> GetById([FromUri]GetFeedbackByIdQuery.Request request)
+            => Ok(await Send(request));
 
         [Route("remove")]
         [HttpDelete]
-        [ResponseType(typeof(RemoveFeedbackCommand.RemoveFeedbackResponse))]
-        public async Task<IHttpActionResult> Remove([FromUri]RemoveFeedbackCommand.RemoveFeedbackRequest request)
-            => Ok(await _mediator.Send(request));
-
-        protected readonly IMediator _mediator;
-        protected readonly IUserManager _userManager;
+        [ResponseType(typeof(RemoveFeedbackCommand.Response))]
+        public async Task<IHttpActionResult> Remove([FromUri]RemoveFeedbackCommand.Request request)
+            => Ok(await Send(request));
     }
 }

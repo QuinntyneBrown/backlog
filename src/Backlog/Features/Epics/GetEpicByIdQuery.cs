@@ -8,16 +8,16 @@ namespace Backlog.Features.Epics
 {
     public class GetEpicByIdQuery
     {
-        public class GetEpicByIdRequest : IRequest<GetEpicByIdResponse> { 
+        public class Request : IRequest<Response> { 
             public int Id { get; set; }
         }
 
-        public class GetEpicByIdResponse
+        public class Response
         {
             public EpicApiModel Epic { get; set; } 
         }
 
-        public class GetEpicByIdHandler : IAsyncRequestHandler<GetEpicByIdRequest, GetEpicByIdResponse>
+        public class GetEpicByIdHandler : IAsyncRequestHandler<Request, Response>
         {
             public GetEpicByIdHandler(IBacklogContext context, ICache cache)
             {
@@ -25,9 +25,9 @@ namespace Backlog.Features.Epics
                 _cache = cache;
             }
 
-            public async Task<GetEpicByIdResponse> Handle(GetEpicByIdRequest request)
+            public async Task<Response> Handle(Request request)
             {                
-                return new GetEpicByIdResponse()
+                return new Response()
                 {
                     Epic = EpicApiModel.FromEpic(await _context.Epics
                     .Include(x => x.Stories)

@@ -26,12 +26,7 @@ export class TileSelectionItemComponent extends HTMLElement {
         if (!this.hasAttribute('role'))
             this.setAttribute('role', 'tileselectionitem');
 
-        this._bind();
         this._setEventListeners();
-    }
-
-    private async _bind() {
-
     }
 
     private _setEventListeners() {
@@ -45,8 +40,15 @@ export class TileSelectionItemComponent extends HTMLElement {
     get template(): TemplateResult {
         return html`
             ${styles}
-            <h1>${this.name}</h1>
+            <h1>${this.displayName(this.name)}</h1>
         `;
+    }
+
+    public displayName(name: string) {
+        if (name == 'Digital Assets')
+            return 'Files';
+
+        return name;
     }
 
     public handleClick() {

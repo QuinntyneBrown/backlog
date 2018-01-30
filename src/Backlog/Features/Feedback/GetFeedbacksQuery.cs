@@ -10,14 +10,14 @@ namespace Backlog.Features.Feedback
 {
     public class GetFeedbacksQuery
     {
-        public class GetFeedbacksRequest : IRequest<GetFeedbacksResponse> { }
+        public class Request : IRequest<Response> { }
 
-        public class GetFeedbacksResponse
+        public class Response
         {
             public ICollection<FeedbackApiModel> Feedbacks { get; set; } = new HashSet<FeedbackApiModel>();
         }
 
-        public class GetFeedbacksHandler : IAsyncRequestHandler<GetFeedbacksRequest, GetFeedbacksResponse>
+        public class GetFeedbacksHandler : IAsyncRequestHandler<Request, Response>
         {
             public GetFeedbacksHandler(IBacklogContext context, ICache cache)
             {
@@ -25,10 +25,10 @@ namespace Backlog.Features.Feedback
                 _cache = cache;
             }
 
-            public async Task<GetFeedbacksResponse> Handle(GetFeedbacksRequest request)
+            public async Task<Response> Handle(Request request)
             {
                 var feedbacks = await _context.Feedbacks.ToListAsync();
-                return new GetFeedbacksResponse()
+                return new Response()
                 {
                     Feedbacks = feedbacks.Select(x => FeedbackApiModel.FromFeedback(x)).ToList()
                 };

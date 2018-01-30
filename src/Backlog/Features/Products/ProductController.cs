@@ -1,7 +1,5 @@
-using Backlog.Features.Epics;
-using Backlog.Features.Security;
+using Backlog.Features.Core;
 using MediatR;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
@@ -9,48 +7,41 @@ using System.Web.Http.Description;
 namespace Backlog.Features.Products
 {    
     [Authorize]
-    [RoutePrefix("api/product")]
-    public class ProductController : ApiController
+    [RoutePrefix("api/products")]
+    public class ProductController : BaseApiController
     {
-        public ProductController(IMediator mediator, UserManager userManager)
-        {
-            _mediator = mediator;
-            _userManager = userManager;
-        }
+        public ProductController(IMediator mediator)
+            :base(mediator) { }
 
         [Route("add")]
         [HttpPost]
-        [ResponseType(typeof(AddOrUpdateProductCommand.AddOrUpdateProductResponse))]
-        public async Task<IHttpActionResult> Add(AddOrUpdateProductCommand.AddOrUpdateProductRequest request)
-            => Ok(await _mediator.Send(request));
+        [ResponseType(typeof(AddOrUpdateProductCommand.Response))]
+        public async Task<IHttpActionResult> Add(AddOrUpdateProductCommand.Request request)
+            => Ok(await Send(request));
         
         [Route("update")]
         [HttpPut]
-        [ResponseType(typeof(AddOrUpdateProductCommand.AddOrUpdateProductResponse))]
-        public async Task<IHttpActionResult> Update(AddOrUpdateProductCommand.AddOrUpdateProductRequest request)
-            => Ok(await _mediator.Send(request));
+        [ResponseType(typeof(AddOrUpdateProductCommand.Response))]
+        public async Task<IHttpActionResult> Update(AddOrUpdateProductCommand.Request request)
+            => Ok(await Send(request));
         
         [Route("get")]
         [AllowAnonymous]
         [HttpGet]
-        [ResponseType(typeof(GetProductsQuery.GetProductsResponse))]
+        [ResponseType(typeof(GetProductsQuery.Response))]
         public async Task<IHttpActionResult> Get()
-            => Ok(await _mediator.Send(new GetProductsQuery.GetProductsRequest()));
+            => Ok(await Send(new GetProductsQuery.Request()));
 
         [Route("getById")]
         [HttpGet]
-        [ResponseType(typeof(GetProductByIdQuery.GetProductByIdResponse))]
-        public async Task<IHttpActionResult> GetById([FromUri]GetProductByIdQuery.GetProductByIdRequest request)
-            => Ok(await _mediator.Send(request));
+        [ResponseType(typeof(GetProductByIdQuery.Response))]
+        public async Task<IHttpActionResult> GetById([FromUri]GetProductByIdQuery.Request request)
+            => Ok(await Send(request));
 
         [Route("remove")]
         [HttpDelete]
-        [ResponseType(typeof(RemoveProductCommand.RemoveProductResponse))]
-        public async Task<IHttpActionResult> Remove([FromUri]RemoveProductCommand.RemoveProductRequest request)
-            => Ok(await _mediator.Send(request));
-
-        protected readonly IMediator _mediator;
-        protected readonly UserManager _userManager;
-
+        [ResponseType(typeof(RemoveProductCommand.Response))]
+        public async Task<IHttpActionResult> Remove([FromUri]RemoveProductCommand.Request request)
+            => Ok(await Send(request));
     }
 }

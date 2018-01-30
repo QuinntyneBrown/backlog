@@ -47,7 +47,7 @@ namespace Backlog.UnitTests.Features.Epics
             
             _getEpicsHandler = new GetEpicsHandler(mockContext.Object, new MockCache());
 
-            var results = await _getEpicsHandler.Handle(new GetEpicsRequest());
+            var results = await _getEpicsHandler.Handle(new Request());
 
             Assert.AreEqual(results.Epics.Count(), 1);
             

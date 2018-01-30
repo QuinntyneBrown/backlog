@@ -13,14 +13,14 @@ namespace Backlog.Features.Epics
 {
     public class IncrementEpicPriorityCommand
     {
-        public class IncrementEpicPriorityRequest : IRequest<IncrementEpicPriorityResponse>
+        public class Request : IRequest<Response>
         {
             public int Id { get; set; }
         }
 
-        public class IncrementEpicPriorityResponse { }
+        public class Response { }
 
-        public class IncrementEpicPriorityHandler : IAsyncRequestHandler<IncrementEpicPriorityRequest, IncrementEpicPriorityResponse>
+        public class IncrementEpicPriorityHandler : IAsyncRequestHandler<Request, Response>
         {
             public IncrementEpicPriorityHandler(IBacklogContext context, ICache cache)
             {
@@ -28,14 +28,14 @@ namespace Backlog.Features.Epics
                 _cache = cache;
             }
 
-            public async Task<IncrementEpicPriorityResponse> Handle(IncrementEpicPriorityRequest request)
+            public async Task<Response> Handle(Request request)
             {
                 var epicTask = _context.Epics.FindAsync(request.Id);
                 var epicsTasks = _context.Epics.Where(x => x.IsDeleted == false).ToListAsync();
                 WaitAll(new Task[] { epicTask, epicsTasks });
                 epicTask.Result.IncrementPriority(new List<IPrioritizable>(epicsTasks.Result.Cast<IPrioritizable>()));
                 await _context.SaveChangesAsync();
-                return new IncrementEpicPriorityResponse();
+                return new Response();
             }
 
             private readonly IBacklogContext _context;

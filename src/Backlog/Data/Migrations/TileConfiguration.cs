@@ -24,6 +24,12 @@ namespace Backlog.Data.Migrations
                 TenantId = tenant.Id
             });
 
+            context.Tiles.AddOrUpdate(x => x.Name, new Tile()
+            {
+                Name = "Products",
+                TenantId = tenant.Id
+            });
+
             context.SaveChanges(Constants.DefaultUsername);
         }
     }

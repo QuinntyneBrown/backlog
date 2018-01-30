@@ -1,0 +1,19 @@
+:host {
+    display: block;
+    contain: content;
+    margin:5px;
+}
+
+h1 {
+    font-size:1em;
+    font-weight:100;
+    margin:0;
+    padding:0;
+    display:inline-block;
+}
+
+ce-dots-button {
+    position:absolute;
+    top:0;
+    right:0;
+}

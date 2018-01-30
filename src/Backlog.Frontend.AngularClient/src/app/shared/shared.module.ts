@@ -23,6 +23,7 @@ import { DropDownMenuComponent } from "./components";
 import { CircularButtonComponent } from "./components";
 import { BackdropComponent } from "./components";
 import { DigitalAssetInputUrlComponent } from "./components/digital-asset-input-url.component";
+import "./components/dots-button.component";
 
 const customElements = [
     DropDownMenuComponent,

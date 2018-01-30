@@ -10,14 +10,14 @@ namespace Backlog.Features.Products
 {
     public class GetProductsQuery
     {
-        public class GetProductsRequest : IRequest<GetProductsResponse> { }
+        public class Request : IRequest<Response> { }
 
-        public class GetProductsResponse
+        public class Response
         {
             public ICollection<ProductApiModel> Products { get; set; } = new HashSet<ProductApiModel>();
         }
 
-        public class GetProductsHandler : IAsyncRequestHandler<GetProductsRequest, GetProductsResponse>
+        public class GetProductsHandler : IAsyncRequestHandler<Request, Response>
         {
             public GetProductsHandler(IBacklogContext context, ICache cache)
             {
@@ -25,10 +25,10 @@ namespace Backlog.Features.Products
                 _cache = cache;
             }
 
-            public async Task<GetProductsResponse> Handle(GetProductsRequest request)
+            public async Task<Response> Handle(Request request)
             {
                 var products = await _context.Products.ToListAsync();
-                return new GetProductsResponse()
+                return new Response()
                 {
                     Products = products.Select(x => ProductApiModel.FromProduct(x)).ToList()
                 };

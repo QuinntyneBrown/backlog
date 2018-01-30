@@ -10,14 +10,14 @@ namespace Backlog.Features.Brands
 {
     public class GetBrandsQuery
     {
-        public class GetBrandsRequest : IRequest<GetBrandsResponse> { }
+        public class Request : IRequest<Response> { }
 
-        public class GetBrandsResponse
+        public class Response
         {
             public ICollection<BrandApiModel> Brands { get; set; } = new HashSet<BrandApiModel>();
         }
 
-        public class GetBrandsHandler : IAsyncRequestHandler<GetBrandsRequest, GetBrandsResponse>
+        public class GetBrandsHandler : IAsyncRequestHandler<Request, Response>
         {
             public GetBrandsHandler(BacklogContext context, ICache cache)
             {
@@ -25,12 +25,12 @@ namespace Backlog.Features.Brands
                 _cache = cache;
             }
 
-            public async Task<GetBrandsResponse> Handle(GetBrandsRequest request)
+            public async Task<Response> Handle(Request request)
             {
                 var brands = await _context.Brands
                     .ToListAsync();
 
-                return new GetBrandsResponse()
+                return new Response()
                 {
                     Brands = brands.Select(x => BrandApiModel.FromBrand(x)).ToList()
                 };

@@ -5,52 +5,24 @@ import { DashboardTile } from "./dashboard-tile.model";
 import { constants } from "./constants";
 import { Storage } from "../shared/services/storage.service";
 import { constants as sharedConstants } from "../shared/constants";
+import { DashboardTileComponent } from "./dashboard-tile.component";
 
 const styles = unsafeHTML(`<style>${require("./digital-assets-dashboard-tile.component.css")}<style>`);
 
-export class DigitalAssetsDashboardTileComponent extends HTMLElement {
+export class DigitalAssetsDashboardTileComponent extends DashboardTileComponent {
     constructor(private _storage: Storage = Storage.instance) {
         super();
     }
-
-    static get observedAttributes () {
-        return [
-            "dashboard-tile"
-        ];
-    }
-
-    connectedCallback() {     
-        this.attachShadow({ mode: 'open' });
-        
-		render(this.template, this.shadowRoot);
-
-        if (!this.hasAttribute('role'))
-            this.setAttribute('role', 'digitalassetsdashboardtile');
-
-        this._bind();
-        this._setEventListeners();
-    }
-
+    
     public get template(): TemplateResult {
         return html`
-        <style>
-            :host {
-                grid-column: var(--grid-column-start,${this.dashboardTile.left}) / var(--grid-column-stop,${this.dashboardTile.left + this.dashboardTile.width});
-                grid-row: var(--grid-row-start,${this.dashboardTile.top}) / var(--grid-row-stop,${this.dashboardTile.top + this.dashboardTile.height});
-            }
-        </style>
+        ${this.baseStyles}
         ${styles}
-        <div class="content">
-            <h1>Files</h1>
-        </div>
+        <ce-dashboard-tile-header dashboard-tile-heading="Files"></ce-dashboard-tile-header>
     `;
     }
-
-    private async _bind() {
-
-    }
-
-    private _setEventListeners() {
+    
+    protected _setEventListeners() {
         this.addEventListener("click", this.handleClick);
     }
 
@@ -70,18 +42,6 @@ export class DigitalAssetsDashboardTileComponent extends HTMLElement {
     }
 
     public dashboardTile: Partial<DashboardTile> = {};
-
-    attributeChangedCallback (name, oldValue, newValue) {
-        switch (name) {
-
-            case "dashboard-tile":
-                this.dashboardTile = JSON.parse(newValue);
-                break;
-
-            default:
-                break;
-        }
-    }
 }
 
 customElements.define(`ce-digital-assets-dashboard-tile`,DigitalAssetsDashboardTileComponent);

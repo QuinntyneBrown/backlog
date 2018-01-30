@@ -7,16 +7,16 @@ namespace Backlog.Features.Categories
 {
     public class GetCategoryByIdQuery
     {
-        public class GetCategoryByIdRequest : IRequest<GetCategoryByIdResponse> {
+        public class Request : IRequest<Response> {
             public int Id { get; set; }
         }
 
-        public class GetCategoryByIdResponse
+        public class Response
         {
             public CategoryApiModel Category { get; set; } 
 		}
 
-        public class GetCategoryByIdHandler : IAsyncRequestHandler<GetCategoryByIdRequest, GetCategoryByIdResponse>
+        public class GetCategoryByIdHandler : IAsyncRequestHandler<Request, Response>
         {
             public GetCategoryByIdHandler(IBacklogContext context, ICache cache)
             {
@@ -24,9 +24,9 @@ namespace Backlog.Features.Categories
                 _cache = cache;
             }
 
-            public async Task<GetCategoryByIdResponse> Handle(GetCategoryByIdRequest request)
+            public async Task<Response> Handle(Request request)
             {
-                return new GetCategoryByIdResponse()
+                return new Response()
                 {
                     Category = CategoryApiModel.FromCategory(await _context.Categories.FindAsync(request.Id))
                 };

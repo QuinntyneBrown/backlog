@@ -10,14 +10,14 @@ namespace Backlog.Features.Categories
 {
     public class GetCategoriesQuery
     {
-        public class GetCategoriesRequest : IRequest<GetCategoriesResponse> { }
+        public class Request : IRequest<Response> { }
 
-        public class GetCategoriesResponse
+        public class Response
         {
             public ICollection<CategoryApiModel> Categories { get; set; } = new HashSet<CategoryApiModel>();
         }
 
-        public class GetCategoriesHandler : IAsyncRequestHandler<GetCategoriesRequest, GetCategoriesResponse>
+        public class GetCategoriesHandler : IAsyncRequestHandler<Request, Response>
         {
             public GetCategoriesHandler(IBacklogContext context, ICache cache)
             {
@@ -25,13 +25,13 @@ namespace Backlog.Features.Categories
                 _cache = cache;
             }
 
-            public async Task<GetCategoriesResponse> Handle(GetCategoriesRequest request)
+            public async Task<Response> Handle(Request request)
             {
                 var categories = await _context.Categories
                     .Where(x=>x.IsDeleted == false)
                     .ToListAsync();
 
-                return new GetCategoriesResponse()
+                return new Response()
                 {
                     Categories = categories.Select(x => CategoryApiModel.FromCategory(x)).ToList()
                 };

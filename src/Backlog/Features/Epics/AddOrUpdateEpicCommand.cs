@@ -10,14 +10,14 @@ namespace Backlog.Features.Epics
 {
     public class AddOrUpdateEpicCommand
     {
-        public class AddOrUpdateEpicRequest : IRequest<AddOrUpdateEpicResponse>
+        public class Request : IRequest<Response>
         {
             public EpicApiModel Epic { get; set; }
         }
 
-        public class AddOrUpdateEpicResponse { }
+        public class Response { }
 
-        public class AddOrUpdateEpicHandler : IAsyncRequestHandler<AddOrUpdateEpicRequest, AddOrUpdateEpicResponse>
+        public class AddOrUpdateEpicHandler : IAsyncRequestHandler<Request, Response>
         {
             public AddOrUpdateEpicHandler(IBacklogContext context, ICache cache)
             {
@@ -25,7 +25,7 @@ namespace Backlog.Features.Epics
                 _cache = cache;
             }
 
-            public async Task<AddOrUpdateEpicResponse> Handle(AddOrUpdateEpicRequest request)
+            public async Task<Response> Handle(Request request)
             {
                 var entity = await _context.Epics
                     .SingleOrDefaultAsync(x => x.Id == request.Epic.Id);
@@ -43,7 +43,7 @@ namespace Backlog.Features.Epics
                 
                 await _context.SaveChangesAsync();
 
-                return new AddOrUpdateEpicResponse();
+                return new Response();
             }
 
             private readonly IBacklogContext _context;

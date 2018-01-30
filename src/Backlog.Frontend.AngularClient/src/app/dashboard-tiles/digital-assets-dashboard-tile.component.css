@@ -14,13 +14,13 @@
 h1 {
     font-size: 1em;
     font-weight: 100;
-    margin: 20px auto;
+    margin: 0;
     padding: 0;
     display: inline-block;
     grid-row: 2
 }
 
-cs-dots-button {
+ce-dots-button {
     width: 30px;
     grid-row: 1;
 }

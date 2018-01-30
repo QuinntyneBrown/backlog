@@ -33,17 +33,17 @@ module.exports = {
         ]
     },
     plugins: [
-        new UglifyJsPlugin({
-            uglifyOptions: {
-                ie8: false,
-                ecma: 8,
-                output: {
-                    comments: false,
-                    beautify: false
-                },
-                compress: { },
-                warnings: false
-            }
-        })
+        //new UglifyJsPlugin({
+        //    uglifyOptions: {
+        //        ie8: false,
+        //        ecma: 8,
+        //        output: {
+        //            comments: false,
+        //            beautify: false
+        //        },
+        //        compress: { },
+        //        warnings: false
+        //    }
+        //})
     ]
 };

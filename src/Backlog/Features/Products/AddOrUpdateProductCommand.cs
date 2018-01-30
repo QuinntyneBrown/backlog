@@ -10,14 +10,14 @@ namespace Backlog.Features.Products
 {
     public class AddOrUpdateProductCommand
     {
-        public class AddOrUpdateProductRequest : IRequest<AddOrUpdateProductResponse>
+        public class Request : IRequest<Response>
         {
             public ProductApiModel Product { get; set; }
         }
 
-        public class AddOrUpdateProductResponse { }
+        public class Response { }
 
-        public class AddOrUpdateProductHandler : IAsyncRequestHandler<AddOrUpdateProductRequest, AddOrUpdateProductResponse>
+        public class AddOrUpdateProductHandler : IAsyncRequestHandler<Request, Response>
         {
             public AddOrUpdateProductHandler(IBacklogContext context, ICache cache)
             {
@@ -25,7 +25,7 @@ namespace Backlog.Features.Products
                 _cache = cache;
             }
 
-            public async Task<AddOrUpdateProductResponse> Handle(AddOrUpdateProductRequest request)
+            public async Task<Response> Handle(Request request)
             {                
                 var entity = await _context.Products
                     .SingleOrDefaultAsync(x => x.Id == request.Product.Id && x.IsDeleted == false);
@@ -35,7 +35,7 @@ namespace Backlog.Features.Products
 
                 await _context.SaveChangesAsync();
 
-                return new AddOrUpdateProductResponse();
+                return new Response();
             }
 
             private readonly IBacklogContext _context;

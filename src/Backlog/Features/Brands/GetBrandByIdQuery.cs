@@ -7,16 +7,16 @@ namespace Backlog.Features.Brands
 {
     public class GetBrandByIdQuery
     {
-        public class GetBrandByIdRequest : IRequest<GetBrandByIdResponse> { 
+        public class Request : IRequest<Response> { 
             public int Id { get; set; }
         }
 
-        public class GetBrandByIdResponse
+        public class Response
         {
             public BrandApiModel Brand { get; set; } 
         }
 
-        public class GetBrandByIdHandler : IAsyncRequestHandler<GetBrandByIdRequest, GetBrandByIdResponse>
+        public class GetBrandByIdHandler : IAsyncRequestHandler<Request, Response>
         {
             public GetBrandByIdHandler(IBacklogContext context, ICache cache)
             {
@@ -24,9 +24,9 @@ namespace Backlog.Features.Brands
                 _cache = cache;
             }
 
-            public async Task<GetBrandByIdResponse> Handle(GetBrandByIdRequest request)
+            public async Task<Response> Handle(Request request)
             {                
-                return new GetBrandByIdResponse()
+                return new Response()
                 {
                     Brand = BrandApiModel.FromBrand(await _context.Brands.FindAsync(request.Id))
                 };

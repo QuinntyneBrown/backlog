@@ -7,16 +7,16 @@ namespace Backlog.Features.Products
 {
     public class GetProductByIdQuery
     {
-        public class GetProductByIdRequest : IRequest<GetProductByIdResponse> { 
+        public class Request : IRequest<Response> { 
 			public int Id { get; set; }
 		}
 
-        public class GetProductByIdResponse
+        public class Response
         {
             public ProductApiModel Product { get; set; } 
 		}
 
-        public class GetProductByIdHandler : IAsyncRequestHandler<GetProductByIdRequest, GetProductByIdResponse>
+        public class GetProductByIdHandler : IAsyncRequestHandler<Request, Response>
         {
             public GetProductByIdHandler(IBacklogContext context, ICache cache)
             {
@@ -24,9 +24,9 @@ namespace Backlog.Features.Products
                 _cache = cache;
             }
 
-            public async Task<GetProductByIdResponse> Handle(GetProductByIdRequest request)
+            public async Task<Response> Handle(Request request)
             {                
-                return new GetProductByIdResponse()
+                return new Response()
                 {
                     Product = ProductApiModel.FromProduct(await _context.Products.FindAsync(request.Id))
                 };

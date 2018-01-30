@@ -11,14 +11,14 @@ namespace Backlog.Features.Products
 {
     public class RemoveProductCommand
     {
-        public class RemoveProductRequest : IRequest<RemoveProductResponse>
+        public class Request : IRequest<Response>
         {
             public int Id { get; set; }
         }
 
-        public class RemoveProductResponse { }
+        public class Response { }
 
-        public class RemoveProductHandler : IAsyncRequestHandler<RemoveProductRequest, RemoveProductResponse>
+        public class RemoveProductHandler : IAsyncRequestHandler<Request, Response>
         {
             public RemoveProductHandler(IBacklogContext context, ICache cache)
             {
@@ -26,12 +26,12 @@ namespace Backlog.Features.Products
                 _cache = cache;
             }
 
-            public async Task<RemoveProductResponse> Handle(RemoveProductRequest request)
+            public async Task<Response> Handle(Request request)
             {
                 var product = await _context.Products.FindAsync(request.Id);
                 product.IsDeleted = true;
                 await _context.SaveChangesAsync();
-                return new RemoveProductResponse();
+                return new Response();
             }
 
             private readonly IBacklogContext _context;

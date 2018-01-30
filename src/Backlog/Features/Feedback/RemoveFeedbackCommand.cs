@@ -11,14 +11,14 @@ namespace Backlog.Features.Feedback
 {
     public class RemoveFeedbackCommand
     {
-        public class RemoveFeedbackRequest : IRequest<RemoveFeedbackResponse>
+        public class Request : IRequest<Response>
         {
             public int Id { get; set; }
         }
 
-        public class RemoveFeedbackResponse { }
+        public class Response { }
 
-        public class RemoveFeedbackHandler : IAsyncRequestHandler<RemoveFeedbackRequest, RemoveFeedbackResponse>
+        public class RemoveFeedbackHandler : IAsyncRequestHandler<Request, Response>
         {
             public RemoveFeedbackHandler(IBacklogContext context, ICache cache)
             {
@@ -26,12 +26,12 @@ namespace Backlog.Features.Feedback
                 _cache = cache;
             }
 
-            public async Task<RemoveFeedbackResponse> Handle(RemoveFeedbackRequest request)
+            public async Task<Response> Handle(Request request)
             {
                 var feedback = await _context.Feedbacks.FindAsync(request.Id);
                 feedback.IsDeleted = true;
                 await _context.SaveChangesAsync();
-                return new RemoveFeedbackResponse();
+                return new Response();
             }
 
             private readonly IBacklogContext _context;

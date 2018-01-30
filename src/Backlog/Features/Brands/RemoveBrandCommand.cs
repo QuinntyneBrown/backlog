@@ -11,14 +11,14 @@ namespace Backlog.Features.Brands
 {
     public class RemoveBrandCommand
     {
-        public class RemoveBrandRequest : IRequest<RemoveBrandResponse>
+        public class Request : IRequest<Response>
         {
             public int Id { get; set; }
         }
 
-        public class RemoveBrandResponse { }
+        public class Response { }
 
-        public class RemoveBrandHandler : IAsyncRequestHandler<RemoveBrandRequest, RemoveBrandResponse>
+        public class RemoveBrandHandler : IAsyncRequestHandler<Request, Response>
         {
             public RemoveBrandHandler(BacklogContext context, ICache cache)
             {
@@ -26,12 +26,12 @@ namespace Backlog.Features.Brands
                 _cache = cache;
             }
 
-            public async Task<RemoveBrandResponse> Handle(RemoveBrandRequest request)
+            public async Task<Response> Handle(Request request)
             {
                 var brand = await _context.Brands.FindAsync(request.Id);
                 brand.IsDeleted = true;
                 await _context.SaveChangesAsync();
-                return new RemoveBrandResponse();
+                return new Response();
             }
 
             private readonly BacklogContext _context;

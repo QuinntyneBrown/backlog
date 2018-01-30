@@ -213,6 +213,12 @@
     <Content Include="src\app\app.component.css">
       <DependentUpon>app.component.html</DependentUpon>
     </Content>
+    <Content Include="src\app\dashboard-tiles\dashboard-tile-header.component.css">
+      <DependentUpon>dashboard-tile-header.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\dashboard-tiles\dashboard-tile-menu.component.css">
+      <DependentUpon>dashboard-tile-menu.component.ts</DependentUpon>
+    </Content>
     <Content Include="src\app\dashboard-tiles\digital-assets-dashboard-tile.component.css">
       <DependentUpon>digital-assets-dashboard-tile.component.ts</DependentUpon>
     </Content>
@@ -272,6 +278,9 @@
     <Content Include="src\app\shared\components\backdrop.component.html" />
     <Content Include="src\app\shared\components\circular-button.component.css">
       <DependentUpon>circular-button.component.html</DependentUpon>
+    </Content>
+    <Content Include="src\app\shared\components\dots-button.component.css">
+      <DependentUpon>dots-button.component.ts</DependentUpon>
     </Content>
     <Content Include="src\app\shared\components\forms.css" />
     <Content Include="src\app\shared\components\header.component.css">
@@ -526,6 +535,10 @@
     <TypeScriptCompile Include="src\app\home-pages\home-pages.service.ts" />
     <TypeScriptCompile Include="src\app\home-pages\index.ts" />
     <TypeScriptCompile Include="src\app\home-pages\home-page.model.ts" />
+    <TypeScriptCompile Include="src\app\shared\components\dots-button.component.ts" />
+    <TypeScriptCompile Include="src\app\dashboard-tiles\dashboard-tile-header.component.ts" />
+    <TypeScriptCompile Include="src\app\dashboard-tiles\dashboard-tile.component.ts" />
+    <TypeScriptCompile Include="src\app\dashboard-tiles\dashboard-tile-menu.component.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

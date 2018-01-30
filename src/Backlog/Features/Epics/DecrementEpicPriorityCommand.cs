@@ -13,14 +13,14 @@ namespace Backlog.Features.Epics
 {
     public class DecrementEpicPriorityCommand
     {
-        public class DecrementEpicPriorityRequest : IRequest<DecrementEpicPriorityResponse>
+        public class Request : IRequest<Response>
         {
             public int Id { get; set; }
         }
 
-        public class DecrementEpicPriorityResponse { }
+        public class Response { }
 
-        public class DecrementEpicPriorityHandler : IAsyncRequestHandler<DecrementEpicPriorityRequest, DecrementEpicPriorityResponse>
+        public class DecrementEpicPriorityHandler : IAsyncRequestHandler<Request, Response>
         {
             public DecrementEpicPriorityHandler(IBacklogContext context, ICache cache)
             {
@@ -28,14 +28,14 @@ namespace Backlog.Features.Epics
                 _cache = cache;
             }
 
-            public async Task<DecrementEpicPriorityResponse> Handle(DecrementEpicPriorityRequest request)
+            public async Task<Response> Handle(Request request)
             {
                 var epicTask = _context.Epics.FindAsync(request.Id);
                 var epicsTasks =_context.Epics.Where(x => x.IsDeleted == false).ToListAsync();                
                 WaitAll(new Task[] { epicTask, epicsTasks });
                 epicTask.Result.DecrementPriority(new List<IPrioritizable>(epicsTasks.Result.Cast<IPrioritizable>()));
                 await _context.SaveChangesAsync();
-                return new DecrementEpicPriorityResponse();
+                return new Response();
             }
             private readonly IBacklogContext _context;
             private readonly ICache _cache;

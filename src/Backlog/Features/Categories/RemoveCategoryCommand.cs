@@ -11,14 +11,14 @@ namespace Backlog.Features.Categories
 {
     public class RemoveCategoryCommand
     {
-        public class RemoveCategoryRequest : IRequest<RemoveCategoryResponse>
+        public class Request : IRequest<Response>
         {
             public int Id { get; set; }
         }
 
-        public class RemoveCategoryResponse { }
+        public class Response { }
 
-        public class RemoveCategoryHandler : IAsyncRequestHandler<RemoveCategoryRequest, RemoveCategoryResponse>
+        public class RemoveCategoryHandler : IAsyncRequestHandler<Request, Response>
         {
             public RemoveCategoryHandler(IBacklogContext context, ICache cache)
             {
@@ -26,12 +26,12 @@ namespace Backlog.Features.Categories
                 _cache = cache;
             }
 
-            public async Task<RemoveCategoryResponse> Handle(RemoveCategoryRequest request)
+            public async Task<Response> Handle(Request request)
             {
                 var category = await _context.Categories.FindAsync(request.Id);
                 category.IsDeleted = true;
                 await _context.SaveChangesAsync();
-                return new RemoveCategoryResponse();
+                return new Response();
             }
 
             private readonly IBacklogContext _context;

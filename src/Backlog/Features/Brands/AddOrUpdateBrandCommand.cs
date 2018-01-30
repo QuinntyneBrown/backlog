@@ -11,17 +11,17 @@ namespace Backlog.Features.Brands
 {
     public class AddOrUpdateBrandCommand
     {
-        public class AddOrUpdateBrandRequest : IRequest<AddOrUpdateBrandResponse>
+        public class Request : IRequest<Response>
         {
             public BrandApiModel Brand { get; set; }
         }
 
-        public class AddOrUpdateBrandResponse
+        public class Response
         {
 
         }
 
-        public class AddOrUpdateBrandHandler : IAsyncRequestHandler<AddOrUpdateBrandRequest, AddOrUpdateBrandResponse>
+        public class AddOrUpdateBrandHandler : IAsyncRequestHandler<Request, Response>
         {
             public AddOrUpdateBrandHandler(BacklogContext context, ICache cache)
             {
@@ -29,7 +29,7 @@ namespace Backlog.Features.Brands
                 _cache = cache;
             }
 
-            public async Task<AddOrUpdateBrandResponse> Handle(AddOrUpdateBrandRequest request)
+            public async Task<Response> Handle(Request request)
             {
                 var entity = await _context.Brands
                     .SingleOrDefaultAsync(x => x.Id == request.Brand.Id);
@@ -37,7 +37,7 @@ namespace Backlog.Features.Brands
                 entity.Name = request.Brand.Name;
                 await _context.SaveChangesAsync();
 
-                return new AddOrUpdateBrandResponse()
+                return new Response()
                 {
 
                 };

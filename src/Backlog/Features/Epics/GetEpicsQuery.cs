@@ -10,16 +10,16 @@ namespace Backlog.Features.Epics
 {
     public class GetEpicsQuery
     {
-        public class GetEpicsRequest : IRequest<GetEpicsResponse> {
+        public class Request : IRequest<Response> {
             public int? TenantId { get; set; }
         }
 
-        public class GetEpicsResponse
+        public class Response
         {
             public ICollection<EpicApiModel> Epics { get; set; } = new HashSet<EpicApiModel>();
         }
 
-        public class GetEpicsHandler : IAsyncRequestHandler<GetEpicsRequest, GetEpicsResponse>
+        public class GetEpicsHandler : IAsyncRequestHandler<Request, Response>
         {
             public GetEpicsHandler(IBacklogContext context, ICache cache)
             {
@@ -27,7 +27,7 @@ namespace Backlog.Features.Epics
                 _cache = cache;
             }
 
-            public async Task<GetEpicsResponse> Handle(GetEpicsRequest request)
+            public async Task<Response> Handle(Request request)
             {
                 var epics = await _context.Epics
                     .Include(x=>x.Stories)
@@ -35,7 +35,7 @@ namespace Backlog.Features.Epics
                     .Where(x=>x.TenantId == request.TenantId)
                     .ToListAsync();
 
-                return new GetEpicsResponse()
+                return new Response()
                 {
                     Epics = epics.Select(x => EpicApiModel.FromEpic(x)).ToList()
                 };

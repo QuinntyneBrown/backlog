@@ -1,4 +1,4 @@
-using Backlog.Features.Security;
+using Backlog.Features.Core;
 using MediatR;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -7,63 +7,52 @@ using System.Web.Http.Description;
 namespace Backlog.Features.Epics
 {
     [Authorize]
-    [RoutePrefix("api/epic")]
-    public class EpicController : ApiController
+    [RoutePrefix("api/epics")]
+    public class EpicController : BaseApiController
     {        
-        public EpicController(IMediator mediator, IUserManager userManager)
-        {
-            _mediator = mediator;
-            _userManager = userManager;
-        }
+        public EpicController(IMediator mediator)
+            :base(mediator) { }
 
         [Route("add")]
         [HttpPost]
-        [ResponseType(typeof(AddOrUpdateEpicCommand.AddOrUpdateEpicResponse))]
-        public async Task<IHttpActionResult> Add(AddOrUpdateEpicCommand.AddOrUpdateEpicRequest request)
-            => Ok(await _mediator.Send(request));
+        [ResponseType(typeof(AddOrUpdateEpicCommand.Response))]
+        public async Task<IHttpActionResult> Add(AddOrUpdateEpicCommand.Request request)
+            => Ok(await Send(request));
 
         [Route("update")]
         [HttpPut]
-        [ResponseType(typeof(AddOrUpdateEpicCommand.AddOrUpdateEpicResponse))]
-        public async Task<IHttpActionResult> Update(AddOrUpdateEpicCommand.AddOrUpdateEpicRequest request)
-            => Ok(await _mediator.Send(request));
+        [ResponseType(typeof(AddOrUpdateEpicCommand.Response))]
+        public async Task<IHttpActionResult> Update(AddOrUpdateEpicCommand.Request request)
+            => Ok(await Send(request));
 
         [Route("get")]
         [HttpGet]
-        [ResponseType(typeof(GetEpicsQuery.GetEpicsResponse))]
+        [ResponseType(typeof(GetEpicsQuery.Response))]
         public async Task<IHttpActionResult> Get()
-        {
-            var tenantId = (await _userManager.GetUserAsync(User)).TenantId;            
-            return Ok(await _mediator.Send(new GetEpicsQuery.GetEpicsRequest() {
-                TenantId = tenantId
-            }));
-        }
+            => Ok(await Send(new GetEpicsQuery.Request()));
 
         [Route("getById")]
         [HttpGet]
-        [ResponseType(typeof(GetEpicByIdQuery.GetEpicByIdResponse))]
-        public async Task<IHttpActionResult> GetById([FromUri]GetEpicByIdQuery.GetEpicByIdRequest request)
-            => Ok(await _mediator.Send(request));
+        [ResponseType(typeof(GetEpicByIdQuery.Response))]
+        public async Task<IHttpActionResult> GetById([FromUri]GetEpicByIdQuery.Request request)
+            => Ok(await Send(request));
 
         [Route("remove")]
         [HttpDelete]
-        [ResponseType(typeof(RemoveEpicCommand.RemoveEpicResponse))]
-        public async Task<IHttpActionResult> Remove([FromUri]RemoveEpicCommand.RemoveEpicRequest request)
-            => Ok(await _mediator.Send(request));
+        [ResponseType(typeof(RemoveEpicCommand.Response))]
+        public async Task<IHttpActionResult> Remove([FromUri]RemoveEpicCommand.Request request)
+            => Ok(await Send(request));
 
         [Route("incrementPriority")]
         [HttpGet]
-        [ResponseType(typeof(IncrementEpicPriorityCommand.IncrementEpicPriorityResponse))]
-        public async Task<IHttpActionResult> IncrementPriority([FromUri]IncrementEpicPriorityCommand.IncrementEpicPriorityRequest request)
-            => Ok(await _mediator.Send(request));
+        [ResponseType(typeof(IncrementEpicPriorityCommand.Response))]
+        public async Task<IHttpActionResult> IncrementPriority([FromUri]IncrementEpicPriorityCommand.Request request)
+            => Ok(await Send(request));
 
         [Route("decrementPriority")]
         [HttpGet]
-        [ResponseType(typeof(DecrementEpicPriorityCommand.DecrementEpicPriorityResponse))]
-        public async Task<IHttpActionResult> DecrementPriority([FromUri]IncrementEpicPriorityCommand.IncrementEpicPriorityRequest request)
-            => Ok(await _mediator.Send(request));
-
-        protected readonly IMediator _mediator;
-        protected readonly IUserManager _userManager;
+        [ResponseType(typeof(DecrementEpicPriorityCommand.Response))]
+        public async Task<IHttpActionResult> DecrementPriority([FromUri]DecrementEpicPriorityCommand.Request request)
+            => Ok(await Send(request));
     }
 }
