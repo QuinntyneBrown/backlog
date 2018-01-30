@@ -1,46 +1,46 @@
 import { Injectable, Inject } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Story } from "./story.model";
+import { Epic } from "./epic.model";
 import { Observable } from "rxjs/Observable";
 import { constants } from "../shared/constants";
 import { catchError } from "rxjs/operators";
 
 @Injectable()
-export class StoriesService {
+export class EpicsService {
     constructor(
         private _httpClient: HttpClient,
-        @Inject(constants.BASE_URL) private _baseUrl: string
-    ) { }
+        @Inject(constants.BASE_URL) private _baseUrl:string)
+    { }
 
-    public addOrUpdate(options: { story: Partial<Story> }) {
+    public addOrUpdate(options: { epic: Partial<Epic>}) {
         return this._httpClient
-            .post(`${this._baseUrl}/api/stories/add`, options)
+            .post(`${this._baseUrl}/api/epics/add`, options)
             .pipe(
                 catchError((error) => Observable.throw(error.json()))
             );
     }
 
-    public get(): Observable<{ stories: Array<Partial<Story>> }> {        
+    public get(): Observable<{ epics: Array<Partial<Epic>> }> {
         return this._httpClient
-            .get<{ stories: Array<Story> }>(`${this._baseUrl}/api/stories/get`)
+            .get<{ epics: Array<Epic> }>(`${this._baseUrl}/api/epics/get`)
             .pipe(
                 catchError((error) => Observable.throw(error.json()))
             );
     }
 
-    public getById(options: { id: number }): Observable<{ story:Partial<Story>}> {
+    public getById(options: { id: number }): Observable<{ epic:Partial<Epic>}> {
         return this._httpClient
-            .get<{ story: Story }>(`${this._baseUrl}/api/stories/getById?id=${options.id}`)
+            .get<{epic: Epic}>(`${this._baseUrl}/api/epics/getById?id=${options.id}`)
             .pipe(
                 catchError((error) => Observable.throw(error.json()))
             );
     }
 
-    public remove(options: { story: Partial<Story> }) {
+    public remove(options: { epic: Partial<Epic>}) {
         return this._httpClient
-            .delete(`${this._baseUrl}/api/stories/remove?id=${options.story.id}`)
+            .delete(`${this._baseUrl}/api/epics/remove?id=${options.epic.id}`)
             .pipe(
                 catchError((error) => Observable.throw(error.json()))
             );
-    }    
+    }
 }

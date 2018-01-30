@@ -1,0 +1,10 @@
+<section>
+    <h2>Product List</h2>
+
+    <a routerLink="/products/create">CREATE PRODUCTS</a>
+    <ce-product-item *ngFor="let product of products" 
+                   [product]="product"
+                   (onEditClick)="handleEditClick($event)"
+                   (onDeleteClick)="handleDeleteClick($event)">
+    </ce-product-item>
+</section>

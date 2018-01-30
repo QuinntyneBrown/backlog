@@ -7,8 +7,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>
-    </ProductVersion>
+    <ProductVersion></ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{E3F5734B-94DA-40AA-A453-004FFEFE6B0E}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -23,8 +22,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
+    <NuGetPackageImportStamp></NuGetPackageImportStamp>
     <TargetFrameworkProfile />
     <TypeScriptToolsVersion>2.5</TypeScriptToolsVersion>
     <Use64BitIISExpress />
@@ -237,8 +235,20 @@
     <Content Include="src\app\digital-assets\digital-asset-edit-page.component.css">
       <DependentUpon>digital-asset-edit-page.component.html</DependentUpon>
     </Content>
+    <Content Include="src\app\epics\epic-edit-page.component.css">
+      <DependentUpon>epic-edit-page.component.html</DependentUpon>
+    </Content>
+    <Content Include="src\app\epics\epic-item.component.css">
+      <DependentUpon>epic-item.component.html</DependentUpon>
+    </Content>
+    <Content Include="src\app\epics\epic-list-page.component.css">
+      <DependentUpon>epic-list-page.component.html</DependentUpon>
+    </Content>
     <Content Include="src\app\page-not-found.component.css">
       <DependentUpon>page-not-found.component.html</DependentUpon>
+    </Content>
+    <Content Include="src\app\products\product-list-page.component.css">
+      <DependentUpon>product-list-page.component.html</DependentUpon>
     </Content>
     <Content Include="src\app\shared\components\digital-asset-input-url.component.css">
       <DependentUpon>digital-asset-input-url.component.html</DependentUpon>
@@ -298,6 +308,9 @@
     <Content Include="src\app\sign-up\sign-up.component.css">
       <DependentUpon>sign-up.component.html</DependentUpon>
     </Content>
+    <Content Include="src\app\sprints\sprint-list-page.component.css">
+      <DependentUpon>sprint-list-page.component.html</DependentUpon>
+    </Content>
     <Content Include="src\app\stories\story-edit-page.component.css">
       <DependentUpon>story-edit-page.component.html</DependentUpon>
     </Content>
@@ -356,6 +369,11 @@
     <Content Include="src\app\shared\components\circular-button.component.html" />
     <Content Include="src\app\home-pages\home-page-edit-page.component.html" />
     <Content Include="src\app\page-not-found.component.html" />
+    <Content Include="src\app\epics\epic-list-page.component.html" />
+    <Content Include="src\app\products\product-list-page.component.html" />
+    <Content Include="src\app\sprints\sprint-list-page.component.html" />
+    <Content Include="src\app\epics\epic-edit-page.component.html" />
+    <Content Include="src\app\epics\epic-item.component.html" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="index.html" />
@@ -395,9 +413,23 @@
     <TypeScriptCompile Include="src\app\digital-assets\digital-asset-edit-page.component.ts">
       <DependentUpon>digital-asset-edit-page.component.html</DependentUpon>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="src\app\epics\epic-edit-page.component.ts">
+      <DependentUpon>epic-edit-page.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\app\epics\epic-item.component.ts">
+      <DependentUpon>epic-item.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\app\epics\epic-list-page.component.ts">
+      <DependentUpon>epic-list-page.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\app\epics\epic.model.ts" />
     <TypeScriptCompile Include="src\app\page-not-found.component.ts">
       <DependentUpon>page-not-found.component.html</DependentUpon>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="src\app\products\product-list-page.component.ts">
+      <DependentUpon>product-list-page.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\app\products\product.model.ts" />
     <TypeScriptCompile Include="src\app\shared\components\digital-asset-input-url.component.ts">
       <DependentUpon>digital-asset-input-url.component.html</DependentUpon>
     </TypeScriptCompile>
@@ -479,6 +511,10 @@
       <DependentUpon>sign-up.component.html</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="src\app\sign-up\sign-up.module.ts" />
+    <TypeScriptCompile Include="src\app\sprints\sprint-list-page.component.ts">
+      <DependentUpon>sprint-list-page.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\app\sprints\sprint.model.ts" />
     <TypeScriptCompile Include="src\app\stories\story-edit-page.component.ts">
       <DependentUpon>story-edit-page.component.html</DependentUpon>
     </TypeScriptCompile>
@@ -539,6 +575,10 @@
     <TypeScriptCompile Include="src\app\dashboard-tiles\dashboard-tile-header.component.ts" />
     <TypeScriptCompile Include="src\app\dashboard-tiles\dashboard-tile.component.ts" />
     <TypeScriptCompile Include="src\app\dashboard-tiles\dashboard-tile-menu.component.ts" />
+    <TypeScriptCompile Include="src\app\epics\epics.service.ts" />
+    <TypeScriptCompile Include="src\app\products\products.service.ts" />
+    <TypeScriptCompile Include="src\app\sprints\sprints.service.ts" />
+    <TypeScriptCompile Include="src\app\epics\epics.module.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
@@ -568,8 +608,7 @@
           <IISUrl>http://localhost:6608/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
+          <CustomServerUrl></CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>

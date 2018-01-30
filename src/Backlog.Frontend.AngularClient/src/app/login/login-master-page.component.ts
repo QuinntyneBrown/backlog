@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { RedirectService } from "../shared/services/redirect.service";
 import { Storage } from "../shared/services";
 import { constants } from "../shared/constants";
+import { Subject } from "rxjs/Subject";
 
 function formEncode(data: any) {
     var pairs = [];
@@ -43,12 +44,13 @@ export class LoginMasterPageComponent {
 
         const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
 
-        this._client.post(`${this._baseUrl}/api/users/token`, formEncode($event.value), { headers })            
+        this._client.post(`${this._baseUrl}/api/users/token`, formEncode($event.value), { headers })
+            .takeUntil(this._ngUnsubscribe)
             .do(response => this._storage.put({ name: constants.ACCESS_TOKEN_KEY, value: response["access_token"] }))
             .switchMap(() => this._client.get(`${this._baseUrl}/api/users/current`))
-            .do(response => this._storage.put({ name: constants.CURRENT_USER_KEY, value: response["user"] }))            
-            .toPromise()
-            .then(() => this._loginRedirectService.redirectPreLogin());
+            .do(response => this._storage.put({ name: constants.CURRENT_USER_KEY, value: response["user"] }))
+            .do(() => this._loginRedirectService.redirectPreLogin())
+            .subscribe();
     }
 
     public username: string = "";
@@ -56,4 +58,8 @@ export class LoginMasterPageComponent {
     public password: string = "";
 
     public rememberMe: boolean = false;
+
+    private _ngUnsubscribe: Subject<void> = new Subject();
+
+    public ngOnDestroy() { this._ngUnsubscribe.next(); }
 }
