@@ -7,14 +7,14 @@ namespace Backlog.Features.Tags
 {
     public class RemoveTagCommand
     {
-        public class RemoveTagRequest : IRequest<RemoveTagResponse>
+        public class Request : IRequest<Response>
         {
             public int Id { get; set; }
         }
 
-        public class RemoveTagResponse { }
+        public class Response { }
 
-        public class RemoveTagHandler : IAsyncRequestHandler<RemoveTagRequest, RemoveTagResponse>
+        public class RemoveTagHandler : IAsyncRequestHandler<Request, Response>
         {
             public RemoveTagHandler(BacklogContext context, ICache cache)
             {
@@ -22,12 +22,12 @@ namespace Backlog.Features.Tags
                 _cache = cache;
             }
 
-            public async Task<RemoveTagResponse> Handle(RemoveTagRequest request)
+            public async Task<Response> Handle(Request request)
             {
                 var tag = await _context.Tags.FindAsync(request.Id);
                 tag.IsDeleted = true;
                 await _context.SaveChangesAsync();
-                return new RemoveTagResponse();
+                return new Response();
             }
 
             private readonly BacklogContext _context;

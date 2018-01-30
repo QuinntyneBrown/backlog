@@ -10,16 +10,16 @@ namespace Backlog.Features.Tags
 {
     public class GetTagByIdQuery
     {
-        public class GetTagByIdRequest : IRequest<GetTagByIdResponse> { 
+        public class Request : IRequest<Response> { 
             public int Id { get; set; }
         }
 
-        public class GetTagByIdResponse
+        public class Response
         {
             public TagApiModel Tag { get; set; } 
         }
 
-        public class GetTagByIdHandler : IAsyncRequestHandler<GetTagByIdRequest, GetTagByIdResponse>
+        public class GetTagByIdHandler : IAsyncRequestHandler<Request, Response>
         {
             public GetTagByIdHandler(BacklogContext context, ICache cache)
             {
@@ -27,9 +27,9 @@ namespace Backlog.Features.Tags
                 _cache = cache;
             }
 
-            public async Task<GetTagByIdResponse> Handle(GetTagByIdRequest request)
+            public async Task<Response> Handle(Request request)
             {                
-                return new GetTagByIdResponse()
+                return new Response()
                 {
                     Tag = TagApiModel.FromTag(await _context.Tags.FindAsync(request.Id))
                 };

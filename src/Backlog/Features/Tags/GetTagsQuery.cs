@@ -10,14 +10,14 @@ namespace Backlog.Features.Tags
 {
     public class GetTagsQuery
     {
-        public class GetTagsRequest : IRequest<GetTagsResponse> { }
+        public class Request : IRequest<Response> { }
 
-        public class GetTagsResponse
+        public class Response
         {
             public ICollection<TagApiModel> Tags { get; set; } = new HashSet<TagApiModel>();
         }
 
-        public class GetTagsHandler : IAsyncRequestHandler<GetTagsRequest, GetTagsResponse>
+        public class GetTagsHandler : IAsyncRequestHandler<Request, Response>
         {
             public GetTagsHandler(BacklogContext context, ICache cache)
             {
@@ -25,13 +25,13 @@ namespace Backlog.Features.Tags
                 _cache = cache;
             }
 
-            public async Task<GetTagsResponse> Handle(GetTagsRequest request)
+            public async Task<Response> Handle(Request request)
             {
                 var tags = await _context.Tags
                     .Where(x=>x.IsDeleted == false)
                     .ToListAsync();
 
-                return new GetTagsResponse()
+                return new Response()
                 {
                     Tags = tags.Select(x => TagApiModel.FromTag(x)).ToList()
                 };

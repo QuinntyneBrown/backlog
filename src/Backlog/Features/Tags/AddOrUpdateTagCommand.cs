@@ -11,17 +11,17 @@ namespace Backlog.Features.Tags
 {
     public class AddOrUpdateTagCommand
     {
-        public class AddOrUpdateTagRequest : IRequest<AddOrUpdateTagResponse>
+        public class Request : IRequest<Response>
         {
             public TagApiModel Tag { get; set; }
         }
 
-        public class AddOrUpdateTagResponse
+        public class Response
         {
 
         }
 
-        public class AddOrUpdateTagHandler : IAsyncRequestHandler<AddOrUpdateTagRequest, AddOrUpdateTagResponse>
+        public class AddOrUpdateTagHandler : IAsyncRequestHandler<Request, Response>
         {
             public AddOrUpdateTagHandler(BacklogContext context, ICache cache)
             {
@@ -29,7 +29,7 @@ namespace Backlog.Features.Tags
                 _cache = cache;
             }
 
-            public async Task<AddOrUpdateTagResponse> Handle(AddOrUpdateTagRequest request)
+            public async Task<Response> Handle(Request request)
             {
                 var entity = await _context.Tags
                     .SingleOrDefaultAsync(x => x.Id == request.Tag.Id && x.IsDeleted == false);
@@ -37,7 +37,7 @@ namespace Backlog.Features.Tags
                 entity.Name = request.Tag.Name;
                 await _context.SaveChangesAsync();
 
-                return new AddOrUpdateTagResponse()
+                return new Response()
                 {
 
                 };

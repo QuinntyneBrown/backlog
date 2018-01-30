@@ -11,17 +11,17 @@ namespace Backlog.Features.UserSettings
 {
     public class AddOrUpdateUserSettingsCommand
     {
-        public class AddOrUpdateUserSettingsRequest : IRequest<AddOrUpdateUserSettingsResponse>
+        public class Request : IRequest<Response>
         {
             public UserSettingsApiModel UserSettings { get; set; }
         }
 
-        public class AddOrUpdateUserSettingsResponse
+        public class Response
         {
 
         }
 
-        public class AddOrUpdateUserSettingsHandler : IAsyncRequestHandler<AddOrUpdateUserSettingsRequest, AddOrUpdateUserSettingsResponse>
+        public class AddOrUpdateUserSettingsHandler : IAsyncRequestHandler<Request, Response>
         {
             public AddOrUpdateUserSettingsHandler(IBacklogContext context, ICache cache)
             {
@@ -29,7 +29,7 @@ namespace Backlog.Features.UserSettings
                 _cache = cache;
             }
 
-            public async Task<AddOrUpdateUserSettingsResponse> Handle(AddOrUpdateUserSettingsRequest request)
+            public async Task<Response> Handle(Request request)
             {
                 var entity = await _context.UserSettings
                     .SingleOrDefaultAsync(x => x.Id == request.UserSettings.Id && x.IsDeleted == false);
@@ -37,7 +37,7 @@ namespace Backlog.Features.UserSettings
                 entity.Name = request.UserSettings.Name;
                 await _context.SaveChangesAsync();
 
-                return new AddOrUpdateUserSettingsResponse()
+                return new Response()
                 {
 
                 };

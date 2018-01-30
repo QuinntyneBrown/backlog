@@ -11,14 +11,14 @@ namespace Backlog.Features.UserSettings
 {
     public class RemoveUserSettingsCommand
     {
-        public class RemoveUserSettingsRequest : IRequest<RemoveUserSettingsResponse>
+        public class Request : IRequest<Response>
         {
             public int Id { get; set; }
         }
 
-        public class RemoveUserSettingsResponse { }
+        public class Response { }
 
-        public class RemoveUserSettingsHandler : IAsyncRequestHandler<RemoveUserSettingsRequest, RemoveUserSettingsResponse>
+        public class RemoveUserSettingsHandler : IAsyncRequestHandler<Request, Response>
         {
             public RemoveUserSettingsHandler(IBacklogContext context, ICache cache)
             {
@@ -26,12 +26,12 @@ namespace Backlog.Features.UserSettings
                 _cache = cache;
             }
 
-            public async Task<RemoveUserSettingsResponse> Handle(RemoveUserSettingsRequest request)
+            public async Task<Response> Handle(Request request)
             {
                 var userSettings = await _context.UserSettings.FindAsync(request.Id);
                 userSettings.IsDeleted = true;
                 await _context.SaveChangesAsync();
-                return new RemoveUserSettingsResponse();
+                return new Response();
             }
 
             private readonly IBacklogContext _context;

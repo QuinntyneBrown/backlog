@@ -10,16 +10,16 @@ namespace Backlog.Features.UserSettings
 {
     public class GetUserSettingsByIdQuery
     {
-        public class GetUserSettingsByIdRequest : IRequest<GetUserSettingsByIdResponse> { 
+        public class Request : IRequest<Response> { 
 			public int Id { get; set; }
 		}
 
-        public class GetUserSettingsByIdResponse
+        public class Response
         {
             public UserSettingsApiModel UserSettings { get; set; } 
 		}
 
-        public class GetUserSettingsByIdHandler : IAsyncRequestHandler<GetUserSettingsByIdRequest, GetUserSettingsByIdResponse>
+        public class GetUserSettingsByIdHandler : IAsyncRequestHandler<Request, Response>
         {
             public GetUserSettingsByIdHandler(IBacklogContext context, ICache cache)
             {
@@ -27,9 +27,9 @@ namespace Backlog.Features.UserSettings
                 _cache = cache;
             }
 
-            public async Task<GetUserSettingsByIdResponse> Handle(GetUserSettingsByIdRequest request)
+            public async Task<Response> Handle(Request request)
             {                
-                return new GetUserSettingsByIdResponse()
+                return new Response()
                 {
                     UserSettings = UserSettingsApiModel.FromUserSettings(await _context.UserSettings.FindAsync(request.Id))
                 };
