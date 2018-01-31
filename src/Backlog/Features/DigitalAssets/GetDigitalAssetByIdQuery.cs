@@ -1,13 +1,14 @@
 using MediatR;
 using Backlog.Data;
-using System.Threading.Tasks;
 using Backlog.Features.Core;
+using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace Backlog.Features.DigitalAssets
 {
     public class GetDigitalAssetByIdQuery
     {
-        public class Request : IRequest<Response> { 
+        public class Request : BaseAuthenticatedRequest, IRequest<Response> { 
 			public int Id { get; set; }
 		}
 
@@ -25,10 +26,14 @@ namespace Backlog.Features.DigitalAssets
             }
 
             public async Task<Response> Handle(Request request)
-            {                
+            {
+                var digitalAsset = await _context.DigitalAssets
+                    .Include(x => x.Tenant)
+                    .SingleAsync(x => x.Id == request.Id && x.Tenant.UniqueId == request.TenantUniqueId);
+
                 return new Response()
                 {
-                    DigitalAsset = DigitalAssetApiModel.FromDigitalAsset(await _context.DigitalAssets.FindAsync(request.Id))
+                    DigitalAsset = DigitalAssetApiModel.FromDigitalAsset(digitalAsset)
                 };
             }
 

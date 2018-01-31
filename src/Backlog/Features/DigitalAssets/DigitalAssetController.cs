@@ -10,6 +10,7 @@ using Backlog.Features.Core;
 using Backlog.Features.Security;
 using System;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace Backlog.Features.DigitalAssets
 {
@@ -86,14 +87,8 @@ namespace Backlog.Features.DigitalAssets
             
             var provider = await Request.Content.ReadAsMultipartAsync(new InMemoryMultipartFormDataStreamProvider());
             var uploadRequest = new UploadDigitalAssetCommand.Request() { Provider = provider };
-            try
-            {
-                uploadRequest.IsSecure = Convert.ToBoolean(request.Headers.GetValues("IsSecure").First());
-            }
-            catch
-            {
-                Console.Write("flop");
-            }
+            
+            uploadRequest.IsSecure = Convert.ToBoolean(request.GetHeaderValue("IsSecure"));
 
             return Ok(await Send(uploadRequest));
         }

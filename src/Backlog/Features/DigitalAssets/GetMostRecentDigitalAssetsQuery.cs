@@ -1,21 +1,16 @@
-using MediatR;
 using Backlog.Data;
 using Backlog.Features.Core;
-using System;
+using MediatR;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
 using System.Data.Entity;
-using Backlog.Model;
 
 namespace Backlog.Features.DigitalAssets
 {
     public class GetMostRecentDigitalAssetsQuery
     {
-        public class Request : BaseAuthenticatedRequest, IRequest<Response>
-        {
-            
-        }
+        public class Request : BaseAuthenticatedRequest, IRequest<Response> { }
 
         public class Response
         {
