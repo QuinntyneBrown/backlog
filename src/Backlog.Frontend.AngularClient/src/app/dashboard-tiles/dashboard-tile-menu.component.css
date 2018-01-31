@@ -1,6 +1,9 @@
 :host {
     display: block;
     content: contain;
+    background-color:#fff;
+    border: 1px solid #ccc;
+    padding:10px;
 }
 
 ul, li, a {
@@ -10,7 +13,7 @@ ul, li, a {
 }
 
 ul {
-    margin: 0px 0px 0px 5px;
+    margin: 0px 0px 0px 0px;
 }
 
 li {

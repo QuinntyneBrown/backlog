@@ -10,9 +10,8 @@ export const POPOVER_CLOSE = "[Popover] Close";
 
 export interface IPopoverService { }
 
-export function PopoverServiceFactory(_position: Position) {
-    PopoverService.instance = PopoverService.instance || new PopoverService(_position);
-    PopoverService.create = function () { return new PopoverService(_position); }.bind(this);
+export function PopoverServiceFactory(_position: Position) {    
+    PopoverService.instance = PopoverService.instance || new PopoverService(_position);    
     return PopoverService.instance;
 }
 
@@ -27,34 +26,21 @@ export class PopoverService implements IPopoverService {
 
     public static instance: PopoverService;
     
-    public static create(): PopoverService { throw new Error("");}
-     
-
-    public async show(options: { target: HTMLElement, html: string }): Promise<any> {
-
-        if (this._nativeElement && this._targetElement == options.target) {
-            await this.hide();
-            return new Promise(resolve => resolve());
-        }
-
-        this._targetElement = options.target;
-
+    public createInstance(): PopoverService {
+        return new PopoverService(this._position);
+    }
+    
+    public async show(options: { target: HTMLElement, html: string }): Promise<any> {                
         const containerElement = document.querySelector('body');
-
-        this._nativeElement = createElement({ html: options.html });
-
-        
+        this.nativeElement = createElement({ html: options.html });        
         this.setInitialCss();
-
         await this._position.bottomLeft({
             component: this.nativeElement,
             target: options.target,
             space: 0
         });
-
         containerElement.appendChild(this.nativeElement);
-        setTimeout(() => { this.nativeElement.style.opacity = "100"; }, 100);
-
+        setTimeout(() => { this.nativeElement.style.opacity = "100"; }, 100);        
     }
 
     public hide(target: HTMLElement = null): Promise<any> {
@@ -62,9 +48,9 @@ export class PopoverService implements IPopoverService {
             return Promise.resolve(null);
         } else {
             return new Promise((resolve) => {
-                if (this._nativeElement) {
-                    this._nativeElement.parentNode.removeChild(this.nativeElement);
-                    this._nativeElement = null;
+                if (this.nativeElement) {
+                    this.nativeElement.parentNode.removeChild(this.nativeElement);
+                    this.nativeElement = null;
                 }
                 resolve();
             });
@@ -72,7 +58,7 @@ export class PopoverService implements IPopoverService {
     }
 
     public get isOpen(): boolean {
-        return this._nativeElement != null;
+        return this.nativeElement != null;
     }
 
     private setInitialCss() {
@@ -86,13 +72,9 @@ export class PopoverService implements IPopoverService {
 
     public transitionDurationInMilliseconds: number;
 
-    private _nativeElement: HTMLElement;
+    public nativeElement: HTMLElement;
 
-    private _targetElement: HTMLElement;
-    
-    public get nativeElement(): HTMLElement {
-        return this._nativeElement;
-    }
+    public targetElement: HTMLElement;
 
     public templateHTML: string;
 }

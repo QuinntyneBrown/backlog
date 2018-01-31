@@ -18,16 +18,16 @@ export class DigitalAssetsDashboardTileComponent extends DashboardTileComponent 
         return html`
         ${this.baseStyles}
         ${styles}
-        <ce-dashboard-tile-header dashboard-tile-heading="Files"></ce-dashboard-tile-header>
+        <ce-dashboard-tile-header dashboard-tile='${JSON.stringify(this.dashboardTile)}'></ce-dashboard-tile-header>
     `;
     }
     
     protected _setEventListeners() {
-        this.addEventListener("click", this.handleClick);
+        //this.addEventListener("click", this.handleClick);
     }
 
     disconnectedCallback() {
-        this.removeEventListener("click", this.handleClick);
+        //this.removeEventListener("click", this.handleClick);
     }
 
     public handleClick() {

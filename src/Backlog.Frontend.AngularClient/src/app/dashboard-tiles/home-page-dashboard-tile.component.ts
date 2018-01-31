@@ -17,7 +17,7 @@ export class HomePageDashboardTileComponent extends DashboardTileComponent {
         return html`
         ${this.baseStyles}
         ${styles}
-        <ce-dashboard-tile-header dashboard-tile-heading="${this.dashboardTile.tile.name}"></ce-dashboard-tile-header>
+        <ce-dashboard-tile-header dashboard-tile='${JSON.stringify(this.dashboardTile)}'></ce-dashboard-tile-header>
     `;
     }
 

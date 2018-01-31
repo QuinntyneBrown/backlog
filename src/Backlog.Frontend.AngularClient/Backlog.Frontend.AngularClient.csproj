@@ -385,7 +385,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="src\app\tags\" />
+  </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="src\app\app-master-page.component.ts">
       <DependentUpon>app-master-page.component.html</DependentUpon>
@@ -395,6 +397,10 @@
     </TypeScriptCompile>
     <TypeScriptCompile Include="src\app\app.module.ts" />
     <TypeScriptCompile Include="src\app\app-routing.module.ts" />
+    <TypeScriptCompile Include="src\app\blog\article.model.ts" />
+    <TypeScriptCompile Include="src\app\blog\author.model.ts" />
+    <TypeScriptCompile Include="src\app\brands\brand.model.ts" />
+    <TypeScriptCompile Include="src\app\categories\category.model.ts" />
     <TypeScriptCompile Include="src\app\dashboard-tiles\constants.ts" />
     <TypeScriptCompile Include="src\app\dashboard-tiles\dashboard-tile-element-factory.ts" />
     <TypeScriptCompile Include="src\app\dashboard-tiles\dashboard-tiles.module.ts" />
@@ -423,6 +429,9 @@
       <DependentUpon>epic-list-page.component.html</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="src\app\epics\epic.model.ts" />
+    <TypeScriptCompile Include="src\app\features\feature-category.model.ts" />
+    <TypeScriptCompile Include="src\app\features\feature.model.ts" />
+    <TypeScriptCompile Include="src\app\feedback\feedback.model.ts" />
     <TypeScriptCompile Include="src\app\page-not-found.component.ts">
       <DependentUpon>page-not-found.component.html</DependentUpon>
     </TypeScriptCompile>
@@ -579,6 +588,19 @@
     <TypeScriptCompile Include="src\app\products\products.service.ts" />
     <TypeScriptCompile Include="src\app\sprints\sprints.service.ts" />
     <TypeScriptCompile Include="src\app\epics\epics.module.ts" />
+    <TypeScriptCompile Include="src\app\brands\brands.service.ts" />
+    <TypeScriptCompile Include="src\app\features\features.service.ts" />
+    <TypeScriptCompile Include="src\app\brands\index.ts" />
+    <TypeScriptCompile Include="src\app\brands\brand-owner.model.ts" />
+    <TypeScriptCompile Include="src\app\templates\index.ts" />
+    <TypeScriptCompile Include="src\app\templates\template.model.ts" />
+    <TypeScriptCompile Include="src\app\blog\articles.service.ts" />
+    <TypeScriptCompile Include="src\app\blog\authors.service.ts" />
+    <TypeScriptCompile Include="src\app\categories\categories.service.ts" />
+    <TypeScriptCompile Include="src\app\tags\index.ts" />
+    <TypeScriptCompile Include="src\app\tags\tag.model.ts" />
+    <TypeScriptCompile Include="src\app\tags\tags.service.ts" />
+    <TypeScriptCompile Include="src\app\brands\brand-owners.service.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

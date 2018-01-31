@@ -1,17 +1,15 @@
-using MediatR;
 using Backlog.Data;
 using Backlog.Features.Core;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Linq;
-using System.Data.Entity;
 using Backlog.Model;
+using MediatR;
+using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace Backlog.Features.Blog
 {
     public class AddOrUpdateAuthorCommand
     {
-        public class Request : IRequest<Response>
+        public class Request : BaseAuthenticatedRequest, IRequest<Response>
         {
             public AuthorApiModel Author { get; set; }
         }
@@ -29,14 +27,16 @@ namespace Backlog.Features.Blog
             public async Task<Response> Handle(Request request)
             {
                 var entity = await _context.Authors
-                    .SingleOrDefaultAsync(x => x.Id == request.Author.Id && x.IsDeleted == false);
+                    .Include(x => x.Tenant)
+                    .SingleOrDefaultAsync(x => x.Id == request.Author.Id && x.Tenant.UniqueId == request.TenantUniqueId);
+
                 if (entity == null) _context.Authors.Add(entity = new Author());
 
                 entity.Firstname = request.Author.Firstname;
                 entity.Lastname = request.Author.Lastname;
                 entity.AvatarUrl = request.Author.AvatarUrl;
 
-                await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync(request.Username);
 
                 return new Response() { };
             }

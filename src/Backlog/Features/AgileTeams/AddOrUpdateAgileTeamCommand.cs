@@ -1,8 +1,7 @@
-using MediatR;
 using Backlog.Data;
 using Backlog.Model;
 using Backlog.Features.Core;
-using System.Collections.Generic;
+using MediatR;
 using System.Threading.Tasks;
 using System.Linq;
 using System.Data.Entity;
@@ -11,7 +10,7 @@ namespace Backlog.Features.AgileTeams
 {
     public class AddOrUpdateAgileTeamCommand
     {
-        public class Request : IRequest<Response>
+        public class Request : BaseAuthenticatedRequest, IRequest<Response>
         {
             public AgileTeamApiModel AgileTeam { get; set; }
         }
@@ -29,10 +28,15 @@ namespace Backlog.Features.AgileTeams
             public async Task<Response> Handle(Request request)
             {
                 var entity = await _context.AgileTeams
-                    .SingleOrDefaultAsync(x => x.Id == request.AgileTeam.Id && x.IsDeleted == false);
+                    .Include(x => x.Tenant)
+                    .Where(x => x.Tenant.UniqueId == request.TenantUniqueId)
+                    .SingleOrDefaultAsync(x => x.Id == request.AgileTeam.Id);
+
                 if (entity == null) _context.AgileTeams.Add(entity = new AgileTeam());
+
                 entity.Name = request.AgileTeam.Name;
-                await _context.SaveChangesAsync();
+
+                await _context.SaveChangesAsync(request.Username);
 
                 return new Response();
             }
@@ -40,7 +44,5 @@ namespace Backlog.Features.AgileTeams
             private readonly IBacklogContext _context;
             private readonly ICache _cache;
         }
-
     }
-
 }

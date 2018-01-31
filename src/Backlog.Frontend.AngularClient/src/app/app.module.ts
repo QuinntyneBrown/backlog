@@ -24,7 +24,7 @@ const declarations = [
 ];
 
 const providers = [
-    { provide: constants.BASE_URL, useValue: "" },
+    { provide: constants.BASE_URL, useValue: "http://kirkbrown.azurewebsites.net" },
     { provide: constants.DEFAULT_PATH, useValue: "/dashboard" }
 ];
 

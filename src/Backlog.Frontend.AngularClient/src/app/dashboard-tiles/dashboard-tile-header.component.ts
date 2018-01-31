@@ -2,19 +2,25 @@ import { html, TemplateResult, render } from "lit-html";
 import { repeat } from "lit-html/lib/repeat";
 import { unsafeHTML } from "../../../node_modules/lit-html/lib/unsafe-html.js";
 import { PopoverService } from "../shared/services/popover.service";
+import { DashboardTile } from "./dashboard-tile.model";
 
 const styles = unsafeHTML(`<style>${require("./dashboard-tile-header.component.css")}<style>`);
 
 export class DashboardTileHeaderComponent extends HTMLElement {
-    constructor(private _popoverService: PopoverService = PopoverService.create()) {
+    constructor(popoverService: PopoverService = PopoverService.instance) {
         super();
+
+        this._popoverService = popoverService.createInstance(); 
+        this.handleMenuClick = this.handleMenuClick.bind(this);
     }
 
     static get observedAttributes () {
         return [
-            "dashboard-tile-heading"
+            "dashboard-tile"
         ];
     }
+
+    private _popoverService: PopoverService;
 
     connectedCallback() {     
 
@@ -32,34 +38,41 @@ export class DashboardTileHeaderComponent extends HTMLElement {
     get template(): TemplateResult {
         return html`
             ${styles}
-            <h1>${this.dashboardTileHeading}</h1><ce-dots-button></ce-dots-button>
+            <h1>${this.dashboardTile.tile.name}</h1><ce-dots-button></ce-dots-button>
         `;
     }
 
-    public handleMenuClick() {
+    public handleMenuClick($event) {
+        $event.stopPropagation();
 
+        if (this._popoverService.isOpen) {
+            this._popoverService.hide();
+        } else {
+            this._popoverService.show({ target: this.buttonElement, html: `<ce-dashboard-tile-menu dashboard-tile='${JSON.stringify(this.dashboardTile)}'></ce-dashboard-tile-menu>` });
+        }
     }
-
-    public popoverInstance: PopoverService;
+    
 
     private async _bind() {
-
+        
     }
 
     private _setEventListeners() {
-
+        this.buttonElement.addEventListener("click", this.handleMenuClick);
     }
 
     disconnectedCallback() {
-
+        this.buttonElement.removeEventListener("click", this.handleMenuClick);
     }
 
-    public dashboardTileHeading: string;
+    public get buttonElement(): HTMLElement { return this.shadowRoot.querySelector("ce-dots-button") as HTMLElement; }
+
+    public dashboardTile: DashboardTile;
 
     attributeChangedCallback (name, oldValue, newValue) {
         switch (name) {
-            case "dashboard-tile-heading":
-                this.dashboardTileHeading = newValue;
+            case "dashboard-tile":
+                this.dashboardTile = JSON.parse(newValue);
                 break;
         }
     }
