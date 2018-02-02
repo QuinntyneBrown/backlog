@@ -162,6 +162,7 @@
     <Compile Include="Model\ILoggable.cs" />
     <Compile Include="Model\Ip.cs" />
     <Compile Include="Model\IPrioritizable.cs" />
+    <Compile Include="Model\ISoftDeletable.cs" />
     <Compile Include="Model\PrioritizableEntity.cs" />
     <Compile Include="Features\Blog\ArticleSlugExistsException.cs" />
     <Compile Include="Features\Blog\AuthorController.cs" />

@@ -1,6 +1,4 @@
 using MediatR;
-using System;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
@@ -9,7 +7,7 @@ using Backlog.Features.Core;
 namespace Backlog.Features.DashboardTiles
 {
     [Authorize]
-    [RoutePrefix("api/dashboardTiles")]
+    [RoutePrefix("api/dashboardtiles")]
     public class DashboardTileController : BaseApiController
     {
         public DashboardTileController(IMediator mediator)

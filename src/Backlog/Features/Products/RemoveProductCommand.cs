@@ -1,17 +1,14 @@
-using MediatR;
 using Backlog.Data;
-using Backlog.Model;
 using Backlog.Features.Core;
-using System.Collections.Generic;
+using MediatR;
 using System.Threading.Tasks;
-using System.Linq;
 using System.Data.Entity;
 
 namespace Backlog.Features.Products
 {
     public class RemoveProductCommand
     {
-        public class Request : IRequest<Response>
+        public class Request : BaseAuthenticatedRequest, IRequest<Response>
         {
             public int Id { get; set; }
         }
@@ -28,9 +25,14 @@ namespace Backlog.Features.Products
 
             public async Task<Response> Handle(Request request)
             {
-                var product = await _context.Products.FindAsync(request.Id);
+                var product = await _context.Products
+                    .Include(x => x.Tenant)
+                    .SingleAsync(x => x.Id == request.Id && x.Tenant.UniqueId == request.TenantUniqueId);
+
                 product.IsDeleted = true;
-                await _context.SaveChangesAsync();
+
+                await _context.SaveChangesAsync(request.Username);
+
                 return new Response();
             }
 

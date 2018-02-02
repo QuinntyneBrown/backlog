@@ -1,17 +1,14 @@
 using MediatR;
 using Backlog.Data;
-using Backlog.Model;
 using Backlog.Features.Core;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Linq;
 using System.Data.Entity;
+using System.Threading.Tasks;
 
 namespace Backlog.Features.Epics
 {
     public class RemoveEpicCommand
     {
-        public class Request : IRequest<Response>
+        public class Request : BaseAuthenticatedRequest, IRequest<Response>
         {
             public int Id { get; set; }
         }
@@ -28,9 +25,14 @@ namespace Backlog.Features.Epics
 
             public async Task<Response> Handle(Request request)
             {
-                var epic = await _context.Epics.FindAsync(request.Id);
+                var epic = await _context.Epics
+                    .Include(x => x.Tenant)
+                    .SingleAsync(x => x.Tenant.UniqueId == request.TenantUniqueId);
+
                 epic.IsDeleted = true;
-                await _context.SaveChangesAsync();
+
+                await _context.SaveChangesAsync(request.Username);
+
                 return new Response();
             }
 

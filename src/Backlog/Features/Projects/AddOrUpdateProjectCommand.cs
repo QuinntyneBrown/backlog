@@ -2,9 +2,7 @@ using MediatR;
 using Backlog.Data;
 using Backlog.Model;
 using Backlog.Features.Core;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Linq;
 using System.Data.Entity;
 
 namespace Backlog.Features.Projects
@@ -16,10 +14,7 @@ namespace Backlog.Features.Projects
             public ProjectApiModel Project { get; set; }
         }
 
-        public class Response
-        {
-
-        }
+        public class Response { }
 
         public class AddOrUpdateProjectHandler : IAsyncRequestHandler<Request, Response>
         {
@@ -37,10 +32,7 @@ namespace Backlog.Features.Projects
                 entity.Name = request.Project.Name;
                 await _context.SaveChangesAsync();
 
-                return new Response()
-                {
-
-                };
+                return new Response();
             }
 
             private readonly IBacklogContext _context;

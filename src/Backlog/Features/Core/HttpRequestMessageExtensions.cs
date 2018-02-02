@@ -21,6 +21,5 @@ namespace Backlog.Features.Core
 
             return null;
         }
-
     }
 }

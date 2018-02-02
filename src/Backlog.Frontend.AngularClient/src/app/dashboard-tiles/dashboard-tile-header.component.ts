@@ -43,6 +43,7 @@ export class DashboardTileHeaderComponent extends HTMLElement {
     }
 
     public handleMenuClick($event) {
+        alert("?");
         $event.stopPropagation();
 
         if (this._popoverService.isOpen) {

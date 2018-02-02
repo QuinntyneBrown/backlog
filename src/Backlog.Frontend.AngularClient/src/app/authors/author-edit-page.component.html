@@ -1,0 +1,10 @@
+<section>
+    <h2 *ngIf="author.id">Edit Author: {{ author.name }}</h2>
+    <h2 *ngIf="!author.id">Create Author</h2>
+
+    <h3>Name</h3>
+    <input [formControl]="nameFormControl" />
+
+    <button (click)="tryToSave()">Save</button>
+    <button (click)="tryToDelete()" *ngIf="author.id">Delete</button>
+</section>

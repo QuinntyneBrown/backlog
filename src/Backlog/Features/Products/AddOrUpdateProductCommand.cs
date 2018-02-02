@@ -10,7 +10,7 @@ namespace Backlog.Features.Products
 {
     public class AddOrUpdateProductCommand
     {
-        public class Request : IRequest<Response>
+        public class Request : BaseAuthenticatedRequest, IRequest<Response>
         {
             public ProductApiModel Product { get; set; }
         }
@@ -28,12 +28,21 @@ namespace Backlog.Features.Products
             public async Task<Response> Handle(Request request)
             {                
                 var entity = await _context.Products
-                    .SingleOrDefaultAsync(x => x.Id == request.Product.Id && x.IsDeleted == false);
-                if (entity == null) _context.Products.Add(entity = new Product());
+                    .Include(x => x.Tenant)
+                    .SingleOrDefaultAsync(x => x.Id == request.Product.Id && x.Tenant.UniqueId == request.TenantUniqueId);
+
+                if (entity == null) {
+                    var tenant = await _context.Tenants.SingleAsync(x => x.UniqueId == request.TenantUniqueId);
+
+                    _context.Products.Add(entity = new Product() {
+                        Tenant = tenant
+                    });
+                }
+
                 entity.Name = request.Product.Name;
                 entity.Slug = request.Product.Name.GenerateSlug();
 
-                await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync(request.Username);
 
                 return new Response();
             }

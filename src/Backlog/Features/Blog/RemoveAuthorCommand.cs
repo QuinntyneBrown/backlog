@@ -2,12 +2,13 @@ using MediatR;
 using Backlog.Data;
 using Backlog.Features.Core;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace Backlog.Features.Blog
 {
     public class RemoveAuthorCommand
     {
-        public class Request : IRequest<Response>
+        public class Request : BaseAuthenticatedRequest, IRequest<Response>
         {
             public int Id { get; set; }
         }
@@ -24,9 +25,12 @@ namespace Backlog.Features.Blog
 
             public async Task<Response> Handle(Request request)
             {
-                var author = await _context.Authors.FindAsync(request.Id);
-                author.IsDeleted = true;
-                await _context.SaveChangesAsync();
+                _context.Authors.Remove(await _context.Authors
+                    .Include(x => x.Tenant)                    
+                    .SingleAsync(x => x.Id == request.Id && x.Tenant.UniqueId == request.TenantUniqueId));
+
+                await _context.SaveChangesAsync(request.Username);
+
                 return new Response();
             }
 

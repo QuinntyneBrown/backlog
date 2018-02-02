@@ -10,7 +10,7 @@ namespace Backlog.Features.Epics
 {
     public class AddOrUpdateEpicCommand
     {
-        public class Request : IRequest<Response>
+        public class Request : BaseAuthenticatedRequest, IRequest<Response>
         {
             public EpicApiModel Epic { get; set; }
         }
@@ -41,7 +41,7 @@ namespace Backlog.Features.Epics
                 if (request.Epic.Priority.HasValue)
                     entity.Priority = request.Epic.Priority.Value;
                 
-                await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync(request.Username);
 
                 return new Response();
             }

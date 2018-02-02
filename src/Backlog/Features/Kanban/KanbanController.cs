@@ -9,6 +9,5 @@ namespace Backlog.Features.Kanban
     {
         public KanbanController(IMediator mediator)
             :base(mediator){ }
-        
     }
 }

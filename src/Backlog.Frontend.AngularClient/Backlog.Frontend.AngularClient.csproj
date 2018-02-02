@@ -7,7 +7,8 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion></ProductVersion>
+    <ProductVersion>
+    </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{E3F5734B-94DA-40AA-A453-004FFEFE6B0E}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -22,7 +23,8 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
-    <NuGetPackageImportStamp></NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
     <TargetFrameworkProfile />
     <TypeScriptToolsVersion>2.5</TypeScriptToolsVersion>
     <Use64BitIISExpress />
@@ -211,6 +213,36 @@
     <Content Include="src\app\app.component.css">
       <DependentUpon>app.component.html</DependentUpon>
     </Content>
+    <Content Include="src\app\articles\article-edit-page.component.css">
+      <DependentUpon>article-edit-page.component.html</DependentUpon>
+    </Content>
+    <Content Include="src\app\articles\article-item.component.css">
+      <DependentUpon>article-item.component.html</DependentUpon>
+    </Content>
+    <Content Include="src\app\articles\article-list-page.component.css">
+      <DependentUpon>article-list-page.component.html</DependentUpon>
+    </Content>
+    <Content Include="src\app\authors\author-edit-page.component.css">
+      <DependentUpon>author-edit-page.component.html</DependentUpon>
+    </Content>
+    <Content Include="src\app\authors\author-item.component.css">
+      <DependentUpon>author-item.component.html</DependentUpon>
+    </Content>
+    <Content Include="src\app\authors\author-list-page.component.css">
+      <DependentUpon>author-list-page.component.html</DependentUpon>
+    </Content>
+    <Content Include="src\app\brand-owners\brand-owner-edit-page.component.css">
+      <DependentUpon>brand-owner-edit-page.component.html</DependentUpon>
+    </Content>
+    <Content Include="src\app\brand-owners\brand-owner-item.component.css">
+      <DependentUpon>brand-owner-item.component.html</DependentUpon>
+    </Content>
+    <Content Include="src\app\brand-owners\brand-owner-list-page.component.css">
+      <DependentUpon>brand-owner-list-page.component.html</DependentUpon>
+    </Content>
+    <Content Include="src\app\dashboard-tiles\configure-dashboard-tile-modal.component.css">
+      <DependentUpon>configure-dashboard-tile-modal.component.ts</DependentUpon>
+    </Content>
     <Content Include="src\app\dashboard-tiles\dashboard-tile-header.component.css">
       <DependentUpon>dashboard-tile-header.component.ts</DependentUpon>
     </Content>
@@ -222,6 +254,9 @@
     </Content>
     <Content Include="src\app\dashboard-tiles\home-page-dashboard-tile.component.css">
       <DependentUpon>home-page-dashboard-tile.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\dashboard-tiles\products-dashboard-tile.component.css">
+      <DependentUpon>products-dashboard-tile.component.ts</DependentUpon>
     </Content>
     <Content Include="src\app\dashboard\dashboard-header.component.css">
       <DependentUpon>dashboard-header.component.html</DependentUpon>
@@ -374,20 +409,29 @@
     <Content Include="src\app\sprints\sprint-list-page.component.html" />
     <Content Include="src\app\epics\epic-edit-page.component.html" />
     <Content Include="src\app\epics\epic-item.component.html" />
+    <Content Include="src\app\articles\article-list-page.component.html" />
+    <Content Include="src\app\articles\article-edit-page.component.html" />
+    <Content Include="src\app\articles\article-item.component.html" />
+    <Content Include="src\app\authors\author-list-page.component.html" />
+    <Content Include="src\app\authors\author-edit-page.component.html" />
+    <Content Include="src\app\authors\author-item.component.html" />
+    <Content Include="src\app\brand-owners\brand-owner-item.component.html" />
+    <Content Include="src\app\brand-owners\brand-owner-list-page.component.html" />
+    <Content Include="src\app\brand-owners\brand-owner-edit-page.component.html" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="index.html" />
     <Content Include="src\app\app.component.html" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="webpack.config.js" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="src\app\tags\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <TypeScriptCompile Include="src\app\app-master-page.component.ts">
       <DependentUpon>app-master-page.component.html</DependentUpon>
@@ -397,12 +441,38 @@
     </TypeScriptCompile>
     <TypeScriptCompile Include="src\app\app.module.ts" />
     <TypeScriptCompile Include="src\app\app-routing.module.ts" />
-    <TypeScriptCompile Include="src\app\blog\article.model.ts" />
-    <TypeScriptCompile Include="src\app\blog\author.model.ts" />
+    <TypeScriptCompile Include="src\app\articles\article-edit-page.component.ts">
+      <DependentUpon>article-edit-page.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\app\articles\article-item.component.ts">
+      <DependentUpon>article-item.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\app\articles\article-list-page.component.ts">
+      <DependentUpon>article-list-page.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\app\authors\author-edit-page.component.ts">
+      <DependentUpon>author-edit-page.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\app\authors\author-item.component.ts">
+      <DependentUpon>author-item.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\app\authors\author-list-page.component.ts">
+      <DependentUpon>author-list-page.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\app\brand-owners\brand-owner-edit-page.component.ts">
+      <DependentUpon>brand-owner-edit-page.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\app\brand-owners\brand-owner-item.component.ts">
+      <DependentUpon>brand-owner-item.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\app\brand-owners\brand-owner-list-page.component.ts">
+      <DependentUpon>brand-owner-list-page.component.html</DependentUpon>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\app\brands\brand.model.ts" />
     <TypeScriptCompile Include="src\app\categories\category.model.ts" />
     <TypeScriptCompile Include="src\app\dashboard-tiles\constants.ts" />
     <TypeScriptCompile Include="src\app\dashboard-tiles\dashboard-tile-element-factory.ts" />
+    <TypeScriptCompile Include="src\app\dashboard-tiles\dashboard-tile.actions.ts" />
     <TypeScriptCompile Include="src\app\dashboard-tiles\dashboard-tiles.module.ts" />
     <TypeScriptCompile Include="src\app\dashboard\constants.ts" />
     <TypeScriptCompile Include="src\app\dashboard\dashboard-header.component.ts">
@@ -594,13 +664,25 @@
     <TypeScriptCompile Include="src\app\brands\brand-owner.model.ts" />
     <TypeScriptCompile Include="src\app\templates\index.ts" />
     <TypeScriptCompile Include="src\app\templates\template.model.ts" />
-    <TypeScriptCompile Include="src\app\blog\articles.service.ts" />
-    <TypeScriptCompile Include="src\app\blog\authors.service.ts" />
     <TypeScriptCompile Include="src\app\categories\categories.service.ts" />
     <TypeScriptCompile Include="src\app\tags\index.ts" />
     <TypeScriptCompile Include="src\app\tags\tag.model.ts" />
     <TypeScriptCompile Include="src\app\tags\tags.service.ts" />
     <TypeScriptCompile Include="src\app\brands\brand-owners.service.ts" />
+    <TypeScriptCompile Include="src\app\articles\index.ts" />
+    <TypeScriptCompile Include="src\app\authors\authors.module.ts" />
+    <TypeScriptCompile Include="src\app\articles\articles.module.ts" />
+    <TypeScriptCompile Include="src\app\articles\article.model.ts" />
+    <TypeScriptCompile Include="src\app\articles\articles.service.ts" />
+    <TypeScriptCompile Include="src\app\authors\index.ts" />
+    <TypeScriptCompile Include="src\app\authors\author.model.ts" />
+    <TypeScriptCompile Include="src\app\authors\authors.service.ts" />
+    <TypeScriptCompile Include="src\app\brand-owners\brand-owners.module.ts" />
+    <TypeScriptCompile Include="src\app\brand-owners\index.ts" />
+    <TypeScriptCompile Include="src\app\brand-owners\brand-owner.model.ts" />
+    <TypeScriptCompile Include="src\app\brand-owners\brand-owners.service.ts" />
+    <TypeScriptCompile Include="src\app\dashboard-tiles\configure-dashboard-tile-modal.component.ts" />
+    <TypeScriptCompile Include="src\app\dashboard-tiles\products-dashboard-tile.component.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
@@ -630,7 +712,8 @@
           <IISUrl>http://localhost:6608/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl></CustomServerUrl>
+          <CustomServerUrl>
+          </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>

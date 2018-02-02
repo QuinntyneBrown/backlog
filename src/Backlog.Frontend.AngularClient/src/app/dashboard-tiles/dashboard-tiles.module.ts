@@ -8,6 +8,8 @@ import "./digital-assets-dashboard-tile.component";
 import "./home-page-dashboard-tile.component";
 import "./dashboard-tile-header.component";
 import "./dashboard-tile-menu.component";
+import "./configure-dashboard-tile-modal.component";
+import "./products-dashboard-tile.component";
 
 const declarations = [
 

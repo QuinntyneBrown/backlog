@@ -22,6 +22,14 @@ export class PopoverService implements IPopoverService {
     ) {
         this.show = this.show.bind(this);
         this.hide = this.hide.bind(this);
+        this.handleDocumentClick = this.handleDocumentClick.bind(this);
+
+        document.addEventListener("click", this.handleDocumentClick);
+    }
+
+    public handleDocumentClick($event) {
+        if (this.isOpen)
+            this.hide();
     }
 
     public static instance: PopoverService;

@@ -1,0 +1,2 @@
+﻿export const CONFIGURE_DASHBOARD_TILE_MENU_CLICK = "[DashboardTiles] Configure Dashboard Tile Menu Click";
+export const REMOVE_DASHBOARD_TILE_MENU_CLICK = "[DashboardTiles] Remove Dashboard Tile Menu Click";

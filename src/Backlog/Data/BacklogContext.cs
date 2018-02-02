@@ -87,15 +87,28 @@ namespace Backlog.Data
         public virtual DbSet<DashboardTile> DashboardTiles { get; set; }
         public int SaveChanges(string username)
         {
+            UpdateDeletedEntries();
             UpdateLoggableEntries(username);
             return base.SaveChanges();
         }
 
         public Task<int> SaveChangesAsync(string username)
         {
-            UpdateLoggableEntries(username);
+            UpdateDeletedEntries();
+            UpdateLoggableEntries(username);            
             return base.SaveChangesAsync();
         }
+
+        public void UpdateDeletedEntries()
+        {
+            foreach (var dbEntityEntry in ChangeTracker.Entries()
+                .Where(e => e.Entity is ISoftDeletable && ((e.State == EntityState.Deleted))))                
+            {
+                (dbEntityEntry.Entity as ISoftDeletable).IsDeleted = true;
+                dbEntityEntry.State = EntityState.Modified;
+            }
+        }
+
 
         public void UpdateLoggableEntries(string username = null)
         {
