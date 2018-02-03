@@ -157,6 +157,7 @@
   <ItemGroup>
     <Compile Include="Features\Epics\GetEpicsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServerFixture.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Security\" />
@@ -166,6 +167,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Backlog.SelfHost\Backlog.SelfHost.csproj">
+      <Project>{168f3b2a-41c3-4be3-9f6b-043d21cfdb04}</Project>
+      <Name>Backlog.SelfHost</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Backlog\Backlog.csproj">
       <Project>{ba3a0650-a18b-4731-8eaa-f73868320ef7}</Project>
       <Name>Backlog</Name>

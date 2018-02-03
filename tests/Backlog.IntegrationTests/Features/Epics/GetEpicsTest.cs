@@ -1,4 +1,5 @@
-﻿using Microsoft.Owin.Testing;
+﻿using Backlog.SelfHost;
+using Microsoft.Owin.Testing;
 using Microsoft.Practices.Unity;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Owin;
@@ -13,7 +14,7 @@ namespace Backlog.IntegrationTests.Features.Epics
     public class GetEpicsTest
     {
         private TestServer _testServer { get; set; }
-
+        
         [TestInitialize]
         public void Setup()
         {
@@ -25,6 +26,5 @@ namespace Backlog.IntegrationTests.Features.Epics
                 app.UseWebApi(config);
             });
         }
-
     }
 }

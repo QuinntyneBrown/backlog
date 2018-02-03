@@ -9,7 +9,7 @@ using static Backlog.Constants;
 namespace Backlog.Model
 {
     [SoftDelete("IsDeleted")]
-    public class Dashboard: ILoggable
+    public class Dashboard: ILoggable, ISoftDeletable
     {
         public int Id { get; set; }
 		[ForeignKey("Tenant")]

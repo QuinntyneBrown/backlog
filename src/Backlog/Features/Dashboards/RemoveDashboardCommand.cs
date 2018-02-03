@@ -12,7 +12,7 @@ namespace Backlog.Features.Dashboards
 {
     public class RemoveDashboardCommand
     {
-        public class Request : BaseRequest, IRequest<Response>
+        public class Request : BaseAuthenticatedRequest, IRequest<Response>
         {
             public int Id { get; set; }
         }
@@ -28,9 +28,12 @@ namespace Backlog.Features.Dashboards
 
             public async Task<Response> Handle(Request request)
             {
-                var dashboard = await _context.Dashboards.SingleAsync(x=>x.Id == request.Id && x.Tenant.UniqueId == request.TenantUniqueId);
-                dashboard.IsDeleted = true;
-                await _context.SaveChangesAsync();
+                var dashboard = await _context.Dashboards
+                    .Include(x => x.Tenant)
+                    .SingleAsync(x=>x.Id == request.Id && x.Tenant.UniqueId == request.TenantUniqueId);
+
+                _context.Dashboards.Remove(dashboard);
+                await _context.SaveChangesAsync(request.Username);
                 return new Response();
             }
 
