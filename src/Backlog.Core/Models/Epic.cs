@@ -1,12 +1,18 @@
+
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Backlog.Core.Models
 {
+    
     public class Epic: PrioritizableEntity
     {
-        public override int Id { get; set; }        
-        public int? TenantId { get; set; }        
-        public int? ProductId { get; set; }        
+        public override int Id { get; set; }
+        
+        
+        [ForeignKey("Product")]
+        public int? ProductId { get; set; }
+        [ForeignKey("Project")]
         public int? ProjectId { get; set; }
         public string Slug { get; set; }
         public string Name { get; set; }
@@ -16,7 +22,8 @@ namespace Backlog.Core.Models
         public ICollection<Story> Stories { get; set; } = new HashSet<Story>();
         public ICollection<EpicTheme> EpicThemes { get; set; } = new HashSet<EpicTheme>();
         public bool IsTemplate { get; set; }        
-        public bool IsDeleted { get; set; }
-        public virtual Tenant Tenant { get; set; }
+        
+
+        
     }
 }

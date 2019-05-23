@@ -1,23 +1,23 @@
 using System;
 
-
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Backlog.Core.Models
 {
-
-    public class DashboardTile: ILoggable
+    
+    public class DashboardTile
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         public string Name { get; set; }
         
 		
-        public int? TenantId { get; set; }
         
-        //[ForeignKey("Dashboard")]
+        
+        [ForeignKey("Dashboard")]
         public int? DashboardId { get; set; }
 
-        //[ForeignKey("Tile")]
+        [ForeignKey("Tile")]
         public int? TileId { get; set; }
 
         public int Width { get; set; } = 1;
@@ -36,9 +36,9 @@ namespace Backlog.Core.Models
         
 		public string LastModifiedBy { get; set; }
         
-		public bool IsDeleted { get; set; }
+		
 
-        public virtual Tenant Tenant { get; set; }
+        
 
         public virtual Dashboard Dashboard { get; set; }
 

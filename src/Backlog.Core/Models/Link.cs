@@ -1,20 +1,20 @@
 using System;
 using System.Collections.Generic;
 
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-
-
-
+using static Backlog.Constants;
 
 namespace Backlog.Core.Models
 {
-
-    public class Link: ILoggable
+    
+    public class Link
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         
 		
-        public int? TenantId { get; set; }
+        
 
         public string Url { get; set; }
         public string DisplayText { get; set; }
@@ -27,8 +27,8 @@ namespace Backlog.Core.Models
         
 		public string LastModifiedBy { get; set; }
         
-		public bool IsDeleted { get; set; }
+		
 
-        public virtual Tenant Tenant { get; set; }
+        
     }
 }

@@ -1,17 +1,17 @@
 using System;
 using System.Collections.Generic;
-
+using System.ComponentModel.DataAnnotations.Schema;
 
 
 namespace Backlog.Core.Models
 {
-
+    
     public class Story: PrioritizableEntity, ILoggable
     {
         public override int Id { get; set; }
         
-        public int? TenantId { get; set; }
-        //[ForeignKey("Epic")]
+        
+        [ForeignKey("Epic")]
         public int? EpicId { get; set; }
         public int? ReusableStoryGroupId { get; set; }
         public string Name { get; set; }
@@ -22,7 +22,7 @@ namespace Backlog.Core.Models
         public int? Points { get; set; }
         public int? ArchitecturePoints { get; set; }
         public bool IsReusable { get; set; }
-        public bool IsDeleted { get; set; }
+        
         public DateTime? StartDate { get; set; }
         public DateTime? CompletedDate { get; set; }
         public ICollection<Task> Tasks { get; set; } = new HashSet<Task>();
@@ -31,7 +31,7 @@ namespace Backlog.Core.Models
         public ICollection<StoryDigitalAsset> StoryDigitalAssets { get; set; } = new HashSet<StoryDigitalAsset>();
         public ICollection<StoryArticle> StoryArticles { get; set; } = new HashSet<StoryArticle>();
         public Epic Epic { get; set; }
-        public virtual Tenant Tenant { get; set; }
+        
         public DateTime CreatedOn { get; set; }
         public DateTime LastModifiedOn { get; set; }
         public string CreatedBy { get; set; }

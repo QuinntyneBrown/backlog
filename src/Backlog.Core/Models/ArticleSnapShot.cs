@@ -1,13 +1,10 @@
 using System;
-using System.Collections.Generic;
-
 
 namespace Backlog.Core.Models
 {
-
     public class ArticleSnapShot
     {
-        public int Id { get; set; }
+        public Guid ArticleSnapShotId { get; set; }
         public int ArticleId { get; set; }
         public string Title { get; set; }
         public string Author { get; set; }

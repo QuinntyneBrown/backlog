@@ -1,15 +1,15 @@
 using System;
 
-
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Backlog.Core.Models
 {
-
-    public class DigitalAsset: ILoggable
+    
+    public class DigitalAsset
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         
-        public int? TenantId { get; set; }
+        
         public string Name { get; set; }
         public string FileName { get; set; }
         public string Description { get; set; }
@@ -24,11 +24,11 @@ namespace Backlog.Core.Models
         public Byte[] Bytes { get; set; } = new byte[0];
         public Guid? UniqueId { get; set; } = Guid.NewGuid();
         public string Folder { get; set; }
-        public bool IsDeleted { get; set; }
+        
         public DateTime LastModifiedOn { get; set; }
         public string LastModifiedBy { get; set; }
         public DateTime? UploadedOn { get; set; }
         public string UploadedBy { get; set; }
-        public virtual Tenant Tenant { get; set; }
+        
     }
 }

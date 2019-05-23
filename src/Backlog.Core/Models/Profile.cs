@@ -1,13 +1,23 @@
 using System;
 using System.Collections.Generic;
 
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+using static Backlog.Constants;
+
 namespace Backlog.Core.Models
 {
-
-    public class Profile: ILoggable
+    
+    public class Profile
     {
-        public int Id { get; set; }        
-        public int? TenantId { get; set; }
+        public Guid Id { get; set; }        
+		
+        
+
+        [Index("ProfileNameIndex", IsUnique = false)]
+        [Column(TypeName = "VARCHAR")]     
+        [StringLength(255)]		   
 		public string Name { get; set; }
         public string AvatarImageUrl { get; set; }
         public string Description { get; set; }
@@ -16,8 +26,8 @@ namespace Backlog.Core.Models
 		public DateTime LastModifiedOn { get; set; }        
 		public string CreatedBy { get; set; }        
 		public string LastModifiedBy { get; set; }        
-		public bool IsDeleted { get; set; }
-        public virtual Tenant Tenant { get; set; }
+		
+        
         public virtual User User { get; set; }
     }
 }
