@@ -12,4 +12,8 @@
     <ProjectReference Include="..\Backlog.Core\Backlog.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Dtos\" />
+  </ItemGroup>
+
 </Project>

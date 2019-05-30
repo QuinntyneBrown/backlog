@@ -7,6 +7,11 @@ using System.Threading.Tasks;
 
 namespace Backlog.Domain.Services
 {
+    public interface IAgileTeamService
+    {
+        Task<AgileTeam> GetByIdAsync(Guid id);
+    }
+
     public class AgileTeamService: IAgileTeamService
     {
         private readonly IAppDbContext _context;
