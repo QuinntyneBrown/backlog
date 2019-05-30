@@ -1,4 +1,4 @@
-namespace Backlog.Domain.Models
+namespace Backlog.Domain.Enums
 {
     public enum KanbanBoardTaskStatus
     {

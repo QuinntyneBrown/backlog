@@ -1,4 +1,5 @@
 ﻿using Backlog.Domain.DataAccess;
+using Backlog.Domain.Dtos;
 using Backlog.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,7 +10,8 @@ namespace Backlog.Domain.Services
 {
     public interface IAgileTeamService
     {
-        Task<AgileTeam> GetByIdAsync(Guid id);
+        Task<AgileTeamDto> GetByIdAsync(Guid id);
+        Task<AgileTeamDto> InsertAsync(AgileTeamDto entity);
     }
 
     public class AgileTeamService: IAgileTeamService
@@ -20,9 +22,9 @@ namespace Backlog.Domain.Services
             _context = context;
         }
 
-        public async Task<AgileTeam> GetByIdAsync(Guid id)
+        public async Task<AgileTeamDto> GetByIdAsync(Guid id)
         {
-            return await _context.AgileTeams.FindAsync(id);
+            return (await _context.AgileTeams.FindAsync(id)).ToDto();
         }
 
         public async Task<IEnumerable<AgileTeam>> GetAllAsync()
@@ -30,16 +32,16 @@ namespace Backlog.Domain.Services
             return await _context.AgileTeams.ToListAsync();
         }
 
-        public async Task<AgileTeam> InsertAsync(AgileTeam entity)
+        public async Task<AgileTeamDto> InsertAsync(AgileTeamDto agileTeam)
         {
-            await _context.AgileTeams.AddAsync(entity);
+            //await _context.AgileTeams.AddAsync(entity);
 
-            await _context.SaveChangesAsync();
+            //await _context.SaveChangesAsync();
 
-            return entity;
+            return agileTeam;
         }
 
-        public async Task<AgileTeam> UpdateAsync(AgileTeam entity)
+        public async Task<AgileTeamDto> UpdateAsync(AgileTeam entity)
         {
             var _entity = await GetByIdAsync(entity.AgileTeamId);
 

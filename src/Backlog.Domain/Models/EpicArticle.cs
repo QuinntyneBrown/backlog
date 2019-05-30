@@ -4,7 +4,7 @@ namespace Backlog.Domain.Models
 {
     public class EpicArticle
     {
-        public Guid Id { get; set; }        
+        public Guid EpicArticleId { get; set; }        
         public string Name { get; set; }                
     }
 }

@@ -9,14 +9,14 @@ namespace Backlog.Domain.Dtos
         public ArticleDtoValidator()
         {
             RuleFor(x => x.ArticleId).NotNull();
-            RuleFor(x => x.Name).NotNull();
+            RuleFor(x => x.Title).NotNull();
         }
     }
 
     public class ArticleDto
     {        
         public Guid ArticleId { get; set; }
-        public string Name { get; set; }
+        public string Title { get; set; }
     }
 
     public static class ArticleExtensions
@@ -25,7 +25,7 @@ namespace Backlog.Domain.Dtos
             => new ArticleDto
             {
                 ArticleId = article.ArticleId,
-                Name = article.Name
+                Title = article.Title
             };
     }
 }

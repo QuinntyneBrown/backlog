@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Backlog.Domain.Models
 {
@@ -11,9 +10,6 @@ namespace Backlog.Domain.Models
         public Template Template { get; set; }
         public string Name { get; set; }
         public ICollection<BrandOwner> BrandOwners { get; set; } = new HashSet<BrandOwner>();
-        public ICollection<BrandFeature> BrandFeatures { get; set; } = new HashSet<BrandFeature>();        
-        
-
-        
+        public ICollection<BrandFeature> BrandFeatures { get; set; } = new HashSet<BrandFeature>();                
     }
 }

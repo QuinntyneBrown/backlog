@@ -5,7 +5,7 @@ namespace Backlog.Domain.Models
 {    
     public class Task
     {
-        public int TaskId { get; set; }        
+        public Guid TaskId { get; set; }        
         public Guid? StoryId { get; set; }        
         [ForeignKey("TaskStatus")]
         public Guid? TaskStatusId { get; set; }

@@ -6,7 +6,7 @@ namespace Backlog.Domain.Models
 {    
     public class EpicTheme
     {
-        public Guid Id { get; set; }        
+        public Guid EpicThemeId { get; set; }        
         [ForeignKey("Epic")]
         public Guid? EpicId { get; set; }
         [ForeignKey("Theme")]
