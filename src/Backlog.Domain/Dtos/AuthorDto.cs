@@ -8,13 +8,16 @@ namespace Backlog.Domain.Dtos
     {
         public AuthorDtoValidator()
         {
-            RuleFor(x => x.AuthorId).NotNull();
+            RuleFor(x => x.AuthorId).NotNull();            
         }
     }
 
     public class AuthorDto
     {        
         public Guid AuthorId { get; set; }
+        public string Firstname { get; set; }
+        public string Lastname { get; set; }
+        public string AvatarUrl { get; set; }
     }
 
     public static class AuthorExtensions
@@ -22,7 +25,10 @@ namespace Backlog.Domain.Dtos
         public static AuthorDto ToDto(this Author author)
             => new AuthorDto
             {
-                AuthorId = author.AuthorId
+                AuthorId = author.AuthorId,
+                Firstname = author.Firstname,
+                Lastname = author.Lastname,
+                AvatarUrl = author.AvatarUrl
             };
     }
 }

@@ -1,6 +1,8 @@
 using Backlog.Domain.Models;
 using FluentValidation;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Backlog.Domain.Dtos
 {
@@ -10,6 +12,8 @@ namespace Backlog.Domain.Dtos
         {
             RuleFor(x => x.BrandId).NotNull();
             RuleFor(x => x.Name).NotNull();
+            RuleForEach(x => x.BrandOwners).SetValidator(new BrandOwnerDtoValidator());
+            RuleForEach(x => x.BrandFeatures).SetValidator(new BrandFeatureDtoValidator());
         }
     }
 
@@ -17,6 +21,10 @@ namespace Backlog.Domain.Dtos
     {        
         public Guid BrandId { get; set; }
         public string Name { get; set; }
+        public Guid? TemplateId { get; set; }
+        public Template Template { get; set; }        
+        public ICollection<BrandOwnerDto> BrandOwners { get; set; } = new HashSet<BrandOwnerDto>();
+        public ICollection<BrandFeatureDto> BrandFeatures { get; set; } = new HashSet<BrandFeatureDto>();
     }
 
     public static class BrandExtensions
@@ -25,7 +33,11 @@ namespace Backlog.Domain.Dtos
             => new BrandDto
             {
                 BrandId = brand.BrandId,
-                Name = brand.Name
+                Name = brand.Name,
+                TemplateId = brand.TemplateId,
+                Template = brand.Template,
+                BrandFeatures = brand.BrandFeatures.Select(x => x.ToDto()).ToList(),
+                BrandOwners = brand.BrandOwners.Select(x => x.ToDto()).ToList()
             };
     }
 }

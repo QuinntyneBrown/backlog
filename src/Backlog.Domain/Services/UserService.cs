@@ -15,13 +15,13 @@ namespace Backlog.Domain.Services
     public class UserService : IUserService
     {
         private readonly IAppDbContext _context;
-        private readonly ISecurityTokenFactory _factory;
-        private readonly IPasswordHasher _hasher;
-        public UserService(IAppDbContext context, ISecurityTokenFactory factory, IPasswordHasher hasher)
+        private readonly ISecurityTokenFactory _securityTokenFactory;
+        private readonly IPasswordHasher _passwordHasher;
+        public UserService(IAppDbContext context, ISecurityTokenFactory securityTokenFactory, IPasswordHasher passwordHasher)
         {
             _context = context;
-            _factory = factory;
-            _hasher = hasher;
+            _securityTokenFactory = securityTokenFactory;
+            _passwordHasher = passwordHasher;
         }
 
         public async Task<(Guid userId, string accessToken)> Authenticate(string username, string password)
@@ -32,10 +32,10 @@ namespace Backlog.Domain.Services
             if (user == null)
                 throw new Exception("Invalid username or password");
 
-            if (!ValidateUser(user, _hasher.HashPassword(user.Salt, password)))
+            if (!ValidateUser(user, _passwordHasher.HashPassword(user.Salt, password)))
                 throw new Exception("Invalid username or password");
 
-            return (user.UserId, _factory.Create(user.UserId, username));
+            return (user.UserId, _securityTokenFactory.Create(user.UserId, username));
         }
 
         public bool ValidateUser(User user, string transformedPassword)
