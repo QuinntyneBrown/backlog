@@ -12,8 +12,10 @@ namespace Backlog.Domain.Services
     public interface IAgileTeamService
     {
         Task<AgileTeamDto> GetByIdAsync(Guid id);
-        Task<AgileTeamDto> InsertAsync(AgileTeamDto entity);
+        Task<AgileTeamDto> InsertAsync(AgileTeamDto dto);
+        Task<AgileTeamDto> UpdateAsync(AgileTeamDto dto);
         Task<IEnumerable<AgileTeamDto>> GetAllAsync();
+        Task<int> RemoveAsync(AgileTeamDto dto);
     }
 
     public class AgileTeamService: IAgileTeamService
@@ -35,11 +37,11 @@ namespace Backlog.Domain.Services
                 .Select(x => x.ToDto());
         }
 
-        public async Task<AgileTeamDto> InsertAsync(AgileTeamDto agileTeam)
+        public async Task<AgileTeamDto> InsertAsync(AgileTeamDto dto)
         {
             var result = await _context.AgileTeams.AddAsync(new AgileTeam
             {
-                Name = agileTeam.Name
+                Name = dto.Name
             });
 
             await _context.SaveChangesAsync();
@@ -47,22 +49,24 @@ namespace Backlog.Domain.Services
             return result.Entity.ToDto();
         }
 
-        public async Task<AgileTeamDto> UpdateAsync(AgileTeam entity)
+        public async Task<AgileTeamDto> UpdateAsync(AgileTeamDto dto)
         {
-            var _entity = await GetByIdAsync(entity.AgileTeamId);
+            var _entity = await GetByIdAsync(dto.AgileTeamId);
 
-            _entity.Name = entity.Name;
+            _entity.Name = dto.Name;
 
             await _context.SaveChangesAsync();
 
             return _entity;
         }
 
-        public async System.Threading.Tasks.Task DeleteAsync(AgileTeam entity)
+        public async Task<int> RemoveAsync(AgileTeamDto dto)
         {
-            _context.AgileTeams.Remove(entity);
+            var agileTeam = await _context.AgileTeams.FindAsync(dto.AgileTeamId);
 
-            await _context.SaveChangesAsync();
+            _context.AgileTeams.Remove(agileTeam);
+
+            return await _context.SaveChangesAsync();
         }
     }
 }

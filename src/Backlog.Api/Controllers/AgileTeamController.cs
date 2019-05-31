@@ -1,7 +1,6 @@
 ﻿using Backlog.Domain.Dtos;
 using Backlog.Domain.Extensions;
 using Backlog.Domain.Services;
-using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -13,9 +12,7 @@ namespace Backlog.Api.Controllers
     {
         private readonly IAgileTeamService _service;
 
-        public AgileTeamController(
-            IAgileTeamService service
-            )
+        public AgileTeamController(IAgileTeamService service)
         {
             _service = service;
         }
@@ -46,19 +43,14 @@ namespace Backlog.Api.Controllers
 
         [HttpDelete]
         public async Task<IActionResult> Remove()
-        {            
-            var agileTeam = _service.InsertAsync((await GetBody()).Value);
-
-            return new OkObjectResult(agileTeam);
-        }
-
-        public async Task<HttpResponseBody<AgileTeamDto>> GetBody()
         {
             var body = await Request.GetBodyAsync<AgileTeamDto>();
 
             if (!body.IsValid) throw new Exception();
 
-            return body;
+            var agileTeam = _service.InsertAsync(body.Value);
+
+            return new OkObjectResult(agileTeam);
         }
     }
 }
