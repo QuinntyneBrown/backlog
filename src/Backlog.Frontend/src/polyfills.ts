@@ -1,2 +1,0 @@
-﻿import "web-animations-js";
-
