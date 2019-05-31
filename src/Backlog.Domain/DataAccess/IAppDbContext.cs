@@ -19,6 +19,7 @@ namespace Backlog.Domain.DataAccess
         DbSet<HtmlContent> HtmlContents { get; set; }
         DbSet<Ip> Ips { get; set; }
         DbSet<Project> Projects { get; set; }
+        DbSet<ProductBacklogItem> ProductBacklogItems { get; set; }
         DbSet<Product> Products { get; set; }
         DbSet<ReusableStoryGroup> ReusableStoryGroups { get; set; }
         DbSet<Role> Roles { get; set; }

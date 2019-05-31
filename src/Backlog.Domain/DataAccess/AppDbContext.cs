@@ -19,6 +19,7 @@ namespace Backlog.Domain.DataAccess
         public virtual DbSet<Ip> Ips { get; set; }
         public virtual DbSet<Project> Projects { get; set; }
         public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<ProductBacklogItem> ProductBacklogItems { get; set; }
         public virtual DbSet<ReusableStoryGroup> ReusableStoryGroups { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<Sprint> Sprints { get; set; }
