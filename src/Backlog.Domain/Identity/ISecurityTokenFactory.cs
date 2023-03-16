@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Backlog.Domain.Identity
+
+namespace Backlog.Domain.Identity;
+
+public interface ISecurityTokenFactory
 {
-    public interface ISecurityTokenFactory
-    {
-        string Create(Guid userId, string uniqueName);
-    }
+    string Create(Guid userId, string uniqueName);
 }

@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 
-namespace Backlog.Domain.Models
+
+namespace Backlog.Domain.Models;
+
+
+public class Ip
 {
-
-    public class Ip
-    {
-        public Guid IpId { get; set; }        
-    }
+    public Guid IpId { get; set; }        
 }

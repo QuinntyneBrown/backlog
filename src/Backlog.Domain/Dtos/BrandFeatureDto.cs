@@ -2,27 +2,27 @@ using Backlog.Domain.Models;
 using FluentValidation;
 using System;
 
-namespace Backlog.Domain.Dtos
+
+namespace Backlog.Domain.Dtos;
+
+public class BrandFeatureDtoValidator: AbstractValidator<BrandFeatureDto>
 {
-    public class BrandFeatureDtoValidator: AbstractValidator<BrandFeatureDto>
+    public BrandFeatureDtoValidator()
     {
-        public BrandFeatureDtoValidator()
+        RuleFor(x => x.BrandFeatureId).NotNull();
+    }
+}
+
+public class BrandFeatureDto
+{        
+    public Guid BrandFeatureId { get; set; }
+}
+
+public static class BrandFeatureExtensions
+{        
+    public static BrandFeatureDto ToDto(this BrandFeature brandFeature)
+        => new BrandFeatureDto
         {
-            RuleFor(x => x.BrandFeatureId).NotNull();
-        }
-    }
-
-    public class BrandFeatureDto
-    {        
-        public Guid BrandFeatureId { get; set; }
-    }
-
-    public static class BrandFeatureExtensions
-    {        
-        public static BrandFeatureDto ToDto(this BrandFeature brandFeature)
-            => new BrandFeatureDto
-            {
-                BrandFeatureId = brandFeature.BrandFeatureId,
-            };
-    }
+            BrandFeatureId = brandFeature.BrandFeatureId,
+        };
 }

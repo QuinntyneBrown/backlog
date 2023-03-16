@@ -1,9 +1,9 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 
-namespace Backlog.Domain.Validation
+
+namespace Backlog.Domain.Validation;
+
+public interface IValidationService
 {
-    public interface IValidationService
-    {
-        Task Validate<T>(T request);
-    }
+    Task Validate<T>(T request);
 }

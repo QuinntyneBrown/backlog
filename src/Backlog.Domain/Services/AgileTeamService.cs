@@ -1,4 +1,4 @@
-﻿using Backlog.Domain.DataAccess;
+using Backlog.Domain.DataAccess;
 using Backlog.Domain.Dtos;
 using Backlog.Domain.Models;
 using Microsoft.EntityFrameworkCore;
@@ -7,66 +7,57 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Backlog.Domain.Services
+
+namespace Backlog.Domain.Services;
+
+public class AgileTeamService: IAgileTeamService
 {
-    public interface IAgileTeamService
+    private readonly IAppDbContext _context;
+    public AgileTeamService(IAppDbContext context)
     {
-        Task<AgileTeamDto> GetByIdAsync(Guid id);
-        Task<AgileTeamDto> InsertAsync(AgileTeamDto dto);
-        Task<AgileTeamDto> UpdateAsync(AgileTeamDto dto);
-        Task<IEnumerable<AgileTeamDto>> GetAllAsync();
-        Task<int> RemoveAsync(AgileTeamDto dto);
+        _context = context;
     }
 
-    public class AgileTeamService: IAgileTeamService
+    public async Task<AgileTeamDto> GetByIdAsync(Guid id)
     {
-        private readonly IAppDbContext _context;
-        public AgileTeamService(IAppDbContext context)
+        return (await _context.AgileTeams.FindAsync(id)).ToDto();
+    }
+
+    public async Task<IEnumerable<AgileTeamDto>> GetAllAsync()
+    {
+        return (await _context.AgileTeams.ToListAsync())
+            .Select(x => x.ToDto());
+    }
+
+    public async Task<AgileTeamDto> InsertAsync(AgileTeamDto dto)
+    {
+        var result = await _context.AgileTeams.AddAsync(new AgileTeam
         {
-            _context = context;
-        }
+            Name = dto.Name
+        });
 
-        public async Task<AgileTeamDto> GetByIdAsync(Guid id)
-        {
-            return (await _context.AgileTeams.FindAsync(id)).ToDto();
-        }
+        await _context.SaveChangesAsync();
 
-        public async Task<IEnumerable<AgileTeamDto>> GetAllAsync()
-        {
-            return (await _context.AgileTeams.ToListAsync())
-                .Select(x => x.ToDto());
-        }
+        return result.Entity.ToDto();
+    }
 
-        public async Task<AgileTeamDto> InsertAsync(AgileTeamDto dto)
-        {
-            var result = await _context.AgileTeams.AddAsync(new AgileTeam
-            {
-                Name = dto.Name
-            });
+    public async Task<AgileTeamDto> UpdateAsync(AgileTeamDto dto)
+    {
+        var _entity = await GetByIdAsync(dto.AgileTeamId);
 
-            await _context.SaveChangesAsync();
+        _entity.Name = dto.Name;
 
-            return result.Entity.ToDto();
-        }
+        await _context.SaveChangesAsync();
 
-        public async Task<AgileTeamDto> UpdateAsync(AgileTeamDto dto)
-        {
-            var _entity = await GetByIdAsync(dto.AgileTeamId);
+        return _entity;
+    }
 
-            _entity.Name = dto.Name;
+    public async Task<int> RemoveAsync(AgileTeamDto dto)
+    {
+        var agileTeam = await _context.AgileTeams.FindAsync(dto.AgileTeamId);
 
-            await _context.SaveChangesAsync();
+        _context.AgileTeams.Remove(agileTeam);
 
-            return _entity;
-        }
-
-        public async Task<int> RemoveAsync(AgileTeamDto dto)
-        {
-            var agileTeam = await _context.AgileTeams.FindAsync(dto.AgileTeamId);
-
-            _context.AgileTeams.Remove(agileTeam);
-
-            return await _context.SaveChangesAsync();
-        }
+        return await _context.SaveChangesAsync();
     }
 }

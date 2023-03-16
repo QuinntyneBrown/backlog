@@ -1,10 +1,10 @@
-namespace Backlog.Domain.Enums
+
+namespace Backlog.Domain.Enums;
+
+public enum KanbanBoardTaskStatus
 {
-    public enum KanbanBoardTaskStatus
-    {
-        NotStarted,
-        InProgress,
-        QA,
-        Complete
-    }
+    NotStarted,
+    InProgress,
+    QA,
+    Complete
 }

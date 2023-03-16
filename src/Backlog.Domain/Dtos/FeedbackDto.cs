@@ -2,30 +2,30 @@ using Backlog.Domain.Models;
 using FluentValidation;
 using System;
 
-namespace Backlog.Domain.Dtos
+
+namespace Backlog.Domain.Dtos;
+
+public class FeedbackDtoValidator: AbstractValidator<FeedbackDto>
 {
-    public class FeedbackDtoValidator: AbstractValidator<FeedbackDto>
+    public FeedbackDtoValidator()
     {
-        public FeedbackDtoValidator()
+        RuleFor(x => x.FeedbackId).NotNull();
+        RuleFor(x => x.Name).NotNull();
+    }
+}
+
+public class FeedbackDto
+{        
+    public Guid FeedbackId { get; set; }
+    public string Name { get; set; }
+}
+
+public static class FeedbackExtensions
+{        
+    public static FeedbackDto ToDto(this Feedback feedback)
+        => new FeedbackDto
         {
-            RuleFor(x => x.FeedbackId).NotNull();
-            RuleFor(x => x.Name).NotNull();
-        }
-    }
-
-    public class FeedbackDto
-    {        
-        public Guid FeedbackId { get; set; }
-        public string Name { get; set; }
-    }
-
-    public static class FeedbackExtensions
-    {        
-        public static FeedbackDto ToDto(this Feedback feedback)
-            => new FeedbackDto
-            {
-                FeedbackId = feedback.FeedbackId,
-                Name = feedback.Name
-            };
-    }
+            FeedbackId = feedback.FeedbackId,
+            Name = feedback.Name
+        };
 }

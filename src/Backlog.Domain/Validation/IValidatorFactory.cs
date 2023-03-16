@@ -1,11 +1,11 @@
-﻿using FluentValidation;
+using FluentValidation;
 using System;
 
-namespace Backlog.Domain.Validation
+
+namespace Backlog.Domain.Validation;
+
+public interface IValidatorFactory
 {
-    public interface IValidatorFactory
-    {
-        IValidator<T> GetValidator<T>();
-        IValidator GetValidator(Type type);
-    }
+    IValidator<T> GetValidator<T>();
+    IValidator GetValidator(Type type);
 }
